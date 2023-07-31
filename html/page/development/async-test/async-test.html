@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<style id="style_prime"></style>
+<style>
+  .pod_racing {
+    width: 200px;
+    height: auto;
+  }
+</style>
+
+<html id="html_prime">
+  <head>
+    <title>Async Test - waluigi-servebeer.com</title>
+    <!-- <link rel="icon" type="image/png" href="favicon-test.png"/> -->
+    <link rel="stylesheet" type="text/css" 
+      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+    <meta name="viewport" content="width=640, initial-scale=1"/>
+  </head>
+  <body id="body_prime">
+    <div class="big_section" id="title_bar">
+      <br>
+      <h1>
+        Async Testing Grounds
+      </h1>
+      <a href="/page/development/test-collection.html">Return to Test Collection</a>
+      <hr>
+    </div>
+    <div class="big_section" id="text_section">
+      <div id="test_sector" style="overflow-y: visible;">
+        <img src="" id="image_one" alt="image" class="pod_racing async_image" 
+          data-path="pod-racing.png" data-req-head="Cache-Control: no-store">
+      </div>
+      <div>
+        <span class="async_text" data-path="wood.txt">text</span>
+      </div>
+      <div class="async_html" data-path="gun.html"></div>
+      <div>
+        <!-- <input type="button" value="reload page" onclick="reload_page()"> -->
+      </div>
+    </div>
+    <div class="big_section">
+      stuff
+      <br>
+      <input type="button" value="load_script" onclick="load_async_style_script()">
+      <hr>
+    </div>
+    <div class="big_section">
+      <div id="sitemap">
+        
+      </div>
+      <a href="/sitemap.html">sitemap</a>
+    </div>
+  </body>
+</html>
+
+<script id="script_prime"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+  (function () {
+    // await load_async_html();
+    // await do_the_thing();
+    // load_async_style_script();
+    // do_the_thing(startup_common);
+    // startup_common(lock_full_doc_dimensions);
+    startup_common();
+    // async_data_request({data_path: "/sitemap.txt"},function(xhr) {generate_sitemap_ver2(xhr);});
+  })();
+
+  function generate_sitemap(xhr) {
+    let sitemap_text;
+    sitemap_text = xhr.responseText;
+    let sitemap_arr = sitemap_text.split(/\n/);
+    sitemap_arr.forEach(element => {
+      console.log(element);
+      let substr = element.replace(/\/[^\/]*\//, "");
+      console.log(substr);
+    });
+  }
+
+  function generate_sitemap_ver2(xhr) {
+    let sitemap_arr = xhr.responseText.split(/\n/);
+    let sitemap_element = document.getElementById("sitemap");
+    sitemap_arr.forEach(element => {
+      let sitemap_anchor = document.createElement("a");
+      let sitemap_anchor_attr_href = document.createAttribute("href");
+      sitemap_anchor_attr_href.value = element;
+      sitemap_anchor.setAttributeNode(sitemap_anchor_attr_href);
+      sitemap_anchor.innerHTML = element;
+      // console.log(sitemap_anchor);
+      sitemap_element.appendChild(sitemap_anchor);
+      let sitemap_br = document.createElement("br");
+      sitemap_element.appendChild(sitemap_br);
+    });
+  }
+
+  function do_the_thing(callback, ...args) {
+    typeof callback === "function" && callback(args);
+  }
+
+  async function load_async_all() {
+    await Promise.all([
+      async_data_request(
+        {data_path: "async-test.html", response_type: "text", request_header: "Cache-Control: no-store"},
+        function(xhr) {
+          document.getElementsByTagName("html")[0].innerHTML = xhr.responseText;
+        }
+      ),
+      async_data_request(
+        {data_path: "/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css", response_type: "text", request_header: "Cache-Control: no-store"},
+        function(xhr) {
+          document.getElementsByTagName("style")[0].innerHTML = xhr.responseText;
+        }
+      ),
+      async_data_request(
+        {data_path: "/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js", response_type: "text", request_header: "Cache-Control: no-store"},
+        function(xhr) {
+          document.getElementsByTagName("script")[0].innerHTML = xhr.responseText;
+        }
+      ),
+    ]);
+    // startup_common(lock_full_doc_dimensions);
+    // debug_element_class_border("big_section");
+  }
+  async function load_async_style_script() {
+    await async_data_request(
+      {data_path: "/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css", response_type: "text", request_header: "Cache-Control: no-store"},
+      function(xhr) {
+        document.getElementsByTagName("style")[0].innerHTML = xhr.responseText;
+      }
+    );
+    await async_data_request(
+      {data_path: "/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js", response_type: "text", request_header: "Cache-Control: no-store"},
+      function(xhr) {
+        document.getElementsByTagName("script")[0].innerHTML = xhr.responseText;
+      }
+    );
+    startup_common(lock_full_doc_dimensions);
+  }
+  async function load_async_html() {
+    await async_data_request(
+      {data_path: "async-test.html", response_type: "text", request_header: "Cache-Control: no-store"},
+      function(xhr) {
+        document.getElementsByTagName("html")[0].innerHTML = xhr.responseText;
+      }
+    );
+  }
+
+  function load_script(callback, ...args) {
+    document.getElementById("script_prime").src = "/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js";
+    typeof callback === "function" && callback(args);
+  }
+
+  function new_script(callback, ...args) {
+    let script_prime = document.createElement("script");
+    let script_prime_attr_src = document.createAttribute("src");
+    script_prime_attr_src.value = "/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js";
+    script_prime.setAttributeNode(script_prime_attr_src);
+    // document.body.appendChild(script_prime);
+    document.body.insertBefore(script_prime, document.getElementsByTagName("script")[0]);
+    typeof callback === "function" && callback(args);
+  }
+
+  function reload_page() {
+    console.log(document);
+    data_async_request(
+      {data_path: "gun.html", response_type: "document", response_header: "Cache-Control: no-store"}, 
+      function(xhr) {
+        console.log(xhr.responseXML);
+        document.body = xhr.responseXML.body;
+      }
+    );
+  }
+
+  function append_image(element_id) {
+    let image = document.createElement("IMG");
+    let image_attr_alt = document.createAttribute("alt");
+    image_attr_alt.value = "IMAGE";
+    image.setAttributeNode(image_attr_alt);
+    let image_attr_style = document.createAttribute("style");
+    image_attr_style.value = "width: 200px; height: 150px;";
+    image.setAttributeNode(image_attr_style);
+    let image_attr_src = document.createAttribute("src");
+    image_attr_src.value = "";
+    image.setAttributeNode(image_attr_src);
+    let image_attr_id = document.createAttribute("id");
+    image_attr_id.value = "image";
+    image.setAttributeNode(image_attr_id);
+    data_async_request("pod-racing.png", "arraybuffer", function(xhr, image_id) {
+      let data_uri = "data:image/png;base64," + btoa(String.fromCharCode.apply(null, new Uint8Array(xhr.response)));
+      console.log(data_uri);
+      document.getElementById(image_id).src = data_uri;
+    }, image.id);
+    document.getElementById(element_id).appendChild(image);
+  }
+  function replace_image_src(image_id, image_path) {
+    data_async_request(image_path, "arraybuffer", function(xhr, element_id) {
+      let a_resp = new Uint8Array(xhr.response);
+      let bin = "";
+      let a_resp_len = a_resp.length;
+      let index;
+      for (index = 0; index < a_resp_len; index += 32768)
+        bin += String.fromCharCode.apply(null, a_resp.slice(index, Math.min(index + 32768, a_resp_len)));
+      let data_uri = "data:image/" + image_path.split(".")[1] + ";base64," + btoa(bin);
+      document.getElementById(element_id).src = data_uri;
+      document.getElementById(element_id).classList.add("steak_zone_image");
+    }, image_id);
+  }
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sitemap - waluigi-servebeer.com</title>
+    <!-- <link rel="icon" type="image/png" href="/favicon-site-map.png"/> -->
+    <link rel="stylesheet" type="text/css" 
+    href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+  <link rel="stylesheet" type="text/css" 
+    href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+  </head>
+  <body>
+    <br />
+    <div id="sitemap">
+    </div>
+    <script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+    <script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+    <script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+    <script>
+      (function() {
+        async_data_request(
+          {data_path: "/page/sitemap/sitemap.txt", request_header: "Cache-Control: no-store"}, 
+          function(xhr) {
+            let sitemap_arr = xhr.responseText.split(/\n/);
+            let sitemap_element = document.getElementById("sitemap");
+            sitemap_arr.forEach(element => {
+              let sitemap_anchor = document.createElement("a");
+              let sitemap_anchor_attr_href = document.createAttribute("href");
+              sitemap_anchor_attr_href.value = element;
+              sitemap_anchor.setAttributeNode(sitemap_anchor_attr_href);
+              sitemap_anchor.innerHTML = element;
+              sitemap_element.appendChild(sitemap_anchor);
+              let sitemap_br = document.createElement("br");
+              sitemap_element.appendChild(sitemap_br);
+            });
+          }
+        );
+      })();
+    </script>
+    <script>
+      (function() {
+        startup_common();
+      })();
+    </script>
+  </body>
+</html>

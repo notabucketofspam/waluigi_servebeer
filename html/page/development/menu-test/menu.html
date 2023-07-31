@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Menu Test - waluigi-servebeer.com</title>
+    <!-- <link rel="icon" type="image/png" href="favicon-test.png"/> -->
+    <link rel="stylesheet" type="text/css" 
+      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+    <meta name="viewport" content="width=640, initial-scale=1"/>
+  </head>
+  <body>
+    <div class="big_section" id="title_bar">
+      <br>
+      <h1>
+        Drop-down Menu Test
+      </h1>
+      <a href="/page/development/test-collection.html">Return to Test Collection</a>
+      <br>
+    </div>
+  </body>
+</html>
+
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+  (function() {
+    startup_common();
+    // append_dropdown_menu();
+  })();
+  async function append_dropdown_menu() {
+    let dropdown_menu = document.createElement("div");
+    let dropdown_menu_attr_class = document.createAttribute("class");
+    dropdown_menu_attr_class.value = "dropdown_element dropdown_base";
+    dropdown_menu.setAttributeNode(dropdown_menu_attr_class);
+    dropdown_menu.innerHTML = `
+      <button class="dropdown_element dropdown_button" onclick="void (
+        document.getElementsByClassName('dropdown_item_list')[0].classList.toggle('dropdown_item_list_active'));">
+        <div class="dropdown_element dropdown_base_line"></div>
+        <div class="dropdown_element dropdown_base_line"></div>
+        <div class="dropdown_element dropdown_base_line"></div>
+      </button>
+      <div class="dropdown_element dropdown_item_list"></div>
+    `;
+    document.body.appendChild(dropdown_menu);
+    await async_data_request(
+      {data_path: "/dropdown-item-list.html", response_type: "document", request_header: "Cache-Control: no-store"}, 
+      function(xhr) {document.getElementsByClassName("dropdown_item_list")[0].innerHTML = xhr.response.body.innerHTML;}
+    );
+    document.addEventListener("click", function(event) {
+      if (!event.target.classList.contains("dropdown_element"))
+        document.getElementsByClassName('dropdown_item_list')[0].classList.remove('dropdown_item_list_active');
+    });
+  }
+  function append_dropdown_css() {
+    let dropdown_css = document.createElement("link");
+    let dropdown_css_attr_rel = document.createAttribute("rel");
+    dropdown_css_attr_rel.value = "stylesheet";
+    dropdown_css.setAttributeNode(dropdown_css_attr_rel);
+    let dropdown_css_attr_type = document.createAttribute("type");
+    dropdown_css_attr_type.value = "text/css";
+    dropdown_css.setAttributeNode(dropdown_css_attr_type);
+    let dropdown_css_attr_href = document.createAttribute("href");
+    dropdown_css_attr_href.value = 
+      "/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css";
+    dropdown_css.setAttributeNode(dropdown_css_attr_href);
+    document.head.appendChild(dropdown_css);
+  }
+</script>

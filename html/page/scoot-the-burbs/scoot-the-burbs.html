@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Scoot the Burbs - waluigi-servebeer.com</title>
+    <!-- <link rel="icon" type="image/png" href="favicon-burbs.png"/> -->
+    <link rel="stylesheet" type="text/css" 
+      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+    <meta name="viewport" content="width=640, initial-scale=1"/>
+  </head>
+  <body>
+    <br>
+    <h1>Scoot the Burbs</h1>
+    <h2>a lyrical analysis</h2>
+    <hr>
+    <div class="big_section">
+      <div style="font-size: 120%;">
+        Listen to the song
+      </div>
+      <div>
+        <audio controls src="Red Vox - Scoot The Burbs.mp3"></audio>
+      </div>
+      <br>
+    </div>
+    <div class="big_section">
+      <div class="async_text half_right" data-path="lyrics.txt" style="margin: 0% 0% 4% 4%;"></div>
+      <div class="async_text" data-path="analysis.txt"></div>
+    </div>
+  </body>
+</html>
+
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+  (function() {
+    startup_common();
+    document.getElementsByTagName("audio")[0].volume = 0.5;
+  })();
+</script>

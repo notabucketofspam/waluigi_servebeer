@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+<!-- CSS -->
+<style>
+.path_button {
+  width: 100%;
+  text-align: left;
+  outline: none;
+  background-color: #eeeeee;
+  font-size: 24px;
+  padding: 8px 0px 8px 8px;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px 0px 2px 2px;
+  border-color: #000000;
+  overflow: hidden;
+  margin: -2px 0px 0px 0px;
+}
+.path_button:hover, .episode_select:hover {
+  background-color: #cccccc;
+  text-decoration: underline;
+}
+.path_button_active { 
+  background-color: #cccccc;
+}
+.path_div {
+  margin-left: 24px;
+}
+.bucketmap_anchor {
+  font-size: 20px;
+  padding: 2px 0px 4px 0px;
+  border-style: solid;
+  border-width: 0px 0px 0px 2px;
+  border-color: #000000;
+  text-decoration: none;
+  color: #000000;
+  white-space: nowrap;
+}
+.bucketmap_anchor:hover {
+  text-decoration: underline;
+}
+#bucketmap {
+  background-color: #eeeeee;
+  border-style: solid;
+  border-width: 0px 2px 0px 0px;
+  border-color: #000000;
+}
+.generic_anchor {
+  text-decoration: none;
+  color: #287D94;
+  font-size: 24px;
+}
+.searchbar {
+  width: 50%;
+  outline: none;
+  font-size: 20px;
+  padding: 4px 0px 4px 0px;
+  background-color: #eeeeee;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #000000;
+}
+.episode_select {
+  margin: 0px 0px 0px -6px;
+  outline: none;
+  font-size: 20px;
+  padding: 4px 4px 4px 4px;
+  background-color: #eeeeee;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #000000;
+  cursor: pointer;
+}
+#seinfeld-logo {
+  cursor: pointer;
+}
+</style>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+    <title>
+      Seinfeld: The Complete Series - waluigi-servebeer.com
+    </title>
+    <!-- <link rel="icon" type="image/png" href="favicon.png"/> -->
+    <meta name="viewport" content="width=640, initial-scale=1"/>
+  </head>
+
+<!-- HTML body -->
+  <body>
+<br>
+<br>
+<img id="seinfeld-logo" alt="SEINFELD LOGO" src="seinfeld-logo.png" width="auto" 
+  height="96px" onclick="toggle_audio(this)" title="Click to play / pause the Seinfeld main theme">
+<audio id="seinfeld-main-theme" src="seinfeld-main-theme.mp3" hidden></audio>
+<br>
+<span style="font-size: 48px">Seinfeld: The Complete Series</span><br>
+<!-- <a class="generic_anchor" href="download-instructions.html">Click here for download instructions</a> -->
+<div style="height: 32px;"></div>
+<!-- <input class="searchbar" type="search" id="episode-searchbar" name="query" 
+  placeholder="Search episodes" onkeyup="begin_search_episodes(this)" 
+  list="searchbar-episode-list" autocomplete="off" onsearch="remove_searchbar_episode_list()" /> -->
+  <input class="searchbar" type="search" id="episode-searchbar" name="query"
+    placeholder="Search episodes"
+    list="searchbar-episode-list" autocomplete="off" />
+<button class="episode_select" id="episode-select" onclick="episode_select_open()">Select</button>
+<datalist id="searchbar-episode-list"></datalist>
+<div id="bucketmap"></div>
+
+<!-- JS -->
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+async function async_data_request(xhr_prop, callback, ...args) {
+  return new Promise((resolve) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", xhr_prop.data_path, true);
+    if (typeof xhr_prop.response_type === "string") 
+      xhr.responseType = xhr_prop.response_type;
+    if (typeof xhr_prop.request_header === "string") {
+      xhr_prop.request_header.split(";").forEach((substr) => {
+        xhr.setRequestHeader(substr.split(":")[0], substr.split(":")[1]);
+      });
+    }
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState === 4) {
+        if(xhr.status === 200 || xhr.status == 0) {
+          typeof callback === "function" && callback(xhr, args);
+          resolve(true);
+        }
+      }
+    };
+    xhr.send();
+  });
+}
+const bucket_endpoint_oci = 
+  "https://objectstorage.us-ashburn-1.oraclecloud.com/n/idazntksvlmn/b/seinfeld-the-complete-series/o";
+const bucket_endpoint_b2 = "https://seinfeld-the-complete-series.s3.us-west-002.backblazeb2.com";
+const bucket_endpoint_local = "";
+const remoteIp = "http://150.136.4.41";
+let fullMap = "";
+(async function() {
+  startup_common();
+  document.getElementsByTagName("audio")[0].volume = 0.33;
+  fetch("map.txt")
+  .then(resp => resp.text())
+  .then(respText => {
+    generate_bucketmap(respText, remoteIp);
+  });
+  return;
+  await async_data_request(
+    {data_path: "s1map.txt", request_header: "Cache-Control: no-store, max-age=0"}, 
+    function(xhr) {
+      generate_bucketmap(xhr, bucket_endpoint_local);
+      fullMap += xhr.responseText;
+    }
+  );
+  await async_data_request(
+    {data_path: "osmap.txt", request_header: "Cache-Control: no-store, max-age=0"}, 
+    function(xhr) {
+      generate_bucketmap(xhr, bucket_endpoint_oci);
+      fullMap += xhr.responseText;
+    }
+  );
+  await async_data_request(
+    {data_path: "b2map.txt", request_header: "Cache-Control: no-store, max-age=0"}, 
+    function(xhr) {
+      generate_bucketmap(xhr, bucket_endpoint_b2);
+      fullMap += xhr.responseText;
+    }
+  );
+})();
+/**
+ * @param {string} xhr
+ * @param {string} bucket_endpoint
+ */
+function generate_bucketmap(xhr, bucket_endpoint) {
+  /** @type HTMLDataListElement*/
+  const datalist = document.getElementById("searchbar-episode-list");
+  // let bucketmap_arr = xhr.responseText.split(/\n/);
+  let bucketmap_arr = xhr.split("\n");
+  let bucketmap_element = document.getElementById("bucketmap");
+  bucketmap_arr.forEach(element => {
+    const opt = document.createElement("option");
+    opt.innerText = element;
+    datalist.appendChild(opt);
+    let element_path_arr = element.split("/").slice(1, (element.split("/").length - 1));
+    let path_index;
+    for (path_index = 0; path_index < element_path_arr.length; ++path_index) {
+      let path_subpath_inc = element_path_arr.slice(0, path_index + 1).join("/");
+      let path_subpath_inc_element = document.getElementById(path_subpath_inc);
+      let path_subpath_exc = element_path_arr.slice(0, path_index).join("/");
+      let path_subpath_exc_element = document.getElementById(path_subpath_exc);
+      // create directory
+      if (!path_subpath_inc_element) {
+        // create path button
+        let path_button = document.createElement("button");
+        let path_button_attr_class = document.createAttribute("class");
+        path_button_attr_class.value = "path_button";
+        path_button.setAttributeNode(path_button_attr_class);
+        let path_button_attr_onclick = document.createAttribute("onclick");
+        path_button_attr_onclick.value = `toggle_path_div_display(this, "${path_subpath_inc}")`;
+        path_button.setAttributeNode(path_button_attr_onclick);
+        path_button.innerText = element_path_arr[path_index];
+        // create div
+        let path_div = document.createElement("div");
+        let path_div_attr_id = document.createAttribute("id");
+        path_div_attr_id.value = path_subpath_inc;
+        path_div.setAttributeNode(path_div_attr_id);
+        let path_div_attr_style = document.createAttribute("style");
+        path_div_attr_style.value = "display: none;";
+        path_div.setAttributeNode(path_div_attr_style);
+        let path_div_attr_class = document.createAttribute("class");
+        path_div_attr_class.value = "path_div";
+        path_div.setAttributeNode(path_div_attr_class);
+        // append directory to document
+        if (!path_subpath_exc_element) {
+          bucketmap_element.appendChild(path_button);
+          bucketmap_element.appendChild(path_div);
+        } else {
+          path_subpath_exc_element.appendChild(path_button);
+          path_subpath_exc_element.appendChild(path_div);
+        }
+        path_subpath_inc_element = path_div;
+      }
+      // append anchor to directory
+      if (path_subpath_inc_element && path_subpath_inc == element_path_arr.join("/")) {
+        let bucketmap_anchor = document.createElement("a");
+        let bucketmap_anchor_attr_href = document.createAttribute("href");
+        bucketmap_anchor_attr_href.value = bucket_endpoint + encodeURIComponent(element).replace(/%2F/g, "/");
+        bucketmap_anchor.setAttributeNode(bucketmap_anchor_attr_href);
+        bucketmap_anchor.innerHTML = element.split("/")[element.split("/").length - 1];
+        let bucketmap_anchor_attr_class = document.createAttribute("class");
+        bucketmap_anchor_attr_class.value = "bucketmap_anchor";
+        bucketmap_anchor.setAttributeNode(bucketmap_anchor_attr_class);
+        let bucketmap_anchor_attr_data_path = document.createAttribute("data-path");
+        bucketmap_anchor_attr_data_path.value = path_subpath_inc;
+        bucketmap_anchor.setAttributeNode(bucketmap_anchor_attr_data_path);
+        let bucketmap_anchor_attr_target = document.createAttribute("target");
+        bucketmap_anchor_attr_target.value = "_blank";
+        bucketmap_anchor.setAttributeNode(bucketmap_anchor_attr_target);
+        let bucketmap_anchor_attr_id = document.createAttribute("id");
+        bucketmap_anchor_attr_id.value = "_a:" + element;
+        bucketmap_anchor.setAttributeNode(bucketmap_anchor_attr_id);
+        path_subpath_inc_element.appendChild(bucketmap_anchor);
+        let bucketmap_br = document.createElement("br");
+        path_subpath_inc_element.appendChild(bucketmap_br);
+      }
+    }
+  });
+}
+function toggle_path_div_display(path_button, path_subpath_inc) {
+  path_button.classList.toggle("path_button_active");
+  let path_div = document.getElementById(path_subpath_inc); 
+  path_div.style.display = path_div.style.display === "block" ? "none" : "block";
+}
+function search_episodes(searchbar) {
+  let search_value = searchbar.value.trim();
+  if (search_value.search(/\w/gi) < 0) {
+    remove_searchbar_episode_list();
+    return;
+  }
+  let search_matches = fullMap.matchAll(new RegExp(search_value, "gi"));
+  let searchbar_episode_datalist = document.getElementById("searchbar-episode-list");
+  remove_searchbar_episode_list();
+  for (const iterator of search_matches) {
+    let search_sol = fullMap.lastIndexOf("/Season", iterator.index);
+    let search_eol = fullMap.indexOf("\n", iterator.index);
+    let episode_path = fullMap.slice(search_sol, search_eol);
+    let option_element_value_array = [];
+    Array.from(searchbar_episode_datalist.children).forEach(element => {
+      option_element_value_array.push(element.value);
+    });
+    if (!option_element_value_array.includes(episode_path) && (search_value != episode_path)) {
+      let episode_option = document.createElement("option");
+      episode_option.innerText = episode_path;
+      searchbar_episode_datalist.appendChild(episode_option);
+    }
+  }
+}
+function episode_select_open() {
+  let searchbar = document.getElementById("episode-searchbar");
+  let searchbar_value = searchbar.value;
+  try {
+    // remove_searchbar_episode_list();
+    searchbar.value = "";
+    window.open(document.getElementById("_a:" + searchbar_value).href, "_blank");
+  } catch (error) {
+    
+  }
+}
+function remove_searchbar_episode_list() {
+  let searchbar_episode_datalist = document.getElementById("searchbar-episode-list");
+  while (searchbar_episode_datalist.firstChild)
+    searchbar_episode_datalist.removeChild(searchbar_episode_datalist.firstChild);
+}
+function begin_search_episodes(element) {
+  if (typeof begin_search_episodes.searchbar_timeout_handle == "undefined")
+    begin_search_episodes.searchbar_timeout_handle = 0;
+  clearTimeout(begin_search_episodes.searchbar_timeout_handle);
+  begin_search_episodes.searchbar_timeout_handle = setTimeout(search_episodes, 1333, element);
+}
+function toggle_audio(element) {
+  element.classList.toggle("audio-active");
+  if (element.classList.contains("audio-active")) 
+    document.getElementById("seinfeld-main-theme").play();
+  else
+    document.getElementById("seinfeld-main-theme").pause();
+}
+</script>
+
+  </body>
+</html>

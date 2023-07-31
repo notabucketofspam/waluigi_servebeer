@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<style>
+  .panel_button {
+    width: 100%;
+    text-align: left;
+    outline: none;
+    background-color: #eeeeee;
+    font-size: 24px;
+    padding: 8px 0px 8px 8px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    overflow: hidden;
+    margin: -2px 0px 0px 0px;
+  }
+  .active{ 
+    background-color: #cccccc;
+  }
+  .panel {
+    display: none;
+    font-size: 20px;
+    padding: 2px 0px 4px 0px;
+  }
+  .generic_anchor {
+    text-decoration: none;
+    color: #287D94;
+  }
+  .generic_anchor:hover {
+    text-decoration: underline;
+  }
+  .hidden {
+    color: transparent;
+    text-shadow: 0 0 8px #000;
+  }
+.generic_anchor.hidden {
+  color: transparent;
+  text-shadow: 0 0 8px #287D94;
+}
+</style>
+
+<html>
+  <head>
+    <title>Google Drive - waluigi-servebeer.com</title>
+    <!-- <link rel="icon" type="image/png" href="favicon-drive.png"/> -->
+    <link rel="stylesheet" type="text/css" 
+      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+    <meta name="viewport" content="width=640, initial-scale=1"/>
+  </head>
+  <body>
+    <br>
+    <h1>
+      Google Drive
+    </h1>
+    <hr>
+    <div style="font-size: 20px;">
+      <b>Update</b>: No more music on Google Drive, but like you can follow me on Spotify if you want I guess.
+      <br>
+      <a href="https://open.spotify.com/user/31ndliru2nikj5jw3bk64bcalsu4" target="_blank"
+        class="generic_anchor">
+        https://open.spotify.com/user/31ndliru2nikj5jw3bk64bcalsu4
+      </a>
+    </div>
+    <br>
+    <div style="font-size: 20px;" class="hidden">
+      <b>Location:</b> <a class="generic_anchor hidden">
+        https://drive.google.com/drive/folders/1mWT1I0u2h6jKvPlxfnVPEm2aiBTh_deZ?usp=sharing
+      </a>
+      <br>
+      <b>Recommended download process:</b>
+      <ol>
+        <li>
+          Copy the Public folder to your personal Google Drive; click the arrow 
+          next to Public at the top (after "Shared with me") and select "Add to My Drive."
+        </li>
+        <li>
+          Install the "Backup and Sync from Google" application on your PC; 
+          <a class="generic_anchor hidden">
+            https://www.google.com/drive/download/backup-and-sync/
+          </a> and make sure to 
+          login with whichever Google account you copied the Public folder to.
+        </li>
+        <li>
+          Sync the Public folder to your PC so that you have a local copy; under 
+          "Preferences," in the second tab labeled "Google Drive," select the 
+          "Sync My Drive to this computer" checkbox and select Public under the 
+          "Sync only these folders" option. The files will be saved in the 
+          directory after "Folder location."
+        </li>
+        <li>
+          Sidenote: this process is necessary to avoid file name corruption, 
+          since a zip archive file (the default download format from the Google 
+          Drive website interface) is largely unable to handle non-alphanumeric 
+          characters in compressed file names. This process ensures that all 
+          files are properly downloaded in their native format.
+          [edit] This also preserves file metadata such as song titles, artists,
+          albums, etc
+        </li>
+      </ol>
+    </div>
+    <div class="hidden">
+      <button class="panel_button hidden" onclick="expand_panel(this)">BTS</button>
+      <div class="panel">
+        The hit K-pop boy band also known as the Bangtan Boys. 
+        Ripped from the YouTube channel: 
+        <br>
+        <a class="generic_anchor hidden">
+          https://www.youtube.com/user/BANGTANTV/featured
+        </a>
+        <br>
+      </div>
+      <button class="panel_button hidden" onclick="expand_panel(this)">Metal</button>
+      <div class="panel">
+        An assortment of mostly-instrumental metal-type music. 
+        This folder also includes the complete Instru-Metal playlist 
+        originally sourced from Google Play Music, found here: 
+        <br>
+        <a class="generic_anchor hidden">
+          https://www.youtube.com/playlist?list=PLMH0GoFqn3RTLmVbWvF4dz-TAnvR-0H7V
+        </a>
+        <br>
+      </div>
+      <button class="panel_button hidden" onclick="expand_panel(this)">The BSC Pro Playlist</button>
+      <div class="panel">
+        An array of meme music I have diligently assembled, which 
+        includes a mostly-complete track list as well. The collection of 
+        playlists on YouTube is available here: 
+        <br>
+        <a class="generic_anchor hidden">
+          https://www.youtube.com/channel/UChLiEcvvyQAMxQxAWYduOFw
+        </a>
+        <br>
+      </div>
+      <button class="panel_button hidden" onclick="expand_panel(this)">Vocaloid</button>
+      <div class="panel">
+        A whole bunch of classic Japanese tunes ripped straight from here: 
+        <br>
+        <a class="generic_anchor hidden">
+          https://www.youtube.com/playlist?list=PLQErzTgKx_V2mh8OaJl73e9MoVAY2dEH8
+        </a>
+        <br>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+  (function() {
+    startup_common();
+  })();
+  function expand_panel(element) {
+    element.classList.toggle("active");
+    let panel = element.nextElementSibling;
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+  }
+</script>

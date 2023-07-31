@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<style>
+  .chili_dog {
+    font-size: 300%;
+    text-align: center;
+    margin-top: 200px;
+    margin-right: 0px;
+    margin-bottom: 200px;
+    margin-left: 0px;
+  }
+</style>
+
+<html>
+  <head>
+    <title>SONIC SPEED - waluigi-servebeer.com</title>
+    <!-- <link rel="icon" type="image/png" href="favicon-sonic.png"/> -->
+    <link rel="stylesheet" type="text/css" 
+      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+    <meta name="viewport" content="width=640, initial-scale=1"/>
+  </head>
+  <body>
+    <div>
+      <br><br><br>
+      <input style="width: 80px; height: 40px;" type="button" value="less" onclick="modulate_speed(false)">
+      <input style="width: 80px; height: 40px;" type="button" value="MOAR" onclick="modulate_speed(true)">
+      Cool Factor: <span id="cool_factor">1</span>
+    </div>
+    <div id="chili_dog" style="font-size: 300%; text-align: center; margin-top: 200px; margin-right: 0px; 
+      margin-bottom: 200px; margin-left: 0px;">
+      CHILI DOGS YEAH
+    </div>
+  </body>
+</html>
+
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+  (function() {
+    startup_common();
+  })();
+
+  const global_frametime = 1000 / 60;
+  var global_vibrate_factor = 1;
+  
+  function vibrate_profusely(element) {
+    // add to up and right
+    setTimeout(function() {
+      element.style.marginTop = String(parseInt(element.style.marginTop) + global_vibrate_factor) + "px";
+      element.style.marginRight = String(parseInt(element.style.marginRight) + global_vibrate_factor) + "px";
+      element.style.marginBottom = String(parseInt(element.style.marginBottom) - global_vibrate_factor) + "px";
+      element.style.marginLeft = String(parseInt(element.style.marginLeft) - global_vibrate_factor) + "px";
+    }, 0);
+    // add to down and right
+    setTimeout(function() {
+      element.style.marginTop = String(parseInt(element.style.marginTop) - global_vibrate_factor) + "px";
+      element.style.marginRight = String(parseInt(element.style.marginRight) + global_vibrate_factor) + "px";
+      element.style.marginBottom = String(parseInt(element.style.marginBottom) + global_vibrate_factor) + "px";
+      element.style.marginLeft = String(parseInt(element.style.marginLeft) - global_vibrate_factor) + "px";
+    }, global_frametime);
+    // add to down and left
+    setTimeout(function() {
+      element.style.marginTop = String(parseInt(element.style.marginTop) - global_vibrate_factor) + "px";
+      element.style.marginRight = String(parseInt(element.style.marginRight) - global_vibrate_factor) + "px";
+      element.style.marginBottom = String(parseInt(element.style.marginBottom) + global_vibrate_factor) + "px";
+      element.style.marginLeft = String(parseInt(element.style.marginLeft) + global_vibrate_factor) + "px";
+    }, global_frametime * 2);
+    // add to up and left
+    setTimeout(function() {
+      element.style.marginTop = String(parseInt(element.style.marginTop) + global_vibrate_factor) + "px";
+      element.style.marginRight = String(parseInt(element.style.marginRight) - global_vibrate_factor) + "px";
+      element.style.marginBottom = String(parseInt(element.style.marginBottom) - global_vibrate_factor) + "px";
+      element.style.marginLeft = String(parseInt(element.style.marginLeft) + global_vibrate_factor) + "px";
+    }, global_frametime * 3);
+  }
+  function modulate_speed(the_truth) {
+    if (the_truth)
+      ++global_vibrate_factor;
+    else
+      --global_vibrate_factor;
+    document.getElementById("cool_factor").innerHTML = String(global_vibrate_factor);
+  }
+
+  setInterval(vibrate_profusely, global_frametime * 4, document.getElementById("chili_dog"));
+</script>

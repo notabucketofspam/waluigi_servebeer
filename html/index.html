@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<style>
+  /* Funk and jukebox sector */
+  .funk_button {
+    font-size: 120%;
+  }
+  .funk_meter {
+    font-size: 110%;
+  }
+  .funk_meter_button {
+    font-size: 80%;
+  }
+  .funk_meter_box {
+    background-color: #eeeeee;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 2px;
+  }
+  .funk_meter_bar {
+    height: 12px;
+    background-color: #22bb22;
+    /* z-index: 2; */
+  }
+  .audio_button {
+    font-size: 120%;
+  }
+  .jukebox_track_selection {
+    font-size: 110%;
+  }
+  .jukebox_volume_box {
+    background-color: #eeeeee;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 2px;
+  }
+  .jukebox_volume_bar {
+    background-color: #2222bb;
+  }
+</style>
+
+<html>
+  <head>
+    <title>waluigi-servebeer.com</title>
+    <!-- <link rel="icon" type="image/png" href="/favicon-index.png"/> -->
+    <link rel="stylesheet" type="text/css" 
+      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+    <link rel="stylesheet" type="text/css" 
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+    <meta name="viewport" content="width=640, initial-scale=1"/>
+  </head>
+  <body style="background-color: #ffffff;">
+    <div id="fixed_top">
+      <div class="top_right">
+        <span class="steak_zone_text">Welcome to the
+          <img src="/resource/steak.gif" alt="STEAK" class="steak_zone_image">
+          zone
+        </span>
+      </div>
+    </div>
+    <div class="big_section" id="title_bar">
+      <br>
+      <h1 style="font-size: 2.5em; text-align: left;">waluigi-servebeer.com</h1>
+      <hr>
+    </div>
+    <div class="big_section" id="funk_jukebox_intel" style="overflow-x: visible;">
+      <div class="right_page fake_advertisement" id="intel_inside" style="text-align: center;">
+        <a class="anchor_no_style" href="/page/intel/intel.html">
+          <div style="font-size:120%;">!!! NEW !!!</div>
+          <img width="auto" height="240" src="/page/intel/intel-inside.png">
+          <div>Punch AMD in the mouth</div>
+        </a>
+      </div>
+      <div id="funk_container" style="width: 200px; overflow-x: visible;">
+        <input class="funk_button" type="button" value="Start the party" 
+          onclick="toggle_cycle_background(this)">
+        <div class="div_pad_small"></div>
+        <div class="funk_meter scrollable_meter" style="white-space: nowrap;" 
+          onwheel="update_cycle_amount(event, null)">
+          <input class="funk_meter_button" type="button" value="&#60;">
+          <span style="padding: 0px 12px">Funk level: <span id="funk_level">25</span>%</span>
+          <input class="funk_meter_button" type="button" value="&#62;">
+        </div>
+        <div class="div_pad_small scrollable_meter" style="width: 200px;" 
+          onwheel="update_cycle_amount(event, null)"></div>
+        <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
+          <div class="funk_meter_box" id="funk_meter_box_prime" style="z-index: 2;">
+            <div class="funk_meter_bar" id="fmb_num_0"></div>
+          </div>
+        </div>
+        <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
+      </div>
+      <div class="div_pad"></div>
+      <div id="jukebox_container" style="width: 200px; overflow-x: visible;">
+        <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
+        <input class="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
+        <div class="div_pad_small"></div>
+        <div class="jukebox_track_selection">
+          <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
+          <span style="padding: 0px 25px;">Change track</span>
+          <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
+        </div>
+        <div class="div_pad_small"></div>
+        <div style="white-space: nowrap; height: 18px;">
+          <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
+        </div>
+        <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
+          onwheel="update_jukebox_volume(event)"></div>
+        <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
+          <div class="jukebox_volume_box">
+            <div class="jukebox_volume_bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="div_pad_small"></div>
+      <span style="font-size: 85%;">(the scroll wheel is your friend)</span>
+    </div>
+    <div class="big_section" id="about_website_section">
+      <div style="text-align: center; text-decoration-line: underline; font-size: 120%;">About this website</div>
+      <div class="half_right">
+        Important! If the page isn't working correctly then you gotta clear the 
+        Javascript / CSS cache
+        <ul>
+          <li>Smash that <b>F12</b> button</li>
+          <li>Head over to the Network tab</li>
+          <li>Tick the little &#x1f171;&#x1F1F4;&#x1F1FD; that says "Disable cache"</li>
+          <li>Gently press F5, making sure to not startle it</li>
+        </ul>
+      </div>
+      <p class="half_left">
+        This is where we put the high-quality content. Members of the Bar Stool 
+        Committee and its associate organizations generate JPEGS, viddles, and 
+        walls of text in various forms for the purpose of comedic enrichment. 
+        Welcome to Meme Hell.
+        <br />
+        <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
+        will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
+      </p>
+    </div>
+    <div class="big_section">
+      <div class="column_left">
+        You can find a collection of downloadable content in the top-left 
+        dropdown menu. The bucket warehouses general files, Google Drive 
+        contains MP3s, more will be added eventually.
+        <br>
+        <b>NEW</b>: Seinfeld is back! Watch for <i>free</i> today!
+      </div>
+      <div class="column_right">
+        Technical pages:
+        <br>
+        <a href="/page/changelog/changelog.html">Changelog</a>
+        <br>
+        <a href="/page/development/test-collection.html">Test collection</a>
+      </div>
+      <div class="column_center">
+        This site probably doesn't work on mobile so like sorry about that. In 
+        sooth it's primarily a testing ground for silly web development 
+        shenanigans. Things are bound to break on a regular basis. Honestly just
+        disable the browser cache (see above) until a notice is posted somewhere.
+        <br>
+        <sub>Please, no johns.</sub>
+      </div>
+      <div class="div_pad"></div>
+    </div>
+    <div class="big_section">
+      <div class="fake_advertisement left_page" style="text-align: center;">
+        <a class="anchor_no_style" href="/page/food-time/food.html">
+          <div style="font-size:120%;">Tired of normal Food Time?</div>
+          <img width="auto" height="240" src="/page/food-time/eat-your-coal.png">
+          <div style="font-size:130%;">Try our tasty New Coal!</div>
+        </a>
+      </div>
+      <div class="half_right" style="font-size: 120%;">
+        <span style="font-size: 140%; text-decoration-line: underline;">Cr&#232;me de la Cr&#232;me</span>
+        <p>
+          <a href="/page/sonic/gotta-go-fast.html">WAY PAST COOL</a><sup>&#8482;</sup>
+        </p>
+        <p>
+          <a href="/page/scoot-the-burbs/scoot-the-burbs.html">Scoot the Burbs: a lyrical analysis</a>
+        </p>
+        <p>
+          <a href="/page/meat-substrate/meat.html">Meat substrate</a>
+        </p>
+        <p>
+          <a href="/page/register/index.html">Register</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+  if (0) {
+    debug_element_class_border("big_section");
+  }
+  (async function() {
+    await Promise.all([
+      append_footer(),
+      load_async_elements(),
+      append_git_data(),
+      append_dropdown_menu(),
+    ]);
+    lock_full_doc_dimensions();
+    document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
+  })();
+  function lock_element_position(element) {
+    element.style.left = String(element.getBoundingClientRect().x + "px");
+    element.style.top = String(element.getBoundingClientRect().y + "px");
+    element.style.position = "absolute";
+  }
+
+  // Funk and jukebox sector
+  const global_frametime = 1000 / 60;
+  const global_cycle_units = 10;
+  const global_funk_meter_bar_units = document.getElementsByClassName("funk_meter")[0].clientWidth / 100;
+  var global_cycle_amount = global_cycle_units * parseInt(document.getElementById("funk_level").innerHTML);
+  var global_page_hue = 0;
+  var global_page_hue_reverse = 65535;
+  var global_cycle_background_handle;
+  var global_update_cycle_amount_press_handle;
+
+  var funk_meter_button_list = document.getElementsByClassName("funk_meter_button");
+  var fmbl_counter;
+  for (fmbl_counter = 0; fmbl_counter < funk_meter_button_list.length; ++fmbl_counter) {
+    funk_meter_button_list[fmbl_counter].addEventListener("mousedown", update_cycle_amount_press);
+    funk_meter_button_list[fmbl_counter].addEventListener("mouseup", update_cycle_amount_press);
+    funk_meter_button_list[fmbl_counter].addEventListener("touchstart", update_cycle_amount_press);
+    funk_meter_button_list[fmbl_counter].addEventListener("touchend", update_cycle_amount_press);
+  }
+  document.getElementsByClassName("funk_button")[0].style.width = 
+    String(String(document.getElementById("funk_container").clientWidth) + "px");
+  document.getElementsByClassName("funk_meter_box")[0].style.width = 
+    String(String(document.getElementById("funk_container").clientWidth) + "px");
+  document.getElementsByClassName("funk_meter_bar")[0].style.width = 
+    String(String(parseInt(document.getElementsByClassName("funk_meter_box")[0].style.width) / 
+    parseInt(100 / parseInt(document.getElementById("funk_level").innerHTML))) + "px");
+  // lock_element_position(document.getElementsByClassName("funk_meter_bar")[0]);
+  document.getElementsByClassName("funk_meter_bar")[0].style.position = "relative";
+
+    function cycle_background() {
+    if (global_cycle_amount >= 0) {
+      global_page_hue += global_cycle_amount;
+      if (global_page_hue >= 65536)
+        global_page_hue = 0;
+      document.body.style.backgroundColor = rainbow_rgb(global_page_hue, 255, 255);
+    } else {
+      global_page_hue_reverse += global_cycle_amount;
+      if (global_page_hue_reverse <= 0)
+        global_page_hue_reverse = 65535;
+      document.body.style.backgroundColor = rainbow_rgb(global_page_hue_reverse, 255, 255);
+    }
+  }
+  function toggle_cycle_background(element) {
+    element.classList.toggle("active");
+    if (element.classList.contains("active")) {
+      element.setAttribute("value", "Stop it's too much");
+      global_cycle_background_handle = setInterval(cycle_background, global_frametime);
+    } else {
+      element.setAttribute("value", "Start the party");
+      clearInterval(global_cycle_background_handle);
+      document.body.style.backgroundColor = "#ffffff";
+    }
+  }
+  function update_cycle_amount(event, element) {
+    var gca_initial = global_cycle_amount;
+    if (event)
+      global_cycle_amount += (event.deltaY < 0) ? (global_cycle_units) : (-1 * global_cycle_units);
+    if (element)
+      global_cycle_amount += (element.getAttribute("value") === ">") ? 
+        (global_cycle_units) : (-1 * global_cycle_units);
+    document.getElementById("funk_level").innerHTML = String(global_cycle_amount / global_cycle_units);
+    update_funk_meter_bar(document.getElementsByClassName("funk_meter_bar")
+      [document.getElementsByClassName('funk_meter_bar').length - 1], 
+      (global_cycle_amount - gca_initial));
+  }
+  function update_funk_meter_bar(element, delta) {
+    var funk_meter_bar_width_total = global_funk_meter_bar_units * global_cycle_amount / global_cycle_units;
+    if (update_funk_meter_bar.negative == "undefined")
+      update_funk_meter_bar.negative = false;
+    var clock = (!global_cycle_amount && (delta > 0 || delta < 0));
+    if (clock && (delta > 0)) {
+      update_funk_meter_bar.negative = false;
+      element.style.backgroundColor = "#22bb22";
+    }
+    if (clock && (delta < 0)) {
+      update_funk_meter_bar.negative = true;
+      element.style.backgroundColor = "#bb2222";
+    }
+    if (update_funk_meter_bar.negative)
+      funk_meter_bar_width_total *= -1;
+    var fmbw_overflow = funk_meter_bar_width_total % parseInt(full_doc_html.style.width);
+    if (!(fmbw_overflow) && (document.getElementsByClassName("funk_meter_bar").length != 1) && 
+      (element.style.width == "2px")) {
+        element.parentNode.removeChild(element);
+        return;
+    }
+    if (!(fmbw_overflow) && (global_cycle_amount != 0)) {
+        spawn_funk_meter_bar(element);
+        return;
+    }
+    element.style.width = String(String(fmbw_overflow) + "px");
+  }
+  function update_cycle_amount_press(event) {
+    if (event.type == "mousedown" || event.type == "touchstart")
+      global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, (1000 / 20), null, this);
+    else if (event.type == "mouseup" || event.type == "touchend")
+      clearInterval(global_update_cycle_amount_press_handle);
+  }
+  function spawn_funk_meter_bar(element) {
+    var new_fmb = document.createElement("DIV");
+    var new_fmb_attr_class = document.createAttribute("class");
+    new_fmb_attr_class.value = "funk_meter_bar";
+    new_fmb.setAttributeNode(new_fmb_attr_class);
+    var new_fmb_attr_id = document.createAttribute("id");
+    new_fmb_attr_id.value = 
+      String("fmb_num_" + String(document.getElementsByClassName("funk_meter_bar").length));
+    new_fmb.setAttributeNode(new_fmb_attr_id);
+    var new_fmb_attr_style = document.createAttribute("style");
+    new_fmb_attr_style.value = String("margin: 4px 0px; width: 0px;" + 
+      "background-color: "+ String(element.style.backgroundColor + ";"));
+    new_fmb.setAttributeNode(new_fmb_attr_style);
+    document.getElementById("funk_meter_box_bravo").appendChild(new_fmb);
+  }
+
+  var jukebox_track_list = [
+    "Mile High Club (JC2).mp3",
+    "Jellyfish Jam.mp3",
+    "Noma - Brain Power.mp3",
+    "\u307F\u304D\u3068P - 39\u307F\u3085\u30FC\u3058\u3063\u304F! feat. \u521D\u97F3\u30DF\u30AF.mp3",
+    "Maurizio De Jorio - Running in the 90's.mp3",
+    "Linkin Park - Numb (80's Remix).mp3",
+    "Adhesive Wombat - Chodge Darger.mp3",
+  ];
+  var global_jukebox_track_list_position = 0;
+  const global_jukebox_volume_bar_units = 
+    document.getElementsByClassName("jukebox_track_selection")[0].clientWidth / 100;
+
+  jukebox_track_list.sort();
+  document.getElementById("jukebox_current_track").innerHTML = jukebox_track_list[0];
+  document.getElementById("audio_player").setAttribute("src", "/resource/jukebox-tracks/" + jukebox_track_list[0]);
+  document.getElementById("audio_player").volume = 0.2;
+
+  document.getElementById("singular_jukebox_divider").style.width = 
+    String(String(document.getElementById("jukebox_container").clientWidth) + "px");
+  document.getElementsByClassName("audio_button")[0].style.width = 
+    String(String(document.getElementById("jukebox_container").clientWidth) + "px");
+  document.getElementsByClassName("jukebox_volume_box")[0].style.width = 
+    String(String(document.getElementById("jukebox_container").clientWidth) + "px");
+  document.getElementsByClassName("jukebox_volume_bar")[0].style.width = 
+    String(String(parseInt(document.getElementsByClassName("jukebox_volume_box")[0].style.width) * 
+    document.getElementById("audio_player").volume) + "px");
+  document.getElementsByClassName("jukebox_volume_bar")[0].style.height = "12px";
+  document.getElementById("jukebox_volume_element").addEventListener("touchstart", touch_start_coord, false);
+  document.getElementById("jukebox_volume_element").addEventListener("touchmove", update_jukebox_volume, false);
+  document.getElementById("jukebox_current_track").addEventListener("touchstart", touch_start_coord, false);
+  document.getElementById("jukebox_current_track").addEventListener("touchmove", update_jukebox_volume, false);
+  document.getElementById("singular_jukebox_divider").addEventListener("touchstart", touch_start_coord, false);
+  document.getElementById("singular_jukebox_divider").addEventListener("touchmove", update_jukebox_volume, false);
+
+  var touch_start = [ 0, 0 ];
+  function touch_start_coord(event) {
+    touch_start[0] = event.touches[0].pageX;
+    touch_start[1] = event.touches[0].pageY;
+  }
+
+  function toggle_audio(element) {
+    element.classList.toggle("active");
+    if (element.classList.contains("active")) {
+      element.setAttribute("value", "Get it outta here");
+      document.getElementById("audio_player").play();
+    } else {
+      element.setAttribute("value", "Insert mixtape");
+      document.getElementById("audio_player").pause();
+    }
+  }
+  function jukebox_change_track(element) {
+    if (element === null || element.getAttribute("value") === ">") {
+      ++global_jukebox_track_list_position;
+      if (global_jukebox_track_list_position == jukebox_track_list.length)
+        global_jukebox_track_list_position = 0;
+    } else {
+      --global_jukebox_track_list_position;
+      if (global_jukebox_track_list_position < 0)
+        global_jukebox_track_list_position = jukebox_track_list.length - 1;
+    }
+    document.getElementById("jukebox_current_track").innerHTML = 
+      jukebox_track_list[global_jukebox_track_list_position];
+    document.getElementById("audio_player").setAttribute("src", 
+      "/resource/jukebox-tracks/" + jukebox_track_list[global_jukebox_track_list_position]);
+    document.getElementById("audio_player").load();
+    if (document.getElementsByClassName("audio_button")[0].classList.contains("active"))
+      document.getElementById("audio_player").play();
+    else
+      document.getElementById("audio_player").pause();
+  }
+  function update_jukebox_volume(event) {
+    var new_volume = document.getElementById("audio_player").volume;
+    if (event.type === "wheel")
+      new_volume += (event.deltaY < 0) ? 0.01 : -0.01;
+    else {
+      new_volume += 10 * (event.touches[0].pageX - touch_start[0]) / 
+        parseInt(document.body.getBoundingClientRect().width) / 
+        parseInt(document.getElementsByClassName("jukebox_volume_box")[0].style.width);
+    }
+    if (new_volume < 0.0)
+      new_volume = 0.0;
+    else if (new_volume > 1.0)
+      new_volume = 1.0;
+    document.getElementById("audio_player").volume = new_volume;
+    update_jukebox_volume_bar(document.getElementsByClassName("jukebox_volume_bar")[0]);
+  }
+  function update_jukebox_volume_bar(element) {
+    var jukebox_volume_bar_width = global_jukebox_volume_bar_units * 100 * 
+      document.getElementById("audio_player").volume;
+    element.style.width = String(String(jukebox_volume_bar_width) + "px");
+  }
+
+  var scrollable_meter_list = document.getElementsByClassName("scrollable_meter");
+  var sml_counter;
+  for (sml_counter = 0; sml_counter < scrollable_meter_list.length; ++sml_counter) {
+    scrollable_meter_list[sml_counter].addEventListener("mouseover", stop_scrolling_y);
+    scrollable_meter_list[sml_counter].addEventListener("mouseout", start_scrolling_y);
+  }
+  function stop_scrolling_y(event) {
+    full_doc_html.style.height = "100%";
+    full_doc_html.style.overflowY = "hidden";
+  }
+  function start_scrolling_y(event) {
+    full_doc_html.style.height = "auto";
+    full_doc_html.style.overflowY = "auto";
+  }
+
+  // Functions stolen from Adafruit_NeoPixel
+  function rainbow_rgb(set_hue, set_sat, set_val) {
+    var new_red =   (0xFF0000 & (color_hsv(set_hue, set_sat, set_val))) >>> 16;
+    var new_green = (0x00FF00 & (color_hsv(set_hue, set_sat, set_val))) >>>  8;
+    var new_blue =  (0x0000FF & (color_hsv(set_hue, set_sat, set_val))) >>>  0;
+    return "rgb(" + new_red + "," + new_green + "," + new_blue + ")";
+  }
+  function color_hsv(hue, sat, val) {
+    var r = (1 >>> 1), g = (1 >>> 1), b = (1 >>> 1);
+    hue = (hue * 1530 + 32768) / 65536;
+    if(hue < 510) {
+      b = 0;
+      if(hue < 255) {
+        r = 255;
+        g = hue;
+      } else {
+        r = 510 - hue;
+        g = 255;
+      }
+    } else if(hue < 1020) {
+      r = 0;
+      if(hue <  765) {
+        g = 255;
+        b = hue - 510;
+      } else {
+        g = 1020 - hue;
+        b = 255;
+      }
+    } else if(hue < 1530) {
+      g = 0;
+      if(hue < 1275) {
+        r = hue - 1020;
+        b = 255;
+      } else {
+        r = 255;
+        b = 1530 - hue;
+      }
+    } else {
+      r = 255;
+      g = b = 0;
+    }
+    var v1 =   1 + val;
+    var s1 =   1 + sat;
+    var s2 = 255 - sat;
+    return ((((((r * s1) >>> 8) + s2) * v1) & 0xff00) << 8) |
+            (((((g * s1) >>> 8) + s2) * v1) & 0xff00)       |
+            ( ((((b * s1) >>> 8) + s2) * v1)           >> 8);
+  }
+  function gamma_32(x) {
+    var i;
+    for (i = 0; i < 3; i++) {
+      var tmp = (x & (0xFF << (i * 8))) >>> (i * 8);
+      tmp = gamma_table[tmp];
+      x = (x & (~(0xFF << (i * 8)))) | (tmp << (i * 8));
+    }
+    return x;
+  }
+  const gamma_table = [
+    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+    0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1,
+    1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,
+    3,  3,  4,  4,  4,  4,  5,  5,  5,  5,  5,  6,  6,  6,  6,  7,
+    7,  7,  8,  8,  8,  9,  9,  9, 10, 10, 10, 11, 11, 11, 12, 12,
+    13, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20,
+    20, 21, 21, 22, 22, 23, 24, 24, 25, 25, 26, 27, 27, 28, 29, 29,
+    30, 31, 31, 32, 33, 34, 34, 35, 36, 37, 38, 38, 39, 40, 41, 42,
+    42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
+    58, 59, 60, 61, 62, 63, 64, 65, 66, 68, 69, 70, 71, 72, 73, 75,
+    76, 77, 78, 80, 81, 82, 84, 85, 86, 88, 89, 90, 92, 93, 94, 96,
+    97, 99,100,102,103,105,106,108,109,111,112,114,115,117,119,120,
+  122,124,125,127,129,130,132,134,136,137,139,141,143,145,146,148,
+  150,152,154,156,158,160,162,164,166,168,170,172,174,176,178,180,
+  182,184,186,188,191,193,195,197,199,202,204,206,209,211,213,215,
+  218,220,223,225,227,230,232,235,237,240,242,245,247,250,252,255];
+</script>

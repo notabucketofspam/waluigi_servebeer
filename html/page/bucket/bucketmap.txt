@@ -1,0 +1,41 @@
+/Public/Classics/EnviroBear2000/EnviroBear2000.zip
+/Public/Classics/EnviroBear2000/Envirobear MLG.zip
+/Public/Classics/EnviroBear2000/potato simulator 0.0.ERROR.q.zip
+/Public/Classics/EnviroBear2000/potato simulator patch 0.0.2.q.zip
+/Public/Classics/GangBeasts/Gang Beasts for Middle-Aged Folk.zip
+/Public/Classics/GangBeasts/Gang Beasts for Old People.zip
+/Public/Classics/Hisashimaru/Bikrash_0.5.zip
+/Public/Classics/Hisashimaru/YellowHelmets_WIN_v0.3.zip
+/Public/Classics/Hisashimaru/gasosta.zip
+/Public/Classics/Other/Fallout+2.zip
+/Public/Classics/Other/NuclearThrone.zip
+/Public/Classics/Other/WhereIsMyHammer-New.zip
+/Public/Classics/Other/World Of Goo.iso
+/Public/Classics/Other/hack.zip
+/Public/Classics/RVS/RVS 2012.zip
+/Public/Classics/RVS/RVS 2013.zip
+/Public/Classics/StellarStone/BROTTR.zip
+/Public/Classics/StellarStone/TaxiRacer.zip
+/Public/Classics/Unity/Ravenfield_B4_Win.zip
+/Public/Classics/Unity/UniPlayer_v1.34.zip
+/Public/Classics/Unity/skyrogue.zip
+/Public/Classics/Unity/unity3d_files.zip
+/Public/Factorio/Factorio_x64_1.0.0.zip
+/Public/Factorio/factorio_headless_x64_1.0.0.tar.xz
+/Public/Halo/Extra.zip
+/Public/Halo/HaloCE_BaseGame.zip
+/Public/Halo/HaloCE_DefaultCampaign.zip
+/Public/MKW/rmce01.wbfs
+/Public/ROM/1080+Snowboarding+(Europe)+(En,Ja,Fr,De).zip
+/Public/ROM/CorruptedROM.zip
+/Public/ROM/Super+Mario+64+(USA).zip
+/Public/ROM/Super+Metroid+(Japan,+USA)+(En,Ja).zip
+/Public/ROM/Super+Smash+Bros+N64.zip
+/Public/Smash/20XX.iso
+/Public/Smash/Homebrew-20XX-theme-2.0.zip
+/Public/Smash/Melee.iso
+/Public/Smash/RSBE01.wbfs
+/Public/Windows/WXPVOL_EN.zip
+/Public/Windows/XP_game.zip
+/Public/Windows/w98maze.zip
+/Test/Red Vox - Scoot The Burbs.mp3
