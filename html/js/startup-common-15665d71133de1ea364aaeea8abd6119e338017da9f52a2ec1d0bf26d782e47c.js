@@ -29,7 +29,7 @@ async function append_footer() {
   doc_footer.innerHTML = `
     <hr>
     <div style="text-align: center;">
-      Bar Stool Committee &#169; 2020&ndash;2023
+      Bar Stool Committee &#169; 2020&ndash;2024
       <br>
       Site maintained by notabucketofspam, @ me if something's up
       <br>

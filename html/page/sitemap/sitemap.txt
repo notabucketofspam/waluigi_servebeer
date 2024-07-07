@@ -10,10 +10,6 @@
 /js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js
 /js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js
 /page
-/page/bucket
-/page/bucket/bucket.html
-/page/bucket/bucketmap.txt
-/page/bucket/favicon-bucket.png
 /page/changelog
 /page/changelog/changelog.html
 /page/changelog/favicon-log.png
@@ -36,21 +32,12 @@
 /page/food-time/eat-your-coal.png
 /page/food-time/favicon-food.png
 /page/food-time/food.html
-/page/google-drive
-/page/google-drive/drive.html
-/page/google-drive/favicon-drive.png
 /page/intel
 /page/intel/favicon-intel.png
 /page/intel/intel-inside.png
 /page/intel/intel.html
-/page/register
-/page/register/3rdpartylicenses.txt
-/page/register/favicon.ico
-/page/register/index.html
-/page/register/main.da7ba264addc955a.js
-/page/register/polyfills.13d495de8210ebaf.js
-/page/register/runtime.a2d3276302255af0.js
-/page/register/styles.8d2d6767d46f68b7.css
+/page/meat-substrate
+/page/meat-substrate/meat.html
 /page/sample
 /page/sample/favicon-food.png
 /page/sample/sample.html
@@ -60,11 +47,6 @@
 /page/scoot-the-burbs/lyrics.txt
 /page/scoot-the-burbs/Red Vox - Scoot The Burbs.mp3
 /page/scoot-the-burbs/scoot-the-burbs.html
-/page/seinfeld
-/page/seinfeld/index.html
-/page/seinfeld/map.txt
-/page/seinfeld/seinfeld-logo.png
-/page/seinfeld/seinfeld-main-theme.mp3
 /page/sitemap
 /page/sitemap/favicon-site-map.png
 /page/sitemap/sitemap.html
