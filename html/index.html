@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 
 <style>
+  html {
+    scrollbar-width: none;
+  }
   /* Funk and jukebox sector */
   .funk_button {
     font-size: 120%;
@@ -37,6 +40,61 @@
   .jukebox_volume_bar {
     background-color: #2222bb;
   }
+  kbd {
+    border-style:outset;
+    background-color:#eee;
+  }
+  del {
+    background-color: #fbb;
+
+}
+  ins {
+    background-color:#bfb;
+  }
+#outdexportal {
+  float: right;
+  margin-right: 20%;
+  margin-left: -200px;
+  /* text-align: right; */
+}
+#outdextoptext {
+  font-family: 'Segoe UI';
+  font-weight:bold;
+  font-style:italic;
+  line-height: 0px;
+}
+#outdexbottomtext {
+  letter-spacing: 1px;
+  font-family:'Segoe Print';
+  font-weight:bold;
+  line-height: 0px;
+  text-decoration:none;
+  color:#f0f;
+}
+#imnotarobot {
+  letter-spacing: 1px;
+  position: relative;
+  top: -10px;
+  left: 18px;
+  color: #eee;
+  user-select: none;
+  pointer-events: none;
+}
+/* #imnotarobot::before {
+  content: '\1f846 ';
+  color:#f7f;
+} */
+#roboslider {
+  width: 150px;
+  transform: scaleY(2.5);
+  transform-origin: top;
+}
+#roboslider:hover {
+  cursor:grab;
+}
+#roboslider:active {
+  cursor:grabbing;
+}
 </style>
 
 <html>
@@ -71,49 +129,61 @@
           <div>Punch AMD in the mouth</div>
         </a>
       </div>
-      <div id="funk_container" style="width: 200px; overflow-x: visible;">
-        <input class="funk_button" type="button" value="Start the party" 
-          onclick="toggle_cycle_background(this)">
-        <div class="div_pad_small"></div>
-        <div class="funk_meter scrollable_meter" style="white-space: nowrap;" 
-          onwheel="update_cycle_amount(event, null)">
-          <input class="funk_meter_button" type="button" value="&#60;">
-          <span style="padding: 0px 12px">Funk level: <span id="funk_level">25</span>%</span>
-          <input class="funk_meter_button" type="button" value="&#62;">
+      <div id="outdexportal">
+        <span id="outdextoptext">try the new</span>
+        <br />
+        <a href="/outdex.html" id="outdexbottomtext">outdex steakzone</a>
+        <br />
+        <input id="roboslider" value="0" type="range"
+               oninput="if (this.value >99) location.assign('/outdex.html')" />
+        <br />
+        <code id="imnotarobot">I'm not a robot</code>
+      </div>
+      <div id="party-zone">
+        <div id="funk_container" style="width: 200px; overflow-x: visible;">
+          <input class="funk_button" type="button" value="Start the party"
+                 onclick="toggle_cycle_background(this)">
+          <div class="div_pad_small"></div>
+          <div class="funk_meter scrollable_meter" style="white-space: nowrap;"
+               onwheel="update_cycle_amount(event, null)">
+            <input class="funk_meter_button" type="button" value="&#60;">
+            <span style="padding: 0px 12px">Funk level: <span id="funk_level">25</span>%</span>
+            <input class="funk_meter_button" type="button" value="&#62;">
+          </div>
+          <div class="div_pad_small scrollable_meter" style="width: 200px;"
+               onwheel="update_cycle_amount(event, null)"></div>
+          <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
+            <div class="funk_meter_box" id="funk_meter_box_prime" style="z-index: 2;">
+              <div class="funk_meter_bar" id="fmb_num_0"></div>
+            </div>
+          </div>
+          <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
         </div>
-        <div class="div_pad_small scrollable_meter" style="width: 200px;" 
-          onwheel="update_cycle_amount(event, null)"></div>
-        <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
-          <div class="funk_meter_box" id="funk_meter_box_prime" style="z-index: 2;">
-            <div class="funk_meter_bar" id="fmb_num_0"></div>
+        <div class="div_pad"></div>
+        <div id="jukebox_container" style="width: 200px; overflow-x: visible;">
+          <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
+          <input class="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
+          <div class="div_pad_small"></div>
+          <div class="jukebox_track_selection">
+            <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
+            <span style="padding: 0px 25px;">Change track</span>
+            <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
+          </div>
+          <div class="div_pad_small"></div>
+          <div style="white-space: nowrap; height: 18px;">
+            <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
+          </div>
+          <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
+               onwheel="update_jukebox_volume(event)"></div>
+          <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
+            <div class="jukebox_volume_box">
+              <div class="jukebox_volume_bar"></div>
+            </div>
           </div>
         </div>
-        <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
-      </div>
-      <div class="div_pad"></div>
-      <div id="jukebox_container" style="width: 200px; overflow-x: visible;">
-        <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
-        <input class="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
         <div class="div_pad_small"></div>
-        <div class="jukebox_track_selection">
-          <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
-          <span style="padding: 0px 25px;">Change track</span>
-          <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
-        </div>
-        <div class="div_pad_small"></div>
-        <div style="white-space: nowrap; height: 18px;">
-          <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
-        </div>
-        <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
-          onwheel="update_jukebox_volume(event)"></div>
-        <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
-          <div class="jukebox_volume_box">
-            <div class="jukebox_volume_bar"></div>
-          </div>
-        </div>
+        <span style="font-size: 85%;">(the scroll wheel is your friend)</span>
       </div>
-      <div class="div_pad_small"></div>
-      <span style="font-size: 85%;">(the scroll wheel is your friend)</span>
     </div>
     <div class="big_section" id="about_website_section">
       <div style="text-align: center; text-decoration-line: underline; font-size: 120%;">About this website</div>
@@ -126,6 +196,9 @@
           <li>Tick the little &#x1f171;&#x1F1F4;&#x1F1FD; that says "Disable cache"</li>
           <li>Gently press F5, making sure to not startle it</li>
         </ul>
+        <div style="text-align:right; margin-left: 40px; width: fit-content;">
+          you can also just hit <kbd>ctrl</kbd>+<kbd>F5</kbd>, <br />if that's easier for you :-)
+        </div>
       </div>
       <p class="half_left">
         This is where we put the high-quality content. Members of the Bar Stool 
@@ -149,8 +222,9 @@
         <a href="/page/development/test-collection.html">Test collection</a>
       </div>
       <div class="column_center">
-        This site probably doesn't work on mobile so like sorry about that. In 
-        sooth it's primarily a testing ground for silly web development 
+        This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
+        on mobile so like <del>sorry about that</del> <ins>you're welcome</ins>. In
+        sooth it's primarily a testing ground for silly web development
         shenanigans. Things are bound to break on a regular basis. Honestly just
         disable the browser cache (see above) until a notice is posted somewhere.
         <br>
@@ -177,6 +251,9 @@
         <p>
           <a href="/page/meat-substrate/meat.html">Meat substrate</a>
         </p>
+        <p>
+          <a href="/page/development/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
+        </p>
       </div>
     </div>
   </body>
@@ -190,13 +267,14 @@
     debug_element_class_border("big_section");
   }
   (async function() {
-    await Promise.all([
+  if (typeof startup_done === 'undefined') await Promise.all([
       append_footer(),
       load_async_elements(),
       append_git_data(),
       append_dropdown_menu(),
-    ]);
-    lock_full_doc_dimensions();
+  ]);
+  else document.getElementById('fixed_top').style.display = "none";
+    // lock_full_doc_dimensions();
     document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
   })();
   function lock_element_position(element) {
@@ -206,9 +284,9 @@
   }
 
   // Funk and jukebox sector
-  const global_frametime = 1000 / 60;
-  const global_cycle_units = 10;
-  const global_funk_meter_bar_units = document.getElementsByClassName("funk_meter")[0].clientWidth / 100;
+  var global_frametime = 1000 / 60;
+  var global_cycle_units = 10;
+  var global_funk_meter_bar_units = document.getElementsByClassName("funk_meter")[0].clientWidth / 100;
   var global_cycle_amount = global_cycle_units * parseInt(document.getElementById("funk_level").innerHTML);
   var global_page_hue = 0;
   var global_page_hue_reverse = 65535;
@@ -328,7 +406,7 @@
     "Adhesive Wombat - Chodge Darger.mp3",
   ];
   var global_jukebox_track_list_position = 0;
-  const global_jukebox_volume_bar_units = 
+  var global_jukebox_volume_bar_units = 
     document.getElementsByClassName("jukebox_track_selection")[0].clientWidth / 100;
 
   jukebox_track_list.sort();
@@ -419,12 +497,15 @@
   }
   function stop_scrolling_y(event) {
     full_doc_html.style.height = "100%";
-    full_doc_html.style.overflowY = "hidden";
+  full_doc_html.style.overflowY = "hidden";
+// full_doc_html.style.marginRight = "17px";
   }
   function start_scrolling_y(event) {
     full_doc_html.style.height = "auto";
-    full_doc_html.style.overflowY = "auto";
+    full_doc_html.style.overflowY = "scroll";
+  // full_doc_html.style.marginRight = "auto";
   }
+  // full_doc_html.style.overflowY = "scroll";
 
   // Functions stolen from Adafruit_NeoPixel
   function rainbow_rgb(set_hue, set_sat, set_val) {
@@ -483,7 +564,7 @@
     }
     return x;
   }
-  const gamma_table = [
+  var gamma_table = [
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1,
     1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,
