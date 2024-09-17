@@ -73,6 +73,7 @@
   line-height: 0px;
   text-decoration:none;
   color:#f0f;
+  cursor: not-allowed;
 }
 #imnotarobot {
   letter-spacing: 1px;
@@ -215,14 +216,19 @@
     </div>
     <div class="big_section">
       <div class="column_left">
-        <b>UPDATE:</b> sample text
+        <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
+        <br />You know where to find it ;)
+        <!-- <span style="font-family: 'Comic Sans MS'">;)</span> -->
       </div>
       <div class="column_right">
         Technical pages:
         <br>
         <a href="/page/changelog/changelog.html">Changelog</a>
         <br>
-        <a href="/page/development/test-collection.html">Test collection</a>
+        <!-- <a href="/page/development/test-collection.html">Test collection</a> -->
+        <!-- <p> -->
+          <a href="/page/development/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
+        <!-- </p> -->
       </div>
       <div class="column_center">
         This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
@@ -246,16 +252,15 @@
       <div class="half_right" style="font-size: 120%;">
         <span style="font-size: 140%; text-decoration-line: underline;">Cr&#232;me de la Cr&#232;me</span>
         <p>
-          <a href="/page/sonic/gotta-go-fast.html">WAY PAST COOL</a><sup>&#8482;</sup>
+          <a style="text-decoration: none" href="/page/sonic/gotta-go-fast.html">
+            <span style="text-decoration: underline">WAY PAST COOL</span><sup>&#8482;</sup>
+            </a>
         </p>
         <p>
           <a href="/page/scoot-the-burbs/scoot-the-burbs.html">Scoot the Burbs: a lyrical analysis</a>
         </p>
         <p>
-          <a href="/page/meat-substrate/meat.html">Meat substrate</a>
-        </p>
-        <p>
-          <a href="/page/development/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
+          <a href="/page/meat-substrate/meat.html">Meat Substrate</a>
         </p>
       </div>
     </div>
@@ -276,7 +281,7 @@
       append_git_data(),
       append_dropdown_menu(),
   ]);
-  else document.getElementById('fixed_top').style.display = "none";
+  // else document.getElementById('fixed_top').style.display = "none";
     // lock_full_doc_dimensions();
     document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
   })();
@@ -365,7 +370,7 @@
     }
     if (update_funk_meter_bar.negative)
       funk_meter_bar_width_total *= -1;
-    var fmbw_overflow = funk_meter_bar_width_total % parseInt(full_doc_html.style.width);
+    var fmbw_overflow = funk_meter_bar_width_total % window.innerWidth;
     if (!(fmbw_overflow) && (document.getElementsByClassName("funk_meter_bar").length != 1) && 
       (element.style.width == "2px")) {
         element.parentNode.removeChild(element);
