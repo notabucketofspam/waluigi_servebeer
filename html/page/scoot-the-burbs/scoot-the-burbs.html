@@ -9,24 +9,34 @@
     <link rel="stylesheet" type="text/css" 
       href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
     <meta name="viewport" content="width=640, initial-scale=1"/>
+    <style>
+      #thecoolpart {
+        width: 800px;
+      }
+      #lyrics {
+        border-left: solid black 1px;
+        border-bottom: solid black 1px;
+        margin-left: 2ch;
+        padding-left: 2ch;
+      }
+      audio {
+        margin-left: 3ch;
+      }
+    </style>
   </head>
   <body>
     <br>
     <h1>Scoot the Burbs</h1>
     <h2>a lyrical analysis</h2>
     <hr>
-    <div class="big_section">
-      <div style="font-size: 120%;">
-        Listen to the song
+    <!-- <br /> -->
+    <div class="big_section" id="thecoolpart">
+      <div class="half_right">
+        <audio controls src="/page/scoot-the-burbs/Red%20Vox%20-%20Scoot%20The%20Burbs.mp3"></audio>
+        <br>
+        <div class="async_text" data-path="/page/scoot-the-burbs/lyrics.txt" id="lyrics"></div>
       </div>
-      <div>
-        <audio controls src="Red Vox - Scoot The Burbs.mp3"></audio>
-      </div>
-      <br>
-    </div>
-    <div class="big_section">
-      <div class="async_text half_right" data-path="lyrics.txt" style="margin: 0% 0% 4% 4%;"></div>
-      <div class="async_text" data-path="analysis.txt"></div>
+      <div class="async_text" data-path="/page/scoot-the-burbs/analysis.txt"></div>
     </div>
   </body>
 </html>
@@ -38,5 +48,6 @@
   (function() {
     startup_common();
     document.getElementsByTagName("audio")[0].volume = 0.5;
+  load_async_elements();
   })();
 </script>
