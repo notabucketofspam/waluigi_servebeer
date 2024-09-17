@@ -9,6 +9,7 @@
 /js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js
 /js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js
 /js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js
+/outdex.html
 /page
 /page/changelog
 /page/changelog/changelog.html
@@ -38,6 +39,8 @@
 /page/intel/intel.html
 /page/meat-substrate
 /page/meat-substrate/meat.html
+/page/nice-colors
+/page/nice-colors/nice-colours.html
 /page/sample
 /page/sample/favicon-food.png
 /page/sample/sample.html
@@ -66,3 +69,4 @@
 /resource/jukebox-tracks/Noma - Brain Power.mp3
 /resource/jukebox-tracks/みきとP - 39みゅーじっく! feat. 初音ミク.mp3
 /resource/steak.gif
+/Web.config
