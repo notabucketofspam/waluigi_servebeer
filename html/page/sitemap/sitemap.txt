@@ -1,14 +1,18 @@
+/cookies.html
 /css
 /css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css
 /css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css
+/css/great-scott.css
 /favicon-index.png
 /favicon-small.ico
 /favicon.ico
 /index.html
 /js
 /js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js
+/js/everything.js
 /js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js
 /js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js
+/misc.html
 /outdex.html
 /page
 /page/changelog
@@ -25,9 +29,6 @@
 /page/development/menu-test
 /page/development/menu-test/favicon-test.png
 /page/development/menu-test/menu.html
-/page/development/smash-mouth
-/page/development/smash-mouth/favicon-smash-mouth.png
-/page/development/smash-mouth/smash-mouth.html
 /page/development/test-collection.html
 /page/food-time
 /page/food-time/eat-your-coal.png
@@ -39,6 +40,7 @@
 /page/intel/intel.html
 /page/meat-substrate
 /page/meat-substrate/meat.html
+/page/meat-substrate/retro_steak.png
 /page/nice-colors
 /page/nice-colors/nice-colours.html
 /page/sample
@@ -54,6 +56,9 @@
 /page/sitemap/favicon-site-map.png
 /page/sitemap/sitemap.html
 /page/sitemap/sitemap.txt
+/page/smash-mouth
+/page/smash-mouth/favicon-smash-mouth.png
+/page/smash-mouth/smash-mouth.html
 /page/sonic
 /page/sonic/favicon-sonic.png
 /page/sonic/gotta-go-fast.html
@@ -68,5 +73,7 @@
 /resource/jukebox-tracks/Mile High Club (JC2).mp3
 /resource/jukebox-tracks/Noma - Brain Power.mp3
 /resource/jukebox-tracks/みきとP - 39みゅーじっく! feat. 初音ミク.mp3
+/resource/not-cookies.txt
+/resource/pseudo-cookies.txt
 /resource/steak.gif
 /Web.config

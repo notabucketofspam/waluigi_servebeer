@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<html>
+  <head>
 <style>
   body {
     background-color: #fff;
@@ -42,6 +44,7 @@
   }
   .jukebox_volume_bar {
     background-color: #2222bb;
+    height: 16px;
   }
   kbd {
     border-style:outset;
@@ -99,16 +102,76 @@
 #roboslider:active {
   cursor:grabbing;
 }
+#jug {
+  border-style: ridge;
+  border-width: 4px;
+  border-color: #fedfed;
+  width: 82ch;
+  background-color: #fefeee;
+  padding: 1ch;
+  font-family: monospace;
+  position: fixed;
+  bottom: 0px;
+  left: 25vw;
+}
+#jar {
+  height: 2lh;
+  width: 76ch;
+    }
+.chad {
+  font-family: serif;
+}
+#aight {
+  position: absolute;
+  bottom: 0px;
+  right: 1px;
+  background-color: #ffaaff;
+  border-width: 2px;
+  border-color: #ee33ee;
+  border-style: outset;
+  width: 45px;
+  text-align: left;
+  padding-right: 3px;
+}
+#aight:hover {
+    background-color: #aaffaa;
+    border-color: #33ee33;
+    text-align: right;
+}
+#nah {
+  position: absolute;
+  top: 1px;
+  right: 0px;
+  background-color: #aaffaa;
+  border-width: 2px;
+  border-color: #33ee33;
+  border-style: outset;
+  width: 45px;
+  text-align: right;
+}
+#nah:hover {
+background-color: #ffaaff;
+border-color: #ee33ee;
+text-align: left;
+}
+#scoot-box {
+  border: groove 4px #bbb;
+  background-color: #eee;
+  width: 266px;
+  padding: 4px;
+}
+#scoot-link {
+  /* text-decoration-color: #00b; */
+  /* color: #00b; */
+}
 </style>
-
-<html>
-  <head>
     <title>waluigi-servebeer.com</title>
     <!-- <link rel="icon" type="image/png" href="/favicon-index.png"/> -->
-    <link rel="stylesheet" type="text/css" 
+    <!-- <link rel="stylesheet" type="text/css" 
       href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
     <link rel="stylesheet" type="text/css" 
-      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/> -->
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
     <meta name="viewport" content="width=640, initial-scale=1"/>
   </head>
   <body style="background-color: #ffffff;">
@@ -227,8 +290,10 @@
         <br>
         <!-- <a href="/page/development/test-collection.html">Test collection</a> -->
         <!-- <p> -->
-          <a href="/page/development/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
+          <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
         <!-- </p> -->
+        <br />
+        <a href="/page/sitemap/sitemap.html">Sitemap</a>
       </div>
       <div class="column_center">
         This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
@@ -256,42 +321,51 @@
             <span style="text-decoration: underline">WAY PAST COOL</span><sup>&#8482;</sup>
           </a>
         </p>
-        <p>
-          <a href="/page/scoot-the-burbs/scoot-the-burbs.html">Scoot the Burbs: a lyrical analysis</a>
+        <p id="scoot-box" style="">
+          <a href="/page/scoot-the-burbs/scoot-the-burbs.html" id="scoot-link">
+            Scoot the Burbs: a lyrical analysis
+            </a>
         </p>
         <!-- <p>
-          <a href="/page/meat-substrate/meat.html">Meat Substrate</a>
-        </p> -->
+    <a href="/page/meat-substrate/meat.html">Meat Substrate</a>
+  </p> -->
         <div class="fake_advertisement" style="text-align: center; width: 168px;">
           <a class="anchor_no_style" href="/page/meat-substrate/meat.html" style="display:block; padding: 6px;">
             <span>Click here to learn about <i>meat</i></span>
             <img height="130" src="/page/meat-substrate/retro_steak.png" style="padding-top:10px;">
           </a>
         </div>
-        <p><a href="/cookies.html">Cookies</a></p>
+        <!-- <p><a href="/cookies.html">Cookies</a></p> -->
+        <p><a href="/misc.html">misc</a></p>
       </div>
     </div>
-  </body>
-</html>
-
-<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<!-- <script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
 <script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
-<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script> -->
+    <script src="/js/everything.js"></script>
 <script>
+  var full_doc_html = document.documentElement;
   if (0) {
     debug_element_class_border("big_section");
   }
-  (async function() {
-  if (typeof startup_done === 'undefined') await Promise.all([
-      append_footer(),
-      load_async_elements(),
-      append_git_data(),
-      append_dropdown_menu(),
-  ]);
-  // else document.getElementById('fixed_top').style.display = "none";
-    // lock_full_doc_dimensions();
-    document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
-  })();
+  // (async function() {
+  //     if (typeof startup_done === 'undefined') {
+  //         // await Promise.all([
+  //         //     append_footer(),
+  //         //     load_async_elements(),
+  //         //     append_git_data(),
+  //         //     append_dropdown_menu(),
+  //         // ]);
+  //     } else {
+  //         document.getElementById('fixed_top').style.display = "none";
+  //     }
+  //   // lock_full_doc_dimensions();
+  //   document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
+  // })();
+  if (typeof startup_done !== 'undefined') {
+      // document.getElementById('fixed_top').style.display = "none";
+  }
+  document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
   function lock_element_position(element) {
     element.style.left = String(element.getBoundingClientRect().x + "px");
     element.style.top = String(element.getBoundingClientRect().y + "px");
@@ -597,3 +671,56 @@
   182,184,186,188,191,193,195,197,199,202,204,206,209,211,213,215,
   218,220,223,225,227,230,232,235,237,240,242,245,247,250,252,255];
 </script>
+<div id="jug">
+    <div id="jar"></div>
+    <button id="aight" onclick="realhideme()">aight</button>
+    <button id="nah" onclick="hideme()">nah</button>
+  </div>
+  <script>
+    /**@type number[]*/
+    var used = JSON.parse(localStorage.getItem('used')) ?? [];
+    /**@type string[]*/
+    var memes;
+    fetch("/resource/pseudo-cookies.txt")
+      .then(res => res.text())
+      .then(text => {
+        memes = text.split(/(?:\r\n\r\n)|(?:\r\r)|(?:\n\n)/);
+        pulljar();
+      }
+      );
+    var jar = document.getElementById('jar');
+    /**@param{number}k*/
+    function rui (k) {
+      return Math.random() / Number.EPSILON % k;
+    }
+    function pulljar () {
+      if (used.length === memes.length - 1) {
+        used.splice(0, 1+rui(used.length));
+      }
+      var n;
+      var c = 0;
+      do {
+        n = rui(memes.length);
+        ++c;
+      } while (used.includes(n));
+      used.push(n);
+      localStorage.setItem('used', JSON.stringify(used));
+      // console.log({n,c,u:used.length});
+      jar.innerHTML = memes.at(n);
+    }
+    function setjar(n) {
+      jar.innerHTML = memes.at(n);
+    }
+    function hideme () {
+      jug.hidden = true;
+      setTimeout(() => {
+        jug.hidden = false;
+        pulljar();
+      }, 3000);
+    }
+    function realhideme() {
+    jug.hidden = true;
+    }
+  </script>
+  </body>
+</html>

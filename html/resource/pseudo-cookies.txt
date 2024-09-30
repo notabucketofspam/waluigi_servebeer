@@ -72,7 +72,7 @@ This site corrupts its users' cookies for fun and profit.
 NetworkError: Connection failure due to HTTP 500
 
 <q>What is a cookie? A miserable little pile of secrets.
-But enough talk... Have at you!</q> &horbar; Dracula, probably
+But enough talk... Have at you!</q> &horbar; Dracula.com, probably
 
 This site does not use cookies.<br/>
 This site has never used cookies.
