@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html><head>
+  <style>
+    #jug {
+      border-style: ridge;
+      border-width: 4px;
+      border-color: #fedfed;
+      width: 82ch;
+      background-color: #fefeee;
+      padding: 1ch;
+      font-family: monospace;
+      position: fixed;
+      bottom: 0px;
+      left: 25vw;
+    }
+
+#jar {
+  height: 2lh;
+  width: 76ch;
+    }
+.chad {
+  font-family: serif;
+}
+#aight {
+  position: absolute;
+  bottom: 0px;
+  right: 1px;
+  background-color: #ffaaff;
+  border-width: 2px;
+  border-color: #ee33ee;
+  border-style: outset;
+  width: 45px;
+  text-align: left;
+  padding-right: 3px;
+}
+#aight:hover {
+    background-color: #aaffaa;
+    border-color: #33ee33;
+    text-align: right;
+}
+#nah {
+  position: absolute;
+  top: 1px;
+  right: 0px;
+  background-color: #aaffaa;
+  border-width: 2px;
+  border-color: #33ee33;
+  border-style: outset;
+  width: 45px;
+  text-align: right;
+    }
+    #nah:hover {
+    background-color: #ffaaff;
+    border-color: #ee33ee;
+    text-align: left;
+    }
+  </style>
+  <title>Cookies - waluigi-servebeer.com</title>
+  <link rel="stylesheet" type="text/css"
+        href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css" />
+  <link rel="stylesheet" type="text/css"
+        href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css" />
+  <meta name="viewport" content="width=640, initial-scale=1" charset="utf-8" />
+</head>
+<body>
+  <div id="jug">
+    <div id="jar"></div>
+    <button id="aight" onclick="hideme()">aight</button>
+    <button id="nah" onclick="pulljar()">nah</button>
+  </div>
+  <script>
+    /**@type number[]*/
+    var used = JSON.parse(localStorage.getItem('used')) ?? [];
+    /**@type string[]*/
+    var memes;
+    fetch("/resource/pseudo-cookies.txt")
+      .then(res => res.text())
+      .then(text => {
+        memes = text.split(/(?:\r\n\r\n)|(?:\r\r)|(?:\n\n)/);
+        pulljar();
+      }
+      );
+    var jar = document.getElementById('jar');
+    /**@param{number}k*/
+    function rui (k) {
+      return Math.random() / Number.EPSILON % k;
+    }
+    function pulljar () {
+      if (used.length === memes.length - 1) {
+        used.splice(0, 1+rui(used.length));
+      }
+      var n;
+      var c = 0;
+      do {
+        n = rui(memes.length);
+        ++c;
+      } while (used.includes(n));
+      used.push(n);
+      localStorage.setItem('used', JSON.stringify(used));
+      console.log({n,c,u:used.length});
+      jar.innerHTML = memes.at(n);
+    }
+    function setjar(n) {
+      jar.innerHTML = memes.at(n);
+    }
+    function hideme () {
+      jug.hidden = true;
+      setTimeout(() => {
+        jug.hidden = false;
+        pulljar();
+      }, 3000);
+    }
+  </script>
+</body></html>
