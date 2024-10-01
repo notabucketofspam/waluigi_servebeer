@@ -27,6 +27,7 @@
   <div id="hoverboots" style="margin-left:40px; position: fixed; margin-top:-10px">
     <span>only the highest-quality meats are selected for serving on waluigi-servebeer.com</span>
     <br />
+    <button id="quit">quit</button>
     <input id="cowbox" type="checkbox" /><label id="label-for-cowbox" for="cowbox">show cowtools?</label>
     <span id="cowtools" class="getitouttahere">
       <button id="button">bread</button>
@@ -68,6 +69,7 @@ var button = document.getElementById("button");
   var meeper = document.getElementById("meeper");
 /**@type HTMLInputElement*/
 var meeptheater = document.getElementById("meeptheater");
+var quit = document.getElementById("quit");
 var text = "";
   var bread = /(?<title>\<title\>.*?\<\/title\>)|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?<src>\<script src=".*?"\>\<\/script\>)/gs;
   var newtext = "";
@@ -85,8 +87,7 @@ function consume(url) {
   //   location.assign("/");
   // }
   if (url.includes("outdex.html")) {
-    const whosays = prompt("Headin' back to Sydney, bruv?", "S\xED");
-    location.assign("/");
+      quit_more();
     return;
   }
   unprepare_almonds();
@@ -120,7 +121,8 @@ function consume(url) {
             if (groups.title.length > 36)
               document.title = groups.title.slice(7, -8);
             else
-              document.title = "outdex steakzone - waluigi-servebeer.com";
+              document.title = "waluigi-servebeer.com";
+            document.title += " (outdex steakzone)";
             }
             if (groups.lonk) {
                 // console.log(groups.lonk);
@@ -185,7 +187,9 @@ ick.addEventListener("click", ev => {
     location.hash = pn;
     consume(pn);
   }
-  eatmeter.addEventListener('click', prepare_almonds);
+  eatmeter.addEventListener('click', ev => {
+      document.body.style.backgroundColor = `oklch(${Math.random()} ${Math.random() / 2} ${Math.random()}turn)`;
+  });
 
   function donatehash() {
     let valproate = meeptheater.value;
@@ -195,7 +199,13 @@ ick.addEventListener("click", ev => {
     }
   }
   meeper.addEventListener('click', donatehash);
-  
+
+  quit.addEventListener("click", ev => quit_more());
+  function quit_more() {
+      prompt("Headin' back to Sydney, bruv?", "S\xED");
+      location.assign("/");
+      return;
+  }
 </script>
 </body>
 </html>

@@ -36,7 +36,8 @@
         });
     }
     function mom() {
-        console.log(document.lastModified);
+        document.body.insertAdjacentHTML("beforeend", `${new Date()}<br/>`);
+        // console.log(document.lastModified);
     }
   </script>
 </body>
