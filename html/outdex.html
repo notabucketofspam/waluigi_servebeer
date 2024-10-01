@@ -2,10 +2,6 @@
 <html>
 <head>
 <title>outdex steakzone - waluigi-servebeer.com</title>
-<!-- <link rel="stylesheet" type="text/css" 
-  href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
-<link rel="stylesheet" type="text/css" 
-  href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/> -->
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css">
 <meta name="viewport" content="width=640, initial-scale=1"/>
 <style>
@@ -21,10 +17,15 @@
   #cowbox {
     accent-color:red;
   }
+  #hoverboots {
+  margin-left: 40px;
+  position: fixed;
+  margin-top: -10px;
+  }
 </style>
 </head>
 <body>
-  <div id="hoverboots" style="margin-left:40px; position: fixed; margin-top:-10px">
+  <div id="hoverboots">
     <span>only the highest-quality meats are selected for serving on waluigi-servebeer.com</span>
     <br />
     <button id="quit">quit</button>
@@ -34,33 +35,17 @@
       <button id="ick">wolfjerkey&#8482;</button>
       <button id="meateater">meateater</button>
       <button id="eatmeter">eatmeter</button>
-      <!-- <button id="depth-sensor-type-i">i</button> -->
-      <!-- <button id="depth-sensor-type-ii">ii</button> -->
-      <!-- <label for="meeptheater">meeptheater</label> -->
       <input id="meeptheater" type="url" placeholder="meeptheater" />
       <button id="meeper">meeper</button>
     </span>
   </div>
 <main></main>
 <script src="/js/everything.js"></script>
-<!-- sarge's old stuff -->
-<!-- <script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
-<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
-<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script> -->
 <script>
   /**@type HTMLDivElement */
   var top_steak = document.getElementById("steak_corner");
-  var startup_done = false;
-  (async function () {
-    // await startup_common();
-    // top_steak = document.getElementsByClassName('top_right')[0];
-    // startup_common = (callback, ...args) => typeof callback === "function" && callback(args);
-    document.querySelector("footer").style.marginTop = "44px";
-    startup_done = true;
-    hashgrab();
-  })();
-// only the highest-quality meats are selected for serving on waluigi-servebeer.com
-var disk_radius = 7; // meters
+  var startup_done = true;
+  hashgrab();
 var main = document.querySelector('main');
 var button = document.getElementById("button");
   var ick = document.getElementById("ick");
@@ -70,7 +55,6 @@ var button = document.getElementById("button");
 /**@type HTMLInputElement*/
 var meeptheater = document.getElementById("meeptheater");
 var quit = document.getElementById("quit");
-var text = "";
   var bread = /(?<title>\<title\>.*?\<\/title\>)|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?<src>\<script src=".*?"\>\<\/script\>)/gs;
   var newtext = "";
   /**@type HTMLInputElement*/
@@ -82,10 +66,6 @@ var text = "";
    * @param {string} url the page you need
    */
 function consume(url) {
-  // if (url.includes("outdex.html")) {
-  //   alert("The door is closed.");
-  //   location.assign("/");
-  // }
   if (url.includes("outdex.html")) {
       quit_more();
     return;
@@ -95,18 +75,13 @@ function consume(url) {
     .then(res => res.text())
     .then(restext => {
       main.replaceChildren();
-        text = restext;
-        // console.log(text);
       newtext = restext.replaceAll(bread, function replacer(substring, ...args) {
-          // console.log("sauce");
           const groups = args.at(-1);
         if (typeof groups === 'object') {
           if (groups.glitter) {
             const style = document.createElement('style');
             style.innerHTML = groups.glitter;
-
-              main.prepend(style);
-            
+            main.prepend(style);
           }
           if (groups.soup) {
             setTimeout(() => {
@@ -117,7 +92,6 @@ function consume(url) {
           }
           if (groups.title) {
             // im too lazy to fix the regexp lol
-            // console.log(groups.title.length);
             if (groups.title.length > 36)
               document.title = groups.title.slice(7, -8);
             else
@@ -125,13 +99,11 @@ function consume(url) {
             document.title += " (outdex steakzone)";
             }
             if (groups.lonk) {
-                // console.log(groups.lonk);
             }
         }
         return "";
       });
       main.insertAdjacentHTML('beforeend', newtext);
-      document.querySelector("footer").style.marginTop = "auto";
       prepare_almonds();
             if (document.getElementById('fixed_top')) {
         top_steak.classList.add('getitouttahere');
@@ -154,7 +126,6 @@ ick.addEventListener("click", ev => {
   /**greedy lil thief*/
   function hashgrab() {
     const hash = location.hash.substring(1);
-    // console.log(hash);
     if (hash) {
       consume(hash);
     } else {
@@ -171,7 +142,6 @@ ick.addEventListener("click", ev => {
   }
   function prepare_almonds() {
     const allah = document.querySelectorAll("a");
-    // console.log(allah);
     for (const a of allah) {
       a.addEventListener('click', dubiousLink);
     }
@@ -181,9 +151,7 @@ ick.addEventListener("click", ev => {
     ev.preventDefault();
   /**@type HTMLAnchorElement*/
     const a = ev.composedPath().find(el => el instanceof HTMLAnchorElement);
-    // console.log(a);
     const pn = a.pathname;
-    // console.log(pn);
     location.hash = pn;
     consume(pn);
   }
@@ -202,6 +170,7 @@ ick.addEventListener("click", ev => {
 
   quit.addEventListener("click", ev => quit_more());
   function quit_more() {
+    //   alert("The door is closed.");
       prompt("Headin' back to Sydney, bruv?", "S\xED");
       location.assign("/");
       return;

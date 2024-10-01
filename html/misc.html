@@ -19,14 +19,9 @@
   <br />
   <button onclick="mom()" id="sauce">meme</button>
   <div id="jar"></div>
-
-  <script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
-  <script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
-  <script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
   <script src="/js/everything.js"></script>
   <script>
     var dongle;
-    // startup_common();
     function meme() {
         fetch(location, {
             method: "head"
@@ -37,7 +32,6 @@
     }
     function mom() {
         document.body.insertAdjacentHTML("beforeend", `${new Date()}<br/>`);
-        // console.log(document.lastModified);
     }
   </script>
 </body>

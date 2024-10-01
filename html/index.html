@@ -4,7 +4,7 @@
   <head>
 <style>
   body {
-    background-color: #fff;
+    background-color: #ffffff;
   }
   html {
     scrollbar-width: none;
@@ -160,21 +160,12 @@ text-align: left;
   width: 266px;
   padding: 4px;
 }
-#scoot-link {
-  /* text-decoration-color: #00b; */
-  /* color: #00b; */
-}
 </style>
     <title>waluigi-servebeer.com</title>
-    <!-- <link rel="icon" type="image/png" href="/favicon-index.png"/> -->
-    <!-- <link rel="stylesheet" type="text/css" 
-      href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
-    <link rel="stylesheet" type="text/css" 
-      href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/> -->
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
     <meta name="viewport" content="width=640, initial-scale=1"/>
   </head>
-  <body style="background-color: #ffffff;">
+  <body>
     <div id="fixed_top">
       <div class="top_right">
         <span class="steak_zone_text">Welcome to the
@@ -281,17 +272,13 @@ text-align: left;
       <div class="column_left">
         <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
         <br />You know where to find it ;)
-        <!-- <span style="font-family: 'Comic Sans MS'">;)</span> -->
       </div>
       <div class="column_right">
         Technical pages:
         <br>
         <a href="/page/changelog/changelog.html">Changelog</a>
         <br>
-        <!-- <a href="/page/development/test-collection.html">Test collection</a> -->
-        <!-- <p> -->
           <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
-        <!-- </p> -->
         <br />
         <a href="/page/sitemap/sitemap.html">Sitemap</a>
       </div>
@@ -326,46 +313,19 @@ text-align: left;
             Scoot the Burbs: a lyrical analysis
             </a>
         </p>
-        <!-- <p>
-    <a href="/page/meat-substrate/meat.html">Meat Substrate</a>
-  </p> -->
         <div class="fake_advertisement" style="text-align: center; width: 168px;">
           <a class="anchor_no_style" href="/page/meat-substrate/meat.html" style="display:block; padding: 6px;">
             <span>Click here to learn about <i>meat</i></span>
             <img height="130" src="/page/meat-substrate/retro_steak.png" style="padding-top:10px;">
           </a>
         </div>
-        <!-- <p><a href="/cookies.html">Cookies</a></p> -->
         <p><a href="/misc.html">misc</a></p>
       </div>
     </div>
-<!-- <script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
-<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
-<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script> -->
     <script src="/js/everything.js"></script>
 <script>
   var full_doc_html = document.documentElement;
-  if (0) {
-    debug_element_class_border("big_section");
-  }
-  // (async function() {
-  //     if (typeof startup_done === 'undefined') {
-  //         // await Promise.all([
-  //         //     append_footer(),
-  //         //     load_async_elements(),
-  //         //     append_git_data(),
-  //         //     append_dropdown_menu(),
-  //         // ]);
-  //     } else {
-  //         document.getElementById('fixed_top').style.display = "none";
-  //     }
-  //   // lock_full_doc_dimensions();
-  //   document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
-  // })();
-  if (typeof startup_done !== 'undefined') {
-      // document.getElementById('fixed_top').style.display = "none";
-  }
-  document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
+    document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
   function lock_element_position(element) {
     element.style.left = String(element.getBoundingClientRect().x + "px");
     element.style.top = String(element.getBoundingClientRect().y + "px");
@@ -587,15 +547,11 @@ text-align: left;
   function stop_scrolling_y(event) {
     full_doc_html.style.height = "100%";
   full_doc_html.style.overflowY = "hidden";
-// full_doc_html.style.marginRight = "17px";
   }
   function start_scrolling_y(event) {
     full_doc_html.style.height = "auto";
     full_doc_html.style.overflowY = "scroll";
-  // full_doc_html.style.marginRight = "auto";
   }
-  // full_doc_html.style.overflowY = "scroll";
-
   // Functions stolen from Adafruit_NeoPixel
   function rainbow_rgb(set_hue, set_sat, set_val) {
     var new_red =   (0xFF0000 & (color_hsv(set_hue, set_sat, set_val))) >>> 16;
@@ -705,7 +661,6 @@ text-align: left;
       } while (used.includes(n));
       used.push(n);
       localStorage.setItem('used', JSON.stringify(used));
-      // console.log({n,c,u:used.length});
       jar.innerHTML = memes.at(n);
     }
     function setjar(n) {
