@@ -87,6 +87,10 @@ var quote = new Date(903379804e3); // 1998-08-17T18:50:04.000Z
 var coolWhats = ["Seconds", "Minutes", "Hours", "Date", "Month", "FullYear"];
 var hotWhats  = ["seconds", "minutes", "hours", "days", "months", "years"];
 function durfknight() {
+  if (typeof time_since_bill_clinton_quote === 'undefined') {
+    clearInterval(clinton_timer);
+    return;
+  }
   var alcohol = new Date();  
   var coolrest = coolWhats.map(function(What) {
     var dill = alcohol[`get${What}`]() - quote[`get${What}`]();
