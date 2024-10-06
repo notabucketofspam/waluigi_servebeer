@@ -1,0 +1,13 @@
+<script>
+  const regx = /\<script\>(?<innertxt>.*)\<\/script\>/dms;
+  // </innertext>
+  const eggs = /(\<script src=\".*?\.js\"\>\<\/script\>)\s*/g;
+  const eggs2 = /\<script\>\s*(.*?)\<\/script\>/sg;
+
+  const egg3 = /\<script src=\".*?\.js\"\>.*?\<\/script\>\s*/sg;
+  const empl = /(?<=Jack)Sprat/;
+  //(?<=\<script\>).*?(?=\<\/script\>)
+  const wolfjerkey = /(?:(?<=\<script\>\s+)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<src>.*?)(?="\>\<\/script\>))/gs;
+
+
+</script>

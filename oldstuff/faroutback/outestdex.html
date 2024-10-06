@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="hoverboots" style="margin-left:40px; position: fixed">
+    <button id="button">eggs2</button>
+    <button id="ick">wolfjerkey</button>
+  </div>
+  <!-- <hr /> -->
+  <div id="cooldiv"></div>
+  <script>
+    // stuff
+    const div = document.getElementById("cooldiv");
+    // const body = document.body;
+    const button = document.getElementById("button");
+    const ick = document.getElementById("ick");
+    let text = "";
+
+    const wolfjerkey = /(?:(?<=\<script\>\s+)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<src>.*?)(?="\>\<\/script\>))/gs;
+    const parts = [];
+    // let eh;
+    let newtext = "";
+    // og button
+    fetch("/index.html")
+      .then(res => res.text())
+      .then(restext => {
+        text = restext;
+        // parts = text.split(wolfjerkey);
+        // ick
+        newtext = text.replaceAll(wolfjerkey, function replacer(substring, ...args) {
+          // console.log(substring);
+          // console.log(args);
+          const groups = args.at(-1);
+          // meep: for (const arg of args)
+          //   if (typeof arg.innertxt === 'string') {
+          //     newscript = arg.innertxt;
+          //     break meep;
+          //   }
+          if (typeof groups === 'object') {
+            const script = document.createElement('script');
+            if (groups.src) {
+              script.src = groups.src;
+              document.head.appendChild(script);
+
+            }
+            if (groups.soup) {
+              script.innerHTML = groups.soup;
+              setTimeout(() => document.head.appendChild(script), 100);
+
+            }
+            // parts.push(script);
+          }
+          return "";
+        });
+        document.body.insertAdjacentHTML('beforeend', newtext);
+        // for (const script of parts)
+        //   document.head.appendChild(script);
+      });
+
+    button.addEventListener("click", ev => {
+      // console.log(text.replaceAll(wolfjerkey, ''));
+    });
+    ick.addEventListener("click", ev => {
+      // console.log(wolfjerkey.exec(text));
+
+    });
+  </script>
+</body>
+</html>

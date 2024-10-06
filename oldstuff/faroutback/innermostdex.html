@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>outdex steakzone - waluigi-servebeer.com</title>
+<link rel="stylesheet" type="text/css" 
+  href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css"/>
+<link rel="stylesheet" type="text/css" 
+  href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css"/>
+<meta name="viewport" content="width=640, initial-scale=1"/>
+</head>
+<body>
+  <div id="hoverboots" style="margin-left:40px; position: fixed">
+    <button id="button">bread</button>
+    <button id="ick">wolfjerkey</button>
+  </div>
+<main></main>
+<!-- sarge's old stuff -->
+<script src="/js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js"></script>
+<script src="/js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js"></script>
+<script src="/js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js"></script>
+<script>
+  var startup_done = false;
+  (async function () {
+    await startup_common();
+  startup_common = (callback, ...args) => typeof callback === "function" && callback(args);
+  startup_done = true;
+  })();
+// only the highest-quality meats are selected for serving on waluigi-servebeer.com
+const disk_radius = 7; // meters
+  const anchorbort = new AbortController();
+  const bortsig = anchorbort.signal;
+const main = document.querySelector('main');
+// const shadow = main.attachShadow({mode: "open"});
+const button = document.getElementById("button");
+  const ick = document.getElementById("ick");
+
+let text = "";
+const wolfjerkey = /(?:(?<=\<script\>\s+)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<src>.*?)(?="\>\<\/script\>))/gs;
+  const boarmeat = /(?:(?<=\<title\>)(?<title>.*?)(?=\<\/title\>))|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?:(?<=\<link)(?<lonk>.*?)(?=\/\>))|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<src>.*?)(?="\>\<\/script\>))/gs;
+  const bread = /(?<title>\<title\>.*?\<\/title\>)|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?<src>\<script src=".*?"\>\<\/script\>)/gs;
+let newtext = "";
+  /**extract the almonds
+   * @param tag {string} html tag name
+   * @param group {string} where will he go?
+   * */
+  const knife = (tag, group) => `(?:(?<=\<${tag}\>)(?<${group}>.*?)(?=\<\/${tag}\>))`;
+  /**more than one knife
+   * @param {string[]} stuff*/
+  const knives = (...stuff) => new RegExp(stuff.join('|'), "sg");
+  const kitchen = knives(knife('body', 'body'), knife('script', 'script'), knife('style', 'style'));
+  const small_kitchen = knives(knife('script', 'script'), knife('style', 'style'));
+  /**
+   * put those almonds to good use
+   * @param {string} url the page you need
+   * @param {RegExp} cutlery what we're gonna use to slice up the page
+   */
+function consume(url, cutlery) {
+  fetch(url)
+    .then(res => res.text())
+    .then(restext => {
+      main.replaceChildren();
+      text = restext;
+      newtext = restext.replaceAll(cutlery, function replacer(substring, ...args) {
+        const groups = args.at(-1);
+        if (typeof groups === 'object') {
+          if (groups.glitter) {
+            const style = document.createElement('style');
+            style.innerHTML = groups.glitter;
+
+              main.prepend(style);
+            
+          }
+          if (groups.soup) {
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.innerHTML = groups.soup;
+                main.prepend(script);
+              }, 100);
+          }
+        }
+        return "";
+      });
+      main.insertAdjacentHTML('beforeend', newtext);
+    });
+
+}
+
+button.addEventListener("click", ev => {
+  consume("/index.html", bread);
+});
+ick.addEventListener("click", ev => {
+  consume("/page/sitemap/sitemap.html", bread);
+});
+</script>
+</body>
+</html>
