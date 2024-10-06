@@ -1,0 +1,39 @@
+https://www.c-span.org/video/?111990-1/presidential-grand-jury-testimony
+what meaning of the word "is" is
+1998-09-21 10:48:23 (local time of C-SPAN broadcast)
+1:23:35 (timestamp in video)
+
+1:20:05 timestamp => 10:44:53 C-SPAN local => 2:38pm in tape
+1:22:18 timestamp => 10:47:06 C-SPAN local => 2:48pm in tape
+1:23:35 timestamp => 10:48:23 C-SPAN local => 2:50pm in tape
+2:11:43 timestamp => 11:36:32 C-SPAN local => 3:38pm in tape
+===
+
+2h 11m 43s - 1h 22m 18s = 49m 25s (time between "2:48pm" and "3:38pm")
+3h 38m  0s - 49m 25s = 2h 48m 35s (earliest possible "2:48pm")
+2h 48m 59s + 49m 25s = 3h 38m 24s (latest possible "3:38pm")
+
+1h 23m 35s - 1h 22m 18s =  1m 17s (time between "2:48pm" and quote)
+
+earliest: 2:48:35pm => 2:49:52pm
+average:  2:48:47pm => 2:50:04pm
+latest:   2:48:59pm => 2:50:16pm
+===
+
+ISO 8601 timestamp
+1998-08-17@14:50:04-04:00
+
+Unix epoch timestamp, exactly 26 years later
+1998 =>  903379804
+2024 => 1723920604
+===
+var anniv = new Date(1723920604e3);
+var nowish = new Date();
+var recent = new Date("2024-10-04T10:45:02.000Z");
+var sucker = new Date("2024-10-04T18:50:03.000Z");
+
+var durf  = What => nowish[`get${What}`]() - quote[`get${What}`]();
+var durf2 = What => recent[`get${What}`]() - quote[`get${What}`]();
+
+var durfa = What => nowish[`get${What}`]() - anniv[`get${What}`]() + (What==="FullYear"?26:0);
+var durfb = What => recent[`get${What}`]() - anniv[`get${What}`]() + (What==="FullYear"?26:0);
