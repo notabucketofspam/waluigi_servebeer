@@ -4,24 +4,34 @@
 <head>
   <title>Intel CPU - waluigi-servebeer.com</title>
   <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
-  <meta name="viewport" content="width=640, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8" />
   <style>
     #title_bar {
+      width: 100%;
       overflow: clip;
+      text-align: center;
+      padding-top: 17px;
     }
-
     body {
       background-color: #aaddff;
+    }
+    #intel-the {      
+      scale: 200%;
+    }
+    @media (max-width: 800px) {
+      #intel-the {
+      scale: 130%;
+      width: 400px;
+      }
     }
   </style>
 </head>
   <body>
     <div class="big_section" id="title_bar">
-      <br>
-      <h1 style="text-align: center; scale: 200%;">
+      <h1 id="intel-the">
         Intel: the future of computing
       </h1>
-      <h4 style="text-align: center;">
+      <h4>
         (or something like that)
       </h4>
       <br>

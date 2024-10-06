@@ -122,9 +122,14 @@
   background-color: #eeeeee;
   font-family: sans-serif;
   overflow: auto;
-  /* z-index: -1; */
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  display: block;
 }
-
+.fake_advertisement:hover {
+  background-color: #e3e3e3;
+}
 .anchor_no_style {
   text-decoration: none;
   color: #000000;
@@ -202,3 +207,10 @@
   .dropdown_item:hover {
     background-color: #cccc00;
   }
+body {
+  padding-top: 17px;
+  margin-bottom: 18px;
+}
+footer {
+  height: 100px;
+}
