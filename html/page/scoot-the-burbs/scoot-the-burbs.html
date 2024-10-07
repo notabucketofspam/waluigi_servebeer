@@ -15,8 +15,14 @@
         margin-left: 2ch;
         padding-left: 2ch;
       }
-      audio {
-        margin-left: 3ch;
+      #audio-thing {
+        background-color: #F1F3F4;
+        width: fit-content;
+        height: 54px;
+        border: 2px outset #ddd;
+      }
+      .async_text {
+        white-space: pre-wrap;
       }
     </style>
   </head>
@@ -24,22 +30,59 @@
     <h1>Scoot the Burbs: a lyrical analysis</h1>
     <hr>
     <div class="big_section" id="thecoolpart">
-      <div class="half_right">
-        <audio controls src="/page/scoot-the-burbs/Red%20Vox%20-%20Scoot%20The%20Burbs.mp3"></audio>
-        <br>
-        <div class="async_text" data-path="/page/scoot-the-burbs/lyrics.txt" id="lyrics"></div>
+      <div class="half_right" id="lyrics">
+        <div id="audio-thing">
+          <audio controls src="/page/scoot-the-burbs/Red%20Vox%20-%20Scoot%20The%20Burbs.mp3"
+            id="scoot-the-burbs-mp3"></audio>
+        </div>
+        <div class="async_text" data-path="/page/scoot-the-burbs/lyrics.txt">
+Red Vox - Scoot the Burbs
+
+--- --- ---
+
+Scoot the Burbs
+Scoot the Burbs
+Yeah motherfucker, yeah eat a dick
+Scoot the Burbs
+Scoot the Burbs
+This fucking game it makes me sick
+
+I don't know how I'll ever please you
+I don't know how to fucking please you
+
+So I just Scoot the Burbs
+Scoot the Burbs
+If I could fly I'd be a bird
+Scoot the Burbs
+Scoot the Burbs
+This game controls like a bag of turds
+
+I'll scoot until I'm fucking pregnant
+I'll scoot until the piss runs down my thigh
+
+So I just Scoot the Burbs (Scoot the Burbs)
+Scoot the Burbs (Scoot the Burbs)
+Scoot the Burbs (Scoot the Burbs)
+Scoot the Burbs (Scoot the Burbs)
+
+</div>
       </div>
-      <div class="async_text" data-path="/page/scoot-the-burbs/analysis.txt" id="analysis"></div>
+      <div class="async_text" data-path="/page/scoot-the-burbs/analysis.txt" id="analysis">
+The song "Scoot the Burbs" by Red Vox focuses on a man who struggles against a challenge. He plays a video game about riding a scooter through an endless suburban neighborhood, but due to the poor design of the game and the subsequent lack of joy he receives from playing it he becomes understandably frustrated. What should have been a trivial problem proves to be more than he can emotionally handle, and he turns to absurdity in order to express his feelings about the uncomfortable position he has found himself in. In a way the theme is one of "man versus self," since the speaker's expectations of competence as a person are thrown into question by his inability to succeed in such a simple ordeal.
+
+The opening two lines relay the topic of the piece, that being "the Burbs" and the scooting which occurs therein, setting the context for the subsequent verses. The next line shows the first instance of the speaker's anger, when he aggressively instructs the game to consume a singular phallus and calls it a maternal molester as well. These are both idioms in modern American English; the former represents disgust at a practice which has traditionally been looked down upon by society, whereas the latter is reminiscent of the classic cautionary tale of Oedipus. This is followed by a repetition of the initial lines, which becomes the refrain for the song's remainder. The final line again demonstrates his distaste for the currently partaken activity. The use of "sick" in this context should be noted: the original connotation of illness is implied, albeit in a metaphorical sense here. This is in contrast to its use to mean "good," as found in the slang of today's youths.
+
+In the next verse, the speaker states his incognizance as to how he might satisfy the demands that the game makes of him. Including the word "ever" is meant to suggest that this plight may not have an eventual fulfilling conclusion, and instead could possibly continue until the end of time. He personifies the game here by addressing it directly, pointing to the irrationality that has overtaken him during his plight, while in the same moment projecting his own feelings of inadequacy onto the game.
+
+The refrain is slightly modified in the third verse: by choosing to prepend the phrase with "just," the speaker signifies his resignation to the scenario he has been thrust into. The bird on line three of this verse is a metaphor for the freedom he wishes he could possess and his inability to escape from the suburbian hellscape that entraps him. After another reiteration of the refrain, he criticizes the game for its unwieldy movement mechanics by comparing it to a container full of fecal matter, which, as anyone who is familiar with such an object will readily tell you, is inherently difficult to maintain proper control over and to prevent from creating an abhorrent mess.
+
+In verse four the speaker again vocalizes the eternal nature of his quest when he claims that he will only cease to scoot when he becomes impregnated; being a male, it is impossible for this to happen to him, therefore meaning that he will not stop at any stage in the future. This reinforces the ridiculousness of the situation he is in. The following line expands upon its predecessor by referring to the trope that persons who are pregnant find it necessary to urinate more often than usual.
+
+The echoing effect implemented for the refrains in the final verse fortifies the game's infinite environment. Just as a voice in a massive cavern reverberates before its eventual decay, so too does the speaker's now hopeless plea against the insurmountable challenge presented to him. The refrain has become a cry for help, and the sole response he receives is his own. In this way, the song proves that the only person who can ultimately assist the speaker in completing his mission is himself. If he remains unable to acquire the skills necessary to pass this test, then he will be cast into a damnation of scooting until he is betaken by death.</div>
     </div>
     <script src="/js/everything.js"></script>
     <script>
-      document.getElementsByTagName("audio")[0].volume = 0.3;
-      fetch("/page/scoot-the-burbs/lyrics.txt")
-          .then(res => res.text())
-    .then(text => document.getElementById("lyrics").innerText = text);
-fetch("/page/scoot-the-burbs/analysis.txt")
-    .then(res => res.text())
-    .then(text => document.getElementById("analysis").innerText = text);
+      document.getElementById("scoot-the-burbs-mp3").volume = 0.3;
 </script>
   </body>
 </html>
