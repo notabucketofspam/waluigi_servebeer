@@ -61,7 +61,6 @@
   float: right;
   margin-left: -200px;
   margin-right: 10%;
-  /* text-align: right; */
 }
 #outdextoptext {
   font-family: 'Segoe UI';
@@ -76,7 +75,7 @@
   line-height: 0px;
   text-decoration:none;
   color:#f0f;
-  cursor: not-allowed;
+  cursor: default;
 }
 #imnotarobot {
   letter-spacing: 1px;
@@ -87,10 +86,6 @@
   user-select: none;
   pointer-events: none;
 }
-/* #imnotarobot::before {
-  content: '\1f846 ';
-  color:#f7f;
-} */
 #roboslider {
   width: 150px;
   transform: scaleY(2.5);
@@ -154,36 +149,72 @@ background-color: #ffaaff;
 border-color: #ee33ee;
 text-align: left;
 }
-#scoot-box {
+.clickbait-article {
   border: groove 4px #bbb;
-  background-color: #eee;
-  width: 266px;
-  padding: 4px;
+  border-color: #ffdddd;
+  background-color: #fff9ff;
+  padding: 6px;
+  font-size: 20px;
+  width: fit-content;
+  font-family: math;
+  text-decoration: none;
+  color: #000000;
+}
+.clickbait-article:hover {
+background-color: #fff0ff;
+}
+#colgate-palmolive {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.coalex {
+  display: flex;
+  flex-direction: column;
+  row-gap: 17px;
+}
+.coalex > * {
+  display: flex;
+  flex: none;
+}
+footer{
+  margin-bottom: 40px;
+}
+#creme {
+  font-size: 2em;
+  text-decoration-line: underline;
+  font-family: monospace;
+}
+li.tech::marker {
+  content: "\1f421";
+}
+#burrfish_list {
+  margin:0px;
+  padding-left:21px;
 }
 </style>
     <title>waluigi-servebeer.com</title>
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
-    <meta name="viewport" content="width=640, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8"/>
   </head>
   <body>
-    <div id="fixed_top">
-      <div class="top_right">
+  <!-- WELCOME TO THE STEAK ZONE -->
+    <div id="fixed_top" class="top_right">
         <span class="steak_zone_text">Welcome to the
           <img src="/resource/steak.gif" alt="STEAK" class="steak_zone_image">
           zone
         </span>
-      </div>
     </div>
+    <!-- WALUIGI-SERVEBEER.COM -->
     <div class="big_section" id="title_bar">
-      <br>
       <h1 style="font-size: 2.5em; text-align: left;">waluigi-servebeer.com</h1>
       <hr>
     </div>
+    <!-- START THE PARTY -->
     <div class="big_section" id="funk_jukebox_intel" style="overflow-x: visible;">
       <div class="right_page fake_advertisement" id="intel_inside" style="text-align: center;">
         <a class="anchor_no_style" href="/page/intel/intel.html">
           <div style="font-size:120%;">!!! NEW !!!</div>
-          <img height="240" src="/page/intel/intel-inside.png">
+          <img height="240" src="/page/intel/retro_intel.png">
           <div>Punch AMD in the mouth</div>
         </a>
       </div>
@@ -193,7 +224,7 @@ text-align: left;
         <a href="/outdex.html" id="outdexbottomtext">outdex steakzone</a>
         <br />
         <input id="roboslider" value="0" type="range"
-               oninput="if (this.value >99) location.assign('/outdex.html')" />
+               oninput="if (this.value >99) location.assign(typeof startup_done !== 'undefined'?'/':'/outdex.html')" />
         <br />
         <code id="imnotarobot">I'm not a robot</code>
       </div>
@@ -243,6 +274,7 @@ text-align: left;
         <span style="font-size: 85%;">(the scroll wheel is your friend)</span>
       </div>
     </div>
+    <!-- ABOUT THIS WEBSITE -->
     <div class="big_section" id="about_website_section">
       <div style="text-align: center; text-decoration-line: underline; font-size: 120%;">About this website</div>
       <div class="half_right">
@@ -268,6 +300,7 @@ text-align: left;
         will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
       </p>
     </div>
+    <!-- SOME STUFF IDK -->
     <div class="big_section">
       <div class="column_left">
         <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
@@ -275,12 +308,22 @@ text-align: left;
       </div>
       <div class="column_right">
         Technical pages:
-        <br>
-        <a href="/page/changelog/changelog.html">Changelog</a>
-        <br>
-          <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
-        <br />
-        <a href="/page/sitemap/sitemap.html">Sitemap</a>
+        <ul id="burrfish_list">
+          <li class="tech">
+            <a href="/page/changelog/changelog.html">Changelog</a>
+          </li>
+          <li class="tech">
+            <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
+          </li>
+          <li class="tech">
+            <a href="/page/sitemap/sitemap.html">Sitemap</a>
+          </li>
+          <li class="tech">
+            <a style="text-decoration: none;" href="/page/sonic/gotta-go-fast.html">
+              <span style="text-decoration: underline">WAY PAST COOL</span><sup>&#8482;</sup>
+            </a>
+          </li>
+        </ul>
       </div>
       <div class="column_center">
         This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
@@ -293,37 +336,37 @@ text-align: left;
       </div>
       <div class="div_pad"></div>
     </div>
-    <div class="big_section">
-      <div class="fake_advertisement left_page" style="text-align: center;">
+<!-- COAL ETC -->
+  <div id="colgate-palmolive">
+    <div class="coalex">
+      <div class="fake_advertisement">
         <a class="anchor_no_style" href="/page/food-time/food.html">
           <div style="font-size:120%;">Tired of normal Food Time?</div>
-          <img height="240" src="/page/food-time/eat-your-coal.png">
+          <img height="220" src="/page/food-time/retro_coal.png" style="padding:10px 0px;">
           <div style="font-size:130%;">Try our tasty New Coal!</div>
         </a>
       </div>
-      <div class="half_right" style="font-size: 120%;">
-        <span style="font-size: 140%; text-decoration-line: underline;">Cr&#232;me de la Cr&#232;me</span>
-        <p>
-          <a style="text-decoration: none" href="/page/sonic/gotta-go-fast.html">
-            <span style="text-decoration: underline">WAY PAST COOL</span><sup>&#8482;</sup>
-          </a>
-        </p>
-        <p id="scoot-box" style="">
-          <a href="/page/scoot-the-burbs/scoot-the-burbs.html" id="scoot-link">
-            Scoot the Burbs: a lyrical analysis
-            </a>
-        </p>
-        <div class="fake_advertisement" style="text-align: center; width: 168px;">
-          <a class="anchor_no_style" href="/page/meat-substrate/meat.html" style="display:block; padding: 6px;">
-            <span>Click here to learn about <i>meat</i></span>
-            <img height="130" src="/page/meat-substrate/retro_steak.png" style="padding-top:10px;">
-          </a>
-        </div>
-        <p><a href="/misc.html">misc</a></p>
-      </div>
     </div>
-    <script src="/js/everything.js"></script>
+    <div class="coalex">
+      <span id="creme">Cr&#232;me de la Cr&#232;me</span>
+        <a class="clickbait-article" href="/page/what-is/is.html">
+          What "is" is &ndash; precedence and outlook
+        </a>
+        <a class="clickbait-article" href="/page/scoot-the-burbs/scoot-the-burbs.html">
+          Scoot the Burbs: a lyrical analysis
+        </a>
+        <a class="clickbait-article" href="/page/meat-substrate/meat.html">
+          <div style="width: min-content; text-align: center;">Click here <b>to</b> learn about <i>meat</i></div>
+          <img height="130" src="/page/meat-substrate/retro_steak.png">
+        </a>
+    </div>
+  </div>
+<script src="/js/everything.js"></script>
 <script>
+if (typeof startup_done !== "undefined") {
+  outdextoptext.innerText = "leave the new";
+  imnotarobot.innerText = "i'm not a human";
+}
   var full_doc_html = document.documentElement;
     document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
   function lock_element_position(element) {
@@ -331,7 +374,7 @@ text-align: left;
     element.style.top = String(element.getBoundingClientRect().y + "px");
     element.style.position = "absolute";
   }
-
+  
   // Funk and jukebox sector
   var global_frametime = 1000 / 60;
   var global_cycle_units = 10;
@@ -645,10 +688,6 @@ text-align: left;
       }
       );
     var jar = document.getElementById('jar');
-    /**@param{number}k*/
-    function rui (k) {
-      return Math.random() / Number.EPSILON % k;
-    }
     function pulljar () {
       if (used.length === memes.length - 1) {
         used.splice(0, 1+rui(used.length));

@@ -3,7 +3,7 @@
 <head>
 <title>outdex steakzone - waluigi-servebeer.com</title>
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css">
-<meta name="viewport" content="width=640, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8"/>
 <style>
   .getitouttahere {
   display: none;
@@ -20,7 +20,8 @@
   #hoverboots {
   margin-left: 40px;
   position: fixed;
-  margin-top: -10px;
+  top: 0px;
+  z-index: 11;
   }
 </style>
 </head>
@@ -28,15 +29,15 @@
   <div id="hoverboots">
     <span>only the highest-quality meats are selected for serving on waluigi-servebeer.com</span>
     <br />
-    <button id="quit">quit</button>
+    <button id="quit" hidden>quit</button>
     <input id="cowbox" type="checkbox" /><label id="label-for-cowbox" for="cowbox">show cowtools?</label>
     <span id="cowtools" class="getitouttahere">
-      <button id="button">bread</button>
-      <button id="ick">wolfjerkey&#8482;</button>
-      <button id="meateater">meateater</button>
-      <button id="eatmeter">eatmeter</button>
-      <input id="meeptheater" type="url" placeholder="meeptheater" />
-      <button id="meeper">meeper</button>
+      <button id="button" title="go home">bread</button>
+      <button id="ick" title="wolfjerkeytm">wolfjerkey&#8482;</button>
+      <button id="meateater" title="plagiarism, grand theft, and fraud">meateater</button>
+      <button id="eatmeter" title="random colors">eatmeter</button>
+      <input id="meeptheater" type="url" placeholder="meeptheater" title="where do you wanna go?" />
+      <button id="meeper" title="you wanna go *there*? for real?">meeper</button>
     </span>
   </div>
 <main></main>
@@ -45,7 +46,7 @@
   /**@type HTMLDivElement */
   var top_steak = document.getElementById("steak_corner");
   var startup_done = true;
-  hashgrab();
+  consume(hashgrab());
 var main = document.querySelector('main');
 var button = document.getElementById("button");
   var ick = document.getElementById("ick");
@@ -55,8 +56,8 @@ var button = document.getElementById("button");
 /**@type HTMLInputElement*/
 var meeptheater = document.getElementById("meeptheater");
 var quit = document.getElementById("quit");
-  var bread = /(?<title>\<title\>.*?\<\/title\>)|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?<src>\<script src=".*?"\>\<\/script\>)/gs;
-  var newtext = "";
+  var bread = 
+/(?<title>\<title\>.*?\<\/title\>)|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?<src>\<script src=".*?"\>\<\/script\>)/gs;
   /**@type HTMLInputElement*/
   var cowbox = document.getElementById('cowbox');
   var cowtools = document.getElementById('cowtools');
@@ -67,6 +68,7 @@ var quit = document.getElementById("quit");
    */
 function consume(url) {
   if (url.includes("outdex.html")) {
+  console.log(url);
       quit_more();
     return;
   }
@@ -75,7 +77,7 @@ function consume(url) {
     .then(res => res.text())
     .then(restext => {
       main.replaceChildren();
-      newtext = restext.replaceAll(bread, function replacer(substring, ...args) {
+      var newtext = restext.replaceAll(bread, function replacer(substring, ...args) {
           const groups = args.at(-1);
         if (typeof groups === 'object') {
           if (groups.glitter) {
@@ -105,34 +107,75 @@ function consume(url) {
       });
       main.insertAdjacentHTML('beforeend', newtext);
       prepare_almonds();
-            if (document.getElementById('fixed_top')) {
-        top_steak.classList.add('getitouttahere');
-      } else {
-        top_steak.classList.remove('getitouttahere');
-      }
-    });
-
-  }
-  cowbox.addEventListener('change', ev => {
-    cowtools.classList.toggle('getitouttahere');
-    labelForCowbox.classList.toggle('getitouttahere');
-  });
-button.addEventListener("click", ev => {
-  consume("/index.html");
-});
-ick.addEventListener("click", ev => {
-  consume("/page/meat-substrate/meat.html");
-  });
-  /**greedy lil thief*/
-  function hashgrab() {
-    const hash = location.hash.substring(1);
-    if (hash) {
-      consume(hash);
-    } else {
-      consume("/");
+      top_steak.hidden = !!document.getElementById('fixed_top');
+      scroll(0,0);
     }
+  );
+}
+/**greedy lil thief*/
+function hashgrab() {
+ return location.hash.substring(1)||"/";
+}
+function show_cowtools() {
+  cowtools.classList.toggle('getitouttahere');
+  return labelForCowbox.classList.toggle('getitouttahere')|0;
+}
+cowbox.addEventListener('change', ev => {
+  localStorage.setItem("show_cowtools", show_cowtools());
+});
+if (localStorage.getItem("show_cowtools")|0) {
+  show_cowtools();
+  cowbox.checked = true;
+}
+button.addEventListener("click", quit_more);
+
+var kasa;
+async function stupid_meateater(ev) {
+  if (typeof kasa === 'undefined') {
+    await import('/page/meat-substrate/words.js');
+    kasa = __WORDS.replace(/\u{2019}/gu,"'").split("|");
   }
-  meateater.addEventListener('click', hashgrab);
+  var noodles = document.createNodeIterator(main, 4);
+  var curry;
+  var c = 0;
+  while(curry = noodles.nextNode()) {
+    if (curry.textContent.trim()&&!curry.textContent.includes("}")) {
+      var jerry = curry.textContent.replace(/'/g,"").replace(/\b\w+?\b/g,
+      function(emu) {
+        var show;
+        var ne = 0;
+        do {
+          show = kasa.at(rui(kasa.length));
+        } while (Math.abs(show.length-emu.length)>1 && ne++<99);
+        return show;
+      });
+      curry.textContent = jerry;
+    }
+    if(c++ > 2011) break; // hehe
+  }
+}
+meateater.addEventListener("click", stupid_meateater);
+
+var wolfjerkeytm = "<u>Meat #3: Wolf Jerkey&#8482;</u> I think that Wolf Jerkey&#8482; is pretty good. And I'm not just saying that. What makes Wolf Jerkey&#8482; special is the ingredients. Wolf Jerkey&#8482; is made with 100% Real Wolf Meat&#8482; and 100% Real Honey&#8482;. That's what makes Wolf Jerkey&#8482; special. Preorders available now.";
+ick.title= wolfjerkeytm;
+function become_wolfjerkeytm(ev){
+  document.body.style.backgroundColor="#feefee";
+  var noodles = document.createNodeIterator(main, 4);
+  var curry;
+  var c = 0;
+  while(curry = noodles.nextNode()) {
+    if (curry.textContent.trim()&&!curry.textContent.includes("}")) {
+      const dic = document.createElement("span");
+      dic.style = "font-family: monospace";
+      dic.innerHTML = wolfjerkeytm;
+      curry.parentNode.replaceChild(dic, curry);
+      curry = noodles.nextNode();
+      curry = noodles.nextNode();
+    }
+    if(c++ > 2020) break; // hehehe
+  }
+};
+ick.addEventListener('click', become_wolfjerkeytm);
 
   function unprepare_almonds() {
     const allah = document.querySelectorAll("a");
@@ -143,7 +186,12 @@ ick.addEventListener("click", ev => {
   function prepare_almonds() {
     const allah = document.querySelectorAll("a");
     for (const a of allah) {
-      a.addEventListener('click', dubiousLink);
+      if (!a.href||a.classList.contains("no-almonds")) {
+      } else if (a.pathname.includes("outdex.html") || a.classList.contains("dropdown_item")) {
+        a.href = hashgrab();
+      } else {
+        a.addEventListener('click', dubiousLink);
+      }
     }
   }
   /**@param {MouseEvent}ev*/
@@ -155,9 +203,25 @@ ick.addEventListener("click", ev => {
     location.hash = pn;
     consume(pn);
   }
+  var fun_colours_tracker;
+  var fun_colours_going;
+  var fun_holder = 0;
   eatmeter.addEventListener('click', ev => {
-      document.body.style.backgroundColor = `oklch(${Math.random()} ${Math.random() / 2} ${Math.random()}turn)`;
+      if (fun_colours_going) {
+        clearInterval(fun_colours_tracker);
+        document.body.style.transition = "";
+        document.body.style.backgroundColor = "";
+        fun_colours_going = false;
+      } else {
+        document.body.style.transition = "background-color 16ms";
+        fun_colours_tracker = setInterval(fun_colours, 16);
+        fun_colours_going = true;
+      }
   });
+  function fun_colours() {
+    document.body.style.backgroundColor =
+    `oklch(0.77 0.34 ${fun_holder+=(7e-3)}turn)`;
+  }
 
   function donatehash() {
     let valproate = meeptheater.value;
@@ -167,13 +231,13 @@ ick.addEventListener("click", ev => {
     }
   }
   meeper.addEventListener('click', donatehash);
-
+  
   quit.addEventListener("click", ev => quit_more());
   function quit_more() {
-    //   alert("The door is closed.");
-      prompt("Headin' back to Sydney, bruv?", "S\xED");
-      location.assign("/");
-      return;
+    alert("The door is closed.");
+    //prompt("Headin' back to Sydney, bruv?", "S\xED");
+    location.assign("/");
+    return;
   }
 </script>
 </body>
