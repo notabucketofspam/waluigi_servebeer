@@ -53,6 +53,8 @@
 /page/sonic/favicon-sonic.png
 /page/sonic/gotta-go-fast.html
 /page/what-is
+/page/what-is/Ancient Aliens - Season 4 Episode 1 - The Mayan Conspiracy.mp4
+/page/what-is/ancient_aliens.html
 /page/what-is/is.html
 /page/what-is/time_notes.txt
 /resource
