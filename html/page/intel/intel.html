@@ -5,26 +5,34 @@
   <title>Intel CPU - waluigi-servebeer.com</title>
   <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
   <meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8" />
-  <style>
-    #title_bar {
-      width: 100%;
-      overflow: clip;
-      text-align: center;
-      padding-top: 17px;
-    }
-    body {
-      background-color: #aaddff;
-    }
-    #intel-the {      
-      scale: 200%;
-    }
-    @media (max-width: 800px) {
-      #intel-the {
-      scale: 130%;
-      width: 400px;
-      }
-    }
-  </style>
+<style>
+#title_bar {
+  width: 100%;
+  overflow: clip;
+  text-align: center;
+  padding-top: 17px;
+}
+body {
+  background-color: #aaddff;
+}
+#intel-the {      
+  scale: 200%;
+}
+@media (max-width: 800px) {
+  #intel-the {
+  scale: 130%;
+  width: 400px;
+  }
+}
+#news {
+  font-size: 120%;
+  font-weight: bold;
+  font-style: italic;
+}
+dd::before {
+  content: "\2013\20";
+}
+</style>
 </head>
   <body>
     <div class="big_section" id="title_bar">
@@ -36,9 +44,9 @@
       </h4>
       <br>
     </div>
-    <div class="big_section">
+    <div class="wide2">
       <div class="half_right">
-        <span style="font-size: 120%;"><b><i>News bulletin</i></b></span>
+        <span id="news">News bulletin</span>
         <ul>
           <li><b>Dr. Lisa Su</b> bad, upvotes on teh left</li>
           <li>
@@ -60,8 +68,8 @@
           </li>
         </ul>
       </div>
-      <div class="half_left">
-        <span style="font-size: 150%;">PENTIUM D 420XX</span>
+      <div class="o-1">
+        <span class="f5">PENTIUM D 420XX</span>
         <hr>
         <p>
           Do computer stuff like never before. With the latest lineup of Pentiums,
@@ -77,14 +85,14 @@
         <div>Customer testimonies:
           <dl>
             <dt>"Wow that was really fast."</dt>
-            <dd>- Bill Smith</dd>
+            <dd>Bill Smith</dd>
             <dt>
               "The user experience is smoother than the industrial lubricant I
               use all the time for... things."
             </dt>
-            <dd>- Richard "Rock Hard" Johnson</dd>
+            <dd>Richard "Rock Hard" Johnson</dd>
             <dt>"I have seen many processors and Pentium is one of them."</dt>
-            <dd>- Guy Manderson</dd>
+            <dd>Guy Manderson</dd>
           </dl>
         </div>
         <div>
@@ -95,7 +103,7 @@
     </div>
     <div class="big_section">
       <div>
-        <span style="font-size: 130%;">
+        <span class="f3">
           <b>Interview: </b> Big John talks about LGA 2069
         </span>
         <blockquote>
@@ -115,7 +123,7 @@
       </div>
       <br>
       <div>
-        <span style="font-size: 130%;">
+        <span class="f3">
           <b>Intel Compute Stick 2: </b>the sequel everyone's been asking for
         </span>
         <p>

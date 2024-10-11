@@ -1,202 +1,57 @@
 <!DOCTYPE html>
-
 <html>
-  <head>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
+<meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8"/>
 <style>
-  body {
-    background-color: #ffffff;
-  }
-  html {
-    scrollbar-width: none;
-  }
-  /* Funk and jukebox sector */
-  .funk_button {
-    font-size: 120%;
-  }
-  .funk_meter {
-    font-size: 110%;
-  }
-  .funk_meter_button {
-    font-size: 80%;
-  }
-  .funk_meter_box {
-    background-color: #eeeeee;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 2px;
-  }
-  .funk_meter_bar {
-    height: 12px;
-    background-color: #22bb22;
-    /* z-index: 2; */
-  }
-  .audio_button {
-    font-size: 120%;
-  }
-  .jukebox_track_selection {
-    font-size: 110%;
-  }
-  .jukebox_volume_box {
-    background-color: #eeeeee;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 2px;
-  }
-  .jukebox_volume_bar {
-    background-color: #2222bb;
-    height: 16px;
-  }
-  kbd {
-    border-style:outset;
-    background-color:#eee;
-  }
-  del {
-    background-color: #fbb;
-
+/** RANDOM STUFF */
+body {
+  background-color: #ffffff;
 }
-  ins {
-    background-color:#bfb;
-  }
-#outdexportal {
-  float: right;
-  margin-left: -200px;
-  margin-right: 10%;
-}
-#outdextoptext {
-  font-family: 'Segoe UI';
-  font-weight:bold;
-  font-style:italic;
-  line-height: 0px;
-}
-#outdexbottomtext {
-  letter-spacing: 1px;
-  font-family:'Segoe Print';
-  font-weight:bold;
-  line-height: 0px;
-  text-decoration:none;
-  color:#f0f;
-  cursor: default;
-}
-#imnotarobot {
-  letter-spacing: 1px;
-  position: relative;
-  top: -10px;
-  left: 18px;
-  color: #eee;
-  user-select: none;
-  pointer-events: none;
-}
-#roboslider {
-  width: 150px;
-  transform: scaleY(2.5);
-  transform-origin: top;
-}
-#roboslider:hover {
-  cursor:grab;
-}
-#roboslider:active {
-  cursor:grabbing;
-}
-#jug {
-  border-style: ridge;
-  border-width: 4px;
-  border-color: #fedfed;
-  width: 82ch;
-  background-color: #fefeee;
-  padding: 1ch;
-  font-family: monospace;
-  position: fixed;
-  bottom: 0px;
-  left: 25vw;
-}
-#jar {
-  height: 2lh;
-  width: 76ch;
-    }
-.chad {
-  font-family: serif;
-}
-#aight {
-  position: absolute;
-  bottom: 0px;
-  right: 1px;
-  background-color: #ffaaff;
-  border-width: 2px;
-  border-color: #ee33ee;
-  border-style: outset;
-  width: 45px;
-  text-align: left;
-  padding-right: 3px;
-}
-#aight:hover {
-    background-color: #aaffaa;
-    border-color: #33ee33;
-    text-align: right;
-}
-#nah {
-  position: absolute;
-  top: 1px;
-  right: 0px;
-  background-color: #aaffaa;
-  border-width: 2px;
-  border-color: #33ee33;
-  border-style: outset;
-  width: 45px;
-  text-align: right;
-}
-#nah:hover {
-background-color: #ffaaff;
-border-color: #ee33ee;
-text-align: left;
-}
-.clickbait-article {
-  border: groove 4px #bbb;
-  border-color: #ffdddd;
-  background-color: #fff9ff;
-  padding: 6px;
-  font-size: 20px;
-  width: fit-content;
-  font-family: math;
-  text-decoration: none;
-  color: #000000;
-}
-.clickbait-article:hover {
-background-color: #fff0ff;
-}
-#colgate-palmolive {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.coalex {
-  display: flex;
-  flex-direction: column;
-  row-gap: 17px;
-}
-.coalex > * {
-  display: flex;
-  flex: none;
+html {
+  scrollbar-width: none;
 }
 footer{
   margin-bottom: 40px;
+}
+h2 {
+  margin: 0px;
+  font-weight: normal;
 }
 #creme {
   font-size: 2em;
   text-decoration-line: underline;
   font-family: monospace;
 }
-li.tech::marker {
+#burrfish_list {
+margin:0px;
+  padding-left:21px;
+}
+#burrfish_list > li::marker {
   content: "\1f421";
 }
-#burrfish_list {
-  margin:0px;
-  padding-left:21px;
+#about_this_site {
+  text-align: center;
+  text-decoration-line: underline;
+  font-size: 21px;
+}
+#login-stuffs {
+  float:right;
+  text-align: right;
+}
+h1 {
+  font-size: 2.5em; text-align: left;
+}
+#easier-for-you-taunt {
+  text-align:right;
+  margin-left: 40px;
+  width: fit-content;
 }
 </style>
     <title>waluigi-servebeer.com</title>
-<link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
-    <meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8"/>
+
   </head>
-  <body>
+<body>
   <!-- WELCOME TO THE STEAK ZONE -->
     <div id="fixed_top" class="top_right">
         <span class="steak_zone_text">Welcome to the
@@ -205,27 +60,23 @@ li.tech::marker {
         </span>
     </div>
     <!-- WALUIGI-SERVEBEER.COM -->
-    <div class="bag_section" id="title_bar">
-      <div style="float:right; text-align: right;">
+    <div class="big_section" id="title_bar">
+      <div id="login-stuffs">
         Welcome back, <span id="username_maybe">[USERNAME]</span> !!<br>
         Not you? <a href="/page/login/real.html">Login here</a>
         <br>
         New user? <span class="fakelink" title="this is not a link">Give up</span>
-        <!-- <br> -->
-        <!-- Wanna leave? <span class="fakelink">Logout</span>. -->
       </div>
-      <h1 style="font-size: 2.5em; text-align: left;">waluigi-servebeer.com</h1>
-      <hr>
+      <h1>waluigi-servebeer.com</h1>
     </div>
+      <hr>
     <!-- START THE PARTY -->
     <div class="big_section" id="funk_jukebox_intel" style="overflow-x: visible;">
-      <div class="right_page fake_advertisement" id="intel_inside" style="text-align: center;">
-        <a class="anchor_no_style" href="/page/intel/intel.html">
-          <div style="font-size:120%;">!!! NEW !!!</div>
+        <a class="fake_advertisement fr" href="/page/intel/intel.html">
+          <div class="f2">!!! NEW !!!</div>
           <img height="240" src="/page/intel/retro_intel.png">
           <div>Punch AMD in the mouth</div>
         </a>
-      </div>
       <div id="outdexportal">
         <span id="outdextoptext">try the new</span>
         <br />
@@ -238,7 +89,7 @@ li.tech::marker {
       </div>
       <div id="party-zone">
         <div id="funk_container" style="width: 200px; overflow-x: visible;">
-          <input class="funk_button" type="button" value="Start the party"
+          <input id="funk_button" type="button" value="Start the party"
                  onclick="toggle_cycle_background(this)">
           <div class="div_pad_small"></div>
           <div class="funk_meter scrollable_meter" style="white-space: nowrap;"
@@ -250,31 +101,31 @@ li.tech::marker {
           <div class="div_pad_small scrollable_meter" style="width: 200px;"
                onwheel="update_cycle_amount(event, null)"></div>
           <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
-            <div class="funk_meter_box" id="funk_meter_box_prime" style="z-index: 2;">
+            <div class="funk_meter_box" id="funk_meter_box_prime">
               <div class="funk_meter_bar" id="fmb_num_0"></div>
             </div>
           </div>
           <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
         </div>
         <div class="div_pad"></div>
-        <div id="jukebox_container" style="width: 200px; overflow-x: visible;">
+        <div id="jukebox_container">
           <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
-          <input class="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
+          <input id="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
           <div class="div_pad_small"></div>
-          <div class="jukebox_track_selection">
+          <div id="jukebox_track_selection">
             <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
             <span style="padding: 0px 25px;">Change track</span>
             <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
           </div>
           <div class="div_pad_small"></div>
-          <div style="white-space: nowrap; height: 18px;">
+          <div id="jukebox_which_track">
             <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
           </div>
           <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
                onwheel="update_jukebox_volume(event)"></div>
           <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
-            <div class="jukebox_volume_box">
-              <div class="jukebox_volume_bar"></div>
+            <div id="jukebox_volume_box">
+              <div id="jukebox_volume_bar"></div>
             </div>
           </div>
         </div>
@@ -283,92 +134,102 @@ li.tech::marker {
       </div>
     </div>
     <!-- ABOUT THIS WEBSITE -->
-    <div class="big_section" id="about_website_section">
-      <div style="text-align: center; text-decoration-line: underline; font-size: 120%;">About this website</div>
+  <section>
+    <h2 id="about_this_site">About this website</h2>
+    <div class="wide2">
       <div class="half_right">
-        Important! If the page isn't working correctly then you gotta clear the 
-        Javascript / CSS cache
+      <p>Important! If the page isn't working correctly then you gotta clear the 
+        Javascript / CSS cache</p>        
         <ul>
           <li>Smash that <b>F12</b> button</li>
           <li>Head over to the Network tab</li>
           <li>Tick the little &#x1f171;&#x1F1F4;&#x1F1FD; that says "Disable cache"</li>
           <li>Gently press F5, making sure to not startle it</li>
         </ul>
-        <div style="text-align:right; margin-left: 40px; width: fit-content;">
+        <p id="easier-for-you-taunt">
           you can also just hit <kbd>ctrl</kbd>+<kbd>F5</kbd>, <br />if that's easier for you :-)
-        </div>
+        </p>
       </div>
-      <p class="half_left">
-        This is where we put the high-quality content. Members of the Bar Stool 
-        Committee and its associate organizations generate JPEGS, viddles, and 
-        walls of text in various forms for the purpose of comedic enrichment. 
-        Welcome to Meme Hell.
-        <br />
-        <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
-        will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
+      <div class="o-1">
+        <p>
+          This is where we put the high-quality content. Members of the Bar Stool 
+          Committee and its associate organizations generate JPEGS, viddles, and 
+          walls of text in various forms for the purpose of comedic enrichment. 
+          Welcome to Meme Hell.
+        </p>
+        <p>
+          <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
+          will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
+        </p>     
+      </div>          
+    </div>
+  </section>
+  <section class="wide121">
+    <div class="column_left">
+      <div>
+        <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
+        <br>
+        You know where to find it ;)
+      </div>
+      <p>
+        <b>NOTICE:</b> <i>don't</i> disable the browser cache (see above).
+        <br>
+        <u>This is <i>the</i> notice.</u>
       </p>
     </div>
-    <!-- SOME STUFF IDK -->
-    <div class="big_section">
-      <div class="column_left">
-        <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
-        <br />You know where to find it ;)
-      </div>
-      <div class="column_right">
-        Technical pages:
+    <div class="column_center">
+      This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
+      on mobile so like <del>sorry about that</del> <ins>you're welcome</ins>. In
+      sooth it's primarily a testing ground for silly web development
+      shenanigans. Things are bound to break on a regular basis. Honestly just
+      disable the browser cache (see above) until a notice is posted somewhere.
+      <br>
+      <sub>Please, no johns.</sub>
+    </div>
+    <div>
+      <u>Technical pages:</u>
         <ul id="burrfish_list">
-          <li class="tech">
+          <li>
             <a href="/page/changelog/changelog.html">Changelog</a>
           </li>
-          <li class="tech">
+          <li>
             <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
           </li>
-          <li class="tech">
+          <li>
             <a href="/page/sitemap/sitemap.html">Sitemap</a>
           </li>
-          <li class="tech">
-            <a style="text-decoration: none;" href="/page/sonic/gotta-go-fast.html">
-              <span style="text-decoration: underline">WAY PAST COOL</span><sup>&#8482;</sup>
+          <li>
+            <a class="no_u" href="/page/sonic/gotta-go-fast.html">
+              <u>WAY PAST COOL</u><sup>&#8482;</sup>
             </a>
           </li>
         </ul>
-      </div>
-      <div class="column_center">
-        This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
-        on mobile so like <del>sorry about that</del> <ins>you're welcome</ins>. In
-        sooth it's primarily a testing ground for silly web development
-        shenanigans. Things are bound to break on a regular basis. Honestly just
-        disable the browser cache (see above) until a notice is posted somewhere.
-        <br>
-        <sub>Please, no johns.</sub>
-      </div>
-      <div class="div_pad"></div>
     </div>
+  </section>
+  <!-- <br> -->
 <!-- COAL ETC -->
-  <div id="colgate-palmolive">
+  <section class="wide2">
     <div class="coalex">
-      <div class="fake_advertisement">
-        <a class="anchor_no_style" href="/page/food-time/food.html">
-          <div style="font-size:120%;">Tired of normal Food Time?</div>
+        <a class="fake_advertisement" href="/page/food-time/food.html">
+          <div class="f2">Tired of normal Food Time?</div>
           <img height="220" src="/page/food-time/retro_coal.png" style="padding:10px 0px;">
-          <div style="font-size:130%;">Try our tasty New Coal!</div>
+          <div class="f3">Try our tasty New Coal!</div>
         </a>
-      </div>
     </div>
     <div class="coalex">
-      <span id="creme">Cr&#232;me de la Cr&#232;me</span>
+      <h2 id="creme">Cr&#232;me de la Cr&#232;me</h2>
         <a class="clickbait-article" href="/page/what-is/is.html">
           What "is" is &ndash; precedence and outlook
         </a>
         <a class="clickbait-article" href="/page/scoot-the-burbs/scoot-the-burbs.html">
           Scoot the Burbs: a lyrical analysis
         </a>
-        <a class="clickbait-article" href="/page/meat-substrate/meat.html">
+        <a class="clickbait-article" style="display: flex;" href="/page/meat-substrate/meat.html">
           <div style="width: min-content; text-align: center;">Click here <b>to</b> learn about <i>meat</i></div>
           <img height="130" src="/page/meat-substrate/retro_steak.png">
         </a>
     </div>
-  </div>
+  </section>
 <script src="/js/everything.js"></script>
 <script>
 if (sessionStorage.getItem("username"))
@@ -379,7 +240,6 @@ if (typeof startup_done !== "undefined") {
   imnotarobot.innerText = "i'm not a human";
 }
   var full_doc_html = document.documentElement;
-    document.getElementById("funk_jukebox_intel").style.overflowY = "visible";
   function lock_element_position(element) {
     element.style.left = String(element.getBoundingClientRect().x + "px");
     element.style.top = String(element.getBoundingClientRect().y + "px");
@@ -389,7 +249,7 @@ if (typeof startup_done !== "undefined") {
   // Funk and jukebox sector
   var global_frametime = 1000 / 60;
   var global_cycle_units = 10;
-  var global_funk_meter_bar_units = document.getElementsByClassName("funk_meter")[0].clientWidth / 100;
+  var global_funk_meter_bar_units = 2;
   var global_cycle_amount = global_cycle_units * parseInt(document.getElementById("funk_level").innerHTML);
   var global_page_hue = 0;
   var global_page_hue_reverse = 65535;
@@ -404,15 +264,6 @@ if (typeof startup_done !== "undefined") {
     funk_meter_button_list[fmbl_counter].addEventListener("touchstart", update_cycle_amount_press);
     funk_meter_button_list[fmbl_counter].addEventListener("touchend", update_cycle_amount_press);
   }
-  document.getElementsByClassName("funk_button")[0].style.width = 
-    String(String(document.getElementById("funk_container").clientWidth) + "px");
-  document.getElementsByClassName("funk_meter_box")[0].style.width = 
-    String(String(document.getElementById("funk_container").clientWidth) + "px");
-  document.getElementsByClassName("funk_meter_bar")[0].style.width = 
-    String(String(parseInt(document.getElementsByClassName("funk_meter_box")[0].style.width) / 
-    parseInt(100 / parseInt(document.getElementById("funk_level").innerHTML))) + "px");
-  // lock_element_position(document.getElementsByClassName("funk_meter_bar")[0]);
-  document.getElementsByClassName("funk_meter_bar")[0].style.position = "relative";
 
     function cycle_background() {
     if (global_cycle_amount >= 0) {
@@ -445,7 +296,7 @@ if (typeof startup_done !== "undefined") {
     if (element)
       global_cycle_amount += (element.getAttribute("value") === ">") ? 
         (global_cycle_units) : (-1 * global_cycle_units);
-    document.getElementById("funk_level").innerHTML = String(global_cycle_amount / global_cycle_units);
+    document.getElementById("funk_level").innerHTML = (global_cycle_amount / global_cycle_units);
     update_funk_meter_bar(document.getElementsByClassName("funk_meter_bar")
       [document.getElementsByClassName('funk_meter_bar').length - 1], 
       (global_cycle_amount - gca_initial));
@@ -475,7 +326,7 @@ if (typeof startup_done !== "undefined") {
         spawn_funk_meter_bar(element);
         return;
     }
-    element.style.width = String(String(fmbw_overflow) + "px");
+    element.style.width = ((fmbw_overflow) + "px");
   }
   function update_cycle_amount_press(event) {
     if (event.type == "mousedown" || event.type == "touchstart")
@@ -490,49 +341,38 @@ if (typeof startup_done !== "undefined") {
     new_fmb.setAttributeNode(new_fmb_attr_class);
     var new_fmb_attr_id = document.createAttribute("id");
     new_fmb_attr_id.value = 
-      String("fmb_num_" + String(document.getElementsByClassName("funk_meter_bar").length));
+      ("fmb_num_" + (document.getElementsByClassName("funk_meter_bar").length));
     new_fmb.setAttributeNode(new_fmb_attr_id);
     var new_fmb_attr_style = document.createAttribute("style");
-    new_fmb_attr_style.value = String("margin: 4px 0px; width: 0px;" + 
-      "background-color: "+ String(element.style.backgroundColor + ";"));
+    new_fmb_attr_style.value = ("margin: 4px 0px; width: 0px;" + 
+      "background-color: "+ (element.style.backgroundColor + ";"));
     new_fmb.setAttributeNode(new_fmb_attr_style);
     document.getElementById("funk_meter_box_bravo").appendChild(new_fmb);
   }
 
   var jukebox_track_list = [
-    "Mile High Club (JC2).mp3",
-    "Jellyfish Jam.mp3",
-    "Noma - Brain Power.mp3",
-    "\u307F\u304D\u3068P - 39\u307F\u3085\u30FC\u3058\u3063\u304F! feat. \u521D\u97F3\u30DF\u30AF.mp3",
-    "Maurizio De Jorio - Running in the 90's.mp3",
-    "Linkin Park - Numb (80's Remix).mp3",
     "Adhesive Wombat - Chodge Darger.mp3",
+    "\u307F\u304D\u3068P - 39\u307F\u3085\u30FC\u3058\u3063\u304F! feat. \u521D\u97F3\u30DF\u30AF.mp3",
+    "Jellyfish Jam.mp3",
+    "Linkin Park - Numb (80's Remix).mp3",
+    "Maurizio De Jorio - Running in the 90's.mp3",
+    "Mile High Club (JC2).mp3",
+    "Noma - Brain Power.mp3",
   ];
   var global_jukebox_track_list_position = 0;
-  var global_jukebox_volume_bar_units = 
-    document.getElementsByClassName("jukebox_track_selection")[0].clientWidth / 100;
+  var global_jukebox_volume_bar_units = 2;
 
-  jukebox_track_list.sort();
-  document.getElementById("jukebox_current_track").innerHTML = jukebox_track_list[0];
-  document.getElementById("audio_player").setAttribute("src", "/resource/jukebox-tracks/" + jukebox_track_list[0]);
-  document.getElementById("audio_player").volume = 0.2;
-
-  document.getElementById("singular_jukebox_divider").style.width = 
-    String(String(document.getElementById("jukebox_container").clientWidth) + "px");
-  document.getElementsByClassName("audio_button")[0].style.width = 
-    String(String(document.getElementById("jukebox_container").clientWidth) + "px");
-  document.getElementsByClassName("jukebox_volume_box")[0].style.width = 
-    String(String(document.getElementById("jukebox_container").clientWidth) + "px");
-  document.getElementsByClassName("jukebox_volume_bar")[0].style.width = 
-    String(String(parseInt(document.getElementsByClassName("jukebox_volume_box")[0].style.width) * 
-    document.getElementById("audio_player").volume) + "px");
-  document.getElementsByClassName("jukebox_volume_bar")[0].style.height = "12px";
-  document.getElementById("jukebox_volume_element").addEventListener("touchstart", touch_start_coord, false);
-  document.getElementById("jukebox_volume_element").addEventListener("touchmove", update_jukebox_volume, false);
-  document.getElementById("jukebox_current_track").addEventListener("touchstart", touch_start_coord, false);
-  document.getElementById("jukebox_current_track").addEventListener("touchmove", update_jukebox_volume, false);
-  document.getElementById("singular_jukebox_divider").addEventListener("touchstart", touch_start_coord, false);
-  document.getElementById("singular_jukebox_divider").addEventListener("touchmove", update_jukebox_volume, false);
+  //jukebox_track_list.sort();
+  jukebox_current_track.innerHTML = jukebox_track_list[0];
+  audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
+  audio_player.volume = 0.17;
+  
+  jukebox_volume_element.addEventListener("touchstart", touch_start_coord, false);
+  jukebox_volume_element.addEventListener("touchmove", update_jukebox_volume, false);
+  jukebox_current_track.addEventListener("touchstart", touch_start_coord, false);
+  jukebox_current_track.addEventListener("touchmove", update_jukebox_volume, false);
+  singular_jukebox_divider.addEventListener("touchstart", touch_start_coord, false);
+  singular_jukebox_divider.addEventListener("touchmove", update_jukebox_volume, false);
 
   var touch_start = [ 0, 0 ];
   function touch_start_coord(event) {
@@ -560,36 +400,29 @@ if (typeof startup_done !== "undefined") {
       if (global_jukebox_track_list_position < 0)
         global_jukebox_track_list_position = jukebox_track_list.length - 1;
     }
-    document.getElementById("jukebox_current_track").innerHTML = 
+    jukebox_current_track.innerHTML = 
       jukebox_track_list[global_jukebox_track_list_position];
-    document.getElementById("audio_player").setAttribute("src", 
+    audio_player.setAttribute("src", 
       "/resource/jukebox-tracks/" + jukebox_track_list[global_jukebox_track_list_position]);
-    document.getElementById("audio_player").load();
-    if (document.getElementsByClassName("audio_button")[0].classList.contains("active"))
-      document.getElementById("audio_player").play();
+    audio_player.load();
+    if (audio_button.classList.contains("active"))
+      audio_player.play();
     else
-      document.getElementById("audio_player").pause();
+      audio_player.pause();
   }
   function update_jukebox_volume(event) {
-    var new_volume = document.getElementById("audio_player").volume;
+    var new_volume = audio_player.volume;
     if (event.type === "wheel")
       new_volume += (event.deltaY < 0) ? 0.01 : -0.01;
     else {
-      new_volume += 10 * (event.touches[0].pageX - touch_start[0]) / 
-        parseInt(document.body.getBoundingClientRect().width) / 
-        parseInt(document.getElementsByClassName("jukebox_volume_box")[0].style.width);
+      new_volume += 200 * (event.touches[0].pageX - touch_start[0]) / document.body.getBoundingClientRect().width;
     }
     if (new_volume < 0.0)
       new_volume = 0.0;
     else if (new_volume > 1.0)
       new_volume = 1.0;
-    document.getElementById("audio_player").volume = new_volume;
-    update_jukebox_volume_bar(document.getElementsByClassName("jukebox_volume_bar")[0]);
-  }
-  function update_jukebox_volume_bar(element) {
-    var jukebox_volume_bar_width = global_jukebox_volume_bar_units * 100 * 
-      document.getElementById("audio_player").volume;
-    element.style.width = String(String(jukebox_volume_bar_width) + "px");
+    audio_player.volume = new_volume;
+    jukebox_volume_bar.style.width = (audio_player.volume * 200)+"px";
   }
 
   var scrollable_meter_list = document.getElementsByClassName("scrollable_meter");
@@ -600,7 +433,7 @@ if (typeof startup_done !== "undefined") {
   }
   function stop_scrolling_y(event) {
     full_doc_html.style.height = "100%";
-  full_doc_html.style.overflowY = "hidden";
+    full_doc_html.style.overflowY = "hidden";
   }
   function start_scrolling_y(event) {
     full_doc_html.style.height = "auto";
@@ -654,32 +487,6 @@ if (typeof startup_done !== "undefined") {
             (((((g * s1) >>> 8) + s2) * v1) & 0xff00)       |
             ( ((((b * s1) >>> 8) + s2) * v1)           >> 8);
   }
-  function gamma_32(x) {
-    var i;
-    for (i = 0; i < 3; i++) {
-      var tmp = (x & (0xFF << (i * 8))) >>> (i * 8);
-      tmp = gamma_table[tmp];
-      x = (x & (~(0xFF << (i * 8)))) | (tmp << (i * 8));
-    }
-    return x;
-  }
-  var gamma_table = [
-    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-    0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1,
-    1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,
-    3,  3,  4,  4,  4,  4,  5,  5,  5,  5,  5,  6,  6,  6,  6,  7,
-    7,  7,  8,  8,  8,  9,  9,  9, 10, 10, 10, 11, 11, 11, 12, 12,
-    13, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20,
-    20, 21, 21, 22, 22, 23, 24, 24, 25, 25, 26, 27, 27, 28, 29, 29,
-    30, 31, 31, 32, 33, 34, 34, 35, 36, 37, 38, 38, 39, 40, 41, 42,
-    42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
-    58, 59, 60, 61, 62, 63, 64, 65, 66, 68, 69, 70, 71, 72, 73, 75,
-    76, 77, 78, 80, 81, 82, 84, 85, 86, 88, 89, 90, 92, 93, 94, 96,
-    97, 99,100,102,103,105,106,108,109,111,112,114,115,117,119,120,
-  122,124,125,127,129,130,132,134,136,137,139,141,143,145,146,148,
-  150,152,154,156,158,160,162,164,166,168,170,172,174,176,178,180,
-  182,184,186,188,191,193,195,197,199,202,204,206,209,211,213,215,
-  218,220,223,225,227,230,232,235,237,240,242,245,247,250,252,255];
 </script>
 <div id="jug">
     <div id="jar"></div>
@@ -727,5 +534,5 @@ if (typeof startup_done !== "undefined") {
     jug.hidden = true;
     }
   </script>
-  </body>
+</body>
 </html>
