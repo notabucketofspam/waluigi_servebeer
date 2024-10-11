@@ -14,9 +14,9 @@
       fetch("/page/sitemap/sitemap.txt")
         .then(res => res.text())
         .then(text => {
-          var taxes = text.split("\n");
+          var taxes = text.trim().split("\n");
           for (const tax of taxes)
-            sitemap.insertAdjacentHTML("beforeend", `<a href=${tax}>${tax}</a><br/>`);
+            sitemap.insertAdjacentHTML("beforeend", `<a href=${encodeURI(tax)}>${tax}</a><br/>`);
           });
     </script>
   </body>
