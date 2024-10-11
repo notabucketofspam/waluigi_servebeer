@@ -3,7 +3,12 @@
   overflow-y: auto;
   display: block;
 }
-
+.fakelink {
+  color: #00e;
+  text-decoration-color:#00e;
+  cursor:pointer;
+  text-decoration-line:underline;
+}
 .left_page {
   float: left;
   width: auto;

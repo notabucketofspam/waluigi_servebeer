@@ -37,7 +37,7 @@ More items coming Soon<sup>&#8482;</sup>
 </a>
 </div>
 </div>`);
-function startup_common(){}
+var cog = console.log;
 /**@param{number}k*/
 function rui (k) {
   return Math.random() / Number.EPSILON % k;

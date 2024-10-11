@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8"/><link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
+<title>Login page - waluigi-servebeer.com</title>
+<style>
+#logan{
+text-align: right;
+}
+input{
+text-align: right;
+accent-color: red;
+}
+#mil{vertical-align: top;}
+#mil:hover{cursor:help;}
+dialog{position:relative; width: fit-content;}
+form{width: fit-content;}
+#logout_tho {
+text-align:center;
+line-height: 1.5;
+float:right;
+}
+</style>
+</head>
+<body>
+<h1>Login page</h1>
+<hr>
+<div style="height:135px;">
+<dialog open id="logout_tho">
+<form id="fogout" method="dialog">
+"But I wanna log out tho"
+<br>
+<input type="submit" value="Ok"/>
+</form></dialog>
+<dialog open id="logan">
+<form id="fogin" method="dialog" autocomplete="on">
+<label for="username">Username</label>
+<input id="username" name="username" type="text" required autocomplete="username" />
+<br>
+<label for="mi" id="mil" title="optional">Middle initial<sup>?</sup></label>
+<input id="mi" name="mi" type="text" title="optional" autocomplete="country-name" size="21" placeholder="optional"/>
+<br>
+<label for="password">Password</label>
+<input id="password" name="password" type="password" required autocomplete="new-password" />
+<br>
+<label for="keep">Keep me logged in for 30 days</label>
+<input id="keep" name="keep" type="checkbox" />
+<br>
+<input type="submit" value="Plug it in, coach">
+</form></dialog>
+<div hidden id="done_text" style="text-align:center">
+  <span id="nice_span">Nice!</span> <a href="/">Now go home</a>.
+</div>
+</div>
+<script src="/js/everything.js"></script>
+<script>
+fogout.addEventListener('submit', ev => {
+  logan.close();
+  sessionStorage.removeItem("username");
+  done_text.hidden = false;
+  nice_span.innerText = "Fine, whatever.";
+});
+fogin.addEventListener('submit', ev => {
+  logout_tho.close();
+  var fd = new FormData(ev.target);
+  var fat = Object.fromEntries(fd.entries());
+  cog(fat);
+  sessionStorage.setItem("username", fat.username??"USERNAME_INVALID");
+  done_text.hidden = false;
+  //setTimeout(()=>{location.assign(location.hash?"/outdex.html":"/");}, 2000);
+});
+</script></body></html>

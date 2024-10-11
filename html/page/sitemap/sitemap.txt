@@ -30,6 +30,8 @@
 /page/intel/intel-inside.png
 /page/intel/intel.html
 /page/intel/retro_intel.png
+/page/login
+/page/login/real.html
 /page/meat-substrate
 /page/meat-substrate/meat.html
 /page/meat-substrate/retro_steak.png
@@ -72,4 +74,3 @@
 /resource/not-cookies.txt
 /resource/pseudo-cookies.txt
 /resource/steak.gif
-/Web.config
