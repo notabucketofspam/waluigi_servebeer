@@ -216,11 +216,21 @@
   font-family: monospace;
   position: fixed;
   bottom: 0px;
-  left: 25vw;
+  left: calc(50vw - 304px);
 }
 #jar {
   height: 2lh;
   width: 76ch;
+}
+@media screen and (max-width: 600px) {
+  #jug {
+    width:95%;
+    left:0px;
+  }
+  #jar {
+    width: 91%;
+    height: 2.3lh;
+  }
 }
 #aight {
   position: absolute;
