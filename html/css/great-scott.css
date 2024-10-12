@@ -277,6 +277,11 @@ footer {
 kbd {
   border-style:outset;
   background-color:#eee;
+  cursor: default;
+  user-select:none;
+}
+kbd:hover {
+  background-color:#ddd;
 }
 del {
   background-color: #fbb;
