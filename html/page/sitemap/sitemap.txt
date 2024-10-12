@@ -30,6 +30,8 @@
 /page/intel/intel-inside.png
 /page/intel/intel.html
 /page/intel/retro_intel.png
+/page/legal
+/page/legal/disclaimer.html
 /page/login
 /page/login/real.html
 /page/meat-substrate
@@ -63,6 +65,7 @@
 /resource
 /resource/dropdown-item-list.html
 /resource/git-data.txt
+/resource/hehe.cur
 /resource/jukebox-tracks
 /resource/jukebox-tracks/Adhesive Wombat - Chodge Darger.mp3
 /resource/jukebox-tracks/Jellyfish Jam.mp3
@@ -72,5 +75,7 @@
 /resource/jukebox-tracks/Noma - Brain Power.mp3
 /resource/jukebox-tracks/みきとP - 39みゅーじっく! feat. 初音ミク.mp3
 /resource/not-cookies.txt
+/resource/pistol.cur
 /resource/pseudo-cookies.txt
+/resource/spam.cur
 /resource/steak.gif
