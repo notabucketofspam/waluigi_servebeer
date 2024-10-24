@@ -63,6 +63,7 @@
 /page/what-is/is.html
 /page/what-is/time_notes.txt
 /resource
+/resource/Akita Neru dials a phone for slightly over a minute.mp3
 /resource/dropdown-item-list.html
 /resource/git-data.txt
 /resource/hehe.cur
