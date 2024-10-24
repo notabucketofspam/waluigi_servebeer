@@ -78,4 +78,5 @@
 /resource/pistol.cur
 /resource/pseudo-cookies.txt
 /resource/spam.cur
+/resource/spectra_oven.mp3
 /resource/steak.gif
