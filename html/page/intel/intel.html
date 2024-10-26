@@ -7,22 +7,18 @@
   <meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8" />
 <style>
 #title_bar {
-  width: 100%;
-  overflow: clip;
   text-align: center;
   padding-top: 17px;
 }
 body {
   background-color: #aaddff;
 }
-#intel-the {      
-  scale: 200%;
+#intel-the {
+  font-size: 4rem;
+  margin:0px;
 }
-@media (max-width: 800px) {
-  #intel-the {
-  scale: 130%;
-  width: 400px;
-  }
+#or-something {
+  margin-top:5px;
 }
 #news {
   font-size: 120%;
@@ -32,19 +28,35 @@ body {
 dd::before {
   content: "\2013\20";
 }
+#somestuff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 4ch;
+}
+@media (max-width:8in){
+  #somestuff {
+    display: flex;
+    flex-direction: column;
+    row-gap: 17px;
+  }
+  #intel-the {
+    font-size: 3em;
+    max-width: 90vw;
+  }
+}
 </style>
 </head>
   <body>
-    <div class="big_section" id="title_bar">
+    <div class="big_section lard lube" id="title_bar">
       <h1 id="intel-the">
         Intel: the future of computing
       </h1>
-      <h4>
+      <h4 id="or-something">
         (or something like that)
       </h4>
       <br>
     </div>
-    <div class="wide2 lard lube">
+    <div class="lard lube" id="somestuff">
       <div class="half_right cd-rom">
         <span id="news">News bulletin</span>
         <ul>
