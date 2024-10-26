@@ -167,7 +167,7 @@
 #outdexportal {
   float: right;
   margin-left: -200px;
-  margin-right: 10%;
+  margin-right: 5%;
 }
 #outdextoptext {
   font-family: 'Segoe UI';
@@ -317,6 +317,34 @@ ins {
 .fr {
   float:right;
 }
+.longer {
+  max-width:12in;
+}
+.lef {
+  max-width: 11in;
+}
+.sef {
+  max-width: 8.5in;
+}
+.floppy {
+  max-width: 8in;
+}
+.cd-rom {
+  max-width: 5.25in;
+}
+.postcard {
+  max-width:4.25;
+}
+.hdd {
+  max-width: 3.5in;
+}
+.lard {
+  margin-left: auto;
+  margin-right:auto;
+}
+.lube {
+  max-width: fit-content;
+}
 
 /** GLITTER */
 .fakelink {
@@ -327,6 +355,9 @@ ins {
 }
 .chad {
   font-family: serif;
+}
+.spacey {
+  letter-spacing: 2px;
 }
 .no_u {
   text-decoration-line: none;
