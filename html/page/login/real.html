@@ -17,11 +17,19 @@ text-align:center;
 line-height: 1.5;
 float:right;
 }
+#whatever {height:135px;}
+@media (max-width:6in){
+  #logout_tho {
+    float:none;
+    margin-bottom: 0.5lh;
+  }
+  #whatever {height:235px;}
+}
 </style>
 </head>
 <body>
 <h1 class="lube lard">Login page</h1>
-<div style="height:135px;">
+<div id="whatever">
 <dialog open id="logout_tho">
 <form id="fogout" method="dialog">
 "But I wanna log out tho"

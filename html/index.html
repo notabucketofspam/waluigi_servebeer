@@ -3,6 +3,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
 <meta name="viewport" content="width=device-width, user-scalable=yes" charset="utf-8"/>
+<title>waluigi-servebeer.com</title>
 <style>
 /** RANDOM STUFF */
 body {
@@ -34,6 +35,7 @@ margin:0px;
   text-align: center;
   text-decoration-line: underline;
   font-size: 21px;
+  grid-area:span 2;
 }
 #login-stuffs {
   float:right;
@@ -51,194 +53,208 @@ h1 {
   cursor: default;
   user-select:none;
 }
+@media (max-width:5.5in){
+  *[class*="wide"] {
+    display:flex;
+    flex-direction:column;
+  }
+}
+#the_notice {
+  background-color:#efeffa;
+  border: ridge;
+  padding:4px;
+  margin:4px;
+  max-width:fit-content;
+}
 </style>
-    <title>waluigi-servebeer.com</title>
-
-  </head>
+</head>
 <body>
-  <!-- WELCOME TO THE STEAK ZONE -->
-    <div id="fixed_top" class="top_right">
-        <span class="steak_zone_text">Welcome to the
-          <img src="/resource/steak.gif" alt="STEAK" class="steak_zone_image">
-          zone
-        </span>
-    </div>
-    <!-- WALUIGI-SERVEBEER.COM -->
-    <div class="big_section" id="title_bar">
-      <div id="login-stuffs">
-        Welcome back, <span id="username_maybe">[USERNAME]</span> !!<br>
-        Not you? <a href="/page/login/real.html">Login here</a>
-        <br>
-        New user? <span class="fakelink" title="this is not a link">Give up</span>
+<!-- WELCOME TO THE STEAK ZONE -->
+<div id="fixed_top" class="top_right">
+    <span class="steak_zone_text">Welcome to the
+      <img src="/resource/steak.gif" alt="STEAK" class="steak_zone_image">
+      zone
+    </span>
+</div>
+<!-- WALUIGI-SERVEBEER.COM -->
+<div class="big_section" id="title_bar">
+  <div id="login-stuffs">
+    Welcome back, <span id="username_maybe">[USERNAME]</span> !!<br>
+    Not you? <a href="/page/login/real.html">Login here</a>
+    <br>
+    New user? <span class="fakelink" title="this is not a link">Give up</span>
+  </div>
+  <h1>waluigi-servebeer.com</h1>
+</div>
+<hr>
+<!-- START THE PARTY -->
+<section class="big_section" id="funk_jukebox_intel" style="overflow-x: visible;">
+  <div id="pentium" class="fr">
+    <a class="fake_advertisement" href="/page/intel/intel.html">
+      <div class="f2">!!! NEW !!!</div>
+      <img height="240" src="/page/intel/retro_intel.png">
+      <div>Punch AMD in the mouth</div>
+    </a>
+  </div>
+  <div id="outdexportal">
+    <span id="outdextoptext">try the new</span>
+    <br />
+    <a href="/outdex.html" id="outdexbottomtext">outdex steakzone</a>
+    <br />
+    <input id="roboslider" value="0" type="range" oninput="if (this.value >99) location.assign(typeof startup_done !== 'undefined'?'/':'/outdex.html')" />
+    <br />
+    <code id="imnotarobot">I'm not a robot</code>
+  </div>
+  <div id="party-zone">
+    <div id="funk_container" style="width: 200px; overflow-x: visible;">
+      <input id="funk_button" type="button" value="Start the party"
+             onclick="toggle_cycle_background(this)">
+      <div class="div_pad_small"></div>
+      <div class="funk_meter scrollable_meter" style="white-space: nowrap;"
+           onwheel="update_cycle_amount(event, null)">
+        <input class="funk_meter_button" type="button" value="&#60;">
+        <span style="padding: 0px 12px">Funk level: <span id="funk_level">25</span>%</span>
+        <input class="funk_meter_button" type="button" value="&#62;">
       </div>
-      <h1>waluigi-servebeer.com</h1>
-    </div>
-      <hr>
-    <!-- START THE PARTY -->
-    <div class="big_section" id="funk_jukebox_intel" style="overflow-x: visible;">
-        <a class="fake_advertisement fr" href="/page/intel/intel.html">
-          <div class="f2">!!! NEW !!!</div>
-          <img height="240" src="/page/intel/retro_intel.png">
-          <div>Punch AMD in the mouth</div>
-        </a>
-      <div id="outdexportal">
-        <span id="outdextoptext">try the new</span>
-        <br />
-        <a href="/outdex.html" id="outdexbottomtext">outdex steakzone</a>
-        <br />
-        <input id="roboslider" value="0" type="range"
-               oninput="if (this.value >99) location.assign(typeof startup_done !== 'undefined'?'/':'/outdex.html')" />
-        <br />
-        <code id="imnotarobot">I'm not a robot</code>
-      </div>
-      <div id="party-zone">
-        <div id="funk_container" style="width: 200px; overflow-x: visible;">
-          <input id="funk_button" type="button" value="Start the party"
-                 onclick="toggle_cycle_background(this)">
-          <div class="div_pad_small"></div>
-          <div class="funk_meter scrollable_meter" style="white-space: nowrap;"
-               onwheel="update_cycle_amount(event, null)">
-            <input class="funk_meter_button" type="button" value="&#60;">
-            <span style="padding: 0px 12px">Funk level: <span id="funk_level">25</span>%</span>
-            <input class="funk_meter_button" type="button" value="&#62;">
-          </div>
-          <div class="div_pad_small scrollable_meter" style="width: 200px;"
-               onwheel="update_cycle_amount(event, null)"></div>
-          <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
-            <div class="funk_meter_box" id="funk_meter_box_prime">
-              <div class="funk_meter_bar" id="fmb_num_0"></div>
-            </div>
-          </div>
-          <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
+      <div class="div_pad_small scrollable_meter" style="width: 200px;"
+           onwheel="update_cycle_amount(event, null)"></div>
+      <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
+        <div class="funk_meter_box" id="funk_meter_box_prime">
+          <div class="funk_meter_bar" id="fmb_num_0"></div>
         </div>
-        <div class="div_pad"></div>
-        <div id="jukebox_container">
-          <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
-          <input id="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
-          <div class="div_pad_small"></div>
-          <div id="jukebox_track_selection">
-            <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
-            <span style="padding: 0px 25px;">Change track</span>
-            <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
-          </div>
-          <div class="div_pad_small"></div>
-          <div id="jukebox_which_track">
-            <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
-          </div>
-          <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
-               onwheel="update_jukebox_volume(event)"></div>
-          <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
-            <div id="jukebox_volume_box">
-              <div id="jukebox_volume_bar"></div>
-            </div>
-          </div>
+      </div>
+      <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
+    </div>
+    <div class="div_pad"></div>
+    <div id="jukebox_container">
+      <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
+      <input id="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
+      <div class="div_pad_small"></div>
+      <div id="jukebox_track_selection">
+        <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
+        <span style="padding: 0px 24px;">Change track</span>
+        <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
+      </div>
+      <div class="div_pad_small"></div>
+      <div id="jukebox_which_track">
+        <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
+      </div>
+      <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
+           onwheel="update_jukebox_volume(event)"></div>
+      <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
+        <div id="jukebox_volume_box">
+          <div id="jukebox_volume_bar"></div>
         </div>
-        <div class="div_pad_small"></div>
-        <span style="font-size: 85%;">(the scroll wheel is your friend)</span>
       </div>
     </div>
-    <!-- ABOUT THIS WEBSITE -->
-  <section>
-    <h2 id="about_this_site">About this website</h2>
-    <div class="wide2">
-      <div class="half_right hdd">
-      <p>Important! If the page isn't working correctly then you gotta clear the 
-        Javascript / CSS cache</p>        
-        <ul>
-          <li>Smash that <b>F12</b> button</li>
-          <li>Head over to the Network tab</li>
-          <li>Tick the little &#x1f171;&NoBreak;&#x1F1F4;&NoBreak;&#x1F1FD; that says "Disable cache"</li>
-          <li>Gently press F5, making sure to not startle it</li>
-        </ul>
-        <p id="easier-for-you-taunt">
-          you can also just hit <span id="ctrl-f5"><kbd>ctrl</kbd>+<kbd>F5</kbd></span>, <br />if that's easier for you :-)
-        </p>
-      </div>
-      <div class="o-1 cd-rom">
-        <p>
-          This is where we put the high-quality content. Members of the Bar Stool 
-          Committee and its associate organizations generate JPEGS, viddles, and 
-          walls of text in various forms for the purpose of comedic enrichment. 
-          Welcome to Meme Hell.
-        </p>
-        <p>
-          <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
-          will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
-        </p>     
-      </div>          
-    </div>
-  </section>
-  <!-- SOME STUFF IDK -->
-  <section class="wide121">
-    <div class="column_left">
-      <div>
-        <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
-        <br>
-        You know where to find it ;)
-      </div>
-      <p>
-        <b>NOTICE:</b> <i>don't</i> disable the browser cache (see right).
-        <br>
-        <u>This is <i>the</i> notice.</u>
+    <div class="div_pad_small"></div>
+    <span style="font-size: 85%;">(the scroll wheel is your friend)</span>
+  </div>
+</section>
+<!-- ABOUT THIS WEBSITE -->
+<section>
+  <h2 id="about_this_site" style="grid-area:span 2">About this website</h2>
+  <div class="wide2">
+    <div class="half_right hdd">
+    <p>Important! If the page isn't working correctly then you gotta clear the 
+      Javascript / CSS cache</p>        
+      <ul>
+        <li>Smash that <b>F12</b> button</li>
+        <li>Head over to the Network tab</li>
+        <li>Tick the little &#x1f171;&NoBreak;&#x1F1F4;&NoBreak;&#x1F1FD; that says "Disable cache"</li>
+        <li>Gently press F5, making sure to not startle it</li>
+      </ul>
+      <p id="easier-for-you-taunt">
+        you can also just hit <span id="ctrl-f5"><kbd>ctrl</kbd>+<kbd>F5</kbd></span>, <br />if that's easier for you :-)
       </p>
     </div>
-    <div class="column_center">
-      This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
-      on mobile so like <del>sorry about that</del> <ins>you're welcome</ins>. In
-      sooth it's primarily a testing ground for silly web development
-      shenanigans. Things are bound to break on a regular basis. Honestly just
-      disable the browser cache (see above) until a notice is posted somewhere.
-      <br>
-      <sub>Please, no johns.</sub>
-    </div>
+    <div class="o-1 cd-rom">
+      <p>
+        This is where we put the high-quality content. Members of the Bar Stool 
+        Committee and its associate organizations generate JPEGS, viddles, and 
+        walls of text in various forms for the purpose of comedic enrichment. 
+        Welcome to Meme Hell.
+      </p>
+      <p>
+        <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
+        will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
+      </p>     
+    </div>          
+  </div>
+</section>
+<!-- SOME STUFF IDK -->
+<section class="wide121">
+  <div class="column_left">
     <div>
-      <u>Technical pages:</u>
-        <ul id="burrfish_list">
-          <li>
-            <a href="/page/changelog/changelog.html">Changelog</a>
-          </li>
-          <li>
-            <a href="/page/legal/disclaimer.html">Legal disclaimer</a>
-          </li>
-          <li>
-            <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
-          </li>
-          <li>
-            <a href="/page/sitemap/sitemap.html">Sitemap</a>
-          </li>
-          <li>
-            <a class="no_u" href="/page/sonic/gotta-go-fast.html">
-              <u>WAY PAST COOL</u><sup>&#8482;</sup>
-            </a>
-          </li>
-        </ul>
+      <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
+      <br>
+      You know where to find it ;)
     </div>
-  </section>
+    <p id="the_notice">
+      <b>NOTICE:</b> <i>don't</i> disable the browser cache (see right).
+      <br>
+      <u>This is <i>the</i> notice.</u>
+    </p>
+  </div>
+  <div class="column_center">
+    This site probably <del>doesn't work</del> <ins>looks and feels immaculate</ins>
+    on mobile so like <del>sorry about that</del> <ins>you're welcome</ins>. In
+    sooth it's primarily a testing ground for silly web development
+    shenanigans. Things are bound to break on a regular basis. Honestly just
+    disable the browser cache (see above) until a notice is posted somewhere.
+    <br>
+    <sub>Please, no johns.</sub>
+  </div>
+  <div>
+    <u>Technical pages:</u>
+      <ul id="burrfish_list">
+        <li>
+          <a href="/page/changelog/changelog.html">Changelog</a>
+        </li>
+        <li>
+          <a href="/page/legal/disclaimer.html">Legal disclaimer</a>
+        </li>
+        <li>
+          <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
+        </li>
+        <li>
+          <a href="/page/sitemap/sitemap.html">Sitemap</a>
+        </li>
+        <li>
+          <a class="no_u" href="/page/sonic/gotta-go-fast.html">
+            <u>WAY PAST COOL</u><sup>&#8482;</sup>
+          </a>
+        </li>
+      </ul>
+  </div>
+</section>
 <!-- COAL ETC -->
-  <section class="wide2">
-    <div class="coalex">
-        <a class="fake_advertisement" href="/page/food-time/food.html">
-          <div class="f2">Tired of normal Food Time?</div>
-          <img height="220" src="/page/food-time/retro_coal.png" style="padding:10px 0px;">
-          <div class="f3">Try our tasty New Coal!</div>
-        </a>
-    </div>
-    <div class="coalex">
-      <h2 id="creme">Cr&#232;me de la Cr&#232;me</h2>
-        <a class="clickbait-article" href="/page/what-is/is.html">
-          What "is" is &ndash; precedence and outlook
-        </a>
-        <a class="clickbait-article" href="/page/scoot-the-burbs/scoot-the-burbs.html">
-          Scoot the Burbs: a lyrical analysis
-        </a>
-        <a class="clickbait-article" style="display: flex;" href="/page/meat-substrate/meat.html">
-          <div style="width: min-content; text-align: center;">Click here <b>to</b> learn about <i>meat</i></div>
-          <img height="130" src="/page/meat-substrate/retro_steak.png">
-        </a>
-    </div>
-  </section>
+<section class="wide2">
+  <div class="coalex">
+      <a class="fake_advertisement" href="/page/food-time/food.html">
+        <div class="f2">Tired of normal Food Time?</div>
+        <img height="220" src="/page/food-time/retro_coal.png" style="padding:10px 0px;">
+        <div class="f3">Try our tasty New Coal!</div>
+      </a>
+  </div>
+  <div class="coalex">
+    <h2 id="creme">Cr&#232;me de la Cr&#232;me</h2>
+      <a class="clickbait-article" href="/page/what-is/is.html">
+        What "is" is &ndash; precedence and outlook
+      </a>
+      <a class="clickbait-article" href="/page/scoot-the-burbs/scoot-the-burbs.html">
+        Scoot the Burbs: a lyrical analysis
+      </a>
+      <a class="clickbait-article" style="display: flex;" href="/page/meat-substrate/meat.html">
+        <div style="width: min-content; text-align: center;">Click here <b>to</b> learn about <i>meat</i></div>
+        <img height="130" src="/page/meat-substrate/retro_steak.png">
+      </a>
+  </div>
+</section>
 <script src="/js/everything.js"></script>
 <script>
+if(typeof pentium === 'undefined')
+  funk_jukebox_intel.insertAdjacentHTML('beforeBegin', '<div id="pentium" class="fr"><a class="fake_advertisement" href="/page/intel/intel.html"><div class="f2">!!! NEW !!!</div><img height="240" src="/page/intel/retro_intel.png"><div>Punch AMD in the mouth</div></a></div>');
 if (sessionStorage.getItem("username"))
   username_maybe.innerText = sessionStorage.getItem("username");
 
@@ -422,7 +438,7 @@ if (typeof startup_done !== "undefined") {
     if (event.type === "wheel")
       new_volume += (event.deltaY < 0) ? 0.01 : -0.01;
     else {
-      new_volume += 200 * (event.touches[0].pageX - touch_start[0]) / document.body.getBoundingClientRect().width;
+      new_volume += 0.1 * (event.touches[0].pageX - touch_start[0]) / document.body.getBoundingClientRect().width;
     }
     if (new_volume < 0.0)
       new_volume = 0.0;
