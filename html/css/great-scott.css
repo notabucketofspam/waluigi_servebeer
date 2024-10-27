@@ -137,7 +137,11 @@
   width: 200px;
 }
 #jukebox_track_selection {
-  font-size: 110%;
+  /* font-size: 110%; */
+}
+#change_track {
+  padding: 0px 17px;
+  font-size:110%;
 }
 #jukebox_which_track {
   white-space: nowrap;
