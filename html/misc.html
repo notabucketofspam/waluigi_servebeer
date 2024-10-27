@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    #sauce {
-      width: 100px;
-      height: 100px;
-    }
-  </style>
-  <title>misc - waluigi-servebeer.com</title>
-
-  <link rel="stylesheet" type="text/css"
-        href="/css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css" />
-  <link rel="stylesheet" type="text/css"
-        href="/css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css" />
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<title>misc - waluigi-servebeer.com</title>
+<style>
+#sauce {
+  width: 100px;
+  height: 100px;
+}
+</style>
 </head>
 <body>
-  <br />
-  <br />
-  <button onclick="mom()" id="sauce">meme</button>
-  <div id="jar"></div>
-  <script src="/js/everything.js"></script>
-  <script>
-    var dongle;
-    function meme() {
-        fetch(location, {
-            method: "head"
-        }).then(res => {
-            dongle = (new Date(res.headers.get("Last-Modified")));
-        console.log(dongle.toISOString().replace(".000Z", "-04:00"));
-        });
-    }
-    function mom() {
-        document.body.insertAdjacentHTML("beforeend", `${new Date()}<br/>`);
-    }
-  </script>
+<br />
+<br />
+<br>
+<button onclick="mom()" id="sauce">meme</button>
+<div id="jar"></div>
+<script src="/js/everything.js"></script>
+<script src="/js/party.js"></script>
+<script>
+  var dongle;
+  function meme() {
+      fetch(location, {
+          method: "head"
+      }).then(res => {
+          dongle = (new Date(res.headers.get("Last-Modified")));
+      console.log(dongle.toISOString().replace(".000Z", "-04:00"));
+      });
+  }
+  function mom() {
+      document.body.insertAdjacentHTML("beforeend", `${new Date()}<br/>`);
+  }
+</script>
 </body>
 </html>
