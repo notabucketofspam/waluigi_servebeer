@@ -1,5 +1,4 @@
 /** OLD STUFF */
-.big_section {}
 .div_pad_large {
   height: 24px;
 }
@@ -19,6 +18,7 @@
   border-color: #000000;
   border-style: solid;
   border-width: 0px 0px 1px 1px;
+  z-index: 99;
 }
 /* Image sector */
 .steak_zone_text {

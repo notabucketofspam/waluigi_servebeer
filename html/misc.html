@@ -2,35 +2,71 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
 <title>misc - waluigi-servebeer.com</title>
 <style>
-#sauce {
+#memes {
   width: 100px;
   height: 100px;
+}
+body {
+  transition: background-color 7ms linear;
+  
 }
 </style>
 </head>
 <body>
 <br />
 <br />
+<!-- <br> -->
+<button onclick="mom()" id="memes">memes</button>
 <br>
-<button onclick="mom()" id="sauce">meme</button>
-<div id="jar"></div>
+<label for="l">L</label>
+<input id="l" type="range" step="0.001" value="1" min="0" max="1">
+<span id="lv"></span>
+<br>
+<label for="c">C</label>
+<input id="c" type="range" step="0.001" value="0.4" min="0" max="0.5">
+<span id="cv"></span>
+<br>
+<label for="h">H</label>
+<input id="h" type="range" step="0.001" value="0" min="0" max="360">
+<span id="hv"></span>
+<br>
+x: <span id="x_px"></span>px
+<br>
+y: <span id="y_px"></span>px
 <script src="/js/everything.js"></script>
 <script src="/js/party.js"></script>
 <script>
-  var dongle;
-  function meme() {
-      fetch(location, {
-          method: "head"
-      }).then(res => {
-          dongle = (new Date(res.headers.get("Last-Modified")));
-      console.log(dongle.toISOString().replace(".000Z", "-04:00"));
-      });
+l.addEventListener("input", meme);
+c.addEventListener("input", meme);
+h.addEventListener("input", meme);
+function meme() {
+  document.body.style.backgroundColor = "rgb(from oklch("+l.value+" "+c.value+" "+h.value+") R G B)";
+  <!-- console.log("lch", l.value, c.value, h.value); -->
+  lv.innerText = l.value;
+  cv.innerText = c.value;
+  hv.innerText = h.value;
+}
+<!-- meme(); -->
+var whom = 0;
+var soup;
+function mom() {
+  if (soup) {
+    clearInterval(soup);
+    soup = 0;
+    document.body.style.backgroundColor = "white";
+  } else {
+    soup = setInterval(cocaine, 7);
   }
-  function mom() {
-      document.body.insertAdjacentHTML("beforeend", `${new Date()}<br/>`);
-  }
+}
+function cocaine(h_val) {
+  document.body.style.backgroundColor = "oklch("+l.value+" "+c.value+" "+ (++whom) +")";
+}
+<!-- cocaine(); -->
+x_px.innerText = document.body.getBoundingClientRect().width;
+y_px.innerText = document.body.getBoundingClientRect().height;
 </script>
 </body>
 </html>

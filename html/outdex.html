@@ -127,8 +127,12 @@ if (localStorage.getItem("show_cowtools")|0) {
   show_cowtools();
   cowbox.checked = true;
 }
-button.addEventListener("click", quit_more);
-
+button.addEventListener("click", how_big);
+function how_big() {
+  var bwidth = document.body.getBoundingClientRect().width;
+  var bheight = document.body.getBoundingClientRect().height;
+  alert(innerWidth+"x"+innerHeight);
+}
 var kasa;
 async function stupid_meateater(ev) {
   if (typeof kasa === 'undefined') {
