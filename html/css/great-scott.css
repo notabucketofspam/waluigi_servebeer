@@ -9,16 +9,20 @@
   height: 8px;
 }
 /* Corner sector */
-.top_right {
+.steak_corner {
   position: fixed;
   top: 0;
   right: 0;
   background-color: #ffffff;
-  overflow: auto;
+  overflow: hidden;
   border-color: #000000;
   border-style: solid;
   border-width: 0px 0px 1px 1px;
   z-index: 99;
+  font-size: 110%;
+  text-decoration: none;
+  color: #000000;
+  user-select:none;
 }
 /* Image sector */
 .steak_zone_text {
@@ -26,7 +30,6 @@
 }
 .steak_zone_image {
   width: 60px;
-  height: auto;
   vertical-align: middle;
   margin: 0px 0px 1px 0px;
 }

@@ -1,12 +1,10 @@
-if (!document.getElementById('fixed_top'))
+if (!document.getElementById('welcome_steak'))
 document.body.insertAdjacentHTML("afterbegin",
-`<div class="top_right" id="steak_corner">
-<a href="/" class="anchor_no_style steak_zone_text">
+`<a href="/" id="return_steak" class="steak_corner">
 Return to the 
 <img src="/resource/steak.gif" alt="STEAK" class="steak_zone_image">
 zone
-</a>
-</div>`);
+</a>`);
 document.body.insertAdjacentHTML("afterend",
 `<footer>
 <hr/>

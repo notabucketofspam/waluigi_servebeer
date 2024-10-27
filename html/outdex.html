@@ -43,8 +43,6 @@
 <main></main>
 <script src="/js/everything.js"></script>
 <script>
-  /**@type HTMLDivElement */
-  var top_steak = document.getElementById("steak_corner");
   var startup_done = true;
   consume(hashgrab());
 var main = document.querySelector('main');
@@ -107,7 +105,7 @@ function consume(url) {
       });
       main.insertAdjacentHTML('beforeend', newtext);
       prepare_almonds();
-      top_steak.hidden = !!document.getElementById('fixed_top');
+      return_steak.hidden = !!document.getElementById('welcome_steak');
       scroll(0,0);
     }
   );
