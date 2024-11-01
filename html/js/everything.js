@@ -1,11 +1,11 @@
 if (!document.getElementById('welcome_steak'))
-document.body.insertAdjacentHTML("afterbegin",
+document.documentElement.insertAdjacentHTML("afterbegin",
 `<a href="/" id="return_steak" class="steak_corner">
 Return to the 
 <img src="/resource/steak.gif" alt="STEAK" class="steak_zone_image">
 zone
 </a>`);
-document.body.insertAdjacentHTML("afterend",
+document.documentElement.insertAdjacentHTML("beforeend",
 `<footer>
 <hr/>
 <div style="text-align: center;">
@@ -18,7 +18,7 @@ Last-Modified: <span id="Last-Modified"></span>
 </div>
 </footer>`);
 document.getElementById("Last-Modified").innerText = document.lastModified;
-document.body.insertAdjacentHTML("beforeend", `
+document.documentElement.insertAdjacentHTML("afterbegin", `
 <div class="dropdown_element dropdown_base">
 <button class="dropdown_element dropdown_button" onclick="void (
 document.getElementsByClassName('dropdown_item_list')[0].classList.toggle('dropdown_item_list_active'));">
