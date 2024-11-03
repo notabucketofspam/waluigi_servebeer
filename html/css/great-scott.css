@@ -25,13 +25,9 @@
   user-select:none;
 }
 /* Image sector */
-.steak_zone_text {
-  font-size: 110%;
-}
-.steak_zone_image {
-  width: 60px;
-  vertical-align: middle;
-  margin: 0px 0px 1px 0px;
+.steak_gif {
+  margin-bottom: -4px;
+  height:20px;
 }
 .anchor_no_style {
   text-decoration: none;
