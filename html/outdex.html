@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>outdex steakzone - waluigi-servebeer.com</title>
+<title>[outdex steakzone] - waluigi-servebeer.com</title>
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css">
 <meta name="viewport" content="width=device-width, user-scalable=yes" />
 <style>
@@ -55,7 +55,7 @@ var button = document.getElementById("button");
 var meeptheater = document.getElementById("meeptheater");
 var quit = document.getElementById("quit");
   var bread = 
-/(?<title>\<title\>.*?\<\/title\>)|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?<src>\<script src=".*?"\>\<\/script\>)/gs;
+/(?:(?<=\<title\>)(?<title>.*?)(?=\<\/title\>))|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<scrsrc>.*?)(?="\>\<\/script\>))/gs;
   /**@type HTMLInputElement*/
   var cowbox = document.getElementById('cowbox');
   var cowtools = document.getElementById('cowtools');
@@ -78,6 +78,7 @@ function consume(url) {
       var newtext = restext.replaceAll(bread, function replacer(substring, ...args) {
           const groups = args.at(-1);
         if (typeof groups === 'object') {
+          //cog(groups)
           if (groups.glitter) {
             const style = document.createElement('style');
             style.innerHTML = groups.glitter;
@@ -85,21 +86,23 @@ function consume(url) {
           }
           if (groups.soup) {
             setTimeout(() => {
-                const script = document.createElement('script');
-                script.innerHTML = groups.soup;
-                main.prepend(script);
-              }, 0);
+              const script = document.createElement('script');
+              script.innerHTML = groups.soup;
+              main.prepend(script);
+            }, 0);
+          }
+          if (groups.scrsrc && groups.scrsrc !== "/js/everything.js") {
+            setTimeout(()=> {
+              const script = document.createElement('script');
+              script.src = groups.scrsrc;
+              main.prepend(script);
+            }, 0);
           }
           if (groups.title) {
-            // im too lazy to fix the regexp lol
-            if (groups.title.length > 36)
-              document.title = groups.title.slice(7, -8);
-            else
-              document.title = "waluigi-servebeer.com";
-            document.title += " (outdex steakzone)";
-            }
-            if (groups.lonk) {
-            }
+            document.title = groups.title;
+          }
+          if (groups.lonk) {
+          }
         }
         return "";
       });
