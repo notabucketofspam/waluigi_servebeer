@@ -25,8 +25,13 @@ h2 {
   font-family: monospace;
 }
 #burrfish_list {
-margin:0px;
+  margin:0px;
   padding-left:21px;
+  column-count:2;
+}
+#burrfish_list > li {
+  break-inside:avoid-column;
+  padding-right:10px;
 }
 #burrfish_list > li::marker {
   content: "\1f421";
@@ -57,6 +62,7 @@ h1 {
   position: absolute;
   top:95px;
   left:222px;
+  display:block;
 }
 @media (max-width:5.5in){
   *[class*="wide"] {
@@ -73,6 +79,13 @@ h1 {
   padding:4px;
   margin:4px;
   max-width:24ch;
+}
+#technical_pages {
+  border: 2px dotted red;
+  width:fit-content;
+  height:fit-content;
+  padding:2px;
+  margin:6px;
 }
 </style>
 </head>
@@ -123,7 +136,7 @@ zone
       <div class="funk_meter scrollable_meter" style="white-space: nowrap;"
            onwheel="update_cycle_amount(event, null)">
         <input class="funk_meter_button" type="button" value="&#60;">
-        <span style="padding: 0px 12px">Funk level: <span id="funk_level">25</span>%</span>
+        <span id="funk_lvl_outer">Funk level: <span id="funk_level">25</span>%</span>
         <input class="funk_meter_button" type="button" value="&#62;">
       </div>
       <div class="div_pad_small scrollable_meter" style="width: 200px;"
@@ -185,10 +198,11 @@ zone
         walls of text in various forms for the purpose of comedic enrichment. 
         Welcome to Meme Hell.
       </p>
-      <p>
-        <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
-        will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
-      </p>     
+      <p id="the_notice">
+        <b>NOTICE:</b> <i>don't</i> disable the browser cache (see right).
+        <br>
+        <u>This is <i>the</i> notice.</u>
+      </p>
     </div>          
   </div>
 </section>
@@ -196,14 +210,13 @@ zone
 <section class="wide121">
   <div class="column_left">
     <div>
+        <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
+        will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
+    </div>
+    <p id="meat_update" class="postcard">
       <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
       <br>
       You know where to find it ;)
-    </div>
-    <p id="the_notice">
-      <b>NOTICE:</b> <i>don't</i> disable the browser cache (see right).
-      <br>
-      <u>This is <i>the</i> notice.</u>
     </p>
   </div>
   <div class="column_center">
@@ -215,7 +228,7 @@ zone
     <br>
     <sub>Please, no johns.</sub>
   </div>
-  <div>
+  <div id="technical_pages">
     <u>Technical pages:</u>
       <ul id="burrfish_list">
         <li>
@@ -230,11 +243,16 @@ zone
         <li>
           <a href="/page/sitemap/sitemap.html">Sitemap</a>
         </li>
-        <li><a href="/misc.html">misc</a></li>
         <li>
           <a class="no_u" href="/page/sonic/gotta-go-fast.html">
             <u>WAY PAST COOL</u><sup>&#8482;</sup>
           </a>
+        </li>
+        <li>
+          <a href="/misc.html">misc</a>
+        </li>
+        <li>
+          <a href="/page/nice-colors/nice-colours.html">nice colo<span id="the_u"></span>rs</a>
         </li>
       </ul>
   </div>
@@ -263,7 +281,10 @@ zone
   </div>
 </section>
 <script src="/js/everything.js"></script>
+<script src="/js/party-og.js"></script>
 <script>
+if (rui(2))
+  the_u.innerText = "u";
 if(typeof pentium === 'undefined')
   funk_jukebox_intel.insertAdjacentHTML('beforeBegin', '<div id="pentium" class="fr"><a class="fake_advertisement" href="/page/intel/intel.html"><div class="f2">!!! NEW !!!</div><img height="240" src="/page/intel/retro_intel.png"><div>Punch AMD in the mouth</div></a></div>');
 if (sessionStorage.getItem("username"))
@@ -273,254 +294,6 @@ if (typeof startup_done !== "undefined") {
   outdextoptext.innerText = "leave the new";
   imnotarobot.innerText = "i'm not a human";
 }
-  var full_doc_html = document.documentElement;
-  function lock_element_position(element) {
-    element.style.left = String(element.getBoundingClientRect().x + "px");
-    element.style.top = String(element.getBoundingClientRect().y + "px");
-    element.style.position = "absolute";
-  }
-  
-  // Funk and jukebox sector
-  var global_frametime = 1000 / 60;
-  var global_cycle_units = 10;
-  var global_funk_meter_bar_units = 2;
-  var global_cycle_amount = global_cycle_units * parseInt(document.getElementById("funk_level").innerHTML);
-  var global_page_hue = 0;
-  var global_page_hue_reverse = 65535;
-  var global_cycle_background_handle;
-  var global_update_cycle_amount_press_handle;
-
-  var funk_meter_button_list = document.getElementsByClassName("funk_meter_button");
-  var fmbl_counter;
-  for (fmbl_counter = 0; fmbl_counter < funk_meter_button_list.length; ++fmbl_counter) {
-    funk_meter_button_list[fmbl_counter].addEventListener("mousedown", update_cycle_amount_press);
-    funk_meter_button_list[fmbl_counter].addEventListener("mouseup", update_cycle_amount_press);
-    funk_meter_button_list[fmbl_counter].addEventListener("touchstart", update_cycle_amount_press);
-    funk_meter_button_list[fmbl_counter].addEventListener("touchend", update_cycle_amount_press);
-  }
-
-    function cycle_background() {
-    if (global_cycle_amount >= 0) {
-      global_page_hue += global_cycle_amount;
-      if (global_page_hue >= 65536)
-        global_page_hue = 0;
-      document.body.style.backgroundColor = rainbow_rgb(global_page_hue, 255, 255);
-    } else {
-      global_page_hue_reverse += global_cycle_amount;
-      if (global_page_hue_reverse <= 0)
-        global_page_hue_reverse = 65535;
-      document.body.style.backgroundColor = rainbow_rgb(global_page_hue_reverse, 255, 255);
-    }
-  }
-  function toggle_cycle_background(element) {
-    element.classList.toggle("active");
-    if (element.classList.contains("active")) {
-      element.setAttribute("value", "Stop it's too much");
-      global_cycle_background_handle = setInterval(cycle_background, global_frametime);
-    } else {
-      element.setAttribute("value", "Start the party");
-      clearInterval(global_cycle_background_handle);
-      document.body.style.backgroundColor = "";
-    }
-  }
-  function update_cycle_amount(event, element) {
-    var gca_initial = global_cycle_amount;
-    if (event)
-      global_cycle_amount += (event.deltaY < 0) ? (global_cycle_units) : (-1 * global_cycle_units);
-    if (element)
-      global_cycle_amount += (element.getAttribute("value") === ">") ? 
-        (global_cycle_units) : (-1 * global_cycle_units);
-    document.getElementById("funk_level").innerHTML = (global_cycle_amount / global_cycle_units);
-    update_funk_meter_bar(document.getElementsByClassName("funk_meter_bar")
-      [document.getElementsByClassName('funk_meter_bar').length - 1], 
-      (global_cycle_amount - gca_initial));
-  }
-  function update_funk_meter_bar(element, delta) {
-    var funk_meter_bar_width_total = global_funk_meter_bar_units * global_cycle_amount / global_cycle_units;
-    if (update_funk_meter_bar.negative == "undefined")
-      update_funk_meter_bar.negative = false;
-    var clock = (!global_cycle_amount && (delta > 0 || delta < 0));
-    if (clock && (delta > 0)) {
-      update_funk_meter_bar.negative = false;
-      element.style.backgroundColor = "#22bb22";
-    }
-    if (clock && (delta < 0)) {
-      update_funk_meter_bar.negative = true;
-      element.style.backgroundColor = "#bb2222";
-    }
-    if (update_funk_meter_bar.negative)
-      funk_meter_bar_width_total *= -1;
-    var fmbw_overflow = funk_meter_bar_width_total % window.innerWidth;
-    if (!(fmbw_overflow) && (document.getElementsByClassName("funk_meter_bar").length != 1) && 
-      (element.style.width == "2px")) {
-        element.parentNode.removeChild(element);
-        return;
-    }
-    if (!(fmbw_overflow) && (global_cycle_amount != 0)) {
-        spawn_funk_meter_bar(element);
-        return;
-    }
-    element.style.width = ((fmbw_overflow) + "px");
-  }
-  function update_cycle_amount_press(event) {
-    if (event.type == "mousedown" || event.type == "touchstart")
-      global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, (1000 / 20), null, this);
-    else if (event.type == "mouseup" || event.type == "touchend")
-      clearInterval(global_update_cycle_amount_press_handle);
-  }
-  function spawn_funk_meter_bar(element) {
-    var new_fmb = document.createElement("DIV");
-    var new_fmb_attr_class = document.createAttribute("class");
-    new_fmb_attr_class.value = "funk_meter_bar";
-    new_fmb.setAttributeNode(new_fmb_attr_class);
-    var new_fmb_attr_id = document.createAttribute("id");
-    new_fmb_attr_id.value = 
-      ("fmb_num_" + (document.getElementsByClassName("funk_meter_bar").length));
-    new_fmb.setAttributeNode(new_fmb_attr_id);
-    var new_fmb_attr_style = document.createAttribute("style");
-    new_fmb_attr_style.value = ("margin: 4px 0px; width: 0px;" + 
-      "background-color: "+ (element.style.backgroundColor + ";"));
-    new_fmb.setAttributeNode(new_fmb_attr_style);
-    document.getElementById("funk_meter_box_bravo").appendChild(new_fmb);
-  }
-
-  var jukebox_track_list = [
-    "Adhesive Wombat - Chodge Darger.mp3",
-    "Jellyfish Jam.mp3",
-    "Linkin Park - Numb (80's Remix).mp3",
-    "Maurizio De Jorio - Running in the 90's.mp3",
-    "Mile High Club (JC2).mp3",
-    "Noma - Brain Power.mp3",
-    "\u307F\u304D\u3068P - 39\u307F\u3085\u30FC\u3058\u3063\u304F! feat. \u521D\u97F3\u30DF\u30AF.mp3",
-  ];
-  var global_jukebox_track_list_position = 0;
-  var global_jukebox_volume_bar_units = 2;
-
-  //jukebox_track_list.sort();
-  jukebox_current_track.innerHTML = jukebox_track_list[0];
-  audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
-  audio_player.volume = 0.17;
-  
-  jukebox_volume_element.addEventListener("touchstart", touch_start_coord, false);
-  jukebox_volume_element.addEventListener("touchmove", update_jukebox_volume, false);
-  jukebox_current_track.addEventListener("touchstart", touch_start_coord, false);
-  jukebox_current_track.addEventListener("touchmove", update_jukebox_volume, false);
-  singular_jukebox_divider.addEventListener("touchstart", touch_start_coord, false);
-  singular_jukebox_divider.addEventListener("touchmove", update_jukebox_volume, false);
-
-  var touch_start = [ 0, 0 ];
-  function touch_start_coord(event) {
-    touch_start[0] = event.touches[0].pageX;
-    touch_start[1] = event.touches[0].pageY;
-  }
-
-  function toggle_audio(element) {
-    element.classList.toggle("active");
-    if (element.classList.contains("active")) {
-      element.setAttribute("value", "Get it outta here");
-      document.getElementById("audio_player").play();
-    } else {
-      element.setAttribute("value", "Insert mixtape");
-      document.getElementById("audio_player").pause();
-    }
-  }
-  function jukebox_change_track(element) {
-    if (element === null || element.getAttribute("value") === ">") {
-      ++global_jukebox_track_list_position;
-      if (global_jukebox_track_list_position == jukebox_track_list.length)
-        global_jukebox_track_list_position = 0;
-    } else {
-      --global_jukebox_track_list_position;
-      if (global_jukebox_track_list_position < 0)
-        global_jukebox_track_list_position = jukebox_track_list.length - 1;
-    }
-    jukebox_current_track.innerHTML = 
-      jukebox_track_list[global_jukebox_track_list_position];
-    audio_player.setAttribute("src", 
-      "/resource/jukebox-tracks/" + jukebox_track_list[global_jukebox_track_list_position]);
-    audio_player.load();
-    if (audio_button.classList.contains("active"))
-      audio_player.play();
-    else
-      audio_player.pause();
-  }
-  function update_jukebox_volume(event) {
-    var new_volume = audio_player.volume;
-    if (event.type === "wheel")
-      new_volume += (event.deltaY < 0) ? 0.01 : -0.01;
-    else {
-      new_volume += 0.1 * (event.touches[0].pageX - touch_start[0]) / document.body.getBoundingClientRect().width;
-    }
-    if (new_volume < 0.0)
-      new_volume = 0.0;
-    else if (new_volume > 1.0)
-      new_volume = 1.0;
-    audio_player.volume = new_volume;
-    jukebox_volume_bar.style.width = (audio_player.volume * 200)+"px";
-  }
-
-  var scrollable_meter_list = document.getElementsByClassName("scrollable_meter");
-  var sml_counter;
-  for (sml_counter = 0; sml_counter < scrollable_meter_list.length; ++sml_counter) {
-    scrollable_meter_list[sml_counter].addEventListener("mouseover", stop_scrolling_y);
-    scrollable_meter_list[sml_counter].addEventListener("mouseout", start_scrolling_y);
-  }
-  function stop_scrolling_y(event) {
-    full_doc_html.style.height = "100%";
-    full_doc_html.style.overflowY = "hidden";
-  }
-  function start_scrolling_y(event) {
-    full_doc_html.style.height = "auto";
-    full_doc_html.style.overflowY = "scroll";
-  }
-  // Functions stolen from Adafruit_NeoPixel
-  function rainbow_rgb(set_hue, set_sat, set_val) {
-    var new_red =   (0xFF0000 & (color_hsv(set_hue, set_sat, set_val))) >>> 16;
-    var new_green = (0x00FF00 & (color_hsv(set_hue, set_sat, set_val))) >>>  8;
-    var new_blue =  (0x0000FF & (color_hsv(set_hue, set_sat, set_val))) >>>  0;
-    return "rgb(" + new_red + "," + new_green + "," + new_blue + ")";
-  }
-  function color_hsv(hue, sat, val) {
-    var r = (1 >>> 1), g = (1 >>> 1), b = (1 >>> 1);
-    hue = (hue * 1530 + 32768) / 65536;
-    if(hue < 510) {
-      b = 0;
-      if(hue < 255) {
-        r = 255;
-        g = hue;
-      } else {
-        r = 510 - hue;
-        g = 255;
-      }
-    } else if(hue < 1020) {
-      r = 0;
-      if(hue <  765) {
-        g = 255;
-        b = hue - 510;
-      } else {
-        g = 1020 - hue;
-        b = 255;
-      }
-    } else if(hue < 1530) {
-      g = 0;
-      if(hue < 1275) {
-        r = hue - 1020;
-        b = 255;
-      } else {
-        r = 255;
-        b = 1530 - hue;
-      }
-    } else {
-      r = 255;
-      g = b = 0;
-    }
-    var v1 =   1 + val;
-    var s1 =   1 + sat;
-    var s2 = 255 - sat;
-    return ((((((r * s1) >>> 8) + s2) * v1) & 0xff00) << 8) |
-            (((((g * s1) >>> 8) + s2) * v1) & 0xff00)       |
-            ( ((((b * s1) >>> 8) + s2) * v1)           >> 8);
-  }
 </script>
 <div id="jug">
     <div id="jar"></div>

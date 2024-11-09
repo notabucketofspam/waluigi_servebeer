@@ -1,14 +1,172 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<title>nice colours - waluigi-servebeer.com</title>
+<style>
+</style>
 </head>
 <body>
-
+<h1>here are some colors</h1>
+<div id="party-zone">
+  <!-- FUNK -->
+  <div id="funk_container">
+    <input id="funk_button" type="button" value="Start the party"
+           onclick="toggle_cycle_background(this)">
+    <div class="div_pad_small"></div>
+    <div class="funk_meter scrollable_meter" style="white-space: nowrap;"
+         >
+      <input class="funk_meter_button" type="button" value="&#60;">
+      <span style="padding: 0px 12px">Funk level: <span id="funk_level">25</span>%</span>
+      <input class="funk_meter_button" type="button" value="&#62;">
+    </div>
+    <div class="div_pad_small scrollable_meter" style="width: 200px;"></div>
+    <div class="scrollable_meter" >
+      <div class="funk_meter_box" id="funk_meter_box_prime">
+        <div class="funk_meter_bar" id="fmb_num_0"></div>
+      </div>
+    </div>
+    <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
+  </div>
+  <!-- JUKEBOX -->
+  <div id="jukebox_container">
+    <button id="audio_button">Insert mixtape</button>
+    <div id="jukebox_track_selection">
+      <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(0)">
+      <span id="change_track">Change track</span>
+      <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(1)">
+    </div>
+    <div class="div_pad_small"></div>
+    <div id="jukebox_which_track">
+      <span class="scrollable_meter" id="jukebox_current_track"></span>
+    </div>
+    <div>
+      <input id="jukebox_volume" type="range" min="0" max="1" step="0.001" value="0.17">
+    </div>
+  </div>
+  <div>
+    <span id="scroll_wheel_comment">(the scroll wheel is <u>no longer</u> your friend)</span>
+  </div>
+  
+</div>
+<br>
+<div>
+<button id="doodad">doodad</button>
+</div>
+<script src="/js/everything.js"></script>
+<script src="/js/party.js"></script>
 <script>
-//
-setInterval(() => document.body.style.backgroundColor = `oklch(${Math.random()} ${Math.random() / 2} ${Math.random()}turn)`, 125);
+var good = CSS.supports("background-color: oklch(1 0.4 0)");
+var whatever = 0;
+<!-- doodad.addEventListener("click", ()=>okfine(++whatever)); -->
+doodad.addEventListener("click", ()=>window.requestAnimationFrame(cashback));
+function okfine(h) {
+  document.body.style.backgroundColor = "oklch(1 0.4 "+h+")";
+}
+// Funk and jukebox sector
+var global_frametime = 1000 / 60;
+var global_cycle_units = 10;
+var global_funk_meter_bar_units = 2;
+var global_cycle_amount = global_cycle_units * 25;
+var global_page_hue = 0;
+var global_page_hue_reverse = 65535;
+var global_cycle_background_handle;
+var global_update_cycle_amount_press_handle;
+
+var funk_meter_button_list = document.getElementsByClassName("funk_meter_button");
+var fmbl_counter;
+for (fmbl_counter = 0; fmbl_counter < funk_meter_button_list.length; ++fmbl_counter) {
+  funk_meter_button_list[fmbl_counter].addEventListener("mousedown", update_cycle_amount_press);
+  funk_meter_button_list[fmbl_counter].addEventListener("mouseup", update_cycle_amount_press);
+  funk_meter_button_list[fmbl_counter].addEventListener("touchstart", update_cycle_amount_press);
+  funk_meter_button_list[fmbl_counter].addEventListener("touchend", update_cycle_amount_press);
+}
+
+function cycle_background() {
+  if (global_cycle_amount >= 0) {
+    global_page_hue += global_cycle_amount;
+    if (global_page_hue >= 65536)
+      global_page_hue = 0;
+    document.body.style.backgroundColor = rainbow_rgb(global_page_hue);
+  } else {
+    global_page_hue_reverse += global_cycle_amount;
+    if (global_page_hue_reverse <= 0)
+      global_page_hue_reverse = 65535;
+    document.body.style.backgroundColor = rainbow_rgb(global_page_hue_reverse);
+  }
+}
+function toggle_cycle_background(element) {
+  element.classList.toggle("active");
+  if (element.classList.contains("active")) {
+    element.setAttribute("value", "Stop it's too much");
+    global_cycle_background_handle = setInterval(cycle_background, global_frametime);
+  } else {
+    element.setAttribute("value", "Start the party");
+    clearInterval(global_cycle_background_handle);
+    document.body.style.backgroundColor = "";
+  }
+}
+function update_cycle_amount(event, element) {
+  var gca_initial = global_cycle_amount;
+  if (event)
+    global_cycle_amount += (event.deltaY < 0) ? (global_cycle_units) : (-1 * global_cycle_units);
+  if (element)
+    global_cycle_amount += (element.getAttribute("value") === ">") ? 
+      (global_cycle_units) : (-1 * global_cycle_units);
+  document.getElementById("funk_level").innerHTML = (global_cycle_amount / global_cycle_units);
+  update_funk_meter_bar(document.getElementsByClassName("funk_meter_bar")
+    [document.getElementsByClassName('funk_meter_bar').length - 1], 
+    (global_cycle_amount - gca_initial));
+}
+function update_funk_meter_bar(element, delta) {
+  var funk_meter_bar_width_total = global_funk_meter_bar_units * global_cycle_amount / global_cycle_units;
+  if (update_funk_meter_bar.negative == "undefined")
+    update_funk_meter_bar.negative = false;
+  var clock = (!global_cycle_amount && (delta > 0 || delta < 0));
+  if (clock && (delta > 0)) {
+    update_funk_meter_bar.negative = false;
+    element.style.backgroundColor = "#22bb22";
+  }
+  if (clock && (delta < 0)) {
+    update_funk_meter_bar.negative = true;
+    element.style.backgroundColor = "#bb2222";
+  }
+  if (update_funk_meter_bar.negative)
+    funk_meter_bar_width_total *= -1;
+  var fmbw_overflow = funk_meter_bar_width_total % window.innerWidth;
+  if (!(fmbw_overflow) && (document.getElementsByClassName("funk_meter_bar").length != 1) && 
+    (element.style.width == "2px")) {
+      element.parentNode.removeChild(element);
+      return;
+  }
+  if (!(fmbw_overflow) && (global_cycle_amount != 0)) {
+      spawn_funk_meter_bar(element);
+      return;
+  }
+  element.style.width = ((fmbw_overflow) + "px");
+}
+function update_cycle_amount_press(event) {
+  if (event.type == "mousedown" || event.type == "touchstart")
+    global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, (1000 / 20), null, this);
+  else if (event.type == "mouseup" || event.type == "touchend")
+    clearInterval(global_update_cycle_amount_press_handle);
+}
+function spawn_funk_meter_bar(element) {
+  var new_fmb = document.createElement("DIV");
+  var new_fmb_attr_class = document.createAttribute("class");
+  new_fmb_attr_class.value = "funk_meter_bar";
+  new_fmb.setAttributeNode(new_fmb_attr_class);
+  var new_fmb_attr_id = document.createAttribute("id");
+  new_fmb_attr_id.value = 
+    ("fmb_num_" + (document.getElementsByClassName("funk_meter_bar").length));
+  new_fmb.setAttributeNode(new_fmb_attr_id);
+  var new_fmb_attr_style = document.createAttribute("style");
+  new_fmb_attr_style.value = ("margin: 4px 0px; width: 0px;" + 
+    "background-color: "+ (element.style.backgroundColor + ";"));
+  new_fmb.setAttributeNode(new_fmb_attr_style);
+  document.getElementById("funk_meter_box_bravo").appendChild(new_fmb);
+}
 </script>
 </body>
 </html>

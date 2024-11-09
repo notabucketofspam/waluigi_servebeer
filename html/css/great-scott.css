@@ -107,6 +107,8 @@
 }
 #funk_container {
   width: 200px;
+  overflow-x:visible;
+  /* margin-bottom:14px; */
 }
 .funk_meter {
   font-size: 110%;
@@ -134,15 +136,18 @@
 #audio_button {
   font-size: 120%;
   width: 200px;
+  /* margin-bottom:8px; */
 }
 #jukebox_track_selection {
   display:inline;
   overflow:visible;
   white-space:nowrap;
+  /* margin-bottom:16px; */
 }
 #change_track {
   padding: 0px 25px;
   font-size:110%;
+  user-select:none;
 }
 #jukebox_which_track {
   white-space: nowrap;
@@ -161,11 +166,27 @@
   height: 12px;
   width: 34px;
 }
+#jukebox_current_track {
+  user-select:none;
+}
 #funk_jukebox_intel {
   overflow: visible;
 }
 #singular_jukebox_divider {
   width: 200px;
+}
+#jukebox_volume {
+  accent-color:#22b;
+  width:98%;
+}
+#scroll_wheel_comment {
+  font-size: 95%;
+  letter-spacing:-1pt;
+  user-select:none;
+}
+#funk_lvl_outer {
+  padding: 0px 12px;
+  user-select:none;
 }
 
 /** OUTDEX */
@@ -202,10 +223,10 @@
   transform: scaleY(2.5);
   transform-origin: top;
 }
-#roboslider:hover {
+input[type="range"]:hover {
   cursor:grab;
 }
-#roboslider:active {
+input[type="range"]:active {
   cursor:grabbing;
 }
 
@@ -340,7 +361,7 @@ ins {
   max-width: 5.25in;
 }
 .postcard {
-  max-width:4.25;
+  max-width:4.25in;
 }
 .hdd {
   max-width: 3.5in;

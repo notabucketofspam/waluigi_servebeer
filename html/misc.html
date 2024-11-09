@@ -10,7 +10,7 @@
   height: 100px;
 }
 body {
-  transition: background-color 7ms linear;
+  transition: background-color 10ms linear;
   
 }
 </style>
@@ -37,13 +37,15 @@ x: <span id="x_px"></span>px
 <br>
 y: <span id="y_px"></span>px
 <script src="/js/everything.js"></script>
-<script src="/js/party.js"></script>
+<!-- <script src="/js/party.js"></script> -->
 <script>
 l.addEventListener("input", meme);
 c.addEventListener("input", meme);
 h.addEventListener("input", meme);
 function meme() {
-  document.body.style.backgroundColor = "rgb(from oklch("+l.value+" "+c.value+" "+h.value+") R G B)";
+  <!-- document.body.style.backgroundColor = "oklab(from oklch("+l.value+" "+c.value+" "+h.value+") L a b)"; -->
+  document.body.style.backgroundColor = "rgb(from oklch("+l.value+" "+c.value+" "+h.value+") r g b)";
+  <!-- document.body.style.backgroundColor = "oklch("+l.value+" "+c.value+" "+h.value+")"; -->
   <!-- console.log("lch", l.value, c.value, h.value); -->
   lv.innerText = l.value;
   cv.innerText = c.value;
@@ -58,7 +60,7 @@ function mom() {
     soup = 0;
     document.body.style.backgroundColor = "white";
   } else {
-    soup = setInterval(cocaine, 7);
+    soup = setInterval(cocaine, 10);
   }
 }
 function cocaine(h_val) {
@@ -67,6 +69,22 @@ function cocaine(h_val) {
 <!-- cocaine(); -->
 x_px.innerText = document.body.getBoundingClientRect().width;
 y_px.innerText = document.body.getBoundingClientRect().height;
+var pepsi = ()=> "oklch(1 0.4 "+ (++whom) +")";
+var kfc = [
+  {
+    backgroundColor: "oklch(1 0.4 0)",
+    easing: "linear"
+  },
+  {
+    backgroundColor: "oklch(1 0.4 180)",
+    easing: "linear"
+  }
+];
+var whathow = {
+  duration: 5000,
+  iterations: Infinity
+};
+<!-- document.body.animate(kfc, whathow); -->
 </script>
 </body>
 </html>
