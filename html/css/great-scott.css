@@ -24,7 +24,9 @@
   color: #000000;
   user-select:none;
 }
-/* Image sector */
+#welcome_steak {
+  z-index: 10;
+}
 .steak_gif {
   margin-bottom: -4px;
   height:20px;
