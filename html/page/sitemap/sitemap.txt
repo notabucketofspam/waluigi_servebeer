@@ -46,6 +46,14 @@
 /page/nice-colors/old_colors.html
 /page/retrospective
 /page/retrospective/seven-years.html
+/page/retrospective/wsbc
+/page/retrospective/wsbc/giraffe
+/page/retrospective/wsbc/giraffe/colors.css
+/page/retrospective/wsbc/giraffe/giraffe-website.html
+/page/retrospective/wsbc/index.html
+/page/retrospective/wsbc/soviet-squid-small.png
+/page/retrospective/wsbc/waluigi
+/page/retrospective/wsbc/waluigi/waluigi-website.html
 /page/sample
 /page/sample/favicon-food.png
 /page/sample/sample.html
