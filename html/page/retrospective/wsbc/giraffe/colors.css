@@ -1,0 +1,98 @@
+h1{
+color: red;
+text-align: center;
+} 
+a{
+color: blue
+text-align: "center";
+margin-left: auto;
+margin-right: auto;
+padding: 35px;
+vertical-align: middle;
+
+}
+
+span{
+text-Effect: none;
+align: center
+}
+div{
+background-color: orange;
+height: 50px;
+width:50px;
+align: "middle";
+}
+
+iMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+	
+p{
+text-align: center;
+}
+
+ul{
+text-align: center; 
+align: center;
+}
+
+li{
+text-align: center;
+}
+h2{
+color: green;
+text-align: center;
+text-effect: underline; 
+} 
+
+div#mainContainer{
+margin-left: 500px;
+margin-right: auto;
+padding-bottom: 1px;
+width: 90px;
+border: 5px dashed blue;
+text-align: center;
+}
+div#cactus img.displayed {
+height: 50px;
+width: 200px;
+margin-left: auto;
+margin-right: auto;
+display: block;
+align: center;
+}
+b{
+text-align: center;
+color: limegreen;
+}
+ table{
+border-collapse: collapse;
+margin-bottom: 50px;
+width: 100%;
+}
+div#cactusfatality{
+margin-left: auto;
+margin-right: auto;
+width: 170px;
+height: 18px;
+height: 18px;
+border: 1px dotted maroon;
+}
+<style type="text/css">
+<!--
+.blinker {
+background-color: blue;
+text-align: center;
+width: 150px;
+height:40px;
+padding: 10px;
+margin: none;
+border-style: solid;
+border-color: #000000;
+border-bottome-width: 5px;
+cursor: pointer;
+cursor: hand;
+-->
+</style>
+<script type="text/javascript">
