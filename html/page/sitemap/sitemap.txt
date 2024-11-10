@@ -12,6 +12,7 @@
 /js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js
 /js/party-attempt.js
 /js/party-og.js
+/js/party-theft.js
 /js/party.js
 /js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js
 /misc.html

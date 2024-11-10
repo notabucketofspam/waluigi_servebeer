@@ -15,6 +15,8 @@ var global_page_hue_reverse = 65535;
 var global_cycle_background_handle;
 var global_update_cycle_amount_press_handle;
 
+var fmb_list = document.getElementsByClassName("funk_meter_bar");
+
 var funk_meter_button_list = document.getElementsByClassName("funk_meter_button");
 var fmbl_counter;
 for (fmbl_counter = 0; fmbl_counter < funk_meter_button_list.length; ++fmbl_counter) {
@@ -24,7 +26,7 @@ for (fmbl_counter = 0; fmbl_counter < funk_meter_button_list.length; ++fmbl_coun
   funk_meter_button_list[fmbl_counter].addEventListener("touchend", update_cycle_amount_press);
 }
 
-  function cycle_background() {
+function cycle_background() {
   if (global_cycle_amount >= 0) {
     global_page_hue += global_cycle_amount;
     //if (global_page_hue >= 65536)
@@ -56,9 +58,8 @@ function update_cycle_amount(event, element) {
     global_cycle_amount += (element.getAttribute("value") === ">") ? 
       (global_cycle_units) : (-1 * global_cycle_units);
   document.getElementById("funk_level").innerHTML = (global_cycle_amount / global_cycle_units);
-  update_funk_meter_bar(document.getElementsByClassName("funk_meter_bar")
-    [document.getElementsByClassName('funk_meter_bar').length - 1], 
-    (global_cycle_amount - gca_initial));
+  // var fmb_list = document.getElementsByClassName("funk_meter_bar");
+  update_funk_meter_bar(fmb_list[fmb_list.length - 1], (global_cycle_amount - gca_initial));
 }
 function update_funk_meter_bar(element, delta) {
   var funk_meter_bar_width_total = global_funk_meter_bar_units * global_cycle_amount / global_cycle_units;
@@ -76,12 +77,17 @@ function update_funk_meter_bar(element, delta) {
   if (update_funk_meter_bar.negative)
     funk_meter_bar_width_total *= -1;
   var fmbw_overflow = funk_meter_bar_width_total % window.innerWidth;
-  if ((fmbw_overflow<2) && (document.getElementsByClassName("funk_meter_bar").length != 1) && 
-    (element.style.width == "2px")) {
+  //console.log("fmbw", fmbw_overflow, "elemwidth", parseFloat(element.style.width));
+  // var fmb_list = document.getElementsByClassName("funk_meter_bar");
+  if (Math.abs(fmbw_overflow)<2 && (fmb_list.length != 1)/* &&
+    (parseFloat(element.style.width) < 2)*/
+    &&((delta<0&&!update_funk_meter_bar.negative)||(delta>0&&update_funk_meter_bar.negative))) {
+      //console.log("remove");
       element.parentNode.removeChild(element);
       return;
   }
-  if ((fmbw_overflow<2) && (global_cycle_amount != 0)) {
+  if (Math.abs(fmbw_overflow)<2 && (global_cycle_amount != 0)) {
+    //console.log("spawn");
       spawn_funk_meter_bar(element);
       return;
   }
@@ -93,20 +99,10 @@ function update_cycle_amount_press(event) {
   else if (event.type == "mouseup" || event.type == "touchend")
     clearInterval(global_update_cycle_amount_press_handle);
 }
+
 function spawn_funk_meter_bar(element) {
-  var new_fmb = document.createElement("DIV");
-  var new_fmb_attr_class = document.createAttribute("class");
-  new_fmb_attr_class.value = "funk_meter_bar";
-  new_fmb.setAttributeNode(new_fmb_attr_class);
-  var new_fmb_attr_id = document.createAttribute("id");
-  new_fmb_attr_id.value = 
-    ("fmb_num_" + (document.getElementsByClassName("funk_meter_bar").length));
-  new_fmb.setAttributeNode(new_fmb_attr_id);
-  var new_fmb_attr_style = document.createAttribute("style");
-  new_fmb_attr_style.value = ("margin: 4px 0px; width: 0px;" + 
-    "background-color: "+ (element.style.backgroundColor + ";"));
-  new_fmb.setAttributeNode(new_fmb_attr_style);
-  document.getElementById("funk_meter_box_bravo").appendChild(new_fmb);
+  var nu_div = `<div class="funk_meter_bar" id="fmb_num_${fmb_list.length}" style="margin: 4px 0px; width: 0px; background-color: ${element.style.backgroundColor};"></div>`;
+  funk_meter_box_bravo.insertAdjacentHTML("beforeend", nu_div);
 }
 
 var jukebox_track_list = [
@@ -204,51 +200,4 @@ if (good_colors) {
 } else {
   var rainbow_rgb = (h) => `hsl(${h/182} 100% 50%`;
 }
-// Functions stolen from Adafruit_NeoPixel
-function __rainbow_rgb(set_hue, set_sat, set_val) {
-  var new_red =   (0xFF0000 & (color_hsv(set_hue, set_sat, set_val))) >>> 16;
-  var new_green = (0x00FF00 & (color_hsv(set_hue, set_sat, set_val))) >>>  8;
-  var new_blue =  (0x0000FF & (color_hsv(set_hue, set_sat, set_val))) >>>  0;
-  return "rgb(" + new_red + "," + new_green + "," + new_blue + ")";
-}
-function color_hsv(hue, sat, val) {
-  var r = (1 >>> 1), g = (1 >>> 1), b = (1 >>> 1);
-  hue = (hue * 1530 + 32768) / 65536;
-  if(hue < 510) {
-    b = 0;
-    if(hue < 255) {
-      r = 255;
-      g = hue;
-    } else {
-      r = 510 - hue;
-      g = 255;
-    }
-  } else if(hue < 1020) {
-    r = 0;
-    if(hue <  765) {
-      g = 255;
-      b = hue - 510;
-    } else {
-      g = 1020 - hue;
-      b = 255;
-    }
-  } else if(hue < 1530) {
-    g = 0;
-    if(hue < 1275) {
-      r = hue - 1020;
-      b = 255;
-    } else {
-      r = 255;
-      b = 1530 - hue;
-    }
-  } else {
-    r = 255;
-    g = b = 0;
-  }
-  var v1 =   1 + val;
-  var s1 =   1 + sat;
-  var s2 = 255 - sat;
-  return ((((((r * s1) >>> 8) + s2) * v1) & 0xff00) << 8) |
-          (((((g * s1) >>> 8) + s2) * v1) & 0xff00)       |
-          ( ((((b * s1) >>> 8) + s2) * v1)           >> 8);
-}
+
