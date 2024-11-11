@@ -336,6 +336,9 @@ ins {
 .o-1 {
   order: -1;
 }
+.o-2 {
+  order: -2;
+}
 .coalex {
   display: flex;
   flex-direction: column;
@@ -435,6 +438,7 @@ body>hr {
   font-family: math;
   text-decoration: none;
   color: #000000;
+  display:block;
 }
 .clickbait-article:hover {
 background-color: #fff0ff;
