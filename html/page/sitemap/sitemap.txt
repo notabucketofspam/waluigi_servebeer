@@ -15,7 +15,6 @@
 /js/party-theft.js
 /js/party.js
 /js/startup-common-15665d71133de1ea364aaeea8abd6119e338017da9f52a2ec1d0bf26d782e47c.js
-/misc.html
 /outdex.html
 /page
 /page/ancient-monuments
@@ -42,6 +41,8 @@
 /page/meat-substrate/meat.html
 /page/meat-substrate/retro_steak.png
 /page/meat-substrate/words.js
+/page/misc
+/page/misc/misc.html
 /page/nice-colors
 /page/nice-colors/nice-colours.html
 /page/nice-colors/old_colors.html
