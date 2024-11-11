@@ -203,7 +203,7 @@ if (good_colors) {
 
 function giga_funk(which_funk, how_much) {
   var _which_funk = which_funk??funk_more;
-  var _how_much = how_much??100;
+  var _how_much = how_much??99;
   for(let i=0;i<_how_much;i++)
     _which_funk.dispatchEvent(new Event("mousedown"));
   return "hell yeah";
