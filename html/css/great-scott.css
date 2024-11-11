@@ -170,6 +170,8 @@
 }
 #jukebox_current_track {
   user-select:none;
+  display:inline-block;
+  margin-bottom:-1px;
 }
 #funk_jukebox_intel {
   overflow: visible;
