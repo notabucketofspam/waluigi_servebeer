@@ -108,12 +108,10 @@ zone
 </div>
 <hr>
 <a id="celebrating" class="mellon" href="/page/retrospective/seven-years.html">
-<!-- <div class="mellon"> -->
-Celebrating seven (7) years !!!<br>2017&mdash;2024
-<!-- </div> -->
+  Celebrating seven (7) years !!!<br>2017&mdash;2024
 </a>
 <!-- START THE PARTY -->
-<section class="big_section" id="funk_jukebox_intel" style="overflow-x: visible;">
+<section class="big_section" id="funk_jukebox_intel">
   <div id="pentium" class="fr">
     <a class="fake_advertisement" href="/page/intel/intel.html">
       <div class="f2">!!! NEW !!!</div>
@@ -131,26 +129,26 @@ Celebrating seven (7) years !!!<br>2017&mdash;2024
     <code id="imnotarobot">I'm not a robot</code>
   </div>
   <div id="party-zone">
-    <div id="funk_container" style="width: 200px; overflow-x: visible;">
+    <div id="funk_container" >
       <input id="funk_button" type="button" value="Start the party"
              onclick="toggle_cycle_background(this)">
       <div class="div_pad_small"></div>
-      <div class="funk_meter scrollable_meter" style="white-space: nowrap;"
-           onwheel="update_cycle_amount(event, null)">
-        <input class="funk_meter_button" type="button" value="&#60;">
+      <div class="funk_meter scrollable_meter" id="another_funk_thing_idk" onwheel="update_cycle_amount(event, null)">
+        <input class="funk_meter_button" type="button" value="&#60;" id="funk_less">
         <span id="funk_lvl_outer">Funk level: <span id="funk_level">25</span>%</span>
-        <input class="funk_meter_button" type="button" value="&#62;">
+        <input class="funk_meter_button" type="button" value="&#62;" id="funk_more">
       </div>
-      <div class="div_pad_small scrollable_meter" style="width: 200px;"
-           onwheel="update_cycle_amount(event, null)"></div>
+      <div class="div_pad scrollable_meter" onwheel="update_cycle_amount(event, null)" id="giga_funk_message">
+        Right-click to GIGA FUNK
+      </div>
       <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
         <div class="funk_meter_box" id="funk_meter_box_prime">
           <div class="funk_meter_bar" id="fmb_num_0"></div>
         </div>
       </div>
-      <div id="funk_meter_box_bravo" style="z-index: 2; position: absolute; left: 0;"></div>
+      <div id="funk_meter_box_bravo"></div>
     </div>
-    <div class="div_pad"></div>
+    <div class="div_pad_small" ></div>
     <div id="jukebox_container">
       <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
       <input id="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
@@ -173,12 +171,12 @@ Celebrating seven (7) years !!!<br>2017&mdash;2024
       </div>
     </div>
     <div class="div_pad_small"></div>
-    <span style="font-size: 85%;">(the scroll wheel is your friend)</span>
+    <span id="scroll_wheel_comment">(the scroll wheel is your friend)</span>
   </div>
 </section>
 <!-- ABOUT THIS WEBSITE -->
 <section>
-  <h2 id="about_this_site" style="grid-area:span 2">About this website</h2>
+  <h2 id="about_this_site">About this website</h2>
   <div class="wide2">
     <div class="half_right hdd">
     <p>Important! If the page isn't working correctly then you gotta clear the 
@@ -276,16 +274,16 @@ Celebrating seven (7) years !!!<br>2017&mdash;2024
   </div>
   <div class="coalex">
     <h2 id="creme">Cr&#232;me de la Cr&#232;me</h2>
-      <a class="clickbait-article" href="/page/what-is/is.html">
-        What "is" is &ndash; precedence and outlook
-      </a>
-      <a class="clickbait-article" href="/page/scoot-the-burbs/scoot-the-burbs.html">
-        Scoot the Burbs: a lyrical analysis
-      </a>
-      <a class="clickbait-article" style="display: flex;" href="/page/meat-substrate/meat.html">
-        <div style="width: min-content; text-align: center;">Click here <b>to</b> learn about <i>meat</i></div>
-        <img height="130" src="/page/meat-substrate/retro_steak.png">
-      </a>
+    <a class="clickbait-article" href="/page/what-is/is.html">
+      What "is" is &ndash; precedence and outlook
+    </a>
+    <a class="clickbait-article" href="/page/scoot-the-burbs/scoot-the-burbs.html">
+      Scoot the Burbs: a lyrical analysis
+    </a>
+    <a class="clickbait-article" style="display: flex;" href="/page/meat-substrate/meat.html">
+      <div style="width: min-content; text-align: center;">Click here <b>to</b> learn about <i>meat</i></div>
+      <img height="130" src="/page/meat-substrate/retro_steak.png">
+    </a>
   </div>
 </section>
 <script src="/js/everything.js"></script>

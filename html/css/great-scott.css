@@ -182,16 +182,41 @@
   width:98%;
 }
 #scroll_wheel_comment {
-  font-size: 95%;
-  letter-spacing:-1pt;
+  font-size: 85%;
   user-select:none;
 }
 #funk_lvl_outer {
   padding: 0px 12px;
   user-select:none;
 }
+#funk_meter_box_bravo {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+}
+#another_funk_thing_idk {
+  white-space: nowrap;
+}
 #party-zone {
   user-select:none;
+  width:200px;
+  white-space:nowrap;
+  overflow:visible;
+}
+#party-zone >.div_pad_small {
+  width:200px;
+}
+#giga_funk_message {
+  font-size:90%;
+  letter-spacing:2px;
+  font-family:monospace;
+  font-weight:bold;
+  overflow-x:visible;
+  white-space:nowrap;
+}
+#funk_more {
+  position:absolute;
+  left:185px;
 }
 
 /** OUTDEX */

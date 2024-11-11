@@ -201,3 +201,14 @@ if (good_colors) {
   var rainbow_rgb = (h) => `hsl(${h/182} 100% 50%`;
 }
 
+function giga_funk(which_funk, how_much) {
+  var _which_funk = which_funk??funk_more;
+  var _how_much = how_much??100;
+  for(let i=0;i<_how_much;i++)
+    _which_funk.dispatchEvent(new Event("mousedown"));
+  return "hell yeah";
+}
+funk_more.addEventListener("contextmenu", (ev)=>ev.preventDefault());
+funk_more.addEventListener("auxclick", ()=>giga_funk(funk_more));
+funk_less.addEventListener("contextmenu", (ev)=>ev.preventDefault());
+funk_less.addEventListener("auxclick", ()=>giga_funk(funk_less));
