@@ -190,6 +190,9 @@
   padding: 0px 12px;
   user-select:none;
 }
+#party-zone {
+  user-select:none;
+}
 
 /** OUTDEX */
 #outdexportal {
