@@ -133,51 +133,8 @@ zone
     <br />
     <code id="imnotarobot">I'm not a robot</code>
   </div>
-  <div id="party-zone">
-    <div id="funk_container" >
-      <input id="funk_button" type="button" value="Start the party"
-             onclick="toggle_cycle_background(this)">
-      <div class="div_pad_small"></div>
-      <div class="funk_meter scrollable_meter" id="another_funk_thing_idk" onwheel="update_cycle_amount(event, null)">
-        <input class="funk_meter_button" type="button" value="&#60;" id="funk_less">
-        <span id="funk_lvl_outer">Funk level: <span id="funk_level">25</span>%</span>
-        <input class="funk_meter_button" type="button" value="&#62;" id="funk_more">
-      </div>
-      <div class="div_pad scrollable_meter" onwheel="update_cycle_amount(event, null)" id="giga_funk_message">
-        Right-click to GIGA FUNK
-      </div>
-      <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
-        <div class="funk_meter_box" id="funk_meter_box_prime">
-          <div class="funk_meter_bar" id="fmb_num_0"></div>
-        </div>
-      </div>
-      <div id="funk_meter_box_bravo"></div>
-    </div>
-    <div class="div_pad_small" ></div>
-    <div id="jukebox_container">
-      <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
-      <input id="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
-      <div class="div_pad_small"></div>
-      <div id="jukebox_track_selection">
-        <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
-        <span id="change_track">Change track</span>
-        <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
-      </div>
-      <div class="div_pad_small"></div>
-      <div id="jukebox_which_track">
-        <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
-      </div>
-      <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
-           onwheel="update_jukebox_volume(event)"></div>
-      <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
-        <div id="jukebox_volume_box">
-          <div id="jukebox_volume_bar"></div>
-        </div>
-      </div>
-    </div>
-    <div class="div_pad_small"></div>
-    <span id="scroll_wheel_comment">(the scroll wheel is your friend)</span>
-  </div>
+  <meta class="meta_party" id="index_meta_party" itemprop="this is where we put the party stuff" />
+  
 </section>
 <!-- ABOUT THIS WEBSITE -->
 <section>
