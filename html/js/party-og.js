@@ -1,56 +1,55 @@
-document.querySelector("meta.meta_party").insertAdjacentHTML('afterend',
-`<div id="party-zone">
-    <div id="funk_container" >
-      <input id="funk_button" type="button" value="Start the party" onclick="toggle_cycle_background(this)">
-      <div class="div_pad_small"></div>
-      <div class="funk_meter scrollable_meter" id="another_funk_thing_idk" onwheel="update_cycle_amount(event, null)">
-        <input class="funk_meter_button" type="button" value="&#60;" id="funk_less">
-        <span id="funk_lvl_outer">Funk level: <span id="funk_level">25</span>%</span>
-        <input class="funk_meter_button" type="button" value="&#62;" id="funk_more">
-      </div>
-      <div class="div_pad scrollable_meter" onwheel="update_cycle_amount(event, null)" id="giga_funk_message">
-        Right-click to GIGA FUNK
-      </div>
-      <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
-        <div class="funk_meter_box" id="funk_meter_box_prime">
-          <div class="funk_meter_bar" id="fmb_num_0"></div>
-        </div>
-      </div>
-      <div id="funk_meter_box_bravo"></div>
+/*
+    SOME HTML
+*/
+document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
+`<div id="party_zone">
+  <div id="funk_container" >
+    <input id="funk_button" type="button" value="Start the party" onclick="toggle_cycle_background(this)">
+    <div class="div_pad_small"></div>
+    <div class="funk_meter scrollable_meter" id="another_funk_thing_idk" onwheel="update_cycle_amount(event, null)">
+      <input class="funk_meter_button" type="button" value="&#60;" id="funk_less">
+      <span id="funk_lvl_outer">Funk level: <span id="funk_level">25</span>%</span>
+      <input class="funk_meter_button" type="button" value="&#62;" id="funk_more">
     </div>
-    <div class="div_pad_small" ></div>
-    <div id="jukebox_container">
-      <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
-      <input id="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
-      <div class="div_pad_small"></div>
-      <div id="jukebox_track_selection">
-        <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
-        <span id="change_track">Change track</span>
-        <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
+    <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)" id="giga_funk_message">
+      Right-click to GIGA FUNK
+    </div>
+    <div class="scrollable_meter" onwheel="update_cycle_amount(event, null)">
+      <div class="funk_meter_box" id="funk_meter_box_prime">
+        <div class="funk_meter_bar" id="fmb_num_0"></div>
       </div>
-      <div class="div_pad_small"></div>
-      <div id="jukebox_which_track">
-        <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
-      </div>
-      <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
-           onwheel="update_jukebox_volume(event)"></div>
-      <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
-        <div id="jukebox_volume_box">
-          <div id="jukebox_volume_bar"></div>
-        </div>
-      </div>
+    </div>
+    <div id="funk_meter_box_bravo"></div>
+  </div>
+  <div class="div_pad_small" ></div>
+  <div id="jukebox_container">
+    <audio id="audio_player" hidden onended="jukebox_change_track(null)"></audio>
+    <input id="audio_button" type="button" value="Insert mixtape" onclick="toggle_audio(this)">
+    <div class="div_pad_small"></div>
+    <div id="jukebox_track_selection">
+      <input class="jukebox_track_button" type="button" value="&#60;" onclick="jukebox_change_track(this)">
+      <span id="change_track">Change track</span>
+      <input class="jukebox_track_button" type="button" value="&#62;" onclick="jukebox_change_track(this)">
     </div>
     <div class="div_pad_small"></div>
-    <span id="scroll_wheel_comment">(the scroll wheel is your friend)</span>
-  </div>`);
-var full_doc_html = document.documentElement;
-function lock_element_position(element) {
-  element.style.left = String(element.getBoundingClientRect().x + "px");
-  element.style.top = String(element.getBoundingClientRect().y + "px");
-  element.style.position = "absolute";
-}
-
-// Funk and jukebox sector
+    <div id="jukebox_which_track">
+      <span class="scrollable_meter" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
+    </div>
+    <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
+         onwheel="update_jukebox_volume(event)"></div>
+    <div id="jukebox_volume_element" class="scrollable_meter" onwheel="update_jukebox_volume(event)">
+      <div id="jukebox_volume_box">
+        <div id="jukebox_volume_bar"></div>
+      </div>
+    </div>
+  </div>
+  <div class="div_pad_small"></div>
+  <span id="scroll_wheel_comment">(the scroll wheel is your friend)</span>
+</div>`);
+  
+/*
+    FUNK
+*/
 var global_frametime = 1000 / 60;
 var global_cycle_units = 10;
 var global_funk_meter_bar_units = 2;
@@ -59,6 +58,13 @@ var global_page_hue = 0;
 var global_page_hue_reverse = 65535;
 var global_cycle_background_handle;
 var global_update_cycle_amount_press_handle;
+
+var good_colors = CSS.supports("background-color: oklch(1 0.4 0)");
+if (good_colors) {
+  var rainbow_rgb = (h) => `oklch(1 0.4 ${h/182})`;
+} else {
+  var rainbow_rgb = (h) => `hsl(${h/182} 100% 50%`;
+}
 
 var fmb_list = document.getElementsByClassName("funk_meter_bar");
 
@@ -70,7 +76,6 @@ for (fmbl_counter = 0; fmbl_counter < funk_meter_button_list.length; ++fmbl_coun
   funk_meter_button_list[fmbl_counter].addEventListener("touchstart", update_cycle_amount_press);
   funk_meter_button_list[fmbl_counter].addEventListener("touchend", update_cycle_amount_press);
 }
-
 function cycle_background() {
   if (global_cycle_amount >= 0) {
     global_page_hue += global_cycle_amount;
@@ -127,14 +132,14 @@ function update_funk_meter_bar(element, delta) {
   if (Math.abs(fmbw_overflow)<2 && (fmb_list.length != 1)/* &&
     (parseFloat(element.style.width) < 2)*/
     &&((delta<0&&!update_funk_meter_bar.negative)||(delta>0&&update_funk_meter_bar.negative))) {
-      //console.log("remove");
-      element.parentNode.removeChild(element);
-      return;
+    //console.log("remove");
+    element.parentNode.removeChild(element);
+    return;
   }
   if (Math.abs(fmbw_overflow)<2 && (global_cycle_amount != 0)) {
     //console.log("spawn");
-      spawn_funk_meter_bar(element);
-      return;
+    spawn_funk_meter_bar(element);
+    return;
   }
   element.style.width = ((fmbw_overflow) + "px");
 }
@@ -144,11 +149,27 @@ function update_cycle_amount_press(event) {
   else if (event.type == "mouseup" || event.type == "touchend")
     clearInterval(global_update_cycle_amount_press_handle);
 }
-
 function spawn_funk_meter_bar(element) {
   var nu_div = `<div class="funk_meter_bar" id="fmb_num_${fmb_list.length}" style="margin: 4px 0px; width: 0px; background-color: ${element.style.backgroundColor};"></div>`;
   funk_meter_box_bravo.insertAdjacentHTML("beforeend", nu_div);
 }
+
+/*
+    GIGA FUNK
+*/
+var funk_more = document.getElementById("funk_more");
+var funk_less = document.getElementById("funk_less");
+function giga_funk(which_funk, how_much) {
+  var _which_funk = which_funk??funk_more;
+  var _how_much = how_much??99;
+  for(let i=0;i<_how_much;i++)
+    _which_funk.dispatchEvent(new Event("mousedown"));
+  return "hell yeah";
+}
+funk_more.addEventListener("contextmenu", (ev)=>ev.preventDefault());
+funk_more.addEventListener("auxclick", ()=>giga_funk(funk_more));
+funk_less.addEventListener("contextmenu", (ev)=>ev.preventDefault());
+funk_less.addEventListener("auxclick", ()=>giga_funk(funk_less));
 
 var jukebox_track_list = [
   "Adhesive Wombat - Chodge Darger.mp3",
@@ -162,11 +183,14 @@ var jukebox_track_list = [
 var global_jukebox_track_list_position = 0;
 var global_jukebox_volume_bar_units = 2;
 
-//jukebox_track_list.sort();
+var audio_player = document.getElementById("audio_player");
+var jukebox_volume_element = document.getElementById("jukebox_volume_element");
+var jukebox_current_track = document.getElementById("jukebox_current_track");
+var singular_jukebox_divider = document.getElementById("singular_jukebox_divider");
+
 jukebox_current_track.innerHTML = jukebox_track_list[0];
 audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
 audio_player.volume = 0.17;
-
 jukebox_volume_element.addEventListener("touchstart", touch_start_coord, false);
 jukebox_volume_element.addEventListener("touchmove", update_jukebox_volume, false);
 jukebox_current_track.addEventListener("touchstart", touch_start_coord, false);
@@ -184,10 +208,10 @@ function toggle_audio(element) {
   element.classList.toggle("active");
   if (element.classList.contains("active")) {
     element.setAttribute("value", "Get it outta here");
-    document.getElementById("audio_player").play();
+    audio_player.play();
   } else {
     element.setAttribute("value", "Insert mixtape");
-    document.getElementById("audio_player").pause();
+    audio_player.pause();
   }
 }
 function jukebox_change_track(element) {
@@ -225,35 +249,30 @@ function update_jukebox_volume(event) {
   jukebox_volume_bar.style.width = (audio_player.volume * 200)+"px";
 }
 
+/*
+    SCROLLING
+*/
 var scrollable_meter_list = document.getElementsByClassName("scrollable_meter");
 var sml_counter;
 for (sml_counter = 0; sml_counter < scrollable_meter_list.length; ++sml_counter) {
   scrollable_meter_list[sml_counter].addEventListener("mouseover", stop_scrolling_y);
   scrollable_meter_list[sml_counter].addEventListener("mouseout", start_scrolling_y);
+  scrollable_meter_list[sml_counter].addEventListener("wheel", check_can_scroll);
 }
+var full_doc_html = document.documentElement;
+var can_scroll = true;
 function stop_scrolling_y(event) {
-  full_doc_html.style.height = "100%";
-  full_doc_html.style.overflowY = "hidden";
+  can_scroll = false;
+  // full_doc_html.style.height = "100%";
+  // full_doc_html.style.overflowY = "hidden";
 }
 function start_scrolling_y(event) {
-  full_doc_html.style.height = "auto";
-  full_doc_html.style.overflowY = "scroll";
+  can_scroll = true;
+  // full_doc_html.style.height = "auto";
+  // full_doc_html.style.overflowY = "auto";
 }
-var good_colors = CSS.supports("background-color: oklch(1 0.4 0)");
-if (good_colors) {
-  var rainbow_rgb = (h) => `oklch(1 0.4 ${h/182})`;
-} else {
-  var rainbow_rgb = (h) => `hsl(${h/182} 100% 50%`;
+function check_can_scroll(ev) {
+  if (!can_scroll)
+    ev.preventDefault();
 }
 
-function giga_funk(which_funk, how_much) {
-  var _which_funk = which_funk??funk_more;
-  var _how_much = how_much??99;
-  for(let i=0;i<_how_much;i++)
-    _which_funk.dispatchEvent(new Event("mousedown"));
-  return "hell yeah";
-}
-funk_more.addEventListener("contextmenu", (ev)=>ev.preventDefault());
-funk_more.addEventListener("auxclick", ()=>giga_funk(funk_more));
-funk_less.addEventListener("contextmenu", (ev)=>ev.preventDefault());
-funk_less.addEventListener("auxclick", ()=>giga_funk(funk_less));

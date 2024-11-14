@@ -5,24 +5,23 @@
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css">
 <meta name="viewport" content="width=device-width, user-scalable=yes" />
 <style>
-  .getitouttahere {
+.getitouttahere {
   display: none;
-  }
-  #label-for-cowbox {
-    font-style: italic;
-  }
-  #cowbox {
+}
+#label-for-cowbox {
+  font-style: italic;
+  cursor:
+}
+#cowbox {
   height: 10px;
-  }
-  #cowbox {
-    accent-color:red;
-  }
-  #hoverboots {
-  margin-left: 40px;
+  accent-color:red;
+}
+#hoverboots {
+  left: 60px;
   position: fixed;
   top: 0px;
   z-index: 11;
-  }
+}
 </style>
 </head>
 <body>
@@ -34,14 +33,15 @@
     <span id="cowtools" class="getitouttahere">
       <button id="button" title="go home">bread</button>
       <button id="ick" title="wolfjerkeytm">wolfjerkey&#8482;</button>
-      <button id="meateater" title="plagiarism, grand theft, and fraud">meateater</button>
-      <button id="eatmeter" title="random colors">eatmeter</button>
-      <input id="meeptheater" type="url" placeholder="meeptheater" title="where do you wanna go?" />
-      <button id="meeper" title="you wanna go *there*? for real?">meeper</button>
+      <button id="meateater" title="plagiarism, grand theft, and fraud">prime cuts</button>
+      <button id="eatmeter" title="random colors" hidden>eatmeter</button>
+      <input id="meeptheater" type="url" hidden placeholder="meeptheater" title="where do you wanna go?" />
+      <button id="meeper" title="you wanna go *there*? for real?" hidden>meeper</button>
     </span>
   </div>
 <main></main>
 <script src="/js/everything.js"></script>
+<script src="/js/party-og.js"></script>
 <script>
   var startup_done = true;
   consume(hashgrab());
@@ -66,9 +66,17 @@ var quit = document.getElementById("quit");
    */
 function consume(url) {
   if (url.includes("outdex.html")) {
-  console.log(url);
-      quit_more();
+    console.log(url);
+    quit_more();
     return;
+  }
+  var burgmenu = document.getElementById("burgmenu");
+  burgmenu.hidePopover();
+  //cog(burgmenu);
+  var bmp = document.getElementById("burgmenu_mp");
+  var party_zone = document.getElementById("party_zone");
+  if (party_zone) {
+    burgmenu.insertBefore(party_zone, bmp);
   }
   unprepare_almonds();
   fetch(url)
@@ -91,7 +99,7 @@ function consume(url) {
               main.prepend(script);
             }, 0);
           }
-          if (groups.scrsrc && groups.scrsrc !== "/js/everything.js") {
+          if (groups.scrsrc && groups.scrsrc !== "/js/everything.js" && groups.scrsrc !== "/js/party-og.js") {
             setTimeout(()=> {
               const script = document.createElement('script');
               script.src = groups.scrsrc;
@@ -132,7 +140,12 @@ button.addEventListener("click", how_big);
 function how_big() {
   var bwidth = document.body.getBoundingClientRect().width;
   var bheight = document.body.getBoundingClientRect().height;
-  alert(innerWidth+"x"+innerHeight);
+  var how_wide = innerWidth/devicePixelRatio/96;
+  var how_tall = innerHeight/devicePixelRatio/96;
+  var snide_comment = (how_wide<3||how_tall<3)?"that's a *small* plate you got there, bud!":
+    (how_wide>18||how_tall>18)?"that's a *huge* plate you got there, my dude!":
+    "that's an ok size for a plate.";
+  alert("your dinner plate is "+how_wide.toFixed(2)+'" wide and '+how_tall.toFixed(2)+'" tall. '+snide_comment);
 }
 var kasa;
 async function stupid_meateater(ev) {
