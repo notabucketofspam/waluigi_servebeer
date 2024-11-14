@@ -38,6 +38,7 @@ a:link{color:#551A8B;}
 }
 /* Dropdown menu */
 .dropdown_base {
+  z-index:1;
   position: fixed;
   top: 0;
   left: 0;
