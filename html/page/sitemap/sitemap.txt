@@ -1,5 +1,6 @@
 /css
 /css/dropdown-menu-0fd860a6b3da754c857b107092c80ddd32dc99b1897a47b917ec7d8aeb476b17.css
+/css/dropdown-menu-2.css
 /css/general-style-f7ccc957cab8e1c9b8ddac5214e270b70a08fbf3f8b9d67f61b3a44e38fd96cc.css
 /css/great-scott.css
 /favicon-index.png
@@ -8,6 +9,7 @@
 /index.html
 /js
 /js/async-load-06e580bf736ecfeb785447aece8f05de9fd494615f828ef7783b562b8b758863.js
+/js/dropdown-menu.js
 /js/everything.js
 /js/general-script-e38ad4f976fc007b4c83298e24422d43132052e6a4f6284111c769b7fc8e21a0.js
 /js/party-attempt.js
@@ -99,6 +101,7 @@
 /resource/not-cookies.txt
 /resource/pistol.cur
 /resource/pseudo-cookies.txt
+/resource/retro_burger.png
 /resource/spam.cur
 /resource/spectra_oven.mp3
 /resource/steak.gif
