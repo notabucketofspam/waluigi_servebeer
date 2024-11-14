@@ -220,6 +220,7 @@ html {
   margin-right: 5%;
   width:155px;
   white-space:nowrap;
+  user-select:none;
 }
 #outdextoptext {
   font-family: 'Segoe UI';
@@ -256,10 +257,11 @@ input[type="range"]:hover {
 input[type="range"]:active {
   cursor:grabbing;
 }
-@media (max-width:600px) {
-  #outdexportal {
-    /* float:none; */
-  }
+#outdexlasttext {
+  white-space:normal;
+  letter-spacing:-1.3px;
+  line-height:0.6lh;
+  user-select:none;
 }
 
 /*
