@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin:0px;
+  overflow:hidden;
+  scrollbar-width:none;
+}
+iframe {
+  height:100vh;
+  width:100vw;
+}
+</style>
+</head>
+<body>
+<iframe id="iffy" sandbox="allow-scripts"></iframe>
+<script>
+iffy.src = location.hash.slice(1);
+document.title = location.hash.slice(1);
+</script>
+</body>
+</html>

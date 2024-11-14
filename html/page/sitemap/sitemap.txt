@@ -72,6 +72,9 @@
 /page/smash-mouth
 /page/smash-mouth/favicon-smash-mouth.png
 /page/smash-mouth/smash-mouth.html
+/page/some-links
+/page/some-links/faker.html
+/page/some-links/lonks.html
 /page/sonic
 /page/sonic/favicon-sonic.png
 /page/sonic/gotta-go-fast.html
