@@ -20,7 +20,7 @@ h2 {
   font-weight: normal;
 }
 #creme {
-  font-size: 2em;
+  font-size: 2.4em;
   text-decoration-line: underline;
   font-family: monospace;
 }
@@ -82,6 +82,8 @@ h1 {
   padding:4px;
   margin:4px;
   max-width:24ch;
+  user-select:none;
+  cursor:not-allowed;
 }
 #technical_pages {
   border: 2px dotted red;
@@ -238,9 +240,6 @@ zone
           <a href="/page/changelog/changelog.html">Changelog</a>
         </li>
         <li>
-          <a href="/page/legal/disclaimer.html">Legal disclaimer</a>
-        </li>
-        <li>
           <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
         </li>
         <li>
@@ -259,6 +258,9 @@ zone
         </li>
         <li>
           <a href="/page/some-links/lonks.html">some links</a>
+        </li>
+        <li>
+          <span class="fakelink">sas</span>
         </li>
       </ul>
   </div>
@@ -281,15 +283,18 @@ zone
   <div class="coalex">
     <h2 id="creme">Cr&#232;me de la Cr&#232;me</h2>
     <a class="clickbait-article" href="/page/what-is/is.html">
-      What "is" is &ndash; precedence and outlook
+      <div class="f3">What "is" is</div>
+      <div>precedence and outlook</div>
     </a>
     <a class="clickbait-article" href="/page/scoot-the-burbs/scoot-the-burbs.html">
-      Scoot the Burbs: a lyrical analysis
+      <div class="f3">Scoot the Burbs</div>
+      <div>a lyrical analysis</div>
     </a>
     <a class="clickbait-article" style="display: flex;" href="/page/meat-substrate/meat.html">
       <div style="width: min-content; text-align: center;">Click here <b>to</b> learn about <i>meat</i></div>
       <img height="130" src="/page/meat-substrate/retro_steak.png">
     </a>
+    <a href="/page/legal/disclaimer.html" class="clickbait-article">Legal disclaimer</a>
   </div>
 </section>
 <script src="/js/everything.js"></script>

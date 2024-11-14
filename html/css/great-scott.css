@@ -1,3 +1,4 @@
+a:link{color:#551A8B;}
 /** OLD STUFF */
 .div_pad_large {
   height: 24px;
@@ -419,6 +420,11 @@ body>hr {
   text-decoration-color:#00e;
   cursor:pointer;
   text-decoration-line:underline;
+  user-select:none;
+}
+.fakelink:active {
+  color:#f00;
+  text-decoration-color:#f00;
 }
 .chad {
   font-family: serif;
@@ -458,6 +464,9 @@ body>hr {
 .fake_advertisement:hover {
   background-color: #e3e3e3;
 }
+.fake_advertisement:active {
+  background-color: #dddddd;
+}
 .clickbait-article {
   border: groove 4px #bbb;
   border-color: #ffdddd;
@@ -469,9 +478,13 @@ body>hr {
   text-decoration: none;
   color: #000000;
   display:block;
+  text-align:center;
 }
 .clickbait-article:hover {
-background-color: #fff0ff;
+  background-color: #fff0ff;
+}
+.clickbait-article:active {
+  background-color: #ffe0ff;
 }
 .mellon {
   color: #ffffff;
@@ -487,4 +500,7 @@ background-color: #fff0ff;
 }
 .mellon:hover {
   background-color:#ff00ff;
+}
+.mellon:active {
+  background-color:#ff8000;
 }
