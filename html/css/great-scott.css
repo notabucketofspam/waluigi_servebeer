@@ -55,6 +55,7 @@ html {
 #burger > img {
   margin:auto;
   display:block;
+  user-select:none;
 }
 #burger:hover{
   background-color:#ddd;
