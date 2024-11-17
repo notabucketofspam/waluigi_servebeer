@@ -47,7 +47,7 @@ if (location.pathname !== "/"&&!location.pathname.includes("dex")){
 `<div style="text-align:center;font-family:monospace;">You need to<br>
 <span id="outdextoptext">try the new</span><br>
 <a id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html" style="cursor:pointer;">S.P.A.M.</a><br>
-to unlock this menu.
+to use this menu.
 </div>`);
 }
 var cog = console.log;
