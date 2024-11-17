@@ -115,7 +115,7 @@ html {
   white-space:nowrap;
 }
 #change_track {
-  padding: 0px 25px;
+  padding: 0px 26px;
   font-size:110%;
   user-select:none;
 }
@@ -477,6 +477,7 @@ body>hr {
   display: block;
   text-decoration: none;
   color: #000000;
+  user-select:none;
 }
 .fake_advertisement:hover {
   background-color: #e3e3e3;
@@ -496,6 +497,7 @@ body>hr {
   color: #000000;
   display:block;
   text-align:center;
+  user-select:none;
 }
 .clickbait-article:hover {
   background-color: #fff0ff;
