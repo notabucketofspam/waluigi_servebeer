@@ -30,6 +30,10 @@
 /page/food-time/favicon-food.png
 /page/food-time/food.html
 /page/food-time/retro_coal.png
+/page/gallery
+/page/gallery/memes.html
+/page/gallery/ME_0.webp
+/page/gallery/ME_0big.webp
 /page/intel
 /page/intel/favicon-intel.png
 /page/intel/intel-inside.png
