@@ -43,27 +43,27 @@
 <script src="/js/everything.js"></script>
 <script src="/js/party-og.js"></script>
 <script>
-  var startup_done = true;
-  consume(hashgrab());
+var startup_done = true;
+consume(hashgrab());
 var main = document.querySelector('main');
 var button = document.getElementById("button");
-  var ick = document.getElementById("ick");
-  var meateater = document.getElementById("meateater");
-  var eatmeter = document.getElementById("eatmeter");
-  var meeper = document.getElementById("meeper");
+var ick = document.getElementById("ick");
+var meateater = document.getElementById("meateater");
+var eatmeter = document.getElementById("eatmeter");
+var meeper = document.getElementById("meeper");
 /**@type HTMLInputElement*/
 var meeptheater = document.getElementById("meeptheater");
 var quit = document.getElementById("quit");
-  var bread = 
+var bread = 
 /(?:(?<=\<title\>)(?<title>.*?)(?=\<\/title\>))|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<scrsrc>.*?)(?="\>\<\/script\>))/gs;
-  /**@type HTMLInputElement*/
-  var cowbox = document.getElementById('cowbox');
-  var cowtools = document.getElementById('cowtools');
-  var labelForCowbox = document.getElementById('label-for-cowbox');
-  /**
-   * put those almonds to good use
-   * @param {string} url the page you need
-   */
+/**@type HTMLInputElement*/
+var cowbox = document.getElementById('cowbox');
+var cowtools = document.getElementById('cowtools');
+var labelForCowbox = document.getElementById('label-for-cowbox');
+/**
+ * put those almonds to good use
+ * @param {string} url the page you need
+ */
 function consume(url) {
   if (url.includes("outdex.html")) {
     console.log(url);
@@ -123,7 +123,7 @@ function consume(url) {
 }
 /**greedy lil thief*/
 function hashgrab() {
- return location.hash.substring(1)||"/";
+  return location.hash.substring(1)||"/";
 }
 function show_cowtools() {
   cowtools.classList.toggle('getitouttahere');
@@ -195,68 +195,68 @@ function become_wolfjerkeytm(ev){
 };
 ick.addEventListener('click', become_wolfjerkeytm);
 
-  function unprepare_almonds() {
-    const allah = document.querySelectorAll("a");
-    for (const a of allah) {
-      a.removeEventListener('click', dubiousLink);
+function unprepare_almonds() {
+  const allah = document.querySelectorAll("a");
+  for (const a of allah) {
+    a.removeEventListener('click', dubiousLink);
+  }
+}
+function prepare_almonds() {
+  const allah = document.querySelectorAll("a");
+  for (const a of allah) {
+    if (!a.href||a.classList.contains("no-almonds")) {
+    } else if (a.pathname.includes("outdex.html") || a.classList.contains("dropdown_item")) {
+      a.href = hashgrab();
+    } else {
+      a.addEventListener('click', dubiousLink);
     }
   }
-  function prepare_almonds() {
-    const allah = document.querySelectorAll("a");
-    for (const a of allah) {
-      if (!a.href||a.classList.contains("no-almonds")) {
-      } else if (a.pathname.includes("outdex.html") || a.classList.contains("dropdown_item")) {
-        a.href = hashgrab();
-      } else {
-        a.addEventListener('click', dubiousLink);
-      }
-    }
+}
+/**@param {MouseEvent}ev*/
+function dubiousLink(ev) {
+  ev.preventDefault();
+/**@type HTMLAnchorElement*/
+  const a = ev.composedPath().find(el => el instanceof HTMLAnchorElement);
+  const pn = a.pathname;
+  location.hash = pn;
+  consume(pn);
+}
+var fun_colours_tracker;
+var fun_colours_going;
+var fun_holder = 0;
+eatmeter.addEventListener('click', ev => {
+  if (fun_colours_going) {
+    clearInterval(fun_colours_tracker);
+    document.body.style.transition = "";
+    document.body.style.backgroundColor = "";
+    fun_colours_going = false;
+  } else {
+    document.body.style.transition = "background-color 16ms";
+    fun_colours_tracker = setInterval(fun_colours, 16);
+    fun_colours_going = true;
   }
-  /**@param {MouseEvent}ev*/
-  function dubiousLink(ev) {
-    ev.preventDefault();
-  /**@type HTMLAnchorElement*/
-    const a = ev.composedPath().find(el => el instanceof HTMLAnchorElement);
-    const pn = a.pathname;
-    location.hash = pn;
-    consume(pn);
-  }
-  var fun_colours_tracker;
-  var fun_colours_going;
-  var fun_holder = 0;
-  eatmeter.addEventListener('click', ev => {
-      if (fun_colours_going) {
-        clearInterval(fun_colours_tracker);
-        document.body.style.transition = "";
-        document.body.style.backgroundColor = "";
-        fun_colours_going = false;
-      } else {
-        document.body.style.transition = "background-color 16ms";
-        fun_colours_tracker = setInterval(fun_colours, 16);
-        fun_colours_going = true;
-      }
-  });
-  function fun_colours() {
-    document.body.style.backgroundColor =
-    `oklch(0.77 0.34 ${fun_holder+=(7e-3)}turn)`;
-  }
+});
+function fun_colours() {
+  document.body.style.backgroundColor =
+  `oklch(0.77 0.34 ${fun_holder+=(7e-3)}turn)`;
+}
 
-  function donatehash() {
-    let valproate = meeptheater.value;
-    if (valproate) {
-      location.hash = valproate;
-      consume(valproate);
-    }
+function donatehash() {
+  let valproate = meeptheater.value;
+  if (valproate) {
+    location.hash = valproate;
+    consume(valproate);
   }
-  meeper.addEventListener('click', donatehash);
-  
-  quit.addEventListener("click", ev => quit_more());
-  function quit_more() {
-    alert("The door is closed.");
-    //prompt("Headin' back to Sydney, bruv?", "S\xED");
-    location.assign("/");
-    return;
-  }
+}
+meeper.addEventListener('click', donatehash);
+
+quit.addEventListener("click", ev => quit_more());
+function quit_more() {
+  alert("The door is closed.");
+  //prompt("Headin' back to Sydney, bruv?", "S\xED");
+  location.assign("/");
+  return;
+}
 </script>
 </body>
 </html>
