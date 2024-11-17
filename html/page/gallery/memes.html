@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<title>Meme Gallery - waluigi-servebeer.com</title>
+<style>
+h1 {
+  letter-spacing:0.5ch;
+  font-size:2.5rem;
+}
+#memes {
+  display:flex;
+  flex: 0 0 0;
+  flex-flow: row wrap;
+}
+#memes img {
+  width:auto;
+  height:2.5in;
+  align-self:flex-start;
+  display:block;
+  margin-top:0.2in;
+}
+img[popover] {
+  position:relative;
+}
+</style>
+</head>
+<body>
+<h1>MEMES</h1>
+<main id="memes">
+</main>
+<script src="/js/everything.js"></script>
+<script>
+var bucket = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/";
+var jason;
+var lines;
+var memes = document.getElementById("memes");
+fetch(bucket)
+.then(response=>response.json())
+.then(json=>{
+  jason=json;
+  lines = json.objects.map(obj=>obj.name).filter(line=>line.startsWith('image')&&line.includes('.'));
+  for (const item of lines) {
+    memes.insertAdjacentHTML("beforeend", '<img src="'+bucket+item+'" popover onclick="this.togglePopover()" onbeforetoggle="before_toggle(event)"/>');
+  }
+});
+function before_toggle(ev) {
+  if (ev.newState === "open") {
+    if (ev.target.width > ev.target.height) {
+      ev.target.style.width="90vw";
+      ev.target.style.height="auto";
+    } else {
+      ev.target.style.width="auto";
+      ev.target.style.height="90vh";
+    }
+    ev.target.style.position="fixed";
+    ev.target.style.marginTop="auto";
+  } else {
+    ev.target.style.width="auto";
+    ev.target.style.height="2.5in";
+    ev.target.style.position="relative";
+    ev.target.style.marginTop="0.2in";
+  }
+}
+</script>
+</body>
+</html>
