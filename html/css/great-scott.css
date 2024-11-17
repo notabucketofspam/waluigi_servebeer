@@ -420,6 +420,9 @@ body>hr {
   margin-left: -8px;
   margin-right: -8px;
 }
+.flax {
+  display:flex;
+}
 
 /*
     GLITTER
@@ -452,6 +455,9 @@ body>hr {
 }
 .f3 {
   font-size: 130%;
+}
+.f4 {
+  font-size: 140%;
 }
 .f5 {
   font-size: 150%;
