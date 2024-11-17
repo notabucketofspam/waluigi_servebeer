@@ -10,7 +10,7 @@
 }
 #label-for-cowbox {
   font-style: italic;
-  cursor:
+  cursor:pointer;
 }
 #cowbox {
   height: 10px;
@@ -26,18 +26,18 @@
 </head>
 <body>
   <div id="hoverboots">
-    <span>only the highest-quality meats are selected for serving on waluigi-servebeer.com</span>
-    <br />
+    <div>only the highest-quality meats are selected for serving on waluigi-servebeer.com</div>
+    <!-- <br /> -->
     <button id="quit" hidden>quit</button>
-    <input id="cowbox" type="checkbox" /><label id="label-for-cowbox" for="cowbox">show cowtools?</label>
-    <span id="cowtools" class="getitouttahere">
+    <input id="cowbox" type="checkbox" hidden /><label id="label-for-cowbox" for="cowbox" hidden>show cowtools?</label>
+    <div id="cowtools" class="" style="display:block;">
       <button id="button" title="did you bring a big enough plate for dinner, son?">plate</button>
       <button id="ick" title="wolfjerkeytm">wolfjerkey&#8482;</button>
       <button id="meateater" title="plagiarism, grand theft, and fraud">prime cuts</button>
       <button id="eatmeter" title="random colors" hidden>eatmeter</button>
       <input id="meeptheater" type="url" hidden placeholder="meeptheater" title="where do you wanna go?" />
       <button id="meeper" title="you wanna go *there*? for real?" hidden>meeper</button>
-    </span>
+    </div>
   </div>
 <main></main>
 <script src="/js/everything.js"></script>
