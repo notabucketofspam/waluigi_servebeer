@@ -235,6 +235,8 @@ html {
   line-height: 0px;
   text-decoration:none;
   color:#f0f;
+}
+#outdexbottomtext[title] {
   cursor: help;
 }
 #imnotarobot {

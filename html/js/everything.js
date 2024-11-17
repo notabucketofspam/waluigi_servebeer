@@ -2,7 +2,7 @@ if (!document.getElementById('welcome_steak'))
 document.documentElement.insertAdjacentHTML("afterbegin",
 `<a href="/" id="return_steak" class="steak_corner">
 Return to the 
-<img src="/resource/steak80.gif" alt="STEAK" class="steak_gif">
+<img src="/resource/steak8.gif" alt="STEAK" class="steak_gif">
 zone
 </a>`);
 document.documentElement.insertAdjacentHTML("beforeend",
