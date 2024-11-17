@@ -55,3 +55,4 @@ var cog = console.log;
 function rui (k) {
   return Math.random() / Number.EPSILON % k;
 }
+
