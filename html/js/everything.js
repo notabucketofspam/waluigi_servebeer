@@ -46,7 +46,7 @@ if (location.pathname !== "/"&&!location.pathname.includes("dex")){
   burgmenu.insertAdjacentHTML("beforeend", 
 `<div style="text-align:center;font-family:monospace;">You need to<br>
 <span id="outdextoptext">try the new</span><br>
-<a id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html" style="cursor:pointer;">S.P.A.M.</a><br>
+<a id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html#${location.pathname}" style="cursor:pointer;">S.P.A.M.</a><br>
 to use this menu.
 </div>`);
 }
