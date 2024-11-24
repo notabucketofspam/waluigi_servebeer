@@ -51,7 +51,7 @@ This is where we put the party stuff. You need to<br><br>
 <a id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html#${location.pathname}">S.P.A.M.</a><br>
 <input id="roboslider" value="0" type="range" oninput="if (this.value >99) location.assign('/outdex.html#${location.pathname}')" />
 <br />
-<code id="imnotarobot" style="top:-7px;left:4px;">I'm not a robot</code>
+<code id="imnotarobot" style="top:-7px;left:6px;">I'm not a robot</code>
 </div><br>
 to bring the party with you.
 </div>`);
