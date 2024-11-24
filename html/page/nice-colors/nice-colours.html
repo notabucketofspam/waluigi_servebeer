@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes" />
 <title>nice colores - waluigi-servebeer.com</title>
 <style>
+body {
+  transition:background-color 0ms linear
+}
 #doodad {
   background-color: #fedfed;
   border:solid;
@@ -18,12 +21,18 @@
 #doodad:active {
   letter-spacing:2px;
 }
+#dongle {
+  width:100%;
+  accent-color:#f0a;
+}
 </style>
 </head>
 <body>
 <h1>here are some <i>smooooth</i> colors</h1>
 <div>
 <button id="doodad">doodad</button>
+<br>
+<input type="range" min="0" max="10" step="0.01" value="1" id="dongle">
 </div>
 <script src="/js/everything.js"></script>
 <script>
@@ -34,7 +43,8 @@ doodad.addEventListener("click", ()=>{
   long_int = long_int?cancelAnimationFrame(long_int):okfine();
 });
 function okfine() {
-  document.body.style.backgroundColor = "oklch(1 0.4 "+ ++whatever +")";
+  whatever+=dongle.valueAsNumber;
+  document.body.style.backgroundColor = "oklch(1 0.4 "+ (whatever) +")";
   long_int = window.requestAnimationFrame(okfine);
 }
 </script>
