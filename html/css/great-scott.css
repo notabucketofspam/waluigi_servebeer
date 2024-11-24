@@ -10,6 +10,10 @@ a:link{
 html {
   overflow-y:scroll;
 }
+a.nostyle {
+  color:#000;
+  text-decoration:none;
+}
 
 /*
     STEAK ZONE
@@ -218,10 +222,16 @@ html {
 */
 #outdexportal {
   float: right;
-  margin-right: 5%;
+  margin-right: calc(50vw - 275px);
   width:155px;
   white-space:nowrap;
   user-select:none;
+  text-align:center;
+}
+@media (max-width:600px) {
+  #outdexportal {
+    margin-right:5%;
+  }
 }
 #outdextoptext {
   font-family: 'Segoe UI';
@@ -244,7 +254,7 @@ html {
   letter-spacing: 1px;
   position: relative;
   top: -10px;
-  left: 18px;
+  left: 4px;
   color: #eee;
   user-select: none;
   pointer-events: none;
@@ -292,8 +302,8 @@ input[type="range"]:active {
     left:0px;
   }
   #jar {
-    width: 91%;
-    height: 2.3lh;
+    width: 90%;
+    height: 2.5lh;
   }
 }
 #aight {

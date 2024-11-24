@@ -46,9 +46,9 @@ if (location.pathname !== "/"&&!location.pathname.includes("dex")){
   burgmenu.insertAdjacentHTML("beforeend", 
 `<div style="text-align:center;font-family:monospace;">
 This is where we put the party stuff. You need to<br><br>
-<div>
+<div id="outdexportal" style="float:none;margin:auto;">
 <span id="outdextoptext">try the new</span><br>
-<a id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html#${location.pathname}" style="--cursor:pointer;">S.P.A.M.</a><br>
+<a id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html#${location.pathname}">S.P.A.M.</a><br>
 <input id="roboslider" value="0" type="range" oninput="if (this.value >99) location.assign('/outdex.html#${location.pathname}')" />
 <br />
 <code id="imnotarobot" style="top:-7px;left:4px;">I'm not a robot</code>

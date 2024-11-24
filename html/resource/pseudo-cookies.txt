@@ -95,7 +95,7 @@ stuff, other people, and else, is real and you're not just crazy.
 
 This site contains a mature and respectful discussion of <i>meat</i>.
 
-<a class="chad steak_zone_text anchor_no_style" href="/">
+<a class="chad nostyle f1" href="/">
 Welcome to the <img class="steak_gif" src="/resource/steak8.gif" alt="STEAK" /> zone
 </a>
 
