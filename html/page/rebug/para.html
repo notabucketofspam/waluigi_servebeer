@@ -14,9 +14,11 @@
 <script src="/js/everything.js"></script>
 <script>
 for (const cork in visualViewport) {
+  visualViewport[cork] !== null&&
   typeof visualViewport[cork] !== 'function'&&
   screenstuff.insertAdjacentHTML("beforeend", '<li>'+cork+': '+visualViewport[cork]+'</li>');
 }
+screenstuff.insertAdjacentHTML("beforeend", '<li>devicePixelRatio: '+devicePixelRatio+'</li>');
 </script>
 </body>
 </html>
