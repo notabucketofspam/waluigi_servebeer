@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<title>rebug - waluigi-servebeer.com</title>
+<style>
+
+</style>
+</head>
+<body>
+<h1>rebug</h1>
+<ul id="screenstuff"></ul>
+<script src="/js/everything.js"></script>
+<script>
+for (const cork in visualViewport) {
+  typeof visualViewport[cork] !== 'function'&&
+  screenstuff.insertAdjacentHTML("beforeend", '<li>'+cork+': '+visualViewport[cork]+'</li>');
+}
+</script>
+</body>
+</html>
