@@ -25,6 +25,8 @@
 /page/changelog
 /page/changelog/changelog.html
 /page/changelog/favicon-log.png
+/page/congrat
+/page/congrat/real.html
 /page/food-time
 /page/food-time/eat-your-coal.png
 /page/food-time/favicon-food.png
