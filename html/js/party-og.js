@@ -108,7 +108,6 @@ function update_cycle_amount(event, element) {
     global_cycle_amount += (element.getAttribute("value") === ">") ? 
       (global_cycle_units) : (-1 * global_cycle_units);
   document.getElementById("funk_level").innerHTML = (global_cycle_amount / global_cycle_units);
-  // var fmb_list = document.getElementsByClassName("funk_meter_bar");
   update_funk_meter_bar(fmb_list[fmb_list.length - 1], (global_cycle_amount - gca_initial));
 }
 function update_funk_meter_bar(element, delta) {
@@ -128,7 +127,6 @@ function update_funk_meter_bar(element, delta) {
     funk_meter_bar_width_total *= -1;
   var fmbw_overflow = funk_meter_bar_width_total % window.innerWidth;
   //console.log("fmbw", fmbw_overflow, "elemwidth", parseFloat(element.style.width));
-  // var fmb_list = document.getElementsByClassName("funk_meter_bar");
   if (Math.abs(fmbw_overflow)<2 && (fmb_list.length != 1)/* &&
     (parseFloat(element.style.width) < 2)*/
     &&((delta<0&&!update_funk_meter_bar.negative)||(delta>0&&update_funk_meter_bar.negative))) {
@@ -145,7 +143,7 @@ function update_funk_meter_bar(element, delta) {
 }
 function update_cycle_amount_press(event) {
   if (event.type == "mousedown" || event.type == "touchstart")
-    global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, (1000 / 20), null, this);
+    global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, 25, null, this);
   else if (event.type == "mouseup" || event.type == "touchend")
     clearInterval(global_update_cycle_amount_press_handle);
 }
@@ -161,7 +159,7 @@ var funk_more = document.getElementById("funk_more");
 var funk_less = document.getElementById("funk_less");
 function giga_funk(which_funk, how_much) {
   var _which_funk = which_funk??funk_more;
-  var _how_much = how_much??99;
+  var _how_much = how_much??39;
   for(let i=0;i<_how_much;i++)
     _which_funk.dispatchEvent(new Event("mousedown"));
   return "hell yeah";

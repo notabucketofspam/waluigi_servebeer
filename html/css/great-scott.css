@@ -14,6 +14,9 @@ a.nostyle {
   color:#000;
   text-decoration:none;
 }
+body {
+  /* transition: background-color 16ms linear;   */
+}
 
 /*
     STEAK ZONE
@@ -147,7 +150,8 @@ a.nostyle {
   margin-bottom:-1px;
 }
 #funk_jukebox_intel {
-  overflow: visible;
+  overflow-y: visible;
+  overflow-x: clip;
   min-height:232px;
 }
 #singular_jukebox_divider {
@@ -160,6 +164,7 @@ a.nostyle {
 #scroll_wheel_comment {
   font-size: 85%;
   user-select:none;
+  white-space:nowrap;
 }
 #funk_lvl_outer {
   padding: 0px 12px;
@@ -211,10 +216,13 @@ a.nostyle {
     min-height:530px;
   }
 }
-@media (max-width:384px){
+@media (max-width:374px){
   #funk_jukebox_intel {
     min-height:599px;
   }
+}
+#burgmenu #jukebox_current_track {
+  background-color:#ffffff;
 }
 
 /*
@@ -230,7 +238,7 @@ a.nostyle {
 }
 @media (max-width:600px) {
   #outdexportal {
-    margin-right:5%;
+    margin-right:2%;
   }
 }
 #outdextoptext {
@@ -254,7 +262,7 @@ a.nostyle {
   letter-spacing: 1px;
   position: relative;
   top: -10px;
-  left: 4px;
+  left: 6px;
   color: #eee;
   user-select: none;
   pointer-events: none;
