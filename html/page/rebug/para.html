@@ -5,20 +5,23 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes" />
 <title>rebug - waluigi-servebeer.com</title>
 <style>
-
+ul {
+  margin-top:0px;
+}
 </style>
 </head>
 <body>
 <h1>rebug</h1>
-<ul id="screenstuff"></ul>
+<span>visualViewport</span>
+<ul id="viewstuff"></ul>
 <script src="/js/everything.js"></script>
 <script>
 for (const cork in visualViewport) {
   visualViewport[cork] !== null&&
   typeof visualViewport[cork] !== 'function'&&
-  screenstuff.insertAdjacentHTML("beforeend", '<li>'+cork+': '+visualViewport[cork]+'</li>');
+  viewstuff.insertAdjacentHTML("beforeend", '<li>'+cork+': '+visualViewport[cork]+'</li>');
 }
-screenstuff.insertAdjacentHTML("beforeend", '<li>devicePixelRatio: '+devicePixelRatio+'</li>');
+viewstuff.insertAdjacentHTML("afterend", '<span>devicePixelRatio: '+devicePixelRatio+'</span>');
 </script>
 </body>
 </html>
