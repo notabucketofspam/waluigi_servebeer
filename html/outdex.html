@@ -5,8 +5,16 @@
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css">
 <meta name="viewport" content="width=device-width, user-scalable=yes" />
 <style>
+#cowtools {
+  display:inline-block;
+  margin-left:0.5ch;
+}
 .getitouttahere {
-  display: none;
+  display: none !important;
+}
+#cowspace {
+  white-space:nowrap;
+  display:inline-block;
 }
 #label-for-cowbox {
   font-style: italic;
@@ -15,29 +23,51 @@
 #cowbox {
   height: 10px;
   accent-color:red;
+  vertical-align:bottom;
 }
 #hoverboots {
   left: 60px;
   position: fixed;
   top: 0px;
   z-index: 11;
+  white-space:nowrap;
+}
+#quit-x {
+  border:outset #fcc;
+  background-color:#faa;
+  font-family:math;
+  padding:0px;
+  width:20px;
+  height:20px;
+  vertical-align:bottom;
+}
+#quit-x:hover {
+  border-color: #ebb;
+  background-color:#e99;
+}
+#quit-x:active {
+  border-color: #daa;
+  background-color:#d88;
 }
 </style>
 </head>
 <body>
   <div id="hoverboots">
-    <div>only the highest-quality meats are selected for serving on waluigi-servebeer.com</div>
-    <!-- <br /> -->
-    <button id="quit" hidden>quit</button>
-    <input id="cowbox" type="checkbox" hidden /><label id="label-for-cowbox" for="cowbox" hidden>show cowtools?</label>
-    <div id="cowtools" class="" style="display:block;">
-      <button onclick="location.assign(hashgrab())" title="leave the new S.P.A.M.">quit</button>
+    <div id="cowspace">
+      <input  id="cowbox" type="checkbox"/>
+      <label id="label-for-cowbox" for="cowbox">show cowtools?</label>
+      <br>
+      <button id="quit-x" onclick="location.assign(hashgrab())" title="leave the new S.P.A.M.">x</button>
+    </div>
+    <div id="cowtools" class="getitouttahere">
+      <div>only the highest-quality meats are selected for serving on waluigi-servebeer.com</div>
+      <!-- <button id="quit" hidden>quit</button> -->
       <button id="button" title="did you bring a big enough plate for dinner, son?">plate</button>
       <button id="ick" title="wolfjerkeytm">wolfjerkey&#8482;</button>
       <button id="meateater" title="plagiarism, grand theft, and fraud">prime cuts</button>
-      <button id="eatmeter" title="random colors" hidden>eatmeter</button>
-      <input id="meeptheater" type="url" hidden placeholder="meeptheater" title="where do you wanna go?" />
-      <button id="meeper" title="you wanna go *there*? for real?" hidden>meeper</button>
+      <!-- <button id="eatmeter" title="random colors" hidden>eatmeter</button> -->
+      <!-- <input id="meeptheater" type="url" hidden placeholder="meeptheater" title="where do you wanna go?" /> -->
+      <!-- <button id="meeper" title="you wanna go *there*? for real?" hidden>meeper</button> -->
     </div>
   </div>
 <main></main>
@@ -50,11 +80,11 @@ var main = document.querySelector('main');
 var button = document.getElementById("button");
 var ick = document.getElementById("ick");
 var meateater = document.getElementById("meateater");
-var eatmeter = document.getElementById("eatmeter");
-var meeper = document.getElementById("meeper");
+//var eatmeter = document.getElementById("eatmeter");
+//var meeper = document.getElementById("meeper");
 /**@type HTMLInputElement*/
-var meeptheater = document.getElementById("meeptheater");
-var quit = document.getElementById("quit");
+//var meeptheater = document.getElementById("meeptheater");
+//var quit = document.getElementById("quit");
 var bread = 
 /(?:(?<=\<title\>)(?<title>.*?)(?=\<\/title\>))|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<scrsrc>.*?)(?="\>\<\/script\>))/gs;
 /**@type HTMLInputElement*/
@@ -225,7 +255,8 @@ function dubiousLink(ev) {
 var fun_colours_tracker;
 var fun_colours_going;
 var fun_holder = 0;
-eatmeter.addEventListener('click', ev => {
+//eatmeter.addEventListener('click', eatmeter_cb);
+var eatmeter_cb = ev => {
   if (fun_colours_going) {
     clearInterval(fun_colours_tracker);
     document.body.style.transition = "";
@@ -236,7 +267,7 @@ eatmeter.addEventListener('click', ev => {
     fun_colours_tracker = setInterval(fun_colours, 16);
     fun_colours_going = true;
   }
-});
+}
 function fun_colours() {
   document.body.style.backgroundColor =
   `oklch(0.77 0.34 ${fun_holder+=(7e-3)}turn)`;
@@ -249,9 +280,9 @@ function donatehash() {
     consume(valproate);
   }
 }
-meeper.addEventListener('click', donatehash);
+//meeper.addEventListener('click', donatehash);
 
-quit.addEventListener("click", ev => quit_more());
+//quit.addEventListener("click", ev => quit_more());
 function quit_more() {
   alert("The door is closed.");
   //prompt("Headin' back to Sydney, bruv?", "S\xED");
