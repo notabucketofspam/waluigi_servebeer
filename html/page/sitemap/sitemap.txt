@@ -52,6 +52,8 @@
 /page/nice-colors
 /page/nice-colors/nice-colours.html
 /page/nice-colors/old_colors.html
+/page/rebug
+/page/rebug/para.html
 /page/retrospective
 /page/retrospective/seven-years.html
 /page/retrospective/wsbc
