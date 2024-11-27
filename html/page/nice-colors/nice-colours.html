@@ -46,9 +46,9 @@ doodad.addEventListener("click", ()=>{
   long_int = long_int?cancelAnimationFrame(long_int):okfine(time_circle = document.timeline.currentTime);
 });
 function okfine(timestamp) {
-  var timescale = (timestamp - time_circle)*60/1000;
+  var timescale = (timestamp - time_circle)*0.06;
   time_circle = document.timeline.currentTime;
-  whatever+=dongle.valueAsNumber*timescale/250;
+  whatever+=dongle.valueAsNumber*timescale/25;
   document.body.style.backgroundColor = "oklch(1 0.4 "+ (whatever) +")";
   long_int = window.requestAnimationFrame(okfine);
 }
