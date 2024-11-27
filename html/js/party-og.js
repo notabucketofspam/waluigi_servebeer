@@ -4,7 +4,7 @@
 document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
 `<div id="party_zone">
   <div id="funk_container" >
-    <input id="funk_button" type="button" value="Start the party" onclick="toggle_cycle_background(this)">
+    <input id="funk_button" type="button" value="Start the party">
     <div class="div_pad_small"></div>
     <div class="funk_meter scrollable_meter" id="another_funk_thing_idk" onwheel="update_cycle_amount(event, null)">
       <input class="funk_meter_button" type="button" value="&#60;" id="funk_less">
@@ -48,73 +48,44 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
 </div>`);
   
 /*
-    FUNK
+    FUNK / NICE COLORS
 */
-var global_frametime = 1000 / 60;
-var global_cycle_units = 10;
-var global_funk_meter_bar_units = 2;
-var global_cycle_amount = 250;
-var global_page_hue = 0;
-var global_page_hue_reverse = 65535;
-var global_cycle_background_handle;
-var global_update_cycle_amount_press_handle;
-
-var good_colors = CSS.supports("background-color: oklch(1 0.4 0)");
+var good_colors = CSS.supports("background-color", "oklch(1 0.4 0)");
 if (good_colors) {
-  var rainbow_rgb = (h) => `oklch(1 0.4 ${h/182})`;
+  var rainbow_rgb = (h) => `oklch(1 0.4 ${h})`;
 } else {
-  var rainbow_rgb = (h) => `hsl(${h/182} 100% 50%`;
+  var rainbow_rgb = (h) => `hsl(${h} 100% 50%`;
 }
 
+var cycle_amount = 25;
+var whatever = 0;
+var long_int;
+var time_circle;
+var funk_button = document.getElementById("funk_button");
+var now_cycling = false;
+funk_button.addEventListener("click", ()=>{
+  document.body.style.removeProperty("background-color");
+  long_int = long_int?cancelAnimationFrame(long_int):okfine(time_circle = document.timeline.currentTime);
+  now_cycling = !now_cycling;
+  funk_button.value = now_cycling ? "Stop it's too much":"Start the party";
+});
+function okfine(timestamp) {
+  var timescale = (timestamp - time_circle)*0.06;
+  time_circle = document.timeline.currentTime;
+  whatever+=cycle_amount*timescale/20;
+  document.body.style.backgroundColor = rainbow_rgb(whatever);
+  long_int = window.requestAnimationFrame(okfine);
+}
+
+/*
+    FUNK METER BAR
+*/
 var fmb_list = document.getElementsByClassName("funk_meter_bar");
-
-var funk_meter_button_list = document.getElementsByClassName("funk_meter_button");
-var fmbl_counter;
-for (fmbl_counter = 0; fmbl_counter < funk_meter_button_list.length; ++fmbl_counter) {
-  funk_meter_button_list[fmbl_counter].addEventListener("mousedown", update_cycle_amount_press);
-  funk_meter_button_list[fmbl_counter].addEventListener("mouseup", update_cycle_amount_press);
-  funk_meter_button_list[fmbl_counter].addEventListener("touchstart", update_cycle_amount_press);
-  funk_meter_button_list[fmbl_counter].addEventListener("touchend", update_cycle_amount_press);
-}
-function cycle_background() {
-  if (global_cycle_amount >= 0) {
-    global_page_hue += global_cycle_amount;
-    //if (global_page_hue >= 65536)
-      //global_page_hue = 0;
-    document.body.style.backgroundColor = rainbow_rgb(global_page_hue, 255, 255);
-  } else {
-    global_page_hue_reverse += global_cycle_amount;
-    //if (global_page_hue_reverse <= 0)
-      //global_page_hue_reverse = 65535;
-    document.body.style.backgroundColor = rainbow_rgb(global_page_hue_reverse, 255, 255);
-  }
-}
-function toggle_cycle_background(element) {
-  element.classList.toggle("active");
-  if (element.classList.contains("active")) {
-    element.setAttribute("value", "Stop it's too much");
-    global_cycle_background_handle = setInterval(cycle_background, global_frametime);
-  } else {
-    element.setAttribute("value", "Start the party");
-    clearInterval(global_cycle_background_handle);
-    document.body.style.backgroundColor = "";
-  }
-}
-function update_cycle_amount(event, element) {
-  var gca_initial = global_cycle_amount;
-  if (event)
-    global_cycle_amount += (event.deltaY < 0) ? (global_cycle_units) : (-1 * global_cycle_units);
-  if (element)
-    global_cycle_amount += (element.getAttribute("value") === ">") ? 
-      (global_cycle_units) : (-1 * global_cycle_units);
-  document.getElementById("funk_level").innerHTML = (global_cycle_amount / global_cycle_units);
-  update_funk_meter_bar(fmb_list[fmb_list.length - 1], (global_cycle_amount - gca_initial));
-}
 function update_funk_meter_bar(element, delta) {
-  var funk_meter_bar_width_total = global_funk_meter_bar_units * global_cycle_amount / global_cycle_units;
-  if (update_funk_meter_bar.negative == "undefined")
+  var funk_meter_bar_width_total = 2 * cycle_amount;
+  if (typeof update_funk_meter_bar.negative == "undefined")
     update_funk_meter_bar.negative = false;
-  var clock = (!global_cycle_amount && (delta > 0 || delta < 0));
+  var clock = (!cycle_amount && (delta > 0 || delta < 0));
   if (clock && (delta > 0)) {
     update_funk_meter_bar.negative = false;
     element.style.backgroundColor = "#22bb22";
@@ -134,18 +105,12 @@ function update_funk_meter_bar(element, delta) {
     element.parentNode.removeChild(element);
     return;
   }
-  if (Math.abs(fmbw_overflow)<2 && (global_cycle_amount != 0)) {
+  if (Math.abs(fmbw_overflow)<2 && (cycle_amount != 0)) {
     //console.log("spawn");
     spawn_funk_meter_bar(element);
     return;
   }
   element.style.width = ((fmbw_overflow) + "px");
-}
-function update_cycle_amount_press(event) {
-  if (event.type == "mousedown" || event.type == "touchstart")
-    global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, 25, null, this);
-  else if (event.type == "mouseup" || event.type == "touchend")
-    clearInterval(global_update_cycle_amount_press_handle);
 }
 function spawn_funk_meter_bar(element) {
   var nu_div = `<div class="funk_meter_bar" id="fmb_num_${fmb_list.length}" style="margin: 4px 0px; width: 0px; background-color: ${element.style.backgroundColor};"></div>`;
@@ -153,10 +118,38 @@ function spawn_funk_meter_bar(element) {
 }
 
 /*
-    GIGA FUNK
+    FUNK USER INPUT
 */
+var funk_level = document.getElementById("funk_level");
+var global_update_cycle_amount_press_handle;
+
 var funk_more = document.getElementById("funk_more");
 var funk_less = document.getElementById("funk_less");
+for (const fb of [funk_more, funk_less]) {
+  fb.addEventListener("mousedown", update_cycle_amount_press);
+  fb.addEventListener("mouseup", update_cycle_amount_press);
+  fb.addEventListener("touchstart", update_cycle_amount_press);
+  fb.addEventListener("touchend", update_cycle_amount_press);
+}
+function update_cycle_amount(event, element) {
+  var gca_initial = cycle_amount;
+  if (event)
+    cycle_amount += (event.deltaY < 0) ? (1) : (-1);
+  if (element)
+    cycle_amount += (element.getAttribute("value") === ">") ? (1) : (-1);
+  funk_level.innerHTML = (cycle_amount);
+  update_funk_meter_bar(fmb_list[fmb_list.length - 1], (cycle_amount - gca_initial));
+}
+function update_cycle_amount_press(event) {
+  if (event.type == "mousedown" || event.type == "touchstart")
+    global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, 25, null, this);
+  else if (event.type == "mouseup" || event.type == "touchend")
+    clearInterval(global_update_cycle_amount_press_handle);
+}
+
+/*
+    GIGA FUNK
+*/
 function giga_funk(which_funk, how_much) {
   var _which_funk = which_funk??funk_more;
   var _how_much = how_much??39;
@@ -169,6 +162,9 @@ funk_more.addEventListener("auxclick", ()=>giga_funk(funk_more));
 funk_less.addEventListener("contextmenu", (ev)=>ev.preventDefault());
 funk_less.addEventListener("auxclick", ()=>giga_funk(funk_less));
 
+/*
+    JUKEBOX
+*/
 var jukebox_track_list = [
   "Adhesive Wombat - Chodge Darger.mp3",
   "Jellyfish Jam.mp3",
@@ -178,8 +174,7 @@ var jukebox_track_list = [
   "Noma - Brain Power.mp3",
   "\u307F\u304D\u3068P - 39\u307F\u3085\u30FC\u3058\u3063\u304F! feat. \u521D\u97F3\u30DF\u30AF.mp3",
 ];
-var global_jukebox_track_list_position = 0;
-var global_jukebox_volume_bar_units = 2;
+var jukebox_track_index = 0;
 
 var audio_player = document.getElementById("audio_player");
 var jukebox_volume_element = document.getElementById("jukebox_volume_element");
@@ -214,18 +209,18 @@ function toggle_audio(element) {
 }
 function jukebox_change_track(element) {
   if (element === null || element.getAttribute("value") === ">") {
-    ++global_jukebox_track_list_position;
-    if (global_jukebox_track_list_position == jukebox_track_list.length)
-      global_jukebox_track_list_position = 0;
+    ++jukebox_track_index;
+    if (jukebox_track_index == jukebox_track_list.length)
+      jukebox_track_index = 0;
   } else {
-    --global_jukebox_track_list_position;
-    if (global_jukebox_track_list_position < 0)
-      global_jukebox_track_list_position = jukebox_track_list.length - 1;
+    --jukebox_track_index;
+    if (jukebox_track_index < 0)
+      jukebox_track_index = jukebox_track_list.length - 1;
   }
   jukebox_current_track.innerHTML = 
-    jukebox_track_list[global_jukebox_track_list_position];
+    jukebox_track_list[jukebox_track_index];
   audio_player.setAttribute("src", 
-    "/resource/jukebox-tracks/" + jukebox_track_list[global_jukebox_track_list_position]);
+    "/resource/jukebox-tracks/" + jukebox_track_list[jukebox_track_index]);
   audio_player.load();
   if (audio_button.classList.contains("active"))
     audio_player.play();
@@ -251,23 +246,18 @@ function update_jukebox_volume(event) {
     SCROLLING
 */
 var scrollable_meter_list = document.getElementsByClassName("scrollable_meter");
-var sml_counter;
-for (sml_counter = 0; sml_counter < scrollable_meter_list.length; ++sml_counter) {
-  scrollable_meter_list[sml_counter].addEventListener("mouseover", stop_scrolling_y);
-  scrollable_meter_list[sml_counter].addEventListener("mouseout", start_scrolling_y);
-  scrollable_meter_list[sml_counter].addEventListener("wheel", check_can_scroll);
+for (const sm of scrollable_meter_list) {
+  sm.addEventListener("mouseover", stop_scrolling_y);
+  sm.addEventListener("mouseout", start_scrolling_y);
+  sm.addEventListener("wheel", check_can_scroll);
 }
 var full_doc_html = document.documentElement;
 var can_scroll = true;
 function stop_scrolling_y(event) {
   can_scroll = false;
-  // full_doc_html.style.height = "100%";
-  // full_doc_html.style.overflowY = "hidden";
 }
 function start_scrolling_y(event) {
   can_scroll = true;
-  // full_doc_html.style.height = "auto";
-  // full_doc_html.style.overflowY = "auto";
 }
 function check_can_scroll(ev) {
   if (!can_scroll)
