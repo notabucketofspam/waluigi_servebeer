@@ -32,18 +32,23 @@ body {
 <div>
 <button id="doodad">doodad</button>
 <br>
-<input type="range" min="0" max="10" step="0.01" value="1" id="dongle">
+<input type="range" min="0" max="100" step="1" value="25" id="dongle">
 </div>
 <script src="/js/everything.js"></script>
 <script>
 var whatever = 0;
-var long_int = 0;
+var long_int;
+var time_circle;
+var doodad = document.getElementById("doodad");
+var dongle = document.getElementById("dongle");
 doodad.addEventListener("click", ()=>{
   document.body.style.removeProperty("background-color");
-  long_int = long_int?cancelAnimationFrame(long_int):okfine();
+  long_int = long_int?cancelAnimationFrame(long_int):okfine(time_circle = document.timeline.currentTime);
 });
-function okfine() {
-  whatever+=dongle.valueAsNumber;
+function okfine(timestamp) {
+  var timescale = (timestamp - time_circle)*60/1000;
+  time_circle = document.timeline.currentTime;
+  whatever+=dongle.valueAsNumber*timescale/250;
   document.body.style.backgroundColor = "oklch(1 0.4 "+ (whatever) +")";
   long_int = window.requestAnimationFrame(okfine);
 }
