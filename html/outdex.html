@@ -8,6 +8,8 @@
 #cowtools {
   display:inline-block;
   margin-left:0.5ch;
+  position:relative;
+  top:-5px;
 }
 .getitouttahere {
   display: none !important;
@@ -53,15 +55,35 @@
   border-color: #daa;
   background-color:#d88;
 }
+#cowbtn {
+  width:20px;
+  height:20px;
+  padding:0px;
+  background-color:#eee;
+  border-style:outset;
+  border-width:3px;
+  border-color:#eee;
+  cursor:pointer;
+}
+#cowbtn:hover {
+  background-color:#ddd;
+  border-color:#ddd;
+}
+#cowbtn:active {
+  background-color:#ccc;
+  border-color:#ccc;
+}
 </style>
 </head>
 <body>
   <div id="hoverboots">
     <div id="cowspace">
-      <input  id="cowbox" type="checkbox"/>
-      <label id="label-for-cowbox" for="cowbox">show cowtools?</label>
-      <br>
+      <input hidden id="cowbox" type="checkbox"/>
+      <label id="label-for-cowbox" for="cowbox" hidden>show cowtools?</label>
+      <!-- <br> -->
       <button id="quit-x" onclick="location.assign(hashgrab())" title="leave the new S.P.A.M.">x</button>
+      <br>
+      <button id="cowbtn" title="show cowtools?"><div style="position:relative;left:-4px;top:-4px;">&#128004;</div></button>
     </div>
     <div id="cowtools" class="getitouttahere">
       <div>only the highest-quality meats are selected for serving on waluigi-servebeer.com</div>
@@ -171,6 +193,9 @@ if (localStorage.getItem("show_cowtools")|0) {
   show_cowtools();
   cowbox.checked = true;
 }
+cowbtn.addEventListener("click", ev => {
+  localStorage.setItem("show_cowtools", show_cowtools());
+});
 button.addEventListener("click", how_big);
 function how_big() {
   var bwidth = document.body.getBoundingClientRect().width;
