@@ -232,7 +232,7 @@ function update_jukebox_volume(event) {
   if (event.type === "wheel")
     new_volume += (event.deltaY < 0) ? 0.01 : -0.01;
   else {
-    new_volume += 0.1 * (event.touches[0].pageX - touch_start[0]) / document.body.getBoundingClientRect().width;
+    new_volume += ((event.touches[0].pageX > touch_start[0])?1:-1)/200;
   }
   if (new_volume < 0.0)
     new_volume = 0.0;

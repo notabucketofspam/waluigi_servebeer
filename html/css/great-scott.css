@@ -58,6 +58,7 @@ body {
   border:outset;
   z-index:2;
   background-color:#eee;
+  cursor:pointer;
 }
 #burger > img {
   margin:auto;
