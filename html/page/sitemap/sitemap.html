@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sitemap - waluigi-servebeer.com</title>
-  <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
+<title>Sitemap - waluigi-servebeer.com</title>
+<style>
+a {
+  word-wrap:break-word;
+}
+</style>
 </head>
-  <body>
-    <h1>Sitemap</h1>
-    <hr />
-    <div id="sitemap"></div>
-    <script src="/js/everything.js"></script>
-    <script>
-      var sitemap = document.getElementById("sitemap");
-      fetch("/page/sitemap/sitemap.txt")
-        .then(res => res.text())
-        .then(text => {
-          var taxes = text.trim().split("\n");
-          for (const tax of taxes)
-            sitemap.insertAdjacentHTML("beforeend", `<a href=${encodeURI(tax)}>${tax}</a><br/>`);
-          });
-    </script>
-  </body>
+<body>
+<h1>Sitemap</h1>
+<hr />
+<div id="sitemap"></div>
+<script src="/js/everything.js"></script>
+<script>
+var sitemap = document.getElementById("sitemap");
+fetch("/page/sitemap/sitemap.txt")
+  .then(res => res.text())
+  .then(text => {
+    var taxes = text.trim().split("\n");
+    for (const tax of taxes) {
+      sitemap.insertAdjacentHTML("beforeend", '<a href="'+encodeURI(tax)+'">'+tax+'</a><br/>');
+    }
+  });
+</script>
+</body>
 </html>
