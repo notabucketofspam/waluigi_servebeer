@@ -4,7 +4,7 @@
 .div_pad_small {
   height: 8px;
 }
-a:link{
+a:not([class]):link{
   color:#551A8B;
 }
 html {
