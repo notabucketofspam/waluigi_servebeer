@@ -94,6 +94,7 @@
 /resource
 /resource/Akita Neru dials a phone for slightly over a minute.mp3
 /resource/dropdown-item-list.html
+/resource/dvd.cur
 /resource/dvd.png
 /resource/dvd2.png
 /resource/git-data.txt

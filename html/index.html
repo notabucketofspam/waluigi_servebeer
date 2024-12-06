@@ -101,6 +101,9 @@ h1 {
 #meat_update {
   max-width:4in;
 }
+#dvdbox:hover {
+  cursor:url(/resource/dvd.cur), auto;
+}
 </style>
 </head>
 <body>
@@ -246,7 +249,7 @@ zone
       <div class="f3">Try our tasty New Coal!</div>
     </a>
     <!-- marquee code thrifted from MDN -->
-    <marquee direction="up" width="250" height="200" behavior="alternate" style="border:solid; background-color:#fffa">
+    <marquee id="dvdbox" direction="up" width="250" height="200" behavior="alternate" style="border:solid; background-color:#fffa">
       <marquee behavior="alternate" style="margin-bottom:-8px;">
         <img src="/resource/dvd.png" height="35" style="user-select:none;">
       </marquee>
