@@ -36,6 +36,10 @@
 /page/gallery/memes.html
 /page/gallery/ME_0.webp
 /page/gallery/ME_0big.webp
+/page/hardware-store
+/page/hardware-store/brick.png
+/page/hardware-store/real.html
+/page/hardware-store/smiling-face-with-tear.png
 /page/intel
 /page/intel/favicon-intel.png
 /page/intel/intel-inside.png

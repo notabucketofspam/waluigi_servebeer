@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<title>Hardware Store - waluigi-servebeer.com</title>
+<style>
+h1, h2 {
+  margin:0px;
+}
+html {
+  background-image:url(/page/hardware-store/brick.png);
+}
+.nicebox, footer div {
+  border:solid;
+  border-radius:1em;
+  background-color:#FFFA;
+}
+footer div {
+  width:fit-content;
+  margin: 0px auto;
+}
+</style>
+</head>
+<body>
+<div class="lube lard nicebox" style="text-align:center;">
+<h1>Welcome</h1>
+<h2>to the</h2>
+<h2>waluigi-servebeer.com</h2>
+<h1 style="font-size:2.5em">Hardware Store</h1>
+</div>
+<br>
+<div class="nicebox" style="padding-top:1lh">
+  here's what we got in stock:
+  <ul style="list-style-type:unset">
+    <li>
+      CPU
+      <ul>
+        <li>
+          <a href="/page/intel/intel.html">Intel Pentium D 420XX</a>
+          <ul>
+            <li>Double the threads, double the dank (6C 12T)</li>
+            <li>$199</li>
+          </ul>
+        </li>
+        <li>
+          Intel i11
+          <ul>
+            <li>11C 23.5T</li>
+            <li>$400</li>
+          </ul>
+        </li>
+        <li>
+          Intel i1
+          <ul>
+            <li>&frac23;C 1T</li>
+            <li>$5</li>
+          </ul>
+        </li>
+        <li>
+          AMD thing
+          <ul><li>$300</li></ul>
+        </li>
+        <li>
+          Qualcomm Snapdragon 888
+          <ul><li>$799.99</li></ul>
+        </li>
+        <li></li>
+      </ul>
+    </li>
+    <li>
+      GPU
+      <ul>
+        <li>
+          Advanced Micro Dongles&#8482; Radeon R10 Fury X&ndash;2: Furious-er
+          <ul><li>$449.99</li></ul>
+        </li>
+        <li>Nvidia table scraps
+          <ul><li>$1279.99</li></ul>
+        </li>
+        <li>Intel graphic card
+          <ul><li>$100</li></ul>
+        </li>
+        <li>
+          RX 6900 XT
+          <ul><li>$1907<img src="/page/hardware-store/smiling-face-with-tear.png" style="height:1lh; vertical-align:bottom;" /></li></ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      RAM
+      <ul>
+        <li>1GB DDR2
+          <ul><li>$2</li></ul>
+        </li>
+        <li>256MB PC133 SDRAM
+          <ul><li>$5</li></ul>
+        </li>
+        <li>88KB
+          <ul><li>$3</li></ul>
+        </li>
+        <li>
+          32GB ddr4 so-dimm
+          <ul><li>$56.99</li></ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      psu
+      <ul>
+        <li>20W Apple USB-C Power Adapter
+          <ul><li>$19.99</li></ul>
+        </li>
+        <li>100W AliExpress fire-resistant wall wart
+          <ul><li>$2.37</li></ul>
+        </li>
+        <li>EVGA SuperNice TQ 1200W fully modular
+          <ul><li>$299.99</li></ul>
+        </li>
+        <li>-37W
+          <ul><li>-$6</li></ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      ssd
+      <ul>
+        <li>3.72GB MicroSD&#8482; card
+          <ul><li>$5</li></ul>
+        </li>
+        <li>1TB MicroSD&#8482; card
+          <ul><li>$7</li></ul>
+        </li>
+        <li>Inland SATA SSD (all sizes)
+        <ul><li>$12</li></ul></li>
+      </ul>
+    </li>
+    <li>
+      <s>hdd</s>
+      <ul>
+        <li><b>OUT OF STOCK</b></li>
+      </ul>
+    </li>
+    <li>
+      fan
+      <ul>
+        <li>120mm
+          <ul><li>$10</li></ul>
+        </li>
+        <li>5.5in
+          <ul><li style="display:inline-block; height:1lh;"><s>$9.99</s> <b>FREE</b> with mail-in rebate<sub>while supplies last<sub>see store for details</sub></sub></li></ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      aio
+      <ul>
+        <li>
+          Lionic U30
+          <ul>
+            <li>98sec</li>
+          </ul>
+        </li>
+        <li>
+          Tempest A2
+          <ul>
+            <li>3899pts</li>
+          </ul>
+        </li>
+        <li>
+          <s>Lionic UA35</s>
+          <ul>
+            <li><b>OUT OF STOCK</b></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      rgb
+      <ul>
+        <li>red</li>
+          <ul><li>$1</li></ul>
+        <li>green</li>
+          <ul><li>$1</li></ul>
+        <li>blue</li>
+          <ul><li>$1</li></ul>
+      </ul>
+    </li>
+  </ul>
+  and here's what <em>you</em> have:
+  <ul>
+    <li><b id="threads">2</b> threads</li>
+    <li>at least <b id="gib_ram">1</b> GB of RAM</li>
+    <li>some kinda <b id="gpu"></b> gpu</li>
+  </ul>
+</div>
+<script src="/js/everything.js"></script>
+<script>
+threads.innerText = navigator.hardwareConcurrency;
+gib_ram.innerText = navigator.deviceMemory;
+var gup;
+(async function() {
+  gup = await navigator.gpu.requestAdapter();
+  gpu.innerText = (gup.info.vendor + " " + gup.info.architecture).toUpperCase();
+})();
+</script>
+</body>
+</html>
