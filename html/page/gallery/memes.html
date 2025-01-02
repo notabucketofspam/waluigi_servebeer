@@ -20,9 +20,13 @@ h1 {
   align-self:flex-start;
   display:block;
   margin-top:0.2in;
+  max-width:5in;
+  min-width:1.5in;
 }
 img[popover] {
   position:relative;
+}
+img:not(:active) {
 }
 </style>
 </head>
@@ -56,11 +60,13 @@ function before_toggle(ev) {
     }
     ev.target.style.position="fixed";
     ev.target.style.marginTop="auto";
+    ev.target.style.maxWidth="unset";
   } else {
     ev.target.style.width="auto";
     ev.target.style.height="2.5in";
     ev.target.style.position="relative";
     ev.target.style.marginTop="0.2in";
+    ev.target.style.maxWidth="5in";
   }
 }
 </script>
