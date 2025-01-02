@@ -9,7 +9,7 @@ document.documentElement.insertAdjacentHTML("beforeend",
 `<footer>
 <hr/>
 <div style="text-align: center;">
-Bar Stool Committee &#169; 2020&ndash;2024
+Bar Stool Committee &#169; 2017&ndash;2025
 <br/>
 Site maintained by not.a.bucket.of.spam, @ me if something's up
 <br/>

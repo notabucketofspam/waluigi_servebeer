@@ -64,6 +64,10 @@ h1 {
   left:222px;
   display:block;
 }
+#new_year {
+  overflow-y:clip;
+  margin-right:5%;
+}
 @media (max-width:5.5in){
   *[class*="wide"] {
     display:flex;
@@ -71,6 +75,10 @@ h1 {
   }
   #celebrating {
     position:unset;
+  }
+  #new_year {
+    float:none;
+    margin:1lh 0px 1lh auto;
   }
 }
 #the_notice {
@@ -103,6 +111,17 @@ h1 {
 }
 #dvdbox:hover {
   cursor:url(/resource/dvd.cur), auto;
+}
+#meme_gallery {
+  display:flex;
+  background-color:#ffe3ff;
+  border-color:#eeddee;
+}
+#meme_gallery:hover {
+  background-color:#ffd3ff;
+}
+#meme_gallery:active {
+  background-color:#ffc4ff;
 }
 </style>
 </head>
@@ -241,6 +260,11 @@ zone
   </div>
 </section>
 <!-- COAL ETC -->
+<a href="/page/new-year/2025.html" class="fake_advertisement fr" style="" id="new_year">
+  <div class="f2">Tried normal Flow of Time?</div>
+  <img height="220" src="/page/new-year/lizard_time_meme.png" style="padding:10px 0px;">
+  <div class="f3">Try our tasty New Year!</div>
+</a>
 <section class="wide2">
   <div class="coalex">
     <a class="fake_advertisement" href="/page/food-time/food.html">
@@ -273,8 +297,9 @@ zone
     <a href="/page/hardware-store/real.html" class="clickbait-article">Hardware Store</a>
   </div>
 </section>
+<br>
 <section>
-    <a href="/page/gallery/memes.html" class="clickbait-article lard" style="display:flex">
+    <a href="/page/gallery/memes.html" class="clickbait-article lard" id="meme_gallery">
       <!-- <img src="/page/gallery/ME_0big.webp"/> -->
       <div style="display:flex;flex-direction:column;">
         <img height="24" src="/page/gallery/ME_0.webp"/>

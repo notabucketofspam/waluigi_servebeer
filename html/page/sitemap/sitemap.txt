@@ -55,6 +55,11 @@
 /page/meat-substrate/words.js
 /page/misc
 /page/misc/misc.html
+/page/new-year
+/page/new-year/20240101_032329.jpg
+/page/new-year/2025.html
+/page/new-year/lizard_time.jpg
+/page/new-year/lizard_time_meme.png
 /page/nice-colors
 /page/nice-colors/nice-colours.html
 /page/nice-colors/old_colors.html
