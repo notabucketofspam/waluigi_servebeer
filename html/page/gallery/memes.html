@@ -8,6 +8,10 @@
 h1 {
   letter-spacing:0.5ch;
   font-size:2.5rem;
+  margin-bottom:0px;
+}
+h2 {
+  margin-top:0px;
 }
 #memes {
   display:flex;
@@ -32,6 +36,7 @@ img:not(:active) {
 </head>
 <body>
 <h1>MEMES</h1>
+<h2><span id="meme_count"></span>pcs set</h2>
 <main id="memes">
 </main>
 <script src="/js/everything.js"></script>
@@ -48,6 +53,7 @@ fetch(bucket)
   for (const item of lines) {
     memes.insertAdjacentHTML("beforeend", '<img src="'+bucket+item+'" popover onclick="this.togglePopover()" onbeforetoggle="before_toggle(event)"/>');
   }
+  meme_count.innerText = lines.length;
 });
 function before_toggle(ev) {
   if (ev.newState === "open") {
