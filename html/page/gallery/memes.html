@@ -57,16 +57,18 @@ fetch(bucket)
 });
 function before_toggle(ev) {
   if (ev.newState === "open") {
+    ev.target.style.maxWidth="unset";
     if (ev.target.width > ev.target.height) {
       ev.target.style.width="90vw";
       ev.target.style.height="auto";
+      ev.target.style.maxHeight="90vh";
     } else {
       ev.target.style.width="auto";
       ev.target.style.height="90vh";
+      ev.target.style.maxWidth="90vw";
     }
     ev.target.style.position="fixed";
     ev.target.style.marginTop="auto";
-    ev.target.style.maxWidth="unset";
   } else {
     ev.target.style.width="auto";
     ev.target.style.height="2.5in";
