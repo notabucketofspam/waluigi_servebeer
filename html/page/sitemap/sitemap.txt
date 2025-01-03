@@ -61,6 +61,9 @@
 /page/new-year/2025.html
 /page/new-year/lizard_time.jpg
 /page/new-year/lizard_time_meme.png
+/page/new-year/newyear2021.jpg
+/page/new-year/newyear2021_uncropped.jpg
+/page/new-year/newyear2022.jpg
 /page/new-year/Screenshot_20250101_222552_Discord.jpg
 /page/new-year/tempFileForShare_20250101-222144.jpg
 /page/new-year/Uninstall_Current_Year.png
