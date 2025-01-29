@@ -20,6 +20,24 @@ footer div {
   width:fit-content;
   margin: 0px auto;
 }
+#soundcard {
+  background-color:white;
+  padding:2px;
+  font-weight:bold;
+}
+#troubled_music {
+  position:absolute;
+  left:calc(50% - 94px);
+  top:167px;
+  background-color:#EEEEEEFF;
+  padding:2px;
+  cursor:pointer;
+  font-size:121%;
+  text-align:center;
+  width:188px;
+  height:44px;
+  border:2px #F8F dashed;
+}
 </style>
 </head>
 <body>
@@ -29,7 +47,9 @@ footer div {
 <h2>waluigi-servebeer.com</h2>
 <h1 style="font-size:2.5em">Hardware Store</h1>
 </div>
+<span id="troubled_music" hidden>Trouble playing music?<br>Click the page.</span>
 <br>
+<meta id="this_is_the_hardware_store_page"/>
 <div class="nicebox" style="padding-top:1lh">
   here's what we got in stock:
   <ul style="list-style-type:unset">
@@ -186,6 +206,15 @@ footer div {
           <ul><li>$1</li></ul>
       </ul>
     </li>
+    <li>
+      soundcard
+      <ul>
+        <li>
+          Creative SoundBlaster
+          <ul><li><span id="soundcard">$0.00</span></li></ul>
+        </li>
+      </ul>
+    </li>
   </ul>
   and here's what <em>you</em> have:
   <ul>
@@ -203,6 +232,55 @@ var gup;
   gup = await navigator.gpu.requestAdapter();
   gpu.innerText = (gup.info.vendor + " " + gup.info.architecture).toUpperCase();
 })();
+var auxcord = new AudioContext();
+var gainer = new GainNode(auxcord, {gain:0.1});
+var absn;
+var detuner = ()=> (5+45*Math.random())*(rui(2)?1:-1);
+fetch("/page/hardware-store/wii_shop_loop.mp3")
+  .then(res=>res.arrayBuffer())
+  .then(arbys=>auxcord.decodeAudioData(arbys))
+  .then(buff=>{
+    absn = new AudioBufferSourceNode(auxcord, {
+      buffer:buff,
+      loop:true,
+      detune: detuner(),
+      playbackRate:1
+    });
+    absn.connect(gainer);
+    gainer.connect(auxcord.destination);
+    absn.start();
+});
+// wii shop theme is 148bpm (405ms/beat)
+var music_bad;
+music_bad = setInterval(()=>{
+  if (absn && typeof this_is_the_hardware_store_page !== "undefined") {
+    let tune = detuner();
+    let curr = absn.detune.value;
+    let newval = tune+curr;
+    if (Math.abs(newval)>100)
+      newval -= 2*tune;
+    //console.log(tune, curr, newval);
+    absn.detune.setTargetAtTime(newval?newval:1, 0, 4.86);
+  } else {
+    clearInterval(music_bad);
+    absn.stop();
+  }
+}, 5280);
+var freedom_bucks = new Intl.NumberFormat("en-us",{style:"currency",currency:"USD",currencyDisplay:"narrowSymbol"});
+var money_bad;
+money_bad = setInterval(()=>{
+  if(typeof soundcard !== "undefined")
+    soundcard.innerText = freedom_bucks.format(absn?.detune?.value/100);
+}, 60000/37);
+setTimeout(()=>{
+  if (auxcord.state === "suspended") {
+    document.addEventListener("click", ()=>{
+      auxcord.resume();
+      troubled_music.innerText = "There ya go.";
+    }, {once:true,passive:true});
+    troubled_music.hidden = false;
+  }
+}, 500);
 </script>
 </body>
 </html>

@@ -40,6 +40,8 @@
 /page/hardware-store/brick.png
 /page/hardware-store/real.html
 /page/hardware-store/smiling-face-with-tear.png
+/page/hardware-store/wii_shop_loop.mp3
+/page/hardware-store/wii_shop_start.mp3
 /page/intel
 /page/intel/favicon-intel.png
 /page/intel/intel-inside.png
