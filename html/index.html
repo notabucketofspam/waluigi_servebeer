@@ -47,7 +47,8 @@ h2 {
   text-align: right;
 }
 h1 {
-  font-size: 2.5em; text-align: left;
+  font-size: 2.5em;
+  text-align: left;
 }
 #easier-for-you-taunt {
   text-align:right;
@@ -67,6 +68,12 @@ h1 {
 #new_year {
   overflow-y:clip;
   margin-right:4ch;
+  justify-self:right;
+  margin-bottom:1lh;
+}
+#rhs {
+  display:grid;
+  grid-auto-rows: min-content;
 }
 @media (max-width:5.5in){
   *[class*="wide"] {
@@ -79,6 +86,10 @@ h1 {
   #new_year {
     float:none;
     margin:1lh 0px 1lh auto;
+    
+  }
+  #rhs {
+    order:-1;
   }
 }
 #the_notice {
@@ -122,6 +133,20 @@ h1 {
 }
 #meme_gallery:active {
   background-color:#ffc4ff;
+}
+h3 {
+  margin:0;
+  font-family:monospace;
+  text-decoration:underline;
+  font-size:20px;
+  font-weight:normal;
+}
+#wpc {
+  text-decoration: underline;
+}
+#wpc:hover{
+  text-decoration-style:wavy;
+  text-decoration-thickness: from-font;
 }
 </style>
 </head>
@@ -231,24 +256,10 @@ zone
           <a href="/page/changelog/changelog.html">Changelog</a>
         </li>
         <li>
-          <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
-        </li>
-        <li>
           <a href="/page/sitemap/sitemap.html">Sitemap</a>
         </li>
         <li>
-          <a class="no_u" href="/page/sonic/gotta-go-fast.html">
-            <u>WAY PAST COOL</u><sup>&#8482;</sup>
-          </a>
-        </li>
-        <li>
           <a href="/page/misc/misc.html">misc</a>
-        </li>
-        <li>
-          <a href="/page/nice-colors/nice-colours.html">nice colo<span id="the_u"></span>rs</a>
-        </li>
-        <li>
-          <a href="/page/some-links/lonks.html">some links</a>
         </li>
         <li>
           <span class="fakelink">sas</span>
@@ -260,12 +271,7 @@ zone
   </div>
 </section>
 <!-- COAL ETC -->
-<a href="/page/new-year/2025.html" class="fake_advertisement fr" style="" id="new_year">
-  <div class="f2">Tried normal Flow of Time?</div>
-  <img height="220" src="/page/new-year/lizard_time_meme.png" style="padding:10px 0px;">
-  <div class="f3">Try our tasty New Year!</div>
-</a>
-<section class="wide2">
+<section class="wide3">
   <div class="coalex">
     <a class="fake_advertisement" href="/page/food-time/food.html">
       <div class="f2">Tired of normal Food Time?</div>
@@ -295,6 +301,32 @@ zone
     </a>
     <a href="/page/legal/disclaimer.html" class="clickbait-article">Legal disclaimer</a>
     <a href="/page/hardware-store/real.html" class="clickbait-article">Hardware Store</a>
+  </div>
+  <div id="rhs">
+    <a href="/page/new-year/2025.html" class="fake_advertisement" id="new_year">
+      <div class="f2">Tried normal Flow of Time?</div>
+      <img height="220" src="/page/new-year/lizard_time_meme.png" style="padding:10px 0px;">
+      <div class="f3">Try our tasty New Year!</div>
+    </a>
+    <div>
+      <h3>Lesser Cr&egrave;mes</h3>
+      <ul>
+        <li>
+          <a class="no_u" href="/page/sonic/gotta-go-fast.html">
+            <span id="wpc">WAY PAST COOL</span><sup>&#8482;</sup>
+          </a>
+        </li>
+        <li>
+          <a href="/page/smash-mouth/smash-mouth.html">Smash Mouth Lorem Ipsum</a>
+        </li>
+        <li>
+          <a href="/page/nice-colors/nice-colours.html">nice colo<span id="the_u"></span>rs</a>
+        </li>
+        <li>
+          <a href="/page/some-links/lonks.html">some links</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 <br>

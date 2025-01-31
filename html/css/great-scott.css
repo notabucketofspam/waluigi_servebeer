@@ -7,6 +7,10 @@
 a:not([class]):link{
   color:#551A8B;
 }
+a:not([class]):hover, .fakelink:hover{
+  text-decoration-style:wavy;
+  text-decoration-thickness: from-font;
+}
 html {
   overflow-y:scroll;
 }
@@ -15,7 +19,7 @@ a.nostyle {
   text-decoration:none;
 }
 body {
-
+  /* background-color:white; */
 }
 
 /*
