@@ -35,7 +35,7 @@ footer div {
   font-size:121%;
   text-align:center;
   width:188px;
-  height:44px;
+  min-height:44px;
   border:2px #F8F dashed;
 }
 </style>
@@ -235,7 +235,7 @@ var gup;
 var auxcord = new AudioContext();
 var gainer = new GainNode(auxcord, {gain:0.1});
 var absn;
-var detuner = ()=> (5+45*Math.random())*(rui(2)?1:-1);
+var detuner = ()=> (15+35*Math.random())*(rui(2)?1:-1);
 fetch("/page/hardware-store/wii_shop_loop.mp3")
   .then(res=>res.arrayBuffer())
   .then(arbys=>auxcord.decodeAudioData(arbys))
@@ -257,9 +257,10 @@ music_bad = setInterval(()=>{
     let tune = detuner();
     let curr = absn.detune.value;
     let newval = tune+curr;
-    if (Math.abs(newval)>100)
+    if (Math.abs(newval)>200)
       newval -= 2*tune;
     //console.log(tune, curr, newval);
+    absn.detune.cancelAndHoldAtTime(0);
     absn.detune.setTargetAtTime(newval?newval:1, 0, 4.86);
   } else {
     clearInterval(music_bad);
