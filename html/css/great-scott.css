@@ -55,7 +55,7 @@ body {
   position:fixed;
   left:0px;
   top:0px;
-  border:outset;
+  border:outset 3px;
   z-index:2;
   background-color:#eee;
   cursor:pointer;
