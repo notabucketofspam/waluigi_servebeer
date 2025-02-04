@@ -48,7 +48,7 @@ if (location.pathname !== "/"&&!location.pathname.includes("dex")){
 This is where we put the party stuff. You need to<br><br>
 <div id="outdexportal" style="float:none;margin:auto;">
 <span id="outdextoptext">try the new</span><br>
-<a id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html#${location.pathname}">S.P.A.M.</a><br>
+<a class id="outdexbottomtext" title="Single Page App Mode" href="/outdex.html#${location.pathname}">S.P.A.M.</a><br>
 <input id="roboslider" value="0" type="range" oninput="if (this.value >99) location.assign('/outdex.html#${location.pathname}')" />
 <br />
 <code id="imnotarobot" style="top:-7px;left:6px;">I'm not a robot</code>
