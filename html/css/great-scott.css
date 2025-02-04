@@ -4,12 +4,39 @@
 .div_pad_small {
   height: 8px;
 }
-a:not([class]):link{
-  color:#551A8B;
+.fakelink {
+  color: #00e;
+  text-decoration-color:#00e;
+  cursor:pointer;
+  text-decoration-line:underline;
+  user-select:none;
 }
-a:not([class]):hover, .fakelink:hover{
-  text-decoration-style:wavy;
-  text-decoration-thickness: from-font;
+:where(a:not([class],:has(img)),.fakelink,a.no-almonds){
+  display:inline-block;
+  &:link{
+    color:#551A8B;
+  }
+  &:hover,&:focus,&:active{
+    text-decoration-style:wavy;
+    text-decoration-thickness: from-font;
+  }
+  &:focus,&:active{
+    rotate: 5.5deg;
+  }
+  li:nth-of-type(even) &{
+    &:focus,&:active{
+      rotate: -4deg;
+    }
+  }
+  &:nth-of-type(even){
+    &:focus,&:active{
+      rotate: -2.5deg;
+    }
+  }
+  &:active{
+    color:#f00;
+    text-decoration-color:#f00;
+  }
 }
 html {
   overflow-y:scroll;
@@ -19,7 +46,7 @@ a.nostyle {
   text-decoration:none;
 }
 body {
-  /* background-color:white; */
+
 }
 
 /*
@@ -59,7 +86,7 @@ body {
   position:fixed;
   left:0px;
   top:0px;
-  border:outset 3px;
+  border:outset 3px #eee;
   z-index:2;
   background-color:#eee;
   cursor:pointer;
@@ -444,7 +471,7 @@ ins {
 .lube {
   max-width: fit-content;
 }
-body>hr {
+body>hr,body>main hr {
   margin-left: -8px;
   margin-right: -8px;
 }
@@ -455,17 +482,6 @@ body>hr {
 /*
     GLITTER
 */
-.fakelink {
-  color: #00e;
-  text-decoration-color:#00e;
-  cursor:pointer;
-  text-decoration-line:underline;
-  user-select:none;
-}
-.fakelink:active {
-  color:#f00;
-  text-decoration-color:#f00;
-}
 .chad {
   font-family: serif;
 }
