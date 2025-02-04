@@ -235,7 +235,7 @@ var gup;
 var auxcord = new AudioContext();
 var gainer = new GainNode(auxcord, {gain:0.1});
 var absn;
-var detuner = ()=> (15+35*Math.random())*(rui(2)?1:-1);
+var detuner = ()=> (20+80*Math.random())*(rui(2)?1:-1);
 fetch("/page/hardware-store/wii_shop_loop.mp3")
   .then(res=>res.arrayBuffer())
   .then(arbys=>auxcord.decodeAudioData(arbys))
