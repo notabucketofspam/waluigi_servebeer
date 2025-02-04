@@ -19,7 +19,7 @@ body {
 <br />
 <br />
 <!-- <br> -->
-<button onclick="mom()" id="memes">memes</button>
+<button onclick="vibro()" id="memes">memes</button>
 <br>
 <label for="l">L</label>
 <input id="l" type="range" step="0.001" value="1" min="0" max="1">
@@ -36,6 +36,7 @@ body {
 x: <span id="x_px"></span>px
 <br>
 y: <span id="y_px"></span>px
+<div id="dong">?</div>
 <script src="/js/everything.js"></script>
 <script>
 l.addEventListener("input", meme);
@@ -84,6 +85,11 @@ var whathow = {
   iterations: Infinity
 };
 <!-- document.body.animate(kfc, whathow); -->
+var vibree = (new Array(100)).fill(40);
+function vibro(){
+  navigator.vibrate(vibree);
+  dong.innerText = new Date();
+}
 </script>
 </body>
 </html>
