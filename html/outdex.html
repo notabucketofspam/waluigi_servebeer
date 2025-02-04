@@ -159,6 +159,7 @@ function consume(url) {
       prepare_almonds();
       return_steak.hidden = !!document.getElementById('welcome_steak');
       scroll(0,0);
+      history.replaceState(hashgrab(),"");
     }
   );
 }
@@ -201,7 +202,9 @@ function quit_more() {
   return;
 }
 window.addEventListener("popstate", (ev)=> {
-  cog(ev);
+  if (ev.state !== null) {
+    consume(ev.state);
+  }
 });
 
 /*
