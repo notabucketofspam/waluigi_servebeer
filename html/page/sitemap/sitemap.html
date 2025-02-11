@@ -24,6 +24,11 @@ fetch("/page/sitemap/sitemap.txt")
     for (const tax of taxes) {
       sitemap.insertAdjacentHTML("beforeend", '<a href="'+encodeURI(tax)+'">'+tax+'</a><br/>');
     }
+  })
+  .then(()=> {
+    if (typeof is_outdex !== 'undefined') {
+      prepare_almonds();
+    }
   });
 </script>
 </body>
