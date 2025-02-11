@@ -437,6 +437,11 @@ ins {
   flex-direction: column;
   row-gap: 17px;
 }
+.colgate {
+  display:grid;
+  grid-auto-rows: min-content;
+  row-gap:17px;
+}
 .fr {
   float:right;
 }

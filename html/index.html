@@ -127,6 +127,7 @@ h1 {
   display:flex;
   background-color:#ffe3ff;
   border-color:#eeddee;
+  border-style:ridge;
 }
 #meme_gallery:hover {
   background-color:#ffd3ff;
@@ -147,6 +148,12 @@ h3 {
 #wpc:hover,#wpc:focus,#wpc:active{
   text-decoration-style:wavy;
   text-decoration-thickness: from-font;
+}
+#coaletc {
+  grid-template: 
+    "a b c" auto
+    ". d ." auto;
+  row-gap:1lh;
 }
 </style>
 </head>
@@ -271,8 +278,8 @@ zone
   </div>
 </section>
 <!-- COAL ETC -->
-<section class="wide3">
-  <div class="coalex">
+<section class="wide3" id="coaletc">
+  <div class="colgate" style="grid-area:a">
     <a class="fake_advertisement" href="/page/food-time/food.html">
       <div class="f2">Tired of normal Food Time?</div>
       <img height="220" src="/page/food-time/retro_coal.png" style="padding:10px 0px;">
@@ -285,7 +292,7 @@ zone
       </marquee>
     </marquee>
   </div>
-  <div class="coalex">
+  <div class="colgate" style="grid-area:b">
     <h2 id="creme">Cr&#232;me de la Cr&#232;me</h2>
     <a class="clickbait-article" href="/page/what-is/is.html">
       <div class="f3">What "is" is</div>
@@ -302,7 +309,7 @@ zone
     <a href="/page/legal/disclaimer.html" class="clickbait-article">Legal disclaimer</a>
     <a href="/page/hardware-store/real.html" class="clickbait-article">Hardware Store</a>
   </div>
-  <div id="rhs">
+  <div id="rhs" style="grid-area:c">
     <a href="/page/new-year/2025.html" class="fake_advertisement" id="new_year">
       <div class="f2">Tried normal Flow of Time?</div>
       <img height="220" src="/page/new-year/lizard_time_meme.png" style="padding:10px 0px;">
@@ -328,9 +335,7 @@ zone
       </ul>
     </div>
   </div>
-</section>
-<br>
-<section>
+  <div style="grid-area:d">
     <a href="/page/gallery/memes.html" class="clickbait-article lard" id="meme_gallery">
       <!-- <img src="/page/gallery/ME_0big.webp"/> -->
       <div style="display:flex;flex-direction:column;">
@@ -371,6 +376,7 @@ zone
         <img height="24" src="/page/gallery/ME_0.webp"/>
       </div>
     </a>
+  </div>
 </section>
 <script src="/js/everything.js"></script>
 <script src="/js/party-og.js"></script>
