@@ -33,21 +33,21 @@
 </div>
 <script src="/js/everything.js"></script>
 <script>
-var whatever = 0;
-var long_int;
-var time_circle;
+var whatever2 = 0;
+var long_int2;
+var time_circle2;
 var doodad = document.getElementById("doodad");
 var dongle = document.getElementById("dongle");
 doodad.addEventListener("click", ()=>{
   document.body.style.removeProperty("background-color");
-  long_int = long_int?cancelAnimationFrame(long_int):okfine(time_circle = document.timeline.currentTime);
+  long_int2 = long_int2?cancelAnimationFrame(long_int2):okfine2(time_circle2 = document.timeline.currentTime);
 });
-function okfine(timestamp) {
-  var timescale = (timestamp - time_circle)*0.06;
-  time_circle = document.timeline.currentTime;
-  whatever+=dongle.valueAsNumber*timescale/25;
-  document.body.style.backgroundColor = "oklch("+(0.5+Math.random())+" "+(0.3+0.2*Math.random())+" "+ (whatever) +")";
-  long_int = window.requestAnimationFrame(okfine);
+function okfine2(timestamp) {
+  var timescale = (timestamp - time_circle2)*0.06;
+  time_circle2 = document.timeline.currentTime;
+  whatever2+=dongle.valueAsNumber*timescale/25;
+  document.body.style.backgroundColor = "oklch("+(0.5+Math.random())+" "+(0.3+0.2*Math.random())+" "+ (whatever2) +")";
+  long_int2 = window.requestAnimationFrame(okfine2);
 }
 </script>
 </body>
