@@ -10,8 +10,15 @@
   height: 100px;
 }
 body {
-  transition: background-color 10ms linear;
+  /*transition: background-color 10ms linear;*/
   
+}
+/* blink code thrifted from wikipedia */
+@keyframes blink {
+	0% { opacity:1 } 75% { opacity:1 } 76% { opacity:0 } 100% { opacity:0 }
+}
+blink, .blink-css {
+	animation:blink 0.75s ease-in infinite alternate!important;
 }
 </style>
 </head>
@@ -37,6 +44,11 @@ x: <span id="x_px"></span>px
 <br>
 y: <span id="y_px"></span>px
 <div id="dong">?</div>
+<br>
+<blink>&lt;blink&gt;<br>
+<span style="display:inline-block;width:2ch;"></span>this is blinking text &lt;br&gt;<br>
+<span style="display:inline-block;width:2ch;"></span>i stole it from wikipedia lol &lt;br&gt;<br>
+&lt;/blink&gt;</blink>
 <script src="/js/everything.js"></script>
 <script>
 l.addEventListener("input", meme);
@@ -90,6 +102,7 @@ function vibro(){
   navigator.vibrate(vibree);
   dong.innerText = new Date();
 }
+dong.innerText = new Date(1e12);
 </script>
 </body>
 </html>
