@@ -45,8 +45,16 @@ a.nostyle {
   color:#000;
   text-decoration:none;
 }
-body {
-
+a.shortcut {
+  color:#000;
+  text-decoration-color:#000;
+  text-decoration:none;
+}
+a.shortcut::after{
+  content:url(/resource/shell32.png);
+  vertical-align:bottom;
+  line-height:0;
+  margin-left:2px;
 }
 
 /*
@@ -95,6 +103,7 @@ body {
   margin:auto;
   display:block;
   user-select:none;
+  cursor:pointer;
 }
 #burger:hover{
   background-color:#ddd;
