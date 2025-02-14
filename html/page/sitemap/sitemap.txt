@@ -81,6 +81,8 @@
 /page/retrospective/wsbc/giraffe/colors.css
 /page/retrospective/wsbc/giraffe/giraffe-website.html
 /page/retrospective/wsbc/index.html
+/page/retrospective/wsbc/pdf
+/page/retrospective/wsbc/pdf/pdf.html
 /page/retrospective/wsbc/soviet-squid-small.png
 /page/retrospective/wsbc/waluigi
 /page/retrospective/wsbc/waluigi/waluigi-website.html
@@ -129,6 +131,7 @@
 /resource/pistol.cur
 /resource/pseudo-cookies.txt
 /resource/retro_burger.png
+/resource/shell32.png
 /resource/spam.cur
 /resource/spectra_oven.mp3
 /resource/steak.gif
