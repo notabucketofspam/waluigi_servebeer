@@ -40,7 +40,7 @@ h2 {
   text-align: center;
   text-decoration-line: underline;
   font-size: 21px;
-  grid-area:span 2;
+  grid-area:a;
 }
 #login-stuffs {
   float:right;
@@ -75,8 +75,14 @@ h1 {
   display:grid;
   grid-auto-rows: min-content;
 }
-@media (max-width:5.5in){
-  *[class*="wide"] {
+#about {
+  display:grid;
+  grid-template: "a a"
+                 "b c" / 1fr 1fr;
+  column-gap: 4ch;
+}
+@media (max-width:8in){
+  #about,*[class*="wide"] {
     display:flex;
     flex-direction:column;
   }
@@ -164,12 +170,12 @@ Welcome to the
 <img src="/resource/steak8.gif" alt="STEAK" class="steak_gif">
 zone
 </a>
-  <div id="login-stuffs">
-    Welcome back, <span id="username_maybe">[USERNAME]</span> !!<br>
-    Not you? <a href="/page/login/real.html">Login here</a>
-    <br>
-    New user? <span class="fakelink" tabindex="0" title="this is not a link">Give up</span>
-  </div>
+<div id="login-stuffs">
+  Welcome back, <span id="username_maybe">[USERNAME]</span> !!<br>
+  Not you? <a href="/page/login/real.html">Login here</a>
+  <br>
+  New user? <span class="fakelink" tabindex="0" title="this is not a link">Give up</span>
+</div>
 <!-- WALUIGI-SERVEBEER.COM -->
 <div class="big_section" id="title_bar">
   <h1>waluigi-servebeer.com</h1>
@@ -203,35 +209,33 @@ zone
   <meta class="meta_party" id="index_mp" itemprop="this is where we put the party stuff" />
 </section>
 <!-- ABOUT THIS WEBSITE -->
-<section>
+<section id="about">
   <h2 id="about_this_site">About this website</h2>
-  <div class="wide2">
-    <div class="half_right hdd">
+  <div style="max-width:5in;">
+    <p>
+      This is where we put the high-quality content. Members of the Bar Stool 
+      Committee and its associate organizations generate JPEGs, viddles, and 
+      walls of text in various forms for the purpose of comedic enrichment. 
+      Welcome to Meme Hell.
+    </p>
+    <p id="the_notice">
+      <b>NOTICE:</b> <i>don't</i> disable the browser cache (see right).
+      <br>
+      <u>This is <i>the</i> notice.</u>
+    </p>
+  </div>
+  <div class="half_right hdd">
     <p>Important! If the page isn't working correctly then you gotta clear the 
-      Javascript / CSS cache</p>        
-      <ul>
-        <li>Smash that <b>F12</b> button</li>
-        <li>Head over to the Network tab</li>
-        <li>Tick the little <span style="letter-spacing:-0.5pt">&#x1f171;&#xFE0F;&NoBreak;&#x1F1F4;&NoBreak;&#x1D569;</span> that says "Disable cache"</li>
-        <li>Gently press F5, making sure to not startle it</li>
-      </ul>
-      <p id="easier-for-you-taunt">
-        you can also just hit <span id="ctrl-f5"><kbd>ctrl</kbd>+<kbd>F5</kbd></span>, <br />if that's easier for you :-)
-      </p>
-    </div>
-    <div class="o-1" style="max-width:5in;">
-      <p>
-        This is where we put the high-quality content. Members of the Bar Stool 
-        Committee and its associate organizations generate JPEGs, viddles, and 
-        walls of text in various forms for the purpose of comedic enrichment. 
-        Welcome to Meme Hell.
-      </p>
-      <p id="the_notice">
-        <b>NOTICE:</b> <i>don't</i> disable the browser cache (see right).
-        <br>
-        <u>This is <i>the</i> notice.</u>
-      </p>
-    </div>          
+    Javascript / CSS cache</p>
+    <ul>
+      <li>Smash that <b>F12</b> button</li>
+      <li>Head over to the Network tab</li>
+      <li>Tick the little <span style="letter-spacing:-0.5pt">&#x1f171;&#xFE0F;&NoBreak;&#x1F1F4;&NoBreak;&#x1D569;</span> that says "Disable cache"</li>
+      <li>Gently press F5, making sure to not startle it</li>
+    </ul>
+    <p id="easier-for-you-taunt">
+      you can also just hit <span id="ctrl-f5"><kbd>ctrl</kbd>+<kbd>F5</kbd></span>, <br />if that's easier for you :-)
+    </p>
   </div>
 </section>
 <!-- SOME STUFF IDK -->
@@ -241,9 +245,8 @@ zone
         <b>Important Note</b>: the (fake) advertisements on the sides of this page are <em>clickable</em> and
         will lead you to <em>other</em> meme pages. This was not initially clear to <em>some</em> users.
     </div>
-    <p id="meat_update" class="postcard">
+    <p id="meat_update">
       <b>UPDATE:</b> a thorough analysis of <i>meat</i> has been posted.
-      <!-- <br> -->
       You know where to find it ;)
     </p>
   </div>
@@ -258,23 +261,23 @@ zone
   </div>
   <div id="technical_pages">
     <u>Technical pages:</u>
-      <ul id="burrfish_list">
-        <li>
-          <a href="/page/changelog/changelog.html">Changelog</a>
-        </li>
-        <li>
-          <a href="/page/sitemap/sitemap.html">Sitemap</a>
-        </li>
-        <li>
-          <a href="/page/misc/misc.html">misc</a>
-        </li>
-        <li>
-          <span tabindex="0" class="fakelink">sas</span>
-        </li>
-        <li>
-          <a href="/page/rebug/para.html">rebug</a>
-        </li>
-      </ul>
+    <ul id="burrfish_list">
+      <li>
+        <a href="/page/changelog/changelog.html">Changelog</a>
+      </li>
+      <li>
+        <a href="/page/sitemap/sitemap.html">Sitemap</a>
+      </li>
+      <li>
+        <a href="/page/misc/misc.html">misc</a>
+      </li>
+      <li>
+        <span tabindex="0" class="fakelink">sas</span>
+      </li>
+      <li>
+        <a href="/page/rebug/para.html">rebug</a>
+      </li>
+    </ul>
   </div>
 </section>
 <!-- COAL ETC -->
@@ -317,7 +320,7 @@ zone
     </a>
     <div>
       <h3>Common Cr&egrave;mes</h3>
-      <ul style="margin-top:0">
+      <ul style="margin:0">
         <li>
           <a style="text-decoration-line: none;" href="/page/sonic/gotta-go-fast.html">
             <span id="wpc">WAY PAST COOL</span><sup>&#8482;</sup>
@@ -337,7 +340,6 @@ zone
   </div>
   <div style="grid-area:d">
     <a href="/page/gallery/memes.html" class="clickbait-article lard" id="meme_gallery">
-      <!-- <img src="/page/gallery/ME_0big.webp"/> -->
       <div style="display:flex;flex-direction:column;">
         <img height="24" src="/page/gallery/ME_0.webp"/>
         <img height="24" src="/page/gallery/ME_0.webp"/>
