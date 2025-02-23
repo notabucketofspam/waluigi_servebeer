@@ -40,10 +40,11 @@ img[popover] {
 <script src="/js/everything.js"></script>
 <script>
 var bucket = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/";
+var prefix = "?prefix=image";
 var jason;
 var lines;
 var memes = document.getElementById("memes");
-fetch(bucket)
+fetch(bucket+prefix)
 .then(response=>response.json())
 .then(json=>{
   jason=json;
