@@ -69,7 +69,6 @@ h1 {
   overflow-y:clip;
   margin-right:4ch;
   justify-self:right;
-  margin-bottom:1lh;
 }
 #rhs {
   display:grid;
@@ -96,6 +95,9 @@ h1 {
   }
   #rhs {
     order:-1;
+  }
+  #lhs{
+    order:-2;
   }
 }
 #the_notice {
@@ -282,7 +284,7 @@ zone
 </section>
 <!-- COAL ETC -->
 <section class="wide3" id="coaletc">
-  <div class="colgate" style="grid-area:a">
+  <div class="colgate" style="grid-area:a" id="lhs">
     <a class="fake_advertisement" href="/page/food-time/food.html">
       <div class="f2">Tired of normal Food Time?</div>
       <img height="220" src="/page/food-time/retro_coal.png" style="padding:10px 0px;">
@@ -312,7 +314,7 @@ zone
     <a href="/page/legal/disclaimer.html" class="clickbait-article">Legal disclaimer</a>
     <a href="/page/hardware-store/real.html" class="clickbait-article">Hardware Store</a>
   </div>
-  <div id="rhs" style="grid-area:c">
+  <div id="rhs" style="grid-area:c" class="colgate">
     <a href="/page/new-year/2025.html" class="fake_advertisement" id="new_year">
       <div class="f2">Tried normal Flow of Time?</div>
       <img height="220" src="/page/new-year/lizard_time_meme.png" style="padding:10px 0px;">
