@@ -302,6 +302,25 @@ a.shortcut::after{
     display:inline-grid;
     margin:0;
     padding:0;
+    word-break:break-all;
+  }
+  
+}
+@media (max-width:260px){
+  marquee{
+    max-width:80vw;
+  }
+  img{
+    max-width:60vw;
+  }
+  input#funk_more{
+    position:unset;
+  }
+}
+@media (max-width:210px){
+  section#funk_jukebox_intel.big_section, a#celebrating.mellon,a#welcome_steak.steak_corner {
+    display:flow;
+    max-width:95vw;
   }
 }
 #burgmenu .white_in_burgmenu {
