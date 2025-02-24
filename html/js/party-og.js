@@ -242,8 +242,8 @@ var selch = document.getElementById("selch");
 var jukebox_loop_input = document.getElementById("jukebox_loop_input");
 var another_jukebox_divider = document.getElementById("another_jukebox_divider");
 
-jukebox_current_track.innerHTML = jukebox_track_list[0];
-audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
+// jukebox_current_track.innerHTML = jukebox_track_list[0];
+// audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
 audio_player.volume = 0.15;
 jukebox_volume_element.addEventListener("touchstart", touch_start_coord, false);
 jukebox_volume_element.addEventListener("touchmove", update_jukebox_volume, false);
