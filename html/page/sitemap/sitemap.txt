@@ -118,6 +118,7 @@
 /resource/dvd.cur
 /resource/dvd.png
 /resource/dvd2.png
+/resource/explosion-4.png
 /resource/git-data.txt
 /resource/gunshot.ogg
 /resource/hehe.cur
