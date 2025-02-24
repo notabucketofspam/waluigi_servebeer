@@ -5,15 +5,22 @@
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
 <title>Sitemap - waluigi-servebeer.com</title>
 <style>
-a {
-  word-wrap:break-word;
+a,li,ul {
+  white-space:nowrap;
+  overflow-x:clip;
+  overflow-y:visible;
+  line-height:1lh;
+}
+ul{
+  list-style-type:upper-roman;
+  list-style-position:inside;
+  padding:0px;
 }
 </style>
 </head>
 <body>
 <h1>Sitemap</h1>
-<hr />
-<div id="sitemap"></div>
+<ul id="sitemap"></ul>
 <script src="/js/everything.js"></script>
 <script>
 var sitemap = document.getElementById("sitemap");
@@ -22,7 +29,7 @@ fetch("/page/sitemap/sitemap.txt")
   .then(text => {
     var taxes = text.trim().split("\n");
     for (const tax of taxes) {
-      sitemap.insertAdjacentHTML("beforeend", '<a href="'+encodeURI(tax)+'">'+tax+'</a><br/>');
+      sitemap.insertAdjacentHTML("beforeend", '<li><a href="'+encodeURI(tax)+'">'+tax+'</a></li>');
     }
   })
   .then(()=> {
