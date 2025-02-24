@@ -67,13 +67,11 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
       <option value="88,100">English (12)</option>
       <option value="100,111">Netburst (11)</option>
       <option value="111,129">Metals (18)</option>
-      <option value="129,130">Jerry Seinfeld (1)</option>
-      <option value="130,139">Abnormal Music (9)</option>
+      <option value="129,139">Normal Music (10)</option>
       <option value="139,149">Doot (10)</option>
       <option value="149,161">some stuff idk (12)</option>
       <option value="161,173">EVGA GTX 1080 FTW (12)</option>
-      <option value="173,203">junk (30)</option>
-      <option value="203,204">Scoot the Burbs (1)</option>
+      <option value="173,204">junk (31)</option>
     </select>
     <div id="change_album_message">Select<br/>playlist</div>
   </div>
