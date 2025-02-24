@@ -434,6 +434,7 @@ input[type="range"]:active {
   position: fixed;
   bottom: 0px;
   left: calc(50vw - 304px);
+  z-index:1;
 }
 #jar {
   height: 2lh;
