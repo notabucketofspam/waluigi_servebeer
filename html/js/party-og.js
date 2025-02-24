@@ -300,7 +300,7 @@ function update_jukebox_volume(event) {
   if (event.type === "wheel")
     new_volume += (event.deltaY < 0) ? 0.004 : -0.004;
   else {
-    new_volume += ((event.touches[0].pageX > touch_start[0])?1:-1)/200;
+    new_volume += ((event.touches[0].pageX > touch_start[0])?1:-1)/600;
   }
   if (new_volume < 0.0)
     new_volume = 0.0;
