@@ -222,14 +222,14 @@ function show_cowtools() {
   return labelForCowbox.classList.toggle('getitouttahere')|0;
 }
 cowbox.addEventListener('change', ev => {
-  localStorage.setItem("show_cowtools", show_cowtools());
+  sessionStorage.setItem("show_cowtools", show_cowtools());
 });
-if (localStorage.getItem("show_cowtools")|0) {
+if (sessionStorage.getItem("show_cowtools")|0) {
   show_cowtools();
   cowbox.checked = true;
 }
 cowbtn.addEventListener("click", ev => {
-  localStorage.setItem("show_cowtools", show_cowtools());
+  sessionStorage.setItem("show_cowtools", show_cowtools());
 });
 button.addEventListener("click", how_big);
 function how_big() {
