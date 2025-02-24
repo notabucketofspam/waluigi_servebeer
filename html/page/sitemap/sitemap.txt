@@ -113,11 +113,13 @@
 /page/what-is/time_notes.txt
 /resource
 /resource/Akita Neru dials a phone for slightly over a minute.mp3
+/resource/BSC_Prime_Cuts.json
 /resource/dropdown-item-list.html
 /resource/dvd.cur
 /resource/dvd.png
 /resource/dvd2.png
 /resource/git-data.txt
+/resource/gunshot.ogg
 /resource/hehe.cur
 /resource/jukebox-tracks
 /resource/jukebox-tracks/Adhesive Wombat - Chodge Darger.mp3
