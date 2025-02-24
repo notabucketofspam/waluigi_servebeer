@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes" />
 <title>misc - waluigi-servebeer.com</title>
 <style>
-#memes {
+.biggie {
   width: 100px;
   height: 100px;
 }
@@ -20,13 +20,28 @@ body {
 blink, .blink-css {
 	animation:blink 0.75s ease-in infinite alternate!important;
 }
+#album_area{
+  display:grid;
+  grid:
+    "a b"
+    "c b";
+    width:200px;
+}
+#selch{
+  max-width:170px;
+}
+#change_album_message {
+  font-size:11px;
+  letter-spacing:-1px;
+}
 </style>
 </head>
 <body>
 <br />
 <br />
 <!-- <br> -->
-<button onclick="vibro()" id="memes">memes</button>
+<button class="biggie" onclick="vibro()" id="vibes">vibes</button>
+<button class="biggie" onclick="bucko()" id="men" style="color:deeppink;letter-spacing:2px;">men</button>
 <br>
 <label for="l">L</label>
 <input id="l" type="range" step="0.001" value="1" min="0" max="1">
@@ -41,7 +56,7 @@ blink, .blink-css {
 <span id="hv"></span>
 <br>
 x: <span id="x_px"></span>px
-<br>
+<br/>
 y: <span id="y_px"></span>px
 <div id="dong">?</div>
 <br>
@@ -49,8 +64,53 @@ y: <span id="y_px"></span>px
 <span style="display:inline-block;width:2ch;"></span>this is blinking text &lt;br&gt;<br>
 <span style="display:inline-block;width:2ch;"></span>i stole it from wikipedia lol &lt;br&gt;<br>
 &lt;/blink&gt;</blink>
+
+  <div class="div_pad_small"></div>
+  <div id="album_area">
+    <span id="scroll_wheel_comment">(the scroll wheel is your friend)</span>
+    <div style="grid-area:b;align-self:center;" id="change_album_message">Change<br/>playlist</div>
+    <select id="selch" disabled>
+      <option value="0,0">Classic Jukebox (7)</option>
+      <option value="0,204">BSC Prime Cuts (204)</option>
+      <option value="0,22">Beats to Yeet By (22)</option>
+      <option value="22,44">The Nippon Special (22)</option>
+      <option value="44,53">33&frac13; RPM (9)</option>
+      <option value="53,61">C++ (8)</option>
+      <option value="61,74">Juh (13)</option>
+      <option value="74,81">Crude Oil (7)</option>
+      <option value="81,88">Micro Center&copy; et al. (7)</option>
+      <option value="88,100">English (12)</option>
+      <option value="100,111">Netburst (11)</option>
+      <option value="111,129">Metals (18)</option>
+      <option value="129,130">Jerry Seinfeld (1)</option>
+      <option value="130,139">Abnormal Music (9)</option>
+      <option value="139,149">Doot (10)</option>
+      <option value="149,161">some stuff idk (12)</option>
+      <option value="161,173">EVGA GTX 1080 FTW (12)</option>
+      <option value="173,187">junk (14)</option>
+      <option value="187,203">more junk (16)</option>
+      <option value="203,204">Scoot The Burbs (1)</option>
+    </select>
+  </div>
+
+&#x213B;
 <script src="/js/everything.js"></script>
 <script>
+var bsc_prime_cuts;
+(async function(){bsc_prime_cuts = (await import("/resource/BSC_Prime_Cuts.json",{with:{type:"json"}})).default;})();
+selch.addEventListener("change",(ev)=>{
+  var [starto, endo] = ev.target.value.split(",");
+  cog(bsc_prime_cuts.slice(starto, endo));
+});
+
+var k, awoo, b;
+async function bucko(){
+  k = fetch("https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/jams/BSC%20Prime%20Cuts/"+bsc_prime_cuts[0]);
+  awoo = await k;
+  b = await awoo.text();
+  console.log(b);
+}
+<!-- bucko(); -->
 l.addEventListener("input", meme);
 c.addEventListener("input", meme);
 h.addEventListener("input", meme);
@@ -64,6 +124,9 @@ function meme() {
   hv.innerText = h.value;
 }
 <!-- meme(); -->
+lv.innerText = l.value;
+cv.innerText = c.value;
+hv.innerText = h.value;
 var whom = 0;
 var soup;
 function mom() {
