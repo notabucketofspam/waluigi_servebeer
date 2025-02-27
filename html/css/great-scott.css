@@ -444,6 +444,7 @@ input[type="range"]:active {
   #jug {
     width:95%;
     left:0px;
+    padding-top:0;
   }
   #jar {
     width: 90%;
