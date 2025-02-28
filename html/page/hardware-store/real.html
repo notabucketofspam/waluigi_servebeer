@@ -285,6 +285,7 @@ fetch("/page/hardware-store/wii_shop_loop.mp3")
     absn.connect(gainer);
     gainer.connect(auxcord.destination);
     absn.start();
+    soundcard.innerText = freedom_bucks.format(absn?.detune?.value/100);
 });
 // wii shop theme is 148bpm (405ms/beat)
 var music_bad;
