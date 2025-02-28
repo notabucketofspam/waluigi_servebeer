@@ -21,8 +21,8 @@ footer div {
   margin: 0px auto;
 }
 #soundcard {
-  background-color:white;
-  padding:2px;
+  background-color:#0000;
+  padding:0px;
   font-weight:bold;
 }
 #troubled_music {
@@ -37,6 +37,24 @@ footer div {
   width:188px;
   min-height:44px;
   border:2px #F8F dashed;
+}
+#gains,#gaining{
+  user-select:none;
+}
+#gaining{
+  background-color:#0000;
+  display:inline-block;
+  font-weight:bold;
+  width: 52px;
+}
+#gains{
+  background-color:#0000;
+  font-weight:bold;
+  border:0;
+  font-family:serif;
+  font-size:16px;
+  width:15px;
+  padding:0;
 }
 </style>
 </head>
@@ -211,7 +229,10 @@ footer div {
       <ul>
         <li>
           Creative SoundBlaster
-          <ul><li><span id="soundcard">$0.00</span></li></ul>
+          <ul>
+            <li><span id="soundcard">$0.00</span></li>
+            <li><span id="gaining">-10.0dB</span><input type="number" value="0.10" min="0.0" max="2.0" step="0.01" id="gains"/></li>
+          </ul>
         </li>
       </ul>
     </li>
@@ -225,6 +246,21 @@ footer div {
 </div>
 <script src="/js/everything.js"></script>
 <script>
+sessionStorage["gain"] ??= 0.10;
+gains.value = sessionStorage["gain"];
+set_gain(sessionStorage["gain"]);
+gains.addEventListener("input",(ev)=>{
+  set_gain(ev.target.valueAsNumber);
+  gainer.gain.exponentialRampToValueAtTime(ev.target.valueAsNumber,auxcord.currentTime+Math.random());
+  sessionStorage["gain"] = ev.target.valueAsNumber;
+});
+function set_gain(k){
+  gaining.innerText = (10*Math.log10(k)).toLocaleString(undefined,{
+    minimumSignificantDigits:3,
+    maximumSignificantDigits:3,
+    trailingZeroDisplay:"auto"
+  })+"dB";
+}
 threads.innerText = navigator.hardwareConcurrency;
 gib_ram.innerText = navigator.deviceMemory;
 var gup;
@@ -233,7 +269,7 @@ var gup;
   gpu.innerText = (gup.info.vendor + " " + gup.info.architecture).toUpperCase();
 })();
 var auxcord = new AudioContext();
-var gainer = new GainNode(auxcord, {gain:0.1});
+var gainer = new GainNode(auxcord, {gain:sessionStorage["gain"]});
 var absn;
 var detuner = ()=> (20+80*Math.random())*(rui(2)?1:-1);
 fetch("/page/hardware-store/wii_shop_loop.mp3")
@@ -257,8 +293,8 @@ music_bad = setInterval(()=>{
     let tune = detuner();
     let curr = absn.detune.value;
     let newval = tune+curr;
-    if (Math.abs(newval)>200)
-      newval -= 2*tune;
+    //if (Math.abs(newval)>200)
+    //  newval -= 2*tune;
     //console.log(tune, curr, newval);
     absn.detune.cancelAndHoldAtTime(0);
     absn.detune.setTargetAtTime(newval?newval:1, 0, 4.86);
