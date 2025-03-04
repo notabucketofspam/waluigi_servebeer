@@ -42,7 +42,8 @@ burgmenu.addEventListener("beforetoggle", ev=> {
     }
   }
 });
-if (location.pathname !== "/"&&!location.pathname.includes("dex")){
+var breadstick = /^\/$|^\/index|^\/outdex/;
+if (!breadstick.test(location.pathname)){
   burgmenu.insertAdjacentHTML("beforeend", 
 `<div style="text-align:center;font-family:monospace;">
 This is where we put the party stuff. You need to<br><br>
