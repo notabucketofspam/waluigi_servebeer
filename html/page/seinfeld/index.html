@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<title>Seinfeld</title>
+<style>
+#the_video{
+  max-width:95vw;
+  max-height:95vh;
+}
+h2{
+  margin-bottom:0;
+}
+ol{
+  margin:0;
+}
+#goto_top{
+  position:sticky;
+  bottom:10px;
+  cursor:pointer;
+  font-size:32px;
+}
+</style>
+</head>
+<body>
+<h1 id="episode_name">Seinfeld</h1>
+<video id="the_video" controls width="720" height="540"></video>
+<h2>Season 1</h2>
+<ol id="Season 1"></ol>
+<h2>Season 2</h2>
+<ol id="Season 2"></ol>
+<h2>Season 3</h2>
+<ol id="Season 3"></ol>
+<h2>Season 4</h2>
+<ol id="Season 4"></ol>
+<h2>Season 5</h2>
+<ol id="Season 5"></ol>
+<h2>Season 6</h2>
+<ol id="Season 6"></ol>
+<h2>Season 7</h2>
+<ol id="Season 7"></ol>
+<h2>Season 8</h2>
+<ol id="Season 8"></ol>
+<h2>Season 9</h2>
+<ol id="Season 9"></ol>
+<span id="goto_top" onclick="window.scroll(0,0)">&#x2B06;&#xFE0F;</span>
+<script src="/js/everything.js"></script>
+<script>
+var episodes = ["/Season 1/Disc 1/S1E1 The Seinfeld Chronicles","/Season 1/Disc 1/S1E2 Male-Unbonding","/Season 1/Disc 1/S1E3 The Stake Out","/Season 1/Disc 1/S1E4 The Robbery","/Season 1/Disc 1/S1E5 The Stock Tip","/Season 2/Disc 1/S2E1 The Ex-Girlfriend","/Season 2/Disc 1/S2E2 The Pony Remark","/Season 2/Disc 1/S2E3 The Busboy","/Season 2/Disc 1/S2E4 The Baby Shower","/Season 2/Disc 1/S2E5 The Jacket","/Season 2/Disc 2/S2E6 The Chinese Restaurant","/Season 2/Disc 2/S2E7 The Phone Message","/Season 2/Disc 2/S2E8 The Apartment","/Season 2/Disc 2/S2E9 The Stranded","/Season 2/Disc 2/S2E10 The Statue","/Season 2/Disc 3/S2E11 The Heart Attack","/Season 2/Disc 3/S2E12 The Revenge (Original Aired Version)","/Season 2/Disc 3/S2E13 The Deal","/Season 3/Disc 1/S3E1 The Note","/Season 3/Disc 1/S3E2 The Truth","/Season 3/Disc 1/S3E3 The Dog","/Season 3/Disc 1/S3E4 The Library","/Season 3/Disc 1/S3E5 The Pen","/Season 3/Disc 2/S3E6 The Parking Garage","/Season 3/Disc 2/S3E7 The Cafe","/Season 3/Disc 2/S3E8 The Tape","/Season 3/Disc 2/S3E9 The Nose job","/Season 3/Disc 2/S3E10 The Alternate Side","/Season 3/Disc 3/S3E11 The Red Dot","/Season 3/Disc 3/S3E12 The Suicide","/Season 3/Disc 3/S3E13 The Subway","/Season 3/Disc 3/S3E14 The Pez Dispenser","/Season 3/Disc 3/S3E15-16 The Boyfriend","/Season 3/Disc 4/S3E17 The Fix-Up","/Season 3/Disc 4/S3E18 The Limo","/Season 3/Disc 4/S3E19 The Good Samaritan","/Season 3/Disc 4/S3E20 The Letter","/Season 3/Disc 4/S3E21 The Parking Space","/Season 3/Disc 4/S3E22 The Keys","/Season 4/Disc 1/S4E1 The Trip (Part 1)","/Season 4/Disc 1/S4E2 The Trip (Part 2)","/Season 4/Disc 1/S4E3-4 The Pitch, The Ticket","/Season 4/Disc 1/S4E5 The Wallet","/Season 4/Disc 1/S4E6 The Watch","/Season 4/Disc 2/S4E7 The Bubble Boy","/Season 4/Disc 2/S4E8 The Cheever Letters","/Season 4/Disc 2/S4E9 The Opera","/Season 4/Disc 2/S4E10 The Virgin","/Season 4/Disc 2/S4E11 The Contest","/Season 4/Disc 3/S4E12 The Airport","/Season 4/Disc 3/S4E13 The Pick","/Season 4/Disc 3/S4E14 The Visa","/Season 4/Disc 3/S4E15 The Movie","/Season 4/Disc 3/S4E16 The Outing","/Season 4/Disc 3/S4E17 The Shoes","/Season 4/Disc 4/S4E18 The Old Man","/Season 4/Disc 4/S4E19 The Implant","/Season 4/Disc 4/S4E20 The Handicap Spot","/Season 4/Disc 4/S4E21 The Junior Mint","/Season 4/Disc 4/S4E22 The Smelly Car","/Season 4/Disc 4/S4E23-24 The Pilot","/Season 5/Disc 1/S5E1 The Mango","/Season 5/Disc 1/S5E2 The Glasses","/Season 5/Disc 1/S5E3 The Puffy Shirt","/Season 5/Disc 1/S5E4 The Sniffing Accountant","/Season 5/Disc 1/S5E5 The Bris","/Season 5/Disc 2/S5E6 The Lip Reader","/Season 5/Disc 2/S5E7 The Non-Fat Yogurt (Alternate Mayor Dinkins Version)","/Season 5/Disc 2/S5E8 The Barber","/Season 5/Disc 2/S5E9 The Masseuse","/Season 5/Disc 2/S5E10 The Cigar Store Indian","/Season 5/Disc 3/S5E11 The Conversation","/Season 5/Disc 3/S5E12 The Stall","/Season 5/Disc 3/S5E13 The Marine Biologist","/Season 5/Disc 3/S5E14 The Dinner Party","/Season 5/Disc 3/S5E15 The Pie","/Season 5/Disc 3/S5E16 The Stand-In","/Season 5/Disc 4/S5E17 The Wife","/Season 5/Disc 4/S5E18 The Fire","/Season 5/Disc 4/S5E19-20 The Raincoats","/Season 5/Disc 4/S5E21 The Hamptons","/Season 5/Disc 4/S5E22 The Opposite","/Season 6/Disc 1/S6E1 The Chaperone","/Season 6/Disc 1/S6E2 The Big Salad","/Season 6/Disc 1/S6E3 The Pledge Drive","/Season 6/Disc 1/S6E4 The Chinese Woman","/Season 6/Disc 1/S6E5 The Couch","/Season 6/Disc 1/S6E6 The Gymnast","/Season 6/Disc 2/S6E7 The Mom & Pop Store","/Season 6/Disc 2/S6E8 The Soup","/Season 6/Disc 2/S6E9 The Secretary","/Season 6/Disc 2/S6E10 The Switch","/Season 6/Disc 2/S6E11 The Race","/Season 6/Disc 2/S6E12 The Label Maker","/Season 6/Disc 3/S6E13 The Scofflaw","/Season 6/Disc 3/S6E14-15 The Highlights of 100","/Season 6/Disc 3/S6E16 The Beard","/Season 6/Disc 3/S6E17 The Kiss Hello","/Season 6/Disc 3/S6E18 The Doorman","/Season 6/Disc 4/S6E19 The Jimmy","/Season 6/Disc 4/S6E20 The Doodle","/Season 6/Disc 4/S6E21 The Fusilli Jerry","/Season 6/Disc 4/S6E22 The Diplomat's Club","/Season 6/Disc 4/S6E23 The Face Painter","/Season 6/Disc 4/S6E24 The Understudy","/Season 7/Disc 1/S7E1 The Engagement","/Season 7/Disc 1/S7E2 The Postponement","/Season 7/Disc 1/S7E3 The Maestro","/Season 7/Disc 1/S7E4 The Wink","/Season 7/Disc 1/S7E5 The Hot Tub","/Season 7/Disc 1/S7E6 The Soup Nazi","/Season 7/Disc 2/S7E7 The Secret Code","/Season 7/Disc 2/S7E8 The Pool Guy","/Season 7/Disc 2/S7E9 The Sponge","/Season 7/Disc 2/S7E10 The Gum","/Season 7/Disc 2/S7E11 The Rye","/Season 7/Disc 2/S7E12 The Caddy","/Season 7/Disc 3/S7E13 The Seven","/Season 7/Disc 3/S7E14-15 The Cadillac","/Season 7/Disc 3/S7E16 The Shower","/Season 7/Disc 3/S7E17 The Doll","/Season 7/Disc 3/S7E18 The Friars Club","/Season 7/Disc 4/S7E19 The Wig Master","/Season 7/Disc 4/S7E20 The Calzone","/Season 7/Disc 4/S7E21-22 The Bottle Deposit","/Season 7/Disc 4/S7E23 The Wait Out","/Season 7/Disc 4/S7E24 The Invitations","/Season 8/Disc 1/S8E1 The Foundation","/Season 8/Disc 1/S8E2 The Soul Mate","/Season 8/Disc 1/S8E3 The Bizarro Jerry","/Season 8/Disc 1/S8E4 The Little Kicks","/Season 8/Disc 1/S8E5 The Package","/Season 8/Disc 2/S8E6 The Fatigues","/Season 8/Disc 2/S8E7 The Checks","/Season 8/Disc 2/S8E8 The Chicken Roaster","/Season 8/Disc 2/S8E9 The Abstinence","/Season 8/Disc 2/S8E10 The Andrea Doria","/Season 8/Disc 2/S8E11 The Little Jerry","/Season 8/Disc 3/S8E12 The Comeback","/Season 8/Disc 3/S8E13 The Money","/Season 8/Disc 3/S8E14 The Van Buren Boys","/Season 8/Disc 3/S8E15 The Susie","/Season 8/Disc 3/S8E16 The Pothole","/Season 8/Disc 3/S8E17 The English Patient","/Season 8/Disc 4/S8E18 The Nap","/Season 8/Disc 4/S8E19 The Yada Yada","/Season 8/Disc 4/S8E20 The Millenium","/Season 8/Disc 4/S8E21 The Muffin Tops","/Season 8/Disc 4/S8E22 The Summer of George","/Season 9/Disc 1/S9E1 The Butter Shave","/Season 9/Disc 1/S9E2 The Voice","/Season 9/Disc 1/S9E3 The Serenity Now","/Season 9/Disc 1/S9E4 The Blood","/Season 9/Disc 1/S9E5 The Junk Mail","/Season 9/Disc 1/S9E6 The Merv Griffin Show","/Season 9/Disc 2/S9E7 The Slicer","/Season 9/Disc 2/S9E8 The Betrayal (Normal)","/Season 9/Disc 2/S9E9 The Apology","/Season 9/Disc 2/S9E10 The Strike","/Season 9/Disc 2/S9E11 The Dealership","/Season 9/Disc 2/S9E12 The Reverse Peephole","/Season 9/Disc 3/S9E13 The Cartoon","/Season 9/Disc 3/S9E14 The Strongbox","/Season 9/Disc 3/S9E15 The Wizard","/Season 9/Disc 3/S9E16 The Burning","/Season 9/Disc 3/S9E17 The Bookstore","/Season 9/Disc 3/S9E18 The Frogger","/Season 9/Disc 4/S9E19 The Maid","/Season 9/Disc 4/S9E20 The Puerto Rican Day","/Season 9/Disc 4/S9E21-22 The Chronicle","/Season 9/Disc 4/S9E23-24 The Finale"];
+var get_episode = (ep)=>ep.split('/')[3];
+var ep_no = 0;
+var is_combo = /\d-\d/;
+for (const ep of episodes) {
+  window[ep.split('/')[1]].insertAdjacentHTML("beforeend", '<li value="'+(++ep_no)+'"><button onclick="set_video(\''+ep+'\');the_video.play().catch(e=>{});">'+get_episode(ep)+'</button></li>');
+  ep_no+=is_combo.test(ep)?1:0;
+}
+function set_video(ep){
+  //150.136.4.41
+  the_video.src = "https://seinfeld.waluigi-servebeer.com"+encodeURI(ep)+".mp4";
+  sessionStorage["seinfeld_src"] = the_video.src;
+  sessionStorage["seinfeld_ep"] = ep;
+  episode_name.innerText = get_episode(ep);
+  document.title = episode_name.innerText;
+}
+if (sessionStorage["seinfeld_ep"])
+  set_video(sessionStorage["seinfeld_ep"]);
+sessionStorage["seinfeld_volume"] ??= 0.3;
+the_video.volume = sessionStorage["seinfeld_volume"];
+the_video.addEventListener("volumechange",ev=> sessionStorage["seinfeld_volume"] = ev.target.volume);
+sessionStorage["seinfeld_time"] ??= 0;
+the_video.currentTime = sessionStorage["seinfeld_time"];
+the_video.addEventListener("timeupdate",ev=>sessionStorage["seinfeld_time"] = ev.target.currentTime);
+</script>
+</body>
+</html>
