@@ -6,8 +6,13 @@
 <title>Seinfeld</title>
 <style>
 #the_video{
-  max-width:95vw;
-  max-height:95vh;
+  aspect-ratio:4/3;
+}
+@media(max-width:800px){
+  #the_video{
+    max-width:95vw;
+    max-height:95vh;
+  }
 }
 h2{
   margin-bottom:0;
@@ -26,6 +31,11 @@ ol{
 <body>
 <h1 id="episode_name">Seinfeld</h1>
 <video id="the_video" controls width="720" height="540"></video>
+<br/>
+<select id="choose_size">
+  <option value="720px,540px" selected>Size: small</option>
+  <option value="100%,100%">Size: big</option>
+</select>
 <h2>Season 1</h2>
 <ol id="Season 1"></ol>
 <h2>Season 2</h2>
@@ -71,6 +81,18 @@ the_video.addEventListener("volumechange",ev=> sessionStorage["seinfeld_volume"]
 sessionStorage["seinfeld_time"] ??= 0;
 the_video.currentTime = sessionStorage["seinfeld_time"];
 the_video.addEventListener("timeupdate",ev=>sessionStorage["seinfeld_time"] = ev.target.currentTime);
+choose_size.addEventListener("change",ev=>{
+  sessionStorage["seinfeld_size"] = ev.target.selectedIndex;
+  set_video_size(ev.target.value);
+});
+function set_video_size(value){
+  var [widtho,heighto] = value.split(',');
+  the_video.style.width = widtho;
+  the_video.style.height = heighto;
+}
+sessionStorage["seinfeld_size"] ??= Number(window.screen.width<800);
+choose_size.selectedIndex = sessionStorage["seinfeld_size"];
+set_video_size(choose_size.value);
 </script>
 </body>
 </html>
