@@ -9,7 +9,6 @@ body {
   background-color: #ffffff;
 }
 html {
-  --scrollbar-width: none;
   overflow-x:hidden;
 }
 footer{
@@ -76,10 +75,6 @@ h1 {
   overflow-y:clip;
   margin-right:4ch;
   justify-self:right;
-}
-#rhs {
-  display:grid;
-  grid-auto-rows: min-content;
 }
 #about {
   display:grid;
@@ -155,6 +150,20 @@ h1 {
 #meme_gallery:active {
   background-color:#ffc4ff;
 }
+.me_0{
+  width:72px;
+  height:72px;
+  background-image: url("/page/gallery/ME_0.webp");
+  background-repeat:repeat;
+}
+#meme_strong{
+  font-size:165%;
+  color:#8E5E9C;
+  text-align:center;
+  display:block;
+  height:70px;
+  font-weight:bold;
+}
 h3 {
   margin:0;
   font-family:monospace;
@@ -171,9 +180,7 @@ h3 {
 }
 #coaletc {
   grid-template: 
-    "a b c" auto
-    ". d ." auto;
-  row-gap:1lh;
+    "a b c" auto;
 }
 </style>
 </head>
@@ -325,6 +332,7 @@ zone
     </a>
     <a href="/page/legal/disclaimer.html" class="clickbait-article">Legal disclaimer</a>
     <a href="/page/hardware-store/real.html" class="clickbait-article">Hardware Store</a>
+    <a href="/page/gallery/memes.html" class="clickbait-article lard" id="meme_gallery"><div class="me_0"></div><div class="clickbait-intext" style="height:72px;"><marquee vspace="0" hspace="0" height="72" scrolldelay="20" truespeed scrollamount="2" direction="down" behavior="alternate"><strong id="meme_strong">MEME GALLERY</strong></marquee></div><div class="me_0"></div></a>
   </div>
   <div id="rhs" style="grid-area:c" class="colgate">
     <a href="/page/new-year/2025.html" class="fake_advertisement" id="new_year">
@@ -354,47 +362,6 @@ zone
         </li>
       </ul>
     </div>
-  </div>
-  <div style="grid-area:d">
-    <a href="/page/gallery/memes.html" class="clickbait-article lard" id="meme_gallery">
-      <div style="display:flex;flex-direction:column;">
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-      </div>
-      <div style="display:flex;flex-direction:column;">
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-      </div>
-      <div style="display:flex;flex-direction:column;">
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-      </div>
-      <div class="clickbait-intext" style="height:72px;">
-        <marquee vspace="0" hspace="0" height="72" scrolldelay="20" truespeed scrollamount="2" direction="down" behavior="alternate">
-          <strong style="font-size:165%;color:#8E5E9C;text-align:center;display:block;height:70px;">
-            MEME GALLERY
-          </strong>
-        </marquee>
-      </div>
-      <div style="display:flex;flex-direction:column;">
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-      </div>
-      <div style="display:flex;flex-direction:column;">
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-      </div>
-      <div style="display:flex;flex-direction:column;">
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-        <img height="24" src="/page/gallery/ME_0.webp"/>
-      </div>
-    </a>
   </div>
 </section>
 <script src="/js/everything.js"></script>
