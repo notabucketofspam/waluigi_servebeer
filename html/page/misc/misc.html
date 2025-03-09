@@ -37,22 +37,23 @@ blink, .blink-css {
 </style>
 </head>
 <body>
-<br />
-<br />
-<!-- <br> -->
-<button class="biggie" onclick="vibro()" id="vibes">vibes</button>
-<button class="biggie" onclick="bucko()" id="men" style="color:deeppink;letter-spacing:2px;">men</button>
+<h1>misc</h1>
+<button class="biggie" onclick="vibro()" id="vibes">v&iuml;b&oslash;r&ecirc;&aring;t&eacute;</button>
+<button class="biggie" onclick="bammer()" id="men" style="color:deeppink;letter-spacing:2px;">men</button>
 <br>
+<div>
+  <audio controls id="el_radio" onended="bammer()"></audio>
+</div>
 <label for="l">L</label>
 <input id="l" type="range" step="0.001" value="1" min="0" max="1">
 <span id="lv"></span>
 <br>
 <label for="c">C</label>
-<input id="c" type="range" step="0.001" value="0.4" min="0" max="0.5">
+<input id="c" type="range" step="0.001" value="0" min="0" max="0.5">
 <span id="cv"></span>
 <br>
 <label for="h">H</label>
-<input id="h" type="range" step="0.001" value="0" min="0" max="360">
+<input id="h" type="range" step="0.001" value="165" min="0" max="360">
 <span id="hv"></span>
 <br>
 x: <span id="x_px"></span>px
@@ -61,8 +62,8 @@ y: <span id="y_px"></span>px
 <div id="dong">?</div>
 <br>
 <blink>&lt;blink&gt;<br>
-<span style="display:inline-block;width:2ch;"></span>this is blinking text &lt;br&gt;<br>
-<span style="display:inline-block;width:2ch;"></span>i stole it from wikipedia lol &lt;br&gt;<br>
+<span style="display:inline-block;width:2ch;"></span>this is blinking text<br>
+<span style="display:inline-block;width:2ch;"></span>i stole it from wikipedia lol<br>
 &lt;/blink&gt;</blink>
 
   <div class="div_pad_small"></div>
@@ -109,6 +110,12 @@ async function bucko(){
   awoo = await k;
   b = await awoo.text();
   console.log(b);
+}
+var el_radio = document.getElementById("el_radio");
+el_radio.volume = sessionStorage["audio_player_volume"]??0.2;
+function bammer(){
+  el_radio.src = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/jams/BSC%20Prime%20Cuts/"+bsc_prime_cuts[rui(204)];
+  el_radio.play().catch(()=>{});
 }
 <!-- bucko(); -->
 l.addEventListener("input", meme);
