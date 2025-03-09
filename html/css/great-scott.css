@@ -687,3 +687,149 @@ body>hr,body>main hr {
 .mellon:active {
   background-color:#ff8000;
 }
+
+/*
+    INDEX.HTML
+*/
+#creme {
+  font-size: 2.4em;
+  text-decoration-line: underline;
+  font-family: monospace;
+}
+#burrfish_list {
+  margin:0px;
+  padding-left:21px;
+  column-count:2;
+}
+#burrfish_list > li {
+  break-inside:avoid-column;
+  padding-right:10px;
+}
+#burrfish_list > li::marker {
+  content: "\1f421";
+}
+#about_this_site {
+  text-align: center;
+  text-decoration-line: underline;
+  font-size: 21px;
+  grid-area:a;
+}
+#login-stuffs {
+  float:right;
+  text-align: right;
+}
+main #login-stuffs{
+  position:relative;
+  top:-27px;
+}
+#easier-for-you-taunt {
+  text-align:right;
+  margin-left: 40px;
+  width: fit-content;
+}
+#ctrl-f5 {
+  cursor: default;
+  user-select:none;
+}
+#celebrating {
+  position: absolute;
+  top:95px;
+  left:222px;
+  display:block;
+}
+#new_year {
+  overflow-y:clip;
+  margin-right:4ch;
+  justify-self:right;
+}
+#about {
+  display:grid;
+  grid-template: "a a"
+                 "b c" / 1fr 1fr;
+  column-gap: 4ch;
+}
+@media (max-width:8in){
+  #about,*[class*="wide"] {
+    display:flex;
+    flex-direction:column;
+  }
+  #celebrating {
+    position:unset;
+  }
+  #new_year {
+    float:none;
+    margin:0;    
+  }
+  #rhs {
+    order:-1;
+  }
+  #lhs{
+    order:-2;
+  }
+  #coaletc{
+    margin-top:1lh;
+  }
+}
+#the_notice {
+  background-color:#efeffa;
+  border: ridge;
+  padding:4px;
+  margin:4px;
+  max-width:24ch;
+  user-select:none;
+  cursor:not-allowed;
+}
+#technical_pages {
+  border: 2px dotted red;
+  width:fit-content;
+  height:fit-content;
+  padding:2px;
+  margin:6px;
+}
+.clickbait-intext {
+  width: min-content;
+  text-align: center;
+}
+#meat_update {
+  max-width:4in;
+}
+#dvdbox:hover {
+  cursor:url(/resource/dvd.cur), auto;
+}
+#meme_gallery {
+  display:flex;
+  background-color:#ffe3ff;
+  border-color:#eeddee;
+  border-style:ridge;
+}
+#meme_gallery:hover {
+  background-color:#ffd3ff;
+}
+#meme_gallery:active {
+  background-color:#ffc4ff;
+}
+.me_0{
+  width:72px;
+  height:72px;
+  background-image: url("/page/gallery/ME_0.webp");
+  background-repeat:repeat;
+}
+#meme_strong{
+  font-size:165%;
+  color:#8E5E9C;
+  text-align:center;
+  display:block;
+  height:70px;
+  font-weight:bold;
+}
+#wpc {
+  text-decoration: underline;
+}
+#wpc:hover,#wpc:focus,#wpc:active{
+  text-decoration-style:wavy;
+  text-decoration-thickness: from-font;
+}
+#coaletc {
+  grid-template: 
+    "a b c" auto;
+}
