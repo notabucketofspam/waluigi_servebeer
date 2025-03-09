@@ -390,6 +390,9 @@ a.shortcut::after{
   text-decoration:none;
   color:#f0f;
 }
+#outdexportal #outdexbottomtext{
+  font-size:24px;
+}
 #outdexbottomtext[title] {
   cursor: help;
 }
@@ -418,6 +421,15 @@ input[type="range"]:active {
   letter-spacing:-1.3px;
   line-height:0.6lh;
   user-select:none;
+}
+#singlepageappmode{
+  font-size:12px;
+  letter-spacing:-1px;
+  font-family:'Segoe Print';
+  color:#f4a;
+  font-weight:bold;
+  margin-bottom:-13px;
+  margin-top:-8px;
 }
 
 /*
