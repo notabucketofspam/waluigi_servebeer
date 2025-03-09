@@ -518,6 +518,9 @@ kbd {
 kbd:hover {
   background-color:#ddd;
 }
+kbd:focus,kbd:active{
+  background-color:#ccc;
+}
 del {
   background-color: #fbb;
 }
