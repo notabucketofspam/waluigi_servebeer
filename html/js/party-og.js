@@ -49,9 +49,13 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
   <div class="div_pad_small scrollable_meter" id="another_jukebox_divider" onwheel="update_jukebox_volume(event)"></div>
   <div id="album_area">
     <span id="scroll_wheel_comment" class="scrollable_meter" onwheel="update_jukebox_volume(event)">(the scroll wheel is your friend)</span>
-    <div id="jukebox_loop_div">
+    <div class="white_in_burgmenu" id="jukebox_loop_div">
       <input type="checkbox" id="jukebox_loop_input"/>
       <label for="jukebox_loop_input" id="loop_word">&#x2112;&#x2134;&#x2134;&wp;</label>
+    </div>
+    <div id="shuffle_or_nah" style="">
+      <input type="checkbox" id="jukebox_shuffle"/>
+      <label id="shuffle_label" for="jukebox_shuffle">&#x1F500;&#xFE0F;</label>
     </div>
     <select id="selch">
       <option value="0,0,classic_mode">Classic Jukebox (7)</option>
@@ -72,7 +76,7 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
       <option value="173,204">junk (31)</option>
       <option value="0,0,pro_playlist">pro playlist (70)</option>
     </select>
-    <div id="change_album_message">Select<br/>playlist</div>
+    <div class="white_in_burgmenu" id="change_album_message">Select<br/>playlist</div>
   </div>
 </div>`);
   
@@ -241,6 +245,7 @@ var singular_jukebox_divider = document.getElementById("singular_jukebox_divider
 var selch = document.getElementById("selch");
 var jukebox_loop_input = document.getElementById("jukebox_loop_input");
 var another_jukebox_divider = document.getElementById("another_jukebox_divider");
+var jukebox_shuffle = document.getElementById("jukebox_shuffle");
 
 // jukebox_current_track.innerHTML = jukebox_track_list[0];
 // audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
@@ -274,6 +279,9 @@ function toggle_audio(element) {
 function jukebox_change_track(element) {
   if (element === null && jukebox_loop_input.checked)
     return;
+  if (jukebox_shuffle.checked){
+    jukebox_track_index = rui(jukebox_track_list.length);
+  } else
   if (element === null || element.getAttribute("value") === ">") {
     ++jukebox_track_index;
     if (jukebox_track_index == jukebox_track_list.length)
@@ -333,6 +341,9 @@ function selcho_playlist(ev_target_value){
   }
   current_prefix = album[nemo].prefix;
   current_filetype = album[nemo].filetype;
+  if (jukebox_shuffle.checked){
+    jukebox_track_index = rui(jukebox_track_list.length);
+  }
   jukebox_load_audio();
 }
 /*
@@ -345,6 +356,9 @@ jukebox_loop_input.addEventListener("change",ev=>{
 function set_audio_loop(){
   audio_player.loop = jukebox_loop_input.checked;
 }
+jukebox_shuffle.addEventListener("change",ev=>{
+  sessionStorage["shuffle"] = ev.target.checked|0;
+});
 function remember_me(){
   set_volobar(Number(sessionStorage.getItem("audio_player_volume")||0.15));
   jukebox_track_index = Number(sessionStorage.getItem("jukebox_track_index")||0);
@@ -355,6 +369,8 @@ function remember_me(){
   var do_loop = Number(sessionStorage.getItem("loop")||0);
   jukebox_loop_input.checked = Boolean(do_loop);
   set_audio_loop();
+  var do_shuffle = Number(sessionStorage.getItem("shuffle")||0);
+  jukebox_shuffle.checked = Boolean(do_shuffle);
 }
 setTimeout(remember_me,0);
 

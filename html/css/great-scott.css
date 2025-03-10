@@ -329,8 +329,8 @@ a.shortcut::after{
 #album_area{
   display:grid;
   grid:
-    "a e e e"
-    "c c b .";
+    "a e e d"
+    "c c b d";
   width:200px;
   height:43px;
 }
@@ -358,6 +358,26 @@ a.shortcut::after{
 }
 #loop_word{
   margin:0 0 0 -5px;
+}
+#shuffle_or_nah{
+  grid-area:d;
+  display:flex;
+  flex-direction:column-reverse;
+  margin-left:1px;
+  z-index:1;
+}
+#burgmenu #shuffle_or_nah{
+  background-color:white;
+  border-top:2px solid black;
+  border-right:2px solid black;
+  border-bottom:2px solid black;
+}
+#shuffle_label{
+  margin-bottom:-3px;
+}
+#jukebox_shuffle{
+  accent-color:#8080FF;
+  margin-bottom:1px;
 }
 
 /*
