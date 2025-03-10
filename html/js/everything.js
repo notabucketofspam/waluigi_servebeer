@@ -25,6 +25,8 @@ document.documentElement.insertAdjacentHTML('beforeend',
 <div id="burgmenu" popover>
   <meta class="meta_party" id="burgmenu_mp" />
 </div>`);
+var protobreadstick = /^\/$|^\/index/;
+if (!protobreadstick.test(location.pathname)){
 burgmenu.addEventListener("beforetoggle", ev=> {
   var imp = document.getElementById("index_mp");
   var bmp = document.getElementById("burgmenu_mp");
@@ -42,7 +44,8 @@ burgmenu.addEventListener("beforetoggle", ev=> {
     }
   }
 });
-var breadstick = /^\/$|^\/index|^\/outdex/;
+}
+var breadstick = /^\/outdex/;
 if (!breadstick.test(location.pathname)){
   burgmenu.insertAdjacentHTML("beforeend", 
 `<div style="text-align:center;font-family:monospace;">
