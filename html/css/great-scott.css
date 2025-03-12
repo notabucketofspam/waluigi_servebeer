@@ -368,9 +368,9 @@ a.shortcut::after{
 }
 #burgmenu #shuffle_or_nah{
   background-color:white;
-  border-top:2px solid black;
-  border-right:2px solid black;
-  border-bottom:2px solid black;
+  border-top:3px solid black;
+  border-right:3px solid black;
+  border-bottom:3px solid black;
 }
 #shuffle_label{
   margin-bottom:-3px;
