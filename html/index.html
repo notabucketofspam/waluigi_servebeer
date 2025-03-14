@@ -223,8 +223,10 @@ zone
     </div>
   </div>
 </section>
+<meta id="cookizza_zone"/>
 <script src="/js/everything.js"></script>
 <script src="/js/party-og.js"></script>
+<script src="/js/cookizza.js"></script>
 <script>
 if (rui(2))
   the_u.innerText = "u";
@@ -238,53 +240,6 @@ if (typeof is_outdex !== "undefined") {
     var party_zone = document.getElementById("party_zone");
     index_mp.parentNode.insertBefore(party_zone, index_mp)
   },55);
-}
-
-</script>
-<div id="jug">
-  <div id="jar"></div>
-  <button id="aight" onclick="realhideme()">aight</button>
-  <button id="nah" onclick="hideme()">nah</button>
-</div>
-<script>
-/**@type number[]*/
-var used = JSON.parse(localStorage.getItem('used')) ?? [];
-/**@type string[]*/
-var memes;
-fetch("/resource/pseudo-cookies.txt")
-  .then(res => res.text())
-  .then(text => {
-    memes = text.split(/(?:\r\n\r\n)|(?:\r\r)|(?:\n\n)/);
-    pulljar();
-  }
-  );
-var jar = document.getElementById('jar');
-function pulljar () {
-  if (used.length === memes.length - 1) {
-    used.splice(0, 1+rui(used.length));
-  }
-  var n;
-  var c = 0;
-  do {
-    n = rui(memes.length);
-    ++c;
-  } while (used.includes(n));
-  used.push(n);
-  localStorage.setItem('used', JSON.stringify(used));
-  jar.innerHTML = memes.at(n);
-}
-function setjar(n) {
-  jar.innerHTML = memes.at(n);
-}
-function hideme () {
-  jug.hidden = true;
-  setTimeout(() => {
-    jug.hidden = false;
-    pulljar();
-  }, 3000);
-}
-function realhideme() {
-jug.hidden = true;
 }
 </script>
 </body>
