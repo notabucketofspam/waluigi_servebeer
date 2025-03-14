@@ -101,6 +101,7 @@ consume(hashgrab());
 var main = document.querySelector('main');
 var bread = 
 /(?:(?<=\<title\>)(?<title>.*?)(?=\<\/title\>))|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<scrsrc>.*?)(?="\>\<\/script\>))/gs;
+var titlecase = /&#(?:(?<d>\d+)|(?<x>x[\dA-F]+));/gi;
 /**
  * put those almonds to good use
  * @param {string} url the page you need
@@ -148,7 +149,16 @@ function consume(url) {
             }, 0);
           }
           if (groups.title) {
-            document.title = groups.title;
+            var real_title = groups.title.replaceAll(titlecase, function replacer2(substring2, ...args2){
+              const groups2 = args2.at(-1);
+              if (groups2.d){
+                return String.fromCodePoint(groups2.d);
+              }
+              if (groups2.x){
+                return String.fromCodePoint(("0"+groups2.x));
+              }
+            });
+            document.title = real_title;
           }
           if (groups.lonk) {
           }
