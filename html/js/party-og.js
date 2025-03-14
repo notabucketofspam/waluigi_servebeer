@@ -36,7 +36,7 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
     </div>
     <div class="div_pad_small scrollable_meter" onwheel="update_jukebox_volume(event)"></div>
     <div id="jukebox_which_track">
-      <span class="scrollable_meter white_in_burgmenu" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
+      <span class="scrollable_meter offwhite_in_burgmenu" id="jukebox_current_track" onwheel="update_jukebox_volume(event)"></span>
     </div>
     <div class="div_pad_small scrollable_meter" id="singular_jukebox_divider"
          onwheel="update_jukebox_volume(event)"></div>
@@ -53,12 +53,13 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
       <input type="checkbox" id="jukebox_loop_input"/>
       <label for="jukebox_loop_input" id="loop_word">&#x2112;&#x2134;&#x2134;&wp;</label>
     </div>
-    <div id="shuffle_or_nah" style="">
+    <div id="shuffle_or_nah" style="" class="white_in_burgmenu">
       <input type="checkbox" id="jukebox_shuffle"/>
       <label id="shuffle_label" for="jukebox_shuffle">&#x1F500;&#xFE0F;</label>
     </div>
     <select id="selch">
       <option value="0,0,classic_mode">Classic Jukebox (7)</option>
+      <hr>
       <option value="0,204">BSC Prime Cuts (204)</option>
       <option value="0,22">Beats to Yeet By (22)</option>
       <option value="22,44">The Nippon Special (22)</option>
@@ -74,6 +75,7 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
       <option value="149,161">some stuff idk (12)</option>
       <option value="161,173">EVGA GTX 1080 FTW (12)</option>
       <option value="173,204">junk (31)</option>
+      <hr>
       <option value="0,0,pro_playlist">pro playlist (70)</option>
     </select>
     <div class="white_in_burgmenu" id="change_album_message">Select<br/>playlist</div>

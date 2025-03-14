@@ -1,5 +1,5 @@
 if (!document.getElementById('welcome_steak'))
-document.documentElement.insertAdjacentHTML("afterbegin",
+document.body.insertAdjacentHTML("afterbegin",
 `<a href="/" id="return_steak" class="steak_corner">
 Return to the 
 <img src="/resource/steak8.gif" alt="STEAK" class="steak_gif">
@@ -18,35 +18,33 @@ Last-Modified: <span id="Last-Modified"></span>
 </div>
 </footer>`);
 document.getElementById("Last-Modified").innerText = document.lastModified;
-document.documentElement.insertAdjacentHTML('beforeend',
+document.body.insertAdjacentHTML('beforeend',
 `<button popovertarget="burgmenu" id="burger">
   <img alt="BURGER" src="/resource/retro_burger.png" />
 </button>
 <div id="burgmenu" popover>
   <meta class="meta_party" id="burgmenu_mp" />
 </div>`);
-var protobreadstick = /^\/$|^\/index/;
-if (!protobreadstick.test(location.pathname)){
-burgmenu.addEventListener("beforetoggle", ev=> {
-  var imp = document.getElementById("index_mp");
-  var bmp = document.getElementById("burgmenu_mp");
-  var party_zone = document.getElementById("party_zone");
-  
-  if (event.newState === "open") {
-    if (imp) {
-      // take the party and hoist it up to the menu
-      burgmenu.insertBefore(party_zone, bmp);
+var breadstick = /^\/outdex.html/;
+if (breadstick.test(location.pathname)){
+  burgmenu.addEventListener("beforetoggle", ev=> {
+    var imp = document.getElementById("index_mp");
+    var bmp = document.getElementById("burgmenu_mp");
+    var party_zone = document.getElementById("party_zone");
+    
+    if (event.newState === "open") {
+      if (imp) {
+        // take the party and hoist it up to the menu
+        burgmenu.insertBefore(party_zone, bmp);
+      }
+    } else {
+      if (imp) {
+        // put the party back where it belongs
+        imp.parentNode.insertBefore(party_zone, imp);
+      }
     }
-  } else {
-    if (imp) {
-      // put the party back where it belongs
-      imp.parentNode.insertBefore(party_zone, imp);
-    }
-  }
-});
-}
-var breadstick = /^\/outdex/;
-if (!breadstick.test(location.pathname)){
+  });
+} else {
   burgmenu.insertAdjacentHTML("beforeend", 
 `<div style="text-align:center;font-family:monospace;">
 This is where we put the party stuff. You need to<br><br>

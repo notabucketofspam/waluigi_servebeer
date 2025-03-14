@@ -118,6 +118,7 @@ a.shortcut::after{
   padding-left:5px;
   height:256px;
   overflow:visible;
+  border:3px solid black;
 }
 
 /*
@@ -324,6 +325,9 @@ a.shortcut::after{
   }
 }
 #burgmenu .white_in_burgmenu {
+  background-color:#fff;
+}
+#burgmenu .offwhite_in_burgmenu {
   background-color:#fffe;
 }
 #album_area{
@@ -367,7 +371,8 @@ a.shortcut::after{
   z-index:1;
 }
 #burgmenu #shuffle_or_nah{
-  background-color:white;
+  position:relative;
+  top:6px;
   border-top:3px solid black;
   border-right:3px solid black;
   border-bottom:3px solid black;
