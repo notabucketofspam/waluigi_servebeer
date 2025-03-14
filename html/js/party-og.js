@@ -295,9 +295,10 @@ function jukebox_change_track(element) {
   }
   jukebox_load_audio();
 }
+var nurnex = /^\d\d\d /;
 function jukebox_load_audio(){
   sessionStorage["jukebox_track_index"] = jukebox_track_index;
-  jukebox_current_track.innerText = jukebox_track_list[jukebox_track_index];
+  jukebox_current_track.innerText = jukebox_track_list[jukebox_track_index].replace(nurnex,"");
   audio_player["src"]= current_prefix + jukebox_track_list[jukebox_track_index] + current_filetype;
   audio_player.load();
   if (audio_button.classList.contains("active"))
