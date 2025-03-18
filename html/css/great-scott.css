@@ -690,6 +690,8 @@ body>hr,body>main hr {
   display:block;
   text-align:center;
   user-select:none;
+  height:max-content;
+  width:max-content;
 }
 .clickbait-article:hover {
   background-color: #fff0ff;
@@ -723,6 +725,26 @@ body>hr,body>main hr {
   font-size: 2.4em;
   text-decoration-line: underline;
   font-family: monospace;
+  justify-self:center;
+}
+#cremeplace>*{
+  justify-self:center;
+}
+#inside-the-cremeplace{
+  display:grid;
+  grid-template-areas:
+    "e e"
+    "a b"
+    "c d";
+  row-gap: 8px;
+  column-gap:8px;
+}
+#normal-creme{
+  grid-area:e;
+  justify-self:center;
+  text-decoration-line: underline;
+  font-family: monospace;
+  font-size:24px;
 }
 #burrfish_list {
   margin:0px;
@@ -859,5 +881,5 @@ main #login-stuffs{
 }
 #coaletc {
   grid-template: 
-    "a b c" auto;
+    "a b c"/ max-content auto max-content;
 }
