@@ -587,6 +587,11 @@ ins {
   grid-auto-rows: min-content;
   row-gap:17px;
 }
+.rowgate {
+  display:grid;
+  grid-auto-columns: min-content;
+  column-gap:4ch;
+}
 .fr {
   float:right;
 }
@@ -730,21 +735,11 @@ body>hr,body>main hr {
 #cremeplace>*{
   justify-self:center;
 }
-#inside-the-cremeplace{
-  display:grid;
-  grid-template-areas:
-    "e e"
-    "a b"
-    "c d";
-  row-gap: 8px;
-  column-gap:8px;
-}
 #normal-creme{
-  grid-area:e;
   justify-self:center;
   text-decoration-line: underline;
   font-family: monospace;
-  font-size:24px;
+  font-size:26px;
 }
 #burrfish_list {
   margin:0px;
@@ -818,6 +813,7 @@ main #login-stuffs{
   }
   #coaletc{
     margin-top:1lh;
+    row-gap:1lh;
   }
 }
 #the_notice {
@@ -881,5 +877,26 @@ main #login-stuffs{
 }
 #coaletc {
   grid-template: 
-    "a b c"/ max-content auto max-content;
+    "a b c"/ max-content auto auto;
+}
+.rowflex{
+  display: flex;
+  flex:none;
+  flex-flow:row wrap;
+  column-gap:4ch;
+  row-gap:1lh;
+}
+#normalspace{
+  justify-self:center;
+  justify-content:center;
+}
+#normalspace>a{
+  background-color:#ffffdd;
+  border-color:#ffeedd;
+}
+#normalspace>a:hover{
+  background-color:#ffeedd;
+}
+#normalspace>a:active{
+  background-color:#ffe3dd;
 }
