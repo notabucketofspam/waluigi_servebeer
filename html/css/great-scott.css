@@ -100,13 +100,13 @@ a.shortcut::after{
   border:outset 3px #eee;
   z-index:2;
   background-color:#eee;
-  cursor:pointer;
+  cursor:default;
 }
 #burger > img {
   margin:auto;
   display:block;
   user-select:none;
-  cursor:pointer;
+  cursor:default;
 }
 #burger:hover{
   background-color:#ddd;
@@ -424,6 +424,9 @@ a.shortcut::after{
 #outdexbottomtext[title] {
   cursor: help;
 }
+a#outdexbottomtext[title]{
+  cursor:pointer;
+}
 #imnotarobot {
   letter-spacing: 1px;
   position: relative;
@@ -502,7 +505,7 @@ input[type="range"]:active {
   width: 45px;
   text-align: left;
   padding-right: 3px;
-  cursor: pointer;
+  cursor: default;
 }
 #aight:hover {
   background-color: #aaffaa;
@@ -519,7 +522,7 @@ input[type="range"]:active {
   border-style: outset;
   width: 45px;
   text-align: right;
-  cursor: pointer;
+  cursor: default;
 }
 #nah:hover {
   background-color: #ffaaff;
