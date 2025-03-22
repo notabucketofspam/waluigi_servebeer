@@ -1,6 +1,9 @@
 /*
     SOME STUFF
 */
+:where(body){
+  background-color:white;
+}
 .div_pad_small {
   height: 8px;
 }
