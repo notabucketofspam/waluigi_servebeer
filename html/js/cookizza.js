@@ -81,7 +81,7 @@ function hideme () {
   setTimeout(() => {
     jug.hidden = false;
     pulljar();
-  }, 3000);
+  }, 1000);
 }
 function realhideme() {
   jug.hidden = true;
