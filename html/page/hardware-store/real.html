@@ -254,7 +254,7 @@ gains.value = sessionStorage["gain"];
 set_gain(sessionStorage["gain"]);
 gains.addEventListener("input",(ev)=>{
   set_gain(ev.target.valueAsNumber);
-  gainer.gain.exponentialRampToValueAtTime(ev.target.valueAsNumber,auxcord.currentTime+Math.random());
+  gainer.gain.linearRampToValueAtTime(ev.target.valueAsNumber,auxcord.currentTime+Math.random());
   sessionStorage["gain"] = ev.target.valueAsNumber;
 });
 function set_gain(k){
