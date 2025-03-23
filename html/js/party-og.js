@@ -79,6 +79,10 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
       <option value="0,0,pro_playlist">pro playlist (70)</option>
     </select>
     <div class="white_in_burgmenu" id="change_album_message">Select<br/>playlist</div>
+    <details id="whats_in_this_playlist">
+      <summary>What's in this playlist?</summary>
+      <ol id="track_list_now"></ol>
+    </details>
   </div>
 </div>`);
   
@@ -248,6 +252,7 @@ var selch = document.getElementById("selch");
 var jukebox_loop_input = document.getElementById("jukebox_loop_input");
 var another_jukebox_divider = document.getElementById("another_jukebox_divider");
 var jukebox_shuffle = document.getElementById("jukebox_shuffle");
+var track_list_now=document.getElementById("track_list_now");
 
 // jukebox_current_track.innerHTML = jukebox_track_list[0];
 // audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
@@ -347,6 +352,7 @@ function selcho_playlist(ev_target_value){
   if (jukebox_shuffle.checked){
     jukebox_track_index = rui(jukebox_track_list.length);
   }
+  track_list_now.innerHTML = jukebox_track_list.map(s=>`<li>${s.replace(nurnex,'')}</li>`).join('');
   jukebox_load_audio();
 }
 /*
