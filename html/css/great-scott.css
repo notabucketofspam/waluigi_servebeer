@@ -274,7 +274,7 @@ a.shortcut::after{
 }
 @media (max-width:600px){
   #funk_jukebox_intel {
-    min-height:550px;
+    min-height:580px;
     display:grid;
     grid:
       "a b b"
