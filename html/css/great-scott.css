@@ -392,13 +392,8 @@ a.shortcut::after{
   z-index:1;
 }
 #whats_in_this_playlist:hover,#whats_in_this_playlist[open]{
-  /* background-color:oklab(0.9 none none / 0.67); */
   text-decoration-style:double;
   text-decoration-line:underline;
-}
-#whats_in_this_playlist[open]{
-  /* background-color:oklab(0.9 none none / 0.67); */
-  /* color:#fff; */
 }
 #track_list_now{
   background-color:#ffffffff;

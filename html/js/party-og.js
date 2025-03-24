@@ -132,7 +132,6 @@ function update_funk_meter_bar(element, delta) {
   var funk_meter_bar_width_total = 2 * cycle_amount;
   if (typeof update_funk_meter_bar.negative == "undefined")
     update_funk_meter_bar.negative = false;
-  // var clock = (!cycle_amount && (delta > 0 || delta < 0));
   if ((!cycle_amount && (delta > 0))||(cycle_amount>0)) {
     update_funk_meter_bar.negative = false;
     element.style.backgroundColor = "#22bb22";
@@ -144,16 +143,12 @@ function update_funk_meter_bar(element, delta) {
   if (update_funk_meter_bar.negative)
     funk_meter_bar_width_total *= -1;
   var fmbw_overflow = funk_meter_bar_width_total % window.innerWidth;
-  //console.log("fmbw", fmbw_overflow, "elemwidth", parseFloat(element.style.width));
-  if (Math.abs(fmbw_overflow)<2 && (fmb_list.length != 1)/* &&
-    (parseFloat(element.style.width) < 2)*/
+  if (Math.abs(fmbw_overflow)<2 && (fmb_list.length != 1)
     &&((delta<0&&!update_funk_meter_bar.negative)||(delta>0&&update_funk_meter_bar.negative))) {
-    //console.log("remove");
     element.parentNode.removeChild(element);
     return;
   }
   if (Math.abs(fmbw_overflow)<2 && (cycle_amount != 0)) {
-    //console.log("spawn");
     spawn_funk_meter_bar(element);
     return;
   }
@@ -174,7 +169,6 @@ function reset_funk(){
 /*
     FUNK USER INPUT
 */
-// var global_update_cycle_amount_press_handle;
 var time_handles = [];
 
 var funk_more = document.getElementById("funk_more");
@@ -196,10 +190,8 @@ function update_cycle_amount(ev, el) {
 }
 function update_cycle_amount_press(ev) {
   if ((ev.type == "mousedown"&&!ev.shiftKey) || ev.type == "touchstart")
-    // global_update_cycle_amount_press_handle = setInterval(update_cycle_amount, 25, null, this);
     time_handles.push(setInterval(update_cycle_amount, 25, null, this));
   else if (ev.type == "mouseup" || ev.type == "touchend"||(ev.type == "mousedown"&&ev.shiftKey))
-    // clearInterval(global_update_cycle_amount_press_handle);
     clearInterval(time_handles.pop());
 }
 function clear_timers(){
@@ -239,9 +231,7 @@ var classic_jukebox = [
 ];
 var jukebox_track_index = 0;
 var jukebox_track_list = classic_jukebox;
-var classic_mode = "/resource/jukebox-tracks/";
-var expansion_pak = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/jams/BSC%20Prime%20Cuts/";
-var current_prefix = classic_mode;
+var current_prefix = "/resource/jukebox-tracks/";
 var current_filetype = ".mp3";
 
 var audio_player = document.getElementById("audio_player");
@@ -254,8 +244,6 @@ var another_jukebox_divider = document.getElementById("another_jukebox_divider")
 var jukebox_shuffle = document.getElementById("jukebox_shuffle");
 var track_list_now=document.getElementById("track_list_now");
 
-// jukebox_current_track.innerHTML = jukebox_track_list[0];
-// audio_player.src = "/resource/jukebox-tracks/" + jukebox_track_list[0];
 audio_player.volume = 0.15;
 jukebox_volume_element.addEventListener("touchstart", touch_start_coord, false);
 jukebox_volume_element.addEventListener("touchmove", update_jukebox_volume, false);
@@ -265,7 +253,6 @@ singular_jukebox_divider.addEventListener("touchstart", touch_start_coord, false
 singular_jukebox_divider.addEventListener("touchmove", update_jukebox_volume, false);
 another_jukebox_divider.addEventListener("touchstart", touch_start_coord, false);
 another_jukebox_divider.addEventListener("touchmove", update_jukebox_volume, false);
-
 
 var touch_start = [ 0, 0 ];
 function touch_start_coord(event) {
@@ -333,7 +320,6 @@ function set_volobar(new_volume){
 /*
     JUKEBOX SELECT PLAYLIST
 */
-// var bsc_prime_cuts;
 selch.addEventListener("change",selcho_onchange);
 function selcho_onchange(ev) {
   jukebox_track_index = 0;
@@ -371,7 +357,6 @@ jukebox_shuffle.addEventListener("change",ev=>{
 function remember_me(){
   set_volobar(Number(sessionStorage.getItem("audio_player_volume")||0.15));
   jukebox_track_index = Number(sessionStorage.getItem("jukebox_track_index")||0);
-  // bsc_prime_cuts = (await import("/resource/BSC_Prime_Cuts.json",{with:{type:"json"}})).default;
   var sid = Number(sessionStorage.getItem("selch-index")||0);
   selch[sid].selected = true;
   selcho_playlist(selch[sid].value);
