@@ -410,6 +410,8 @@ a.shortcut::after{
   border-width:3px;
   z-index:1;
   padding-left:4ch;
+  max-height:20lh;
+  overflow-y:auto;
 }
 #track_list_now>li{
   position:relative;
