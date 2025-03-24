@@ -1,5 +1,5 @@
 /*
-    SOME STUFF
+    SOME STUFF    SOME STUFF    SOME STUFF    SOME STUFF    SOME STUFF    SOME STUFF    SOME STUFF    SOME STUFF
 */
 :where(body){
   background-color:white;
@@ -61,7 +61,7 @@ a.shortcut::after{
 }
 
 /*
-    STEAK ZONE
+    STEAK ZONE    STEAK ZONE    STEAK ZONE    STEAK ZONE    STEAK ZONE    STEAK ZONE    STEAK ZONE    STEAK ZONE
 */
 .steak_corner {
   position: fixed;
@@ -87,7 +87,7 @@ a.shortcut::after{
 }
 
 /*
-    BURGER
+    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER
 */
 #burger {
   display:block;
@@ -125,7 +125,7 @@ a.shortcut::after{
 }
 
 /*
-    PARTY ZONE
+    PARTY ZONE    PARTY ZONE    PARTY ZONE    PARTY ZONE    PARTY ZONE    PARTY ZONE    PARTY ZONE    PARTY ZONE
 */
 #funk_button {
   font-size: 120%;
@@ -272,61 +272,6 @@ a.shortcut::after{
 #party_zone{
   grid-area:c;
 }
-@media (max-width:600px){
-  #funk_jukebox_intel {
-    min-height:580px;
-    display:grid;
-    grid:
-      "a b b"
-      "c c c";
-    grid-template-rows:min-content;
-  }
-  #pentium{
-    grid-area:b;    
-    justify-self:end;
-  }
-}
-@media (max-width:369px){
-  #funk_jukebox_intel {
-    min-height:680px;
-    grid-template:
-      "a"
-      "b"
-      "c";
-  }
-  #pentium{
-    justify-self:start;
-  }
-  #outdexportal{
-    justify-self:end;
-  }
-}
-@media (max-width:309px){
-  :not(script, style, [popover], button, input, [hidden]){
-    display:inline-grid;
-    margin:0;
-    padding:0;
-    word-break:break-all;
-  }
-  
-}
-@media (max-width:260px){
-  marquee{
-    max-width:80vw;
-  }
-  img{
-    max-width:60vw;
-  }
-  input#funk_more{
-    position:unset;
-  }
-}
-@media (max-width:210px){
-  section#funk_jukebox_intel.big_section, a#celebrating.mellon,a#welcome_steak.steak_corner {
-    display:flow;
-    max-width:95vw;
-  }
-}
 #burgmenu .white_in_burgmenu {
   background-color:#fff;
 }
@@ -412,9 +357,67 @@ a.shortcut::after{
   position:relative;
   z-index:1;
 }
+/*
+    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE
+*/
+@media (max-width:600px){
+  #funk_jukebox_intel {
+    min-height:580px;
+    display:grid;
+    grid:
+      "a b b"
+      "c c c";
+    grid-template-rows:min-content;
+  }
+  #pentium{
+    grid-area:b;    
+    justify-self:end;
+  }
+}
+@media (max-width:369px){
+  #funk_jukebox_intel {
+    min-height:680px;
+    grid-template:
+      "a"
+      "b"
+      "c";
+  }
+  #pentium{
+    justify-self:start;
+  }
+  #outdexportal{
+    justify-self:end;
+  }
+}
+@media (max-width:309px){
+  :not(script, style, [popover], button, input, [hidden]){
+    display:inline-grid;
+    margin:0;
+    padding:0;
+    word-break:break-all;
+  }
+  
+}
+@media (max-width:260px){
+  marquee{
+    max-width:80vw;
+  }
+  img{
+    max-width:60vw;
+  }
+  input#funk_more{
+    position:unset;
+  }
+}
+@media (max-width:210px){
+  section#funk_jukebox_intel.big_section, a#celebrating.mellon,a#welcome_steak.steak_corner {
+    display:flow;
+    max-width:95vw;
+  }
+}
 
 /*
-    OUTDEX
+    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX
 */
 #outdexportal {
   float: right;
@@ -489,7 +492,7 @@ input[type="range"]:active {
 }
 
 /*
-    COOKIES
+    COOKIES    COOKIES    COOKIES    COOKIES    COOKIES    COOKIES    COOKIES    COOKIES    COOKIES    COOKIES
 */
 #jug {
   border-style: ridge;
@@ -556,7 +559,7 @@ input[type="range"]:active {
 }
 
 /*
-    NU STUFF
+    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF
 */
 body {
   padding-top: 23px;
@@ -585,7 +588,7 @@ ins {
 }
 
 /*
-    POPSICLE STICKS
+    POPSICLE STICKS    POPSICLE STICKS    POPSICLE STICKS    POPSICLE STICKS    POPSICLE STICKS    POPSICLE STICKS
 */
 .wide2 {
   display: grid;
@@ -666,7 +669,7 @@ body>hr,body>main hr {
 }
 
 /*
-    GLITTER
+    GLITTER    GLITTER    GLITTER    GLITTER    GLITTER    GLITTER    GLITTER    GLITTER    GLITTER    GLITTER
 */
 .chad {
   font-family: serif;
@@ -755,7 +758,7 @@ body>hr,body>main hr {
 }
 
 /*
-    INDEX.HTML
+    INDEX.HTML    INDEX.HTML    INDEX.HTML    INDEX.HTML    INDEX.HTML    INDEX.HTML    INDEX.HTML    INDEX.HTML
 */
 #creme {
   font-size: 2.4em;
