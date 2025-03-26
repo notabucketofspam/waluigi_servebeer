@@ -87,7 +87,7 @@ a.shortcut::after{
 }
 
 /*
-    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER
+    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER
 */
 #burger {
   display:block;
@@ -278,6 +278,10 @@ a.shortcut::after{
 #burgmenu .offwhite_in_burgmenu {
   background-color:#fffe;
 }
+
+/*
+    SELCHO PLAYLIST    SELCHO PLAYLIST    SELCHO PLAYLIST    SELCHO PLAYLIST    SELCHO PLAYLIST    SELCHO PLAYLIST
+*/
 #album_area{
   display:grid;
   grid:
@@ -357,6 +361,7 @@ a.shortcut::after{
   position:relative;
   z-index:1;
 }
+
 /*
     MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE    MOBILE PHONE
 */
@@ -417,7 +422,7 @@ a.shortcut::after{
 }
 
 /*
-    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX
+    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX    OUTDEX
 */
 #outdexportal {
   float: right;
@@ -559,7 +564,7 @@ input[type="range"]:active {
 }
 
 /*
-    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF
+    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF    NU STUFF
 */
 body {
   padding-top: 23px;

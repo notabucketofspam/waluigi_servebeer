@@ -1,5 +1,5 @@
 /*
-    SOME HTML
+    SOME HTML    SOME HTML    SOME HTML    SOME HTML    SOME HTML    SOME HTML    SOME HTML    SOME HTML    SOME HTML
 */
 document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
 `<div id="party_zone">
@@ -87,7 +87,7 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
 </div>`);
   
 /*
-    FUNK / NICE COLORS
+    FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS
 */
 var good_colors = CSS.supports("background-color", "oklch(1 0.4 0)");
 if (good_colors) {
@@ -124,7 +124,7 @@ function okfine(timestamp) {
 }
 
 /*
-    FUNK METER BAR
+    FUNK METER BAR    FUNK METER BAR    FUNK METER BAR    FUNK METER BAR    FUNK METER BAR    FUNK METER BAR
 */
 var box_bravo = document.getElementById("funk_meter_box_bravo");
 var fmb_list = document.getElementsByClassName("funk_meter_bar");
@@ -167,10 +167,9 @@ function reset_funk(){
 }
 
 /*
-    FUNK USER INPUT
+    FUNK USER INPUT    FUNK USER INPUT    FUNK USER INPUT    FUNK USER INPUT    FUNK USER INPUT    FUNK USER INPUT
 */
 var time_handles = [];
-
 var funk_more = document.getElementById("funk_more");
 var funk_less = document.getElementById("funk_less");
 for (const fb of [funk_more, funk_less]) {
@@ -201,7 +200,7 @@ function clear_timers(){
 }
 
 /*
-    GIGA FUNK
+    GIGA FUNK    GIGA FUNK    GIGA FUNK    GIGA FUNK    GIGA FUNK    GIGA FUNK    GIGA FUNK    GIGA FUNK    GIGA FUNK
 */
 function giga_funk(which_funk, how_much) {
   var _which_funk = which_funk??funk_more;
@@ -218,7 +217,7 @@ funk_less.addEventListener("contextmenu", (ev)=>ev.preventDefault());
 funk_less.addEventListener("auxclick", ()=>giga_funk(funk_less));
 
 /*
-    JUKEBOX
+    JUKEBOX    JUKEBOX    JUKEBOX    JUKEBOX    JUKEBOX    JUKEBOX    JUKEBOX    JUKEBOX    JUKEBOX    JUKEBOX
 */
 var classic_jukebox = [
   "Adhesive Wombat - Chodge Darger.mp3",
@@ -318,7 +317,7 @@ function set_volobar(new_volume){
 }
 
 /*
-    JUKEBOX SELECT PLAYLIST
+    JUKEBOX SELECT PLAYLIST    JUKEBOX SELECT PLAYLIST    JUKEBOX SELECT PLAYLIST    JUKEBOX SELECT PLAYLIST
 */
 selch.addEventListener("change",selcho_onchange);
 function selcho_onchange(ev) {
@@ -341,8 +340,9 @@ function selcho_playlist(ev_target_value){
   track_list_now.innerHTML = jukebox_track_list.map(s=>`<li>${s.replace(nurnex,'')}</li>`).join('');
   jukebox_load_audio();
 }
+
 /*
-    REMEMBER ME
+    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME
 */
 jukebox_loop_input.addEventListener("change",ev=>{
   sessionStorage["loop"] = ev.target.checked|0;
@@ -369,7 +369,7 @@ function remember_me(){
 setTimeout(remember_me,0);
 
 /*
-    SCROLLING
+    SCROLLING    SCROLLING    SCROLLING    SCROLLING    SCROLLING    SCROLLING    SCROLLING    SCROLLING    SCROLLING
 */
 var scrollable_meter_list = document.getElementsByClassName("scrollable_meter");
 for (const sm of scrollable_meter_list) {
@@ -391,7 +391,7 @@ function check_can_scroll(ev) {
 }
 
 /*
-    ALBUM SELECT
+    ALBUM SELECT    ALBUM SELECT    ALBUM SELECT    ALBUM SELECT    ALBUM SELECT    ALBUM SELECT    ALBUM SELECT
 */
 var album = {
   classic_mode:{

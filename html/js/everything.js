@@ -1,3 +1,6 @@
+/*
+    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML
+*/
 if (!document.getElementById('welcome_steak'))
 document.body.insertAdjacentHTML("afterbegin",
 `<a href="/" id="return_steak" class="steak_corner">
@@ -18,6 +21,10 @@ Last-Modified: <span id="Last-Modified"></span>
 </div>
 </footer>`);
 document.getElementById("Last-Modified").innerText = document.lastModified;
+
+/*
+    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER
+*/
 document.body.insertAdjacentHTML('beforeend',
 `<button popovertarget="burgmenu" id="burger">
   <img alt="BURGER" src="/resource/retro_burger.png" />
@@ -59,6 +66,10 @@ This is where we put the party stuff. You need to<br><br>
 to bring the party with you.
 </div>`);
 }
+
+/*
+    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF
+*/
 var cog = console.log;
 /**@param{number}k*/
 function rui (k) {
