@@ -85,7 +85,7 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
     </details>
   </div>
 </div>`);
-  
+
 /*
     FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS    FUNK NICE COLORS
 */
