@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>A Chili Dog? - waluigi-servebeer.com</title>
+<style>
+html{
+  overflow:unset;
+  /*overflow-x:clip;*/
+}
+#chilidogsyeah{
+  position:relative;
+  margin:15%;
+  user-select:none;
+  font-weight:bold;
+  font-size:300%;
+  text-align:center;
+  text-shadow:3px 3px 1px white;
+}
+h1,h2 {
+  text-align:center;
+}
+h1{
+  margin-bottom:0;
+}
+h2{
+  margin-top:0.5lh;
+}
+#chili-dog-controls>button{
+  width:47px;
+}
+#chili-dog-controls{
+  user-select:none;
+}
+#truth_factor{
+  position:absolute;
+}
+</style>
+</head>
+<body>
+<h1 class="lube lard">Chili Dogs?<br>On <i>my</i> website?</h1>
+<h2 class="lube lard">It's more likely than you think.<br>Learn the truth now.</h2>
+<div id="chili-dog-controls" class="lube lard">
+  <button id="less_rat">less is more</button>
+  <button id="more_rat">more is less</button>
+  <button id="text_is_move">text is move</button>
+  <br>
+  <span>Cool Factor:&nbsp;<b id="truth_factor">0</b></span>
+</div>
+<div id="chilidogsyeah" style="left:0px;bottom:0px;">CHILI DOGS YEAH</div>
+<script src="/js/everything.js"></script>
+<script>
+var radius = 10;
+var theta = 0;
+var keke = 12;
+var ull = 0;
+var chilidogsyeah = document.getElementById("chilidogsyeah");
+var truth_factor = document.getElementById("truth_factor");
+function rotatouille(timestuffs){
+  theta+=Math.random()*keke;
+  chilidogsyeah.style.left = (radius*Math.cos(theta)*Math.random())+"px";
+  chilidogsyeah.style.bottom = (radius*Math.sin(theta)*Math.random())+"px";
+  ull = window.requestAnimationFrame(rotatouille);
+}
+rotatouille(0);
+/*
+    controls
+*/
+function update_some_factor(some_factor, n){
+  some_factor.innerText = n;
+}
+update_some_factor(truth_factor, radius);
+less_rat.addEventListener("click",(ev)=>{
+  update_some_factor(truth_factor, --radius);
+});
+more_rat.addEventListener("click",(ev)=>{
+  update_some_factor(truth_factor, ++radius);
+});
+text_is_move.addEventListener("click",(ev)=>{
+  if(ull){
+    window.cancelAnimationFrame(ull);
+    ull=0;
+    text_is_move.innerText = "text is stop";
+  } else{
+    ull = window.requestAnimationFrame(rotatouille);
+    text_is_move.innerText = "text is move";
+  }
+});
+</script>
+</body>
+</html>
