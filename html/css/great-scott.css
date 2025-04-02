@@ -353,13 +353,52 @@ a.shortcut::after{
   border-style:double;
   border-width:3px;
   z-index:1;
+  padding:2px;
   padding-left:4ch;
   max-height:20lh;
   overflow-y:auto;
+  overscroll-behavior:contain;
+  overflow-x:clip;
 }
-#track_list_now>li{
+#track_list_now *{
   position:relative;
   z-index:1;
+}
+#track_list_now :not(li){
+  margin-left:-4ch;
+}
+#track_list_now li{
+  line-height:1lh;
+}
+#track_list_now hr{
+  border:none;
+  border-top:1px solid black;
+}
+#track_list_now b{
+  display:block;
+}
+#track_list_now b:hover{
+  text-decoration:underline;
+}
+#track_list_now li:hover{
+  list-style-type:"\261B\A0\A0";
+  text-decoration:underline;
+}
+#track_list_now li.very_active{
+  list-style-position:inside;
+  list-style-type:"\25B6\A0\A0";
+  border:2px outset #eee;
+  background-color:#fafafa;
+  right:30px;
+  margin-right:-30px;
+  padding-left:6px;
+}
+#track_list_now li.very_active:hover{
+  list-style-type:"\25B6\A0\A0";
+}
+#track_list_now li.very_active.playing, #track_list_now li.very_active.playing:hover{
+  list-style-type:"\25C6\A0\A0";
+  padding-left:7px;
 }
 
 /*
