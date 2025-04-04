@@ -378,6 +378,12 @@ function specify_track(el){
     jukebox_load_audio();
   }
 }
+function scroll_tln(){
+  var box_coord = track_list_now.getBoundingClientRect();
+  var now_coord = now_tracks[jukebox_track_index].getBoundingClientRect();
+  var scroll_this_much = now_coord.y - box_coord.y - 92;
+  track_list_now.scroll(0,scroll_this_much);
+}
 
 /*
     REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME
@@ -403,6 +409,7 @@ function remember_me(){
   set_audio_loop();
   var do_shuffle = Number(sessionStorage.getItem("shuffle")||0);
   jukebox_shuffle.checked = Boolean(do_shuffle);
+  scroll_tln();
 }
 setTimeout(remember_me,0);
 
