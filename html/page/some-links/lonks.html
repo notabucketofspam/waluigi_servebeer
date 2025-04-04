@@ -16,19 +16,9 @@ li {
   break-inside:avoid;
   list-style:square;
 }
-input {
-  accent-color:#ff0000;
-}
-#fakeit {
-  cursor:help;
-  user-select:none;
-}
-sup {
-  display:inline-block;
-  margin-top:-2px;
-}
 #fraud > input {
   margin:1px -1px;
+  accent-color:#ff0000;
 }
 .killer {
   border:none;
@@ -70,7 +60,7 @@ add your own:
 <input type="text" name="pagename" placeholder="page name (optional)" autocomplete="off">
 <br>
 <input id="_usefake" type="checkbox" name="usefake">
-<label for="_usefake" id="fakeit" title="load the page in an iframe, which stops ads (maybe) but causes jank"><span>fake it</span><sup>?</sup></label>
+<label for="_usefake" id="fakeit"><span>fake it</span> <span style="font-size:smaller">(load the page in an iframe, which stops ads (maybe) but causes jank)</span></label>
 </form>
 <script src="/js/everything.js"></script>
 <script>
