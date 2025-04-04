@@ -358,6 +358,7 @@ function selcho_playlist(nemo){
   track_list_now.innerHTML = snapple.join('');
   toggle_very_active();
   jukebox_load_audio();
+  scroll_tln(true);
 }
 track_list_now.addEventListener("click",ev=>{
   if (ev.target?.tagName === 'LI'){
@@ -378,12 +379,18 @@ function specify_track(el){
     jukebox_load_audio();
   }
 }
-function scroll_tln(){
-  var box_coord = track_list_now.getBoundingClientRect();
-  var now_coord = now_tracks[jukebox_track_index].getBoundingClientRect();
-  var scroll_this_much = now_coord.y - box_coord.y - 92;
-  track_list_now.scroll(0,scroll_this_much);
+function scroll_tln(to_top){
+  if (to_top){
+    track_list_now.scroll(0,0);
+  } else{
+    var box_coord = track_list_now.getBoundingClientRect();
+    var now_coord = now_tracks[jukebox_track_index].getBoundingClientRect();
+    var scroll_this_much = now_coord.y - box_coord.y - 161;
+    track_list_now.scrollBy(0,scroll_this_much);
+  }
 }
+var whats_in_this_playlist = document.getElementById("whats_in_this_playlist");
+whats_in_this_playlist.addEventListener("toggle", ev=>ev.newState==="open"&&scroll_tln());
 
 /*
     REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME
@@ -409,7 +416,6 @@ function remember_me(){
   set_audio_loop();
   var do_shuffle = Number(sessionStorage.getItem("shuffle")||0);
   jukebox_shuffle.checked = Boolean(do_shuffle);
-  scroll_tln();
 }
 setTimeout(remember_me,0);
 
