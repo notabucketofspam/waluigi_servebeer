@@ -5,15 +5,125 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes"/>
 <title>Settings - waluigi-servebeer.com</title>
 <style>
-
+h2 {
+  margin-bottom:0;
+}
+label{
+  user-select:none;
+}
 </style>
 </head>
 <body>
-<h1>Settings</h1>
+<div class="lube lard sef">
+  <h1>Settings</h1>
+  <div>If you check a box, then your browser will remember that setting every time you visit this website (<a href="/">waluigi-servebeer.com</a>).</div>
+  <div>If you <i>don't</i> check a box, then your browser will forget about that setting once you close this tab.</div>
 
+  <h2>Jukebox</h2>
+  <div>
+    <input type="checkbox" id="r:audio_player_volume" name="audio_player_volume" />
+    <label for="r:audio_player_volume">Remember the volume</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:jukebox_track_index" name="jukebox_track_index" />
+    <label for="r:jukebox_track_index">Remember what song I was playing</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:selch-index" name="selch-index" />
+    <label for="r:selch-index">Remember which playlist I selected</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:loop" name="loop" />
+    <label for="r:loop">Remember if the track was looping</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:shuffle" name="shuffle" />
+    <label for="r:shuffle">Remember if I left shuffle on</label>
+  </div>
+
+  <h2>Hardware Store</h2>
+  <div>
+    <input type="checkbox" id="r:gain" name="gain" />
+    <label for="r:gain">Know about the shopping music's volume</label>
+  </div>
+
+  <h2>Login page</h2>
+  <div>
+    <input type="checkbox" id="r:username" name="username" />
+    <label for="r:username">Keep me logged in for &gt;30 days</label>
+  </div>
+
+  <h2>Cookies</h2>
+  <div>
+    <input type="checkbox" id="r:used" name="used" />
+    <label for="r:used">Recall which banner messages I've seen recently</label>
+  </div>
+
+  <h2>Settings</h2>
+  <div>
+    <input type="checkbox" id="r:settings" name="settings" />
+    <label for="r:settings">Don't forget about all the settings I set on <a href="/page/settings/">the Settings page</a></label>
+  </div>
+
+  <h2>S.P.A.M.</h2>
+  <div>
+    <input type="checkbox" id="r:show_cowtools" name="show_cowtools" />
+    <label for="r:show_cowtools">Think if show cowtools?</label>
+  </div>
+
+  <h2>Seinfeld</h2>
+  <div>
+    <input type="checkbox" id="r:seinfeld_src" name="seinfeld_src" />
+    <label for="r:seinfeld_src">Remember what episode I was watching</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:seinfeld_ep" name="seinfeld_ep" />
+    <label for="r:seinfeld_ep">Remember the name of that episode</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:seinfeld_volume" name="seinfeld_volume" />
+    <label for="r:seinfeld_volume">Remember how loud he can be</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:seinfeld_time" name="seinfeld_time" />
+    <label for="r:seinfeld_time">Remember where I'm at in the episode</label>
+  </div>
+  <div>
+    <input type="checkbox" id="r:seinfeld_size" name="seinfeld_size" />
+    <label for="r:seinfeld_size">Remember the size of this video</label>
+  </div>
+
+  <h2>some links</h2>
+  <div>
+    <input type="checkbox" id="r:somelinks" name="somelinks" />
+    <label for="r:somelinks">Keep those links</label>
+  </div>
+
+  <h2>Other</h2>
+  <div>
+    <label>First name <input type="text" placeholder="optional" size="20" autocomplete="cc-name"/></label>
+  </div>
+  <div>
+    <label>Middle initial <input type="text" placeholder="mandatory" size="17" autocomplete="cc-number"/></label>
+  </div>
+  <div>
+    <label>Last name <input type="text" placeholder="optional" size="20" autocomplete="cc-exp"/></label>
+  </div>
+  <div>
+    <label>Security code <input type="text" placeholder="###" pattern="\d\d\d" size="3" maxlength="3" minlength="3" autocomplete="cc-csc"/></label>
+  </div>
+</div>
 <script src="/js/everything.js"></script>
 <script>
-
+var remembering = document.querySelectorAll("input[id^='r:']");
+for (const r of remembering){
+  if (whichStorage.__item[r.name])
+    r.checked = true;
+  r.addEventListener("change", inchange);
+}
+function inchange(ev){
+  whichStorage.__update(ev.target.name, ev.target.checked);
+}
 </script>
 </body>
 </html>

@@ -60,7 +60,7 @@ float:right;
 <script>
 fogout.addEventListener('submit', ev => {
   logan.close();
-  sessionStorage.removeItem("username");
+  whichStorage.removeItem("username");
   done_text.hidden = false;
   nice_span.innerText = "Fine, whatever.";
 });
@@ -68,8 +68,8 @@ fogin.addEventListener('submit', ev => {
   logout_tho.close();
   var fd = new FormData(ev.target);
   var fat = Object.fromEntries(fd.entries());
-  cog(fat);
-  sessionStorage.setItem("username", fat.username??"USERNAME_INVALID");
+  //cog(fat);
+  whichStorage.setItem("username", fat.username??"USERNAME_INVALID");
   done_text.hidden = false;
   //setTimeout(()=>{location.assign(location.hash?"/outdex.html":"/");}, 2000);
 });

@@ -75,4 +75,83 @@ var cog = console.log;
 function rui (k) {
   return Math.random() / Number.EPSILON % k;
 }
+class WhichStorage {
+  // true: use localStorage
+  // false: use sessionStorage
+  __item = JSON.parse(localStorage.getItem("settings")??sessionStorage.getItem("settings"))??{
+    "username": false,
+    "used": true,
+    "jukebox_track_index": false,
+    "audio_player_volume": false,
+    "selch-index": false,
+    "loop": false,
+    "shuffle": false,
+    "show_cowtools": false,
+    "gain": false,
+    "seinfeld_src": false,
+    "seinfeld_ep": false,
+    "seinfeld_volume": false,
+    "seinfeld_time": false,
+    "seinfeld_size": false,
+    "somelinks": true,
+    "settings": true
+  };
+  // jank api
+  __make_etters = (name) => {
+    return {
+      [name]:{
+        get(){
+          return this.__item[name]?localStorage[name]:sessionStorage[name];
+        },
+        set(value){
+          this.__item[name]?(localStorage[name] = value):(sessionStorage[name] = value);
+        },
+        enumerable:true
+      }
+    };
+  };
+  __update = (name, boolv) => {
+    if (name in this.__item){
+      var tmp = this.getItem(name);
+      // cog(tmp)
+      this.removeItem(name);
+      this.__item[name] = boolv;
+      this.setItem(name, tmp);
+    }
+    this.setItem("settings", JSON.stringify(this.__item));
+  };
+  constructor(){
+    for (const name in this.__item){
+      Object.defineProperties(this, this.__make_etters(name));
+    }
+    Object.defineProperties(this, {
+      "__item": {enumerable:false, writable:false},
+      "__make_etters": {enumerable:false, writable:false},
+      "__update": {enumerable:false, writable:false}
+    });
+    this.__update();
+  }
+  // sane api
+  get length(){
+    return Object.keys(this.__item).length;
+  }
+  clear(){
+    localStorage.clear();
+    sessionStorage.clear();
+  }
+  getItem(keyName){
+    return this.__item[keyName]?localStorage.getItem(keyName):sessionStorage.getItem(keyName);
+  }
+  key(index){
+    return Object.keys(this.__item)[index];
+  }
+  removeItem(keyName){
+    localStorage.removeItem(keyName);
+    sessionStorage.removeItem(keyName);
+  }
+  setItem(keyName, keyValue){
+    this.__item[keyName]?localStorage.setItem(keyName, keyValue):sessionStorage.setItem(keyName, keyValue);
+  }
+}
+var whichStorage = new WhichStorage();
 

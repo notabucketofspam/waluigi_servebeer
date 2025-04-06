@@ -72,14 +72,14 @@ fraud.addEventListener("submit", ev=> {
   var composed = '<li class="killee"><button class="killer" onclick="killme(this)">x</button> '+(faker?'<q>':'')+'<a href="'+(faker?('/page/some-links/faker.html#'+url):(url))+'">'+(pagename?pagename:url)+'</a>'+(faker?'</q>':'')+'</li>';
   somelinks.insertAdjacentHTML("beforeend",composed);
   //console.log(pagename, url, faker);
-  localStorage.somelinks = somelinks.innerHTML;
+  whichStorage["somelinks"] = somelinks.innerHTML;
   fraud.reset();
 });
 function killme(el){
   somelinks.removeChild(el.parentNode);
-  localStorage.somelinks = somelinks.innerHTML;
+  whichStorage["somelinks"] = somelinks.innerHTML;
 }
-somelinks.innerHTML = localStorage.somelinks??"";
+somelinks.innerHTML = whichStorage["somelinks"]??"";
 </script>
 </body>
 </html>

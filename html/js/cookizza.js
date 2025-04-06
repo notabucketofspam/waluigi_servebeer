@@ -57,7 +57,7 @@ var cookizza_memes = [
   "This site is a salad. "
 ];
 /**@type number[]*/
-var used = JSON.parse(localStorage.getItem('used')) ?? [];
+var used = JSON.parse(whichStorage.getItem('used')) ?? [];
 function pulljar () {
   if (used.length === cookizza_memes.length - 1) {
     used.splice(0, 1+rui(used.length));
@@ -69,7 +69,7 @@ function pulljar () {
     ++c;
   } while (used.includes(n));
   used.push(n);
-  localStorage.setItem('used', JSON.stringify(used));
+  whichStorage.setItem('used', JSON.stringify(used));
   jar.innerHTML = cookizza_memes.at(n);
 }
 pulljar();

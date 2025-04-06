@@ -68,21 +68,21 @@ for (const ep of episodes) {
 function set_video(ep){
   //150.136.4.41
   the_video.src = "https://seinfeld.waluigi-servebeer.com"+encodeURI(ep)+".mp4";
-  sessionStorage["seinfeld_src"] = the_video.src;
-  sessionStorage["seinfeld_ep"] = ep;
+  whichStorage["seinfeld_src"] = the_video.src;
+  whichStorage["seinfeld_ep"] = ep;
   episode_name.innerText = get_episode(ep);
   document.title = episode_name.innerText;
 }
-if (sessionStorage["seinfeld_ep"])
-  set_video(sessionStorage["seinfeld_ep"]);
-sessionStorage["seinfeld_volume"] ??= 0.3;
-the_video.volume = sessionStorage["seinfeld_volume"];
-the_video.addEventListener("volumechange",ev=> sessionStorage["seinfeld_volume"] = ev.target.volume);
-sessionStorage["seinfeld_time"] ??= 0;
-the_video.currentTime = sessionStorage["seinfeld_time"];
-the_video.addEventListener("timeupdate",ev=>sessionStorage["seinfeld_time"] = ev.target.currentTime);
+if (whichStorage["seinfeld_ep"])
+  set_video(whichStorage["seinfeld_ep"]);
+whichStorage["seinfeld_volume"] ??= 0.3;
+the_video.volume = whichStorage["seinfeld_volume"];
+the_video.addEventListener("volumechange",ev=> whichStorage["seinfeld_volume"] = ev.target.volume);
+whichStorage["seinfeld_time"] ??= 0;
+the_video.currentTime = whichStorage["seinfeld_time"];
+the_video.addEventListener("timeupdate",ev=>whichStorage["seinfeld_time"] = ev.target.currentTime);
 choose_size.addEventListener("change",ev=>{
-  sessionStorage["seinfeld_size"] = ev.target.selectedIndex;
+  whichStorage["seinfeld_size"] = ev.target.selectedIndex;
   set_video_size(ev.target.value);
 });
 function set_video_size(value){
@@ -90,8 +90,8 @@ function set_video_size(value){
   the_video.style.width = widtho;
   the_video.style.height = heighto;
 }
-sessionStorage["seinfeld_size"] ??= Number(window.screen.width<800);
-choose_size.selectedIndex = sessionStorage["seinfeld_size"];
+whichStorage["seinfeld_size"] ??= Number(window.screen.width<800);
+choose_size.selectedIndex = whichStorage["seinfeld_size"];
 set_video_size(choose_size.value);
 </script>
 </body>

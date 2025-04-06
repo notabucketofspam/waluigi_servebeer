@@ -249,13 +249,13 @@ footer div {
 </div>
 <script src="/js/everything.js"></script>
 <script>
-sessionStorage["gain"] ??= 0.10;
-gains.value = sessionStorage["gain"];
-set_gain(sessionStorage["gain"]);
+whichStorage["gain"] ??= 0.10;
+gains.value = whichStorage["gain"];
+set_gain(whichStorage["gain"]);
 gains.addEventListener("input",(ev)=>{
   set_gain(ev.target.valueAsNumber);
   gainer.gain.linearRampToValueAtTime(ev.target.valueAsNumber,auxcord.currentTime+Math.random());
-  sessionStorage["gain"] = ev.target.valueAsNumber;
+  whichStorage["gain"] = ev.target.valueAsNumber;
 });
 function set_gain(k){
   gaining.innerText = (10*Math.log10(k)).toLocaleString(undefined,{
@@ -272,7 +272,7 @@ var gup;
   gpu.innerText = (gup.info.vendor + " " + gup.info.architecture).toUpperCase();
 })();
 var auxcord = new AudioContext();
-var gainer = new GainNode(auxcord, {gain:sessionStorage["gain"]});
+var gainer = new GainNode(auxcord, {gain:whichStorage["gain"]});
 var absn;
 var detuner = ()=> (20+80*Math.random())*(rui(2)?1:-1);
 fetch("/page/hardware-store/wii_shop_loop.mp3")

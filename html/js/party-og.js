@@ -305,7 +305,7 @@ jukebox_back_track.addEventListener("click", ev=>jukebox_change_track(-1));
 
 var nurnex = /^\d\d\d /;
 function jukebox_load_audio(){
-  sessionStorage["jukebox_track_index"] = jukebox_track_index;
+  whichStorage["jukebox_track_index"] = jukebox_track_index;
   jukebox_current_track.innerText = jukebox_track_list[jukebox_track_index].replace(nurnex,"");
   audio_player["src"]= current_prefix + jukebox_track_list[jukebox_track_index] + current_filetype;
   audio_player.load();
@@ -327,7 +327,7 @@ function update_jukebox_volume(event) {
 }
 function set_volobar(new_volume){
   audio_player.volume = new_volume;
-  sessionStorage["audio_player_volume"] = new_volume;
+  whichStorage["audio_player_volume"] = new_volume;
   jukebox_volume_bar.style.width = (audio_player.volume * 500)+"px";
 }
 
@@ -337,7 +337,7 @@ function set_volobar(new_volume){
 selch.addEventListener("change",selcho_onchange);
 function selcho_onchange(ev) {
   jukebox_track_index = 0;
-  sessionStorage["selch-index"] = ev.target.selectedIndex;
+  whichStorage["selch-index"] = ev.target.selectedIndex;
   selcho_playlist(ev.target.value);
 }
 var smap = (s,i)=>`<li value="${i+1}" class>${s.replace(nurnex,'')}</li>`;
@@ -396,25 +396,25 @@ whats_in_this_playlist.addEventListener("toggle", ev=>ev.newState==="open"&&scro
     REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME    REMEMBER ME
 */
 jukebox_loop_input.addEventListener("change",ev=>{
-  sessionStorage["loop"] = ev.target.checked|0;
+  whichStorage["loop"] = ev.target.checked|0;
   set_audio_loop();
 });
 function set_audio_loop(){
   audio_player.loop = jukebox_loop_input.checked;
 }
 jukebox_shuffle.addEventListener("change",ev=>{
-  sessionStorage["shuffle"] = ev.target.checked|0;
+  whichStorage["shuffle"] = ev.target.checked|0;
 });
 function remember_me(){
-  set_volobar(Number(sessionStorage.getItem("audio_player_volume")||0.15));
-  jukebox_track_index = Number(sessionStorage.getItem("jukebox_track_index")||0);
-  var sid = Number(sessionStorage.getItem("selch-index")||0);
+  set_volobar(Number(whichStorage.getItem("audio_player_volume")||0.15));
+  jukebox_track_index = Number(whichStorage.getItem("jukebox_track_index")||0);
+  var sid = Number(whichStorage.getItem("selch-index")|0);
   selch[sid].selected = true;
   selcho_playlist(selch[sid].value);
-  var do_loop = Number(sessionStorage.getItem("loop")||0);
+  var do_loop = Number(whichStorage.getItem("loop")||0);
   jukebox_loop_input.checked = Boolean(do_loop);
   set_audio_loop();
-  var do_shuffle = Number(sessionStorage.getItem("shuffle")||0);
+  var do_shuffle = Number(whichStorage.getItem("shuffle")||0);
   jukebox_shuffle.checked = Boolean(do_shuffle);
 }
 setTimeout(remember_me,0);
