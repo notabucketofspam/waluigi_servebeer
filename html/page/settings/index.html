@@ -11,6 +11,14 @@ h2 {
 label{
   user-select:none;
 }
+input:invalid{
+  background-color:black;
+  color:white;
+}
+div.silly:has(input:invalid){
+  background-color:red;
+  color:white;
+}
 </style>
 </head>
 <body>
@@ -98,19 +106,23 @@ label{
     <input type="checkbox" id="r:somelinks" name="somelinks" />
     <label for="r:somelinks">Keep those links</label>
   </div>
-
-  <h2>Other</h2>
-  <div>
-    <label>First name <input type="text" placeholder="optional" size="20" autocomplete="cc-name"/></label>
-  </div>
-  <div>
-    <label>Middle initial <input type="text" placeholder="mandatory" size="17" autocomplete="cc-number"/></label>
-  </div>
-  <div>
-    <label>Last name <input type="text" placeholder="optional" size="20" autocomplete="cc-exp"/></label>
-  </div>
-  <div>
-    <label>Security code <input type="text" placeholder="###" pattern="\d\d\d" size="3" maxlength="3" minlength="3" autocomplete="cc-csc"/></label>
+  
+  <div class="silly lube">
+    <h2>Other</h2>
+    <div>
+      <label>First name <input type="text" placeholder="optional" pattern="(?:[A-Za-z]|\s)*" size="20" maxlength="20" autocomplete="cc-name"/></label>
+    </div>
+    <div>
+      <label>Middle initial <input type="text" placeholder="mandatory" size="17" maxlength="16" pattern="\d{15,16}" autocomplete="cc-number"/></label>
+    </div>
+      <input type="button" class="fr" value=" file my taxes " onclick="alert('your taxes have been filed :-)')" />
+    <div>
+      <label>Last name <input type="text" placeholder="mm/yyyy" size="6" pattern="\d\d\/\d\d\d\d" maxlength="7" autocomplete="cc-exp"/></label>
+    </div>
+    <div>
+      <label>Security code <input type="text" placeholder="###" pattern="\d\d\d" size="3" maxlength="3" minlength="3" autocomplete="cc-csc"/></label>
+      <input type="button" class="fr" value="send payment" onclick="alert('this is a scam !!!')" />
+    </div>
   </div>
 </div>
 <script src="/js/everything.js"></script>
