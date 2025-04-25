@@ -872,7 +872,7 @@ main #login-stuffs{
   column-gap: 4ch;
 }
 @media (max-width:8in){
-  #about,*[class*="wide"] {
+  #about,*[class*="wide"],#coaletc,#normalhold {
     display:flex;
     flex-direction:column;
   }
@@ -883,15 +883,19 @@ main #login-stuffs{
     float:none;
     margin:0;    
   }
-  #rhs {
-    order:-1;
+  #rhs,#commoncremes {
+    order:1;
   }
   #lhs{
     order:-2;
   }
   #coaletc{
     margin-top:1lh;
+    margin-bottom:1lh;
     row-gap:1lh;
+  }
+  #greater-normalspace{
+    clear:both;
   }
 }
 #the_notice {
@@ -977,4 +981,16 @@ main #login-stuffs{
 }
 #normalspace>a:active{
   background-color:#ffe3dd;
+}
+#commoncremes{
+  border-style: ridge;
+  border-width: 4px;
+  border-color:#AABBBB;
+  background-color:#FAFFFF;
+  max-width:fit-content;
+  float:right;
+}
+#normalhold{
+  clear:left;
+  row-gap:17px;
 }
