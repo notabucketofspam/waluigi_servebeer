@@ -26,6 +26,10 @@
   width:100%;
   accent-color:#a0f;
 }
+#dongle3 {
+  width:100%;
+  accent-color:#04f;
+}
 </style>
 </head>
 <body>
@@ -36,6 +40,8 @@
 <input type="range" min="0" max="1" step="any" value="0.95" id="dongle">
 <br>
 <input type="range" min="0" max="1" step="any" value="0.4" id="dongle2">
+<br>
+<input type="range" min="0" max="100" step="any" value="20" id="dongle3">
 </div>
 <script src="/js/everything.js"></script>
 <script>
@@ -45,6 +51,7 @@ var time_circle2;
 var doodad = document.getElementById("doodad");
 var dongle = document.getElementById("dongle");
 var dongle2 = document.getElementById("dongle2");
+var dongle3 = document.getElementById("dongle3");
 doodad.addEventListener("click", ()=>{
   document.body.style.removeProperty("background-color");
   long_int2 = long_int2?cancelAnimationFrame(long_int2):okfine2(time_circle2 = document.timeline.currentTime);
@@ -52,8 +59,8 @@ doodad.addEventListener("click", ()=>{
 function okfine2(timestamp) {
   var timescale = (timestamp - time_circle2)*0.06;
   time_circle2 = document.timeline.currentTime;
-  whatever2+=dongle.valueAsNumber*timescale/25;
-  document.body.style.backgroundColor = "oklch("+(dongle.valueAsNumber)+" "+(dongle2.valueAsNumber)+" "+ (Math.random()) +"turn)";
+  whatever2+=dongle3.valueAsNumber*timescale/25;
+  document.body.style.backgroundColor = "oklch("+(dongle.valueAsNumber)+" "+(dongle2.valueAsNumber)+" "+ (whatever2) +")";
   long_int2 = window.requestAnimationFrame(okfine2);
 }
 </script>
