@@ -898,6 +898,11 @@ main #login-stuffs{
     clear:both;
   }
 }
+@media (max-width:900px){
+  #new_year{
+    margin:0;
+  }
+}
 #the_notice {
   background-color:#efeffa;
   border: ridge;
