@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Result - waluigi-servebeer.com</title>
+<style>
+#burgmenu * {
+  display:none;
+}
+div#out {
+  display:flex;
+  flex-flow:row;
+  column-gap:2ch;
+}
+div#out>a {
+  flex:1;
+}
+div#out>div{
+  width:500px;
+}
+div#out img{
+  height:240px;
+  flex:none;
+  cursor:pointer;
+}
+div#out button{
+  cursor:pointer;
+  background-color:#0000;
+  border:none;
+  padding:0;
+}
+</style>
+</head>
+<body>
+<h1>Result</h1>
+<h3>Based on your answers, here is your result:</h3>
+<div id="out">this is where we put the result</div>
+<div class="lube lard"><button onclick="window.close()">Close window</button></div>
+<script src="/js/everything.js"></script>
+<script>
+function openimg(addr){
+  window.open('/page/personality-exam/img.html#'+addr,'img','popup,width=800,height=820,top='+(window.screen.availHeight/2-400)+',left='+(window.screen.availWidth/2-400));
+}
+</script>
+</body>
+</html>

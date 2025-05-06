@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Which Intel Xeon are you? - waluigi-servebeer.com</title>
+<style>
+
+</style>
+</head>
+<body>
+<h1>Which Intel Xeon are you?</h1>
+<div>Answer the following questions as honestly as you want. When you are finished recording, you may hang up or press 1 for more options.</div>
+<form id="xf" method="post" action="/cgi-bin/xeon.pl" target="result" onsubmit="xfsub()">
+  <fieldset>
+    <legend>I enjoy long walks along ________.</legend>
+    <label><input type="radio" name="walk" value="0" required/>the sidewalk in downtown Baltimore</label><br/>
+    <label><input type="radio" name="walk" value="1"/>the shoulder on Interstate 95 South</label><br/>
+    <label><input type="radio" name="walk" value="2"/>with a can of Bud Lite in my hand</label><br/>
+    <label><input type="radio" name="walk" value="3"/>the shores of Wuhu Island from Wii Sports Resort</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Oh, if <em>only</em> everyone in the world would just switch to using ________ instead, we'd all be much better off.</legend>
+    <label><input type="radio" name="use" value="0" required/>Apple</label><br/>
+    <label><input type="radio" name="use" value="1"/>McAfee</label><br/>
+    <label><input type="radio" name="use" value="2"/>NordVPN</label><br/>
+    <label><input type="radio" name="use" value="3"/>Nvidia</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>I tend to listen to music with ________.</legend>
+    <label><input type="radio" name="music" value="0" required/>studio headphones</label><br/>
+    <label><input type="radio" name="music" value="1"/>AirPods</label><br/>
+    <label><input type="radio" name="music" value="2"/>AirPods Pro</label><br/>
+    <label><input type="radio" name="music" value="3"/>subtitles on</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>When left unsupervised, I tend to eat ________ in excess.</legend>
+    <label><input type="radio" name="eat" value="0" required/>Doritos</label><br/>
+    <label><input type="radio" name="eat" value="1"/>New Coal</label><br/>
+    <label><input type="radio" name="eat" value="2"/>Wolf Jerkey&#8482;</label><br/>
+    <label><input type="radio" name="eat" value="3"/>protein bars from Aldi</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>The best theme for a gaming PC is ________.</legend>
+    <label><input type="radio" name="theme" value="0" required/>all black</label><br/>
+    <label><input type="radio" name="theme" value="1"/>anime girl</label><br/>
+    <label><input type="radio" name="theme" value="2"/>Micro Center open box</label><br/>
+    <label><input type="radio" name="theme" value="3"/>more RGB than you can see</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>If it weren't for ________, I would feel lost or adrift at sea.</legend>
+    <label><input type="radio" name="adrift" value="0" required/>friends / family</label><br/>
+    <label><input type="radio" name="adrift" value="1"/>r/buildapcsales</label><br/>
+    <label><input type="radio" name="adrift" value="2"/>Twitter</label><br/>
+    <label><input type="radio" name="adrift" value="3"/>Moder Power</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>My monthly subscription to ________ practically pays for itself!</legend>
+    <label><input type="radio" name="subscription" value="0" required/>HelloFresh</label><br/>
+    <label><input type="radio" name="subscription" value="1"/>Amazon Prime</label><br/>
+    <label><input type="radio" name="subscription" value="2"/>OnlyFans</label><br/>
+    <label><input type="radio" name="subscription" value="3"/>GeForce NOW</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>My browser homepage is ________.</legend>
+    <label><input type="radio" name="homepage" value="0" required/>Google</label><br/>
+    <label><input type="radio" name="homepage" value="1"/>about:blank</label><br/>
+    <label><input type="radio" name="homepage" value="2"/>OnlyFans</label><br/>
+    <label><input type="radio" name="homepage" value="3"/>waluigi-servebeer.com</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>My preferred language is ________.</legend>
+    <label><input type="radio" name="language" value="0" required/>English (Canada)</label><br/>
+    <label><input type="radio" name="language" value="1"/>English (United Kingdom)</label><br/>
+    <label><input type="radio" name="language" value="2"/>English (Australia)</label><br/>
+    <label><input type="radio" name="language" value="3"/>Espa&ntilde;ol (Estados Unidos)</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>I support human ________.</legend>
+    <label><input type="radio" name="support" value="0" required/>rights</label><br/>
+    <label><input type="radio" name="support" value="1"/>lights</label><br/>
+    <label><input type="radio" name="support" value="2"/>writes</label><br/>
+    <label><input type="radio" name="support" value="3"/>rites</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>I think that our society should be ________.</legend>
+    <label><input type="radio" name="society" value="0" required/>separated into small, modular components such as chiplets</label><br/>
+    <label><input type="radio" name="society" value="1"/>printed on the front of a postcard</label><br/>
+    <label><input type="radio" name="society" value="2"/>turned into a major Broadway production</label><br/>
+    <label><input type="radio" name="society" value="3"/>nerfed</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Welcome to the ________ zone.</legend>
+    <label><input type="radio" name="steak" value="0" required/>Steak</label><br/>
+    <label><input type="radio" name="steak" value="1"/>STEAK</label><br/>
+    <label><input type="radio" name="steak" value="2"/><img src="/resource/steak8.gif" class="steak_gif"/></label><br/>
+    <label><input type="radio" name="steak" value="3"/>&#x1d4e2;&#x1d4fd;&#x1d4ee;&#x1d4ea;&#x1d4f4;</label><br/>
+  </fieldset>
+  <br/>
+  <input type="submit" value="Plug it in, coach"/>
+  <button form="nope" onclick="fill_randomly()">I don't have time for this</button>
+</form>
+<script src="/js/everything.js"></script>
+<script>
+var xf = document.getElementById("xf");
+function fill_randomly(){
+  for (const i in xf.elements)
+    if (xf[i] instanceof RadioNodeList)
+        xf[i].value = rui(4);
+}
+</script>
+</body>
+</html>
