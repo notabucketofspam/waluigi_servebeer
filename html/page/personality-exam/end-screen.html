@@ -7,6 +7,11 @@
 <style>
 details {
   cursor:default;
+  min-height:2lh;
+  max-width:fit-content;
+}
+details>div {
+  padding-left: 3ch;
 }
 p a {
   border:2px outset;
@@ -27,14 +32,20 @@ p a:active{
   <a href="/page/personality-exam/list.html">Take another exam</a>
   <a href="/">I'm done for now</a>
 </p>
-<details>
-  <summary><q>Where's the popup window? I don't see it.</q></summary>
-  Oof. That's unlucky, bro.
-</details>
-<details>
-  <summary><q>Can I trust this result?</q></summary>
-  Yes.
-</details>
+<div style="height:200px">
+  <details>
+    <summary><q>Where's the popup window? I don't see it.</q></summary>
+    <div>Oof. That's unlucky, bro.</div>
+  </details>
+  <details>
+    <summary><q>Can I trust this result?</q></summary>
+    <div>Yes.</div>
+  </details>
+  <details>
+    <summary><q>How is this result determined?</q></summary>
+    <div>Bitwise XOR.</div>
+  </details>
+</div>
 <script src="/js/everything.js"></script>
 <script>
 
