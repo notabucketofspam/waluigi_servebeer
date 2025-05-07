@@ -123,3 +123,4 @@ my $contentlength = length $body;
 print "Content-length: $contentlength\n";
 print "\n";
 print $body;
+# Note to self: line endings need to be Unix (LF)
