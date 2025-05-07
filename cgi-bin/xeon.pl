@@ -112,11 +112,12 @@ my $xind = ($acc&0xF)^(($acc&0xF0)>>4)^(($acc&0xF00)>>8);
 # Assemble it into something useful.
 my $xsel = 'x'.$xind;
 my $ximg = $xname{$xsel}{img};
-$con .= "<div><h2>$xname{$xsel}{name}</h2>";
+$con .= "<div id=\"info\"><h2>$xname{$xsel}{name}</h2>";
 $con .= ($ximg =~ /^not/)?("<h3>You are <em>not</em> an Intel Xeon</h3>"):("<h3>Genuine Intel&reg; Xeon&reg;</h3>");
-$con .= $xname{$xsel}{desc};
-$con .= "</div>";
+$con .= "<span>$xname{$xsel}{desc}</span>";
+$con .= "</div><div>";
 $con .= qq Q<img src="$endpoint$ximg" onclick="openimg('$endpoint$ximg')"/>Q;
+$con .= "<small>This is result #".($xind+1)." of 16</small></div>";
 
 $body =~  s/this is where we put the result/$con/;
 my $contentlength = length $body;
