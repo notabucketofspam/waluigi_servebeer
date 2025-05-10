@@ -69,20 +69,6 @@ zone
       <div>Punch AMD in the mouth</div>
     </a>
   </div>
-  <div id="outdexportal" hidden>
-    <span id="outdextoptext">try the new</span>
-    <br />
-    <a class href="/outdex.html" id="outdexbottomtext" title="Single Page App Mode">S.P.A.M.</a>
-    <br />
-    <div id="singlepageappmode">Single Page App Mode</div>
-    <input id="roboslider" value="0" type="range" oninput="if (this.value >99) location.assign(typeof is_outdex !== 'undefined'?'/':'/outdex.html')" />
-    <br />
-    <code id="imnotarobot">I'm not a robot</code>
-    <br>
-    <div id="outdexlasttext">
-      this lets you <u>bring the party</u> with you wherever you go
-    </div>
-  </div>
   <meta class="meta_party" id="index_mp" itemprop="this is where we put the party stuff" />
 </section>
 <!-- ABOUT THIS WEBSITE -->
@@ -246,10 +232,7 @@ if (rui(2))
   the_u.innerText = "u";
 if (whichStorage.getItem("username"))
   username_maybe.innerText = whichStorage.getItem("username");
-if (typeof is_outdex !== "undefined") {
-  outdextoptext.innerText = "leave the new";
-  imnotarobot.innerText = "i'm not a human";
-  outdexlasttext.innerHTML = "but why would you ever wanna <u>leave the party</u>?";
+if (at_outdex) {
   setTimeout(()=>{
     var party_zone = document.getElementById("party_zone");
     index_mp.parentNode.insertBefore(party_zone, index_mp)
