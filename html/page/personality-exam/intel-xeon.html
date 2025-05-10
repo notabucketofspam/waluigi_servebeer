@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes"/>
 <title>Which Intel Xeon are you? - waluigi-servebeer.com</title>
 <style>
-details{
+details#cheat-codes{
   display:inline-block;
   cursor:default;
   line-height:0px;
@@ -103,7 +103,7 @@ details{
   <br/>
   <input type="submit" value="Plug it in, coach"/>
   <button form="nope" onclick="fill_randomly()">I don't have time for this</button>
-  <details>
+  <details id="cheat-codes">
     <summary>Cheat codes</summary>
     I want result #<input type="number" min="1" max="16" style="max-width:4ch" oninput="cheat(this.valueAsNumber-1)"/>
   </details>
