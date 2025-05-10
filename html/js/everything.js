@@ -80,8 +80,11 @@ Object.defineProperty(window, "at_outdex",{
         return Boolean(document.getElementById("this_is_outdex"));
     }
 })
+function popsize(win, hin){
+  return `popup,width=${win},height=${hin},left=${(window.screen.availWidth - win)/2},top=${(window.screen.availHeight - hin)/2}`;
+}
 function xfsub() {
-  let great = window.open('', 'result','popup,width=800,height=600,top='+(window.screen.availHeight/2-300)+',left='+(window.screen.availWidth/2-400));
+  let great = window.open('', 'result',popsize(800, 600));
   if (great) {
     if (at_outdex) {
       location.hash = '/page/personality-exam/end-screen.html';
@@ -89,7 +92,6 @@ function xfsub() {
     } else {
       window.location.replace('/page/personality-exam/end-screen.html');
     }
-    
   } else {
     window.alert('no popup window. sad.');
   }
