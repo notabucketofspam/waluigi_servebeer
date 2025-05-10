@@ -75,14 +75,26 @@ var cog = console.log;
 function rui (k) {
   return Math.random() / Number.EPSILON % k;
 }
+Object.defineProperty(window, "at_outdex",{
+    get(){
+        return Boolean(document.getElementById("this_is_outdex"));
+    }
+})
 function xfsub() {
-  window.open('', 'result','popup,width=800,height=600,top='+(window.screen.availHeight/2-300)+',left='+(window.screen.availWidth/2-400))?
-    (typeof is_outdex ==='undefined'?
-      window.location.replace('/page/personality-exam/end-screen.html'):
-      ((location.hash = '/page/personality-exam/end-screen.html')&&consume('/page/personality-exam/end-screen.html'))
-    )
-    :window.alert('no popup window. sad.');
+  let great = window.open('', 'result','popup,width=800,height=600,top='+(window.screen.availHeight/2-300)+',left='+(window.screen.availWidth/2-400));
+  if (great) {
+    if (at_outdex) {
+      location.hash = '/page/personality-exam/end-screen.html';
+      consume('/page/personality-exam/end-screen.html');
+    } else {
+      window.location.replace('/page/personality-exam/end-screen.html');
+    }
+    
+  } else {
+    window.alert('no popup window. sad.');
+  }
 }
+
 /*
     STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE
 */

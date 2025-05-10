@@ -33,7 +33,7 @@ fetch("/page/sitemap/sitemap.txt")
     }
   })
   .then(()=> {
-    if (typeof is_outdex !== 'undefined') {
+    if (at_outdex) {
       prepare_almonds();
     }
   });
