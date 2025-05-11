@@ -96,6 +96,14 @@ function xfsub() {
     window.alert('no popup window. sad.');
   }
 }
+function goto_smart(url){
+  if (at_outdex) {
+    location.hash = url;
+    consume(url);
+  } else {
+    location.assign(url);
+  }
+}
 
 /*
     STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Unsubscribe - waluigi-servebeer.com</title>
+<style></style>
+</head>
+<body>
+<h1>Unsubscribe</h1>
+<h2>We're sorry to see you go!</h2>
+<div>
+  <p>You have been successfully <b>unsubscribed</b> from the waluigi-servebeer.com newsletter.</p>
+  <p><a href="/page/ancient-monuments/precisely-aligned-to-celestial-events.html">Click here to un-unsubscribe</a></p>
+</div>
+<h2>Tell us how we can do better next time!</h2>
+<div>Please take this short survey to let us know what changes you'd like to see.</div>
+<form id="xf" method="post" action="/cgi-bin/unsub.pl" target="result" onsubmit="onsub()">
+  <fieldset>
+    <legend>Why are you leaving me?</legend>
+    <label><input type="radio" name="why" value="0" required/>Not enough emails</label><br/>
+    <label><input type="radio" name="why" value="1" required/>I prefer ignorance</label><br/>
+    <label><input type="radio" name="why" value="2" required/>Lack of oversight</label><br/>
+    <label><input type="radio" name="why" value="3" required/>It's not you, it's me</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Are you sure you wanna do this?</legend>
+    <label><input type="radio" name="sure" value="0" required/>Yes</label><br/>
+    <label><input type="radio" name="sure" value="1" required/>Maybe</label><br/>
+    <label><input type="radio" name="sure" value="2" required/>Let me think about it for a bit</label><br/>
+    <label><input type="radio" name="sure" value="3" required/>I'll get back to you on that</label><br/>
+  </fieldset>
+  <br/>
+  <input type="submit" value="Send"/>
+</form>
+<script src="/js/everything.js"></script>
+<script>
+function onsub(){
+  window.open("", "result",popsize(800, 600));
+  goto_smart("/");
+}
+</script>
+</body>
+</html>
