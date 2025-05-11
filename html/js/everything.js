@@ -86,12 +86,7 @@ function popsize(win, hin){
 function xfsub() {
   let great = window.open('', 'result',popsize(800, 600));
   if (great) {
-    if (at_outdex) {
-      location.hash = '/page/personality-exam/end-screen.html';
-      consume('/page/personality-exam/end-screen.html');
-    } else {
-      window.location.replace('/page/personality-exam/end-screen.html');
-    }
+    goto_smart('/page/personality-exam/end-screen.html');
   } else {
     window.alert('no popup window. sad.');
   }
