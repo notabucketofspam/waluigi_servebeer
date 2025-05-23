@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Are you gay? - waluigi-servebeer.com</title>
+<style>
+#how_gay {
+  font-variant: small-caps;
+}
+</style>
+</head>
+<body>
+<div class="lard sef">
+<h1>Are you gay?</h1>
+<form id="xf" method="post" action="/cgi-bin/gay.pl" target="result" onsubmit="xfsub()">
+  <fieldset>
+    <legend>Are you gay?</legend>
+    <label><input type="radio" name="are" value="0" required/>Not yet</label><br/>
+    <label><input type="radio" name="are" value="1" required/>Hella</label><br/>
+    <label><input type="radio" name="are" value="2" required/>Gay? In <em>this</em> economy??</label><br/>
+    <label><input type="radio" name="are" value="3" required/>I'd be willing to give it a try</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Does your mom know you're gay?</legend>
+    <label><input type="radio" name="mom" value="0" required/>My mom is gay, too</label><br/>
+    <label><input type="radio" name="mom" value="1" required/>she forgor</label><br/>
+    <label><input type="radio" name="mom" value="2" required/>She knows too much; we must kill her now</label><br/>
+    <label><input type="radio" name="mom" value="3" required/>The doctor was his mother</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>How gay are you?</legend>
+    <label><input oninput="this_gay(this.valueAsNumber)" type="range" name="how" min="0" max="3" value="1" required/>I am <span id="how_gay">adequately</span> gay</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Why are you gay?</legend>
+    <label><input type="radio" name="why" value="0" required/>The fish and I have formed an uneasy alliance against <u><i>women</i></u></label><br/>
+    <label><input type="radio" name="why" value="1" required/>The logistics are easier</label><br/>
+    <label><input type="radio" name="why" value="2" required/>Being straight is cringe</label><br/>
+    <label><input type="radio" name="why" value="3" required/>I'm already invested in the ecosystem</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Which of the following <strong>best</strong> characterizes your sex life?</legend>
+    <label><input type="radio" name="sexlife" value="0" required/>Submission and validation of the HTML <code>&lt;form&gt;</code> element</label><br/>
+    <label><input type="radio" name="sexlife" value="1" required/>The ball-and-stick model for describing chemical structures</label><br/>
+    <label><input type="radio" name="sexlife" value="2" required/>Bowling</label><br/>
+    <label><input type="radio" name="sexlife" value="3" required/>Double dongle</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>What do you prefer to hold with your "main" hand?</legend>
+    <label><input type="radio" name="mainhand" value="0" required/>Sword</label><br/>
+    <label><input type="radio" name="mainhand" value="1" required/>Beer</label><br/>
+    <label><input type="radio" name="mainhand" value="2" required/>Magnum</label><br/>
+    <label><input type="radio" name="mainhand" value="3" required/>iPhone 16 Plus</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>What do you prefer to hold with your "off" hand?</legend>
+    <label><input type="radio" name="offhand" value="0" required/>The red keycard</label><br/>
+    <label><input type="radio" name="offhand" value="1" required/>Another beer</label><br/>
+    <label><input type="radio" name="offhand" value="2" required/>Plasma pistol</label><br/>
+    <label><input type="radio" name="offhand" value="3" required/>My friend's sword</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Who would you rather smooch?</legend>
+    <label><input type="radio" name="smooch" value="0" required/>The glass wall of the burrfish exhibit at the National Aquarium</label><br/>
+    <label><input type="radio" name="smooch" value="1" required/>A block of sharp cheddar from Weis</label><br/>
+    <label><input type="radio" name="smooch" value="2" required/>The Declaration of Independence</label><br/>
+    <label><input type="radio" name="smooch" value="3" required/>A pre-owned copy of <i>Madden NFL 2005</i> for the PlayStation 2</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>What kinda crime are you <em>most</em> likely to get convicted for?</legend>
+    <label><input type="radio" name="crime" value="0" required/>Tax evasion</label><br/>
+    <label><input type="radio" name="crime" value="1" required/>Digital piracy</label><br/>
+    <label><input type="radio" name="crime" value="2" required/>Ballin'</label><br/>
+    <label><input type="radio" name="crime" value="3" required/>Unlawful possession of a firearm</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>A swarm of giant ants is approaching you. How would you refer to them?</legend>
+    <label><input type="radio" name="ants" value="0" required/>Congregants</label><br/>
+    <label><input type="radio" name="ants" value="1" required/>Customers</label><br/>
+    <label><input type="radio" name="ants" value="2" required/>Constituents</label><br/>
+    <label><input type="radio" name="ants" value="3" required/>Men</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Over the next two weeks, how often do you plan to consume <i>meat</i>?</legend>
+    <label><input type="radio" name="meat" value="0" required/>Not at all</label><br/>
+    <label><input type="radio" name="meat" value="1" required/>One or two of the days</label><br/>
+    <label><input type="radio" name="meat" value="2" required/>More than half the days</label><br/>
+    <label><input type="radio" name="meat" value="3" required/>Nearly every day</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Which of these quotes by Donald J. Trump best characterizes your <em>most recent</em> sexual experience?</legend>
+    <label><input type="radio" name="quote" value="0" required/><q>Once they're up, they're hard to bring down.</q></label><br/>
+    <label><input type="radio" name="quote" value="1" required/><q>There were great people on both sides.</q></label><br/>
+    <label><input type="radio" name="quote" value="2" required/><q>Nobody's ever done a better job.</q></label><br/>
+    <label><input type="radio" name="quote" value="3" required/><q>He's doing it for his country more than anything else.</q></label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>You wake up tomorrow and you are a woman. What's the first thing you do?</legend>
+    <label><input type="radio" name="wakeup" value="0" required/>Check my work email in case something came up while I was sleeping</label><br/>
+    <label><input type="radio" name="wakeup" value="1" required/>Feed my dog and make sure she has enough water in her bowl</label><br/>
+    <label><input type="radio" name="wakeup" value="2" required/>Look through the pile of laundry on my floor for something nice to wear today</label><br/>
+    <label><input type="radio" name="wakeup" value="3" required/>Read the sports section of the newspaper while enjoying a fresh cup of coffee</label><br/>
+  </fieldset>  
+  <fieldset>
+    <legend>You wake up tomorrow and you are a man. What's the first thing you do?</legend>
+    <label><input type="radio" name="comp" value="0" required/>Queue for a competitive game in <i>VALORANT</i></label><br/>
+    <label><input type="radio" name="comp" value="1" required/>Queue for a competitive game in <i>League of Legends</i></label><br/>
+    <label><input type="radio" name="comp" value="2" required/>Queue for a competitive game in <i>Halo Infinite</i></label><br/>
+    <label><input type="radio" name="comp" value="3" required/>Queue for a competitive game in <i>Project SEKAI COLORFUL STAGE! feat. Hatsune Miku</i></label><br/>
+  </fieldset>
+  <br/>
+  <input type="submit" value="Plug it in, coach"/>
+  <button form="nope" onclick="fill_randomly()">I don't have time for this</button>
+</form>
+</div>
+<script src="/js/everything.js"></script>
+<script>
+var xf = document.getElementById("xf");
+var how_gay = document.getElementById("how_gay");
+function this_gay(n) {
+  var w;
+  switch(n){
+    case 0: w="trivially";break;
+    case 1: w="adequately";break;
+    case 2: w="decidedly";break;
+    case 3: w="ludicrously";break;
+  }
+  if (w)
+    how_gay.innerText = w;
+  return n;
+}
+this_gay(how_gay.valueAsNumber);
+function fill_randomly(){
+  for (const i in xf.elements)
+    if (xf[i] instanceof RadioNodeList)
+        xf[i].value = rui(4);
+  xf.how.value = this_gay(rui(4));
+}
+</script>
+</body>
+</html>
