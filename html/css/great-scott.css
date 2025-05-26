@@ -745,7 +745,7 @@ body>hr,body>main hr {
   border-width: 5px;
   background-color: #eeeeee;
   font-family: sans-serif;
-  overflow: auto;
+  overflow: visible;
   text-align: center;
   width: fit-content;
   height: fit-content;
@@ -753,6 +753,7 @@ body>hr,body>main hr {
   text-decoration: none;
   color: #000000;
   user-select:none;
+  position:relative;
 }
 .fake_advertisement:hover {
   background-color: #e3e3e3;
@@ -775,6 +776,7 @@ body>hr,body>main hr {
   user-select:none;
   height:max-content;
   width:max-content;
+  position:relative;
 }
 .clickbait-article:hover {
   background-color: #fff0ff;
@@ -793,12 +795,31 @@ body>hr,body>main hr {
   text-align:center;
   max-width:fit-content;
   text-decoration:none;
+  position:relative;
 }
 .mellon:hover {
   background-color:#ff00ff;
 }
 .mellon:active {
   background-color:#ff8000;
+}
+.clickbait-article::after{
+  content:url(/resource/shell32.png);
+  position:absolute;
+  right:0px;
+  bottom:-6px;
+}
+.fake_advertisement::after{
+  content:url(/resource/shell32.png);
+  position:absolute;
+  right:0px;
+  bottom:18px;  
+}
+.mellon::after{
+  content:url(/resource/shell32.png);
+  position:absolute;
+  right:0px;
+  bottom:-4px;  
 }
 
 /*
@@ -861,7 +882,7 @@ main #login-stuffs{
   display:block;
 }
 #new_year {
-  overflow-y:clip;
+  /* overflow-y:clip; */
   margin-right:4ch;
   justify-self:right;
 }
