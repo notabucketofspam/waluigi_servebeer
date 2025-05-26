@@ -10,18 +10,12 @@ my $fp = '../html/page/personality-exam/result.html';
 my $ok = open ($fh, "< :encoding(UTF-8)", $fp);
 my $body = undef;
 my $n = read ($fh, $body, 0xffff);
+my $endpoint = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o";
 
-# my $con = "you said $data{agree}?'yes':'no'";
-# my $con = "you said ".($data{agree}?'yes':'no');
-# my $con = "";
-# foreach my ($k,$v) (%data) {
-  # $con .= "<code>$k is $v</code>";
-# }
-my $con = "";
-# foreach my $item (@okeys) {
-  # $con .= "<p>$item = $data{$item}</p>\n";
-# }
-$con .= ($data{agree} == 1)?("You are submissive."):("You are obstinate.");
+my $phrase = ($data{agree} == 1)?"submissive":"obstinate";
+my $imgsrc = ($data{agree} == 1)?"/exam/eula/easy3.png":"/image/the_newest_stuff/clown2.png";
+my $resnum = ($data{agree} == 1)?"2":"1";
+my $con = "<div id=\"info\">You are $phrase.</div><div><img src=\"$endpoint$imgsrc\" onclick=\"openimg(this.src)\"/></div>";
 
 $body =~  s/this is where we put the result/$con/;
 my $contentlength = length $body;
