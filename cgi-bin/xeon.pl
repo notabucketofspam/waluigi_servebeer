@@ -20,7 +20,7 @@ foreach my $item (@okeys) {
   # $con .= "<p>$item = $data{$item} (acc is $acc)</p>";
 }
 # $con .= "<p>acc is $acc</p>";
-my $endpoint = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/";
+my $endpoint = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o";
 my $xind = ($acc&0xF)^(($acc&0xF0)>>4)^(($acc&0xF00)>>8);
 # $con .= "<p>xind is $xind</p>";
 
@@ -116,7 +116,7 @@ $con .= "<div id=\"info\"><h2>$xname{$xsel}{name}</h2>";
 $con .= ($ximg =~ /^not/)?("<h3>You are <em>not</em> an Intel Xeon</h3>"):("<h3>Genuine Intel&reg; Xeon&reg;</h3>");
 $con .= "<span>$xname{$xsel}{desc}</span>";
 $con .= "</div><div>";
-$con .= qq Q<img src="$endpoint$ximg" onclick="openimg('$endpoint$ximg')"/>Q;
+$con .= "<img src=\"$endpoint/exam/$ximg\" onclick=\"openimg(this.src)\"/>";
 $con .= "<small>This is result #".($xind+1)." of 16</small></div>";
 
 $body =~  s/this is where we put the result/$con/;
