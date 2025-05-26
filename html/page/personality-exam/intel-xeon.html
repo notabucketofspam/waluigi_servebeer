@@ -13,8 +13,9 @@ details#cheat-codes{
 </style>
 </head>
 <body>
+<div class="lard sef">
 <h1>Which Intel Xeon are you?</h1>
-<div>Answer the following questions as honestly as you want. When you are finished recording, you may hang up or press 1 for more options.</div>
+<div>Answer the following questions as honestly as you want.<br/>When you are finished recording, you may hang up or press 1 for more options.</div>
 <form id="xf" method="post" action="/cgi-bin/xeon.pl" target="result" onsubmit="xfsub()">
   <fieldset>
     <legend>I enjoy long walks along ________.</legend>
@@ -108,6 +109,7 @@ details#cheat-codes{
     I want result #<input type="number" min="1" max="16" style="max-width:4ch" oninput="cheat(this.valueAsNumber-1)"/>
   </details>
 </form>
+</div>
 <script src="/js/everything.js"></script>
 <script>
 var xf = document.getElementById("xf");
