@@ -96,16 +96,17 @@ y: <span id="y_px"></span>px
 
 &#x213B;
 <div>
-  <button onclick="apache()">sample output</button>
+  <button onclick="apache('/cgi-bin/sample.js')">sample output</button>
+  <button onclick="apache('/cgi-bin/fact.js')">get fact</button>
   <br/>
-  <div id="someapache" style="position:absolute;"></div>
+  <ol id="someapache" style="position:absolute;"></ol>
 </div>
 <script src="/js/everything.js"></script>
 <script>
-function apache(){
-  fetch("/cgi-bin/sample.js")
+function apache(fpath){
+  fetch(fpath)
   .then(r=>r.text())
-  .then(t=>someapache.innerText += t);
+  .then(t=>someapache.insertAdjacentHTML('beforeend', '<li>'+t+'</li>'));
 }
 
 var bsc_prime_cuts;
