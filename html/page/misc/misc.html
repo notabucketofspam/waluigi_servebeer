@@ -95,8 +95,19 @@ y: <span id="y_px"></span>px
   </div>
 
 &#x213B;
+<div>
+  <button onclick="apache()">sample output</button>
+  <br/>
+  <div id="someapache" style="position:absolute;"></div>
+</div>
 <script src="/js/everything.js"></script>
 <script>
+function apache(){
+  fetch("/cgi-bin/sample.js")
+  .then(r=>r.text())
+  .then(t=>someapache.innerText += t);
+}
+
 var bsc_prime_cuts;
 (async function(){bsc_prime_cuts = (await import("/resource/BSC_Prime_Cuts.json",{with:{type:"json"}})).default;})();
 selch.addEventListener("change",(ev)=>{
