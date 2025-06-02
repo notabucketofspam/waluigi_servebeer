@@ -19,7 +19,7 @@ fs.open(factpath, "r+", (err, fd)=>{
         paint(err.code);
       } else {
         const lastdate = buffer.readDoubleLE();
-        if (Date.now() - lastdate > 3.6e6){
+        if (Date.now() - lastdate > 1.2e6){
           // ... it's kinda old
           getfact(fd);
         } else {
