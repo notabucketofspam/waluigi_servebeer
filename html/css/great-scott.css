@@ -3,6 +3,7 @@
 */
 :where(body){
   background-color:white;
+  min-height: calc(100vh - 150px);
 }
 .div_pad_small {
   height: 8px;
