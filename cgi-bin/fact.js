@@ -60,7 +60,7 @@ function getfact(fd){
       {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "OFF"}
     ],
     "system_instruction":{
-      "parts":[{"text":"the user wants a fun fact. the fact must be 100% true. absurd, useless, or irrelevant output is ideal. output must include double entendre, suggestive phrasing, or innuendo. output must be only one sentence. please do not include markdown in the output. thank you!!!"}]
+      "parts":[{"text":"the user wants a fun fact. the fact must be 100% true. absurd, useless, or irrelevant output is ideal. output must include double entendre, suggestive phrasing, or innuendo. please limit output only one or two sentences. please do not include markdown in the output. thank you!!!"}]
     },
     "contents":[{
       "role":"user",
