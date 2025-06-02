@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Artificial Flavor - waluigi-servebeer.com</title>
+<style>
+#spicestuff{
+  border-width: 3px;
+  border-color:#309;
+  border-style:ridge;
+  max-width:3in;
+  min-height:2in;
+  padding:0px 3px;
+  position:relative;
+}
+.ffxiv{
+  font-family:monospace;
+  text-decoration:underline;
+  font-variant:small-caps;
+  font-size:16px;
+  font-weight:bold;
+}
+#spicy-fun{
+  font-size:20px;
+  transform: scale3d(4.1,1.4,1) translate3d(26.4px,-1.4px,0px);
+  width:fit-content;
+}
+#faction{
+  position:absolute;
+  bottom:-1px;
+  border-top:1px solid black;
+  width:3.1in;
+  text-align:center;
+  left:-2px;
+}
+#holder-of-profane-knowledge{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:1.6in;
+}
+</style>
+</head>
+<body>
+<h1 style="margin-bottom:0;" class="lube lard">Artificial Flavor</h1>
+<div class="lube lard" style="margin-bottom:2lh">This is where we put the machine-generated content.</div>
+
+<div class="sef lard">
+  <div id="spicestuff">
+    <div id="spicy-fun" class="ffxiv">Fun Fact</div>
+    <div id="holder-of-profane-knowledge">
+      <div id="funfact"></div>
+    </div>
+    <div id="faction">Check back later for another <span class="ffxiv">Fun Fact</span>!</div>
+  </div>
+</div>
+
+<script src="/js/everything.js"></script>
+<script>
+function apache(road, man){
+  fetch(road)
+  .then(r=>r.text())
+  .then(t=>man?.insertAdjacentHTML('beforeend',t));
+}
+var funfact = document.getElementById("funfact");
+apache('/cgi-bin/fact.js', funfact);
+</script>
+</body>
+</html>
