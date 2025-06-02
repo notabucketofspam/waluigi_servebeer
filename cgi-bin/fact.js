@@ -25,13 +25,9 @@ fs.open(factpath, "r+", (err, fd)=>{
         } else {
           // ... it's adequately fresh
           const lastfact = buffer.toString('utf8', 8, bytesRead);
-          paint(lastfact);
+          instill_order(lastfact, fd);
         }
       }
-      fs.close(fd, (err)=>{
-        // oof, that's unlucky
-        paint(err.errno);
-      });
     });
   }
 });
@@ -89,18 +85,33 @@ function getfact(fd){
       buffer.writeDoubleLE(Date.now());
       buffer.write(truesauce, 8);
       if (fd){
-        fs.ftruncateSync(fd);
+        fs.ftruncateSync(fd, 0);
         fs.writeSync(fd, buffer, 0, buffer.length, 0);
       } else {
         fs.writeFileSync(factpath, buffer); 
       }
       // serve the order to the customer
-      paint(truesauce);
+      instill_order(truesauce, fd);
     });
   });
   
-  // actually send the request
+  // actually send the request to gemini
   req.on("error",e=>{});
   req.write(postring);
   req.end();
+}
+
+/**
+  cleanup n stuff
+*/
+function instill_order(portrait, fd){
+  paint(portrait);
+  if (fd){
+    fs.close(fd, (err)=>{
+      if (err){
+        // apparently the file can't be closed
+        paint(err.errno);
+      }
+    });
+  }
 }
