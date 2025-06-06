@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Soundboard - waluigi-servebeer.com</title>
+<style>
+#booba button {
+  margin:2px;
+}
+#topstuff{
+  text-align:center;
+}
+input[type="range"]{
+  accent-color:red;
+}
+</style>
+</head>
+<body>
+<div class="sef lard">
+  <div id="topstuff">
+    <h1>Soundboard</h1>
+    <div>
+      <input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/>
+      <br/>
+      Volume
+    </div>  
+  </div>
+  <div id="booba"></div>
+</div>
+<script src="/js/everything.js"></script>
+<script src="/page/soundboard/cacophony.js"></script>
+<script>
+whichStorage["soundboard_gain"] ??= 0.20;
+somevolume.value = whichStorage["soundboard_gain"];
+make_group(booba, board.adventures);
+make_group(booba, board.pizza);
+make_group(booba, board.misc);
+function setgain(g){
+  gainode.gain.setValueAtTime(g,0);
+  whichStorage["soundboard_gain"] = g;
+}
+</script>
+</body>
+</html>
