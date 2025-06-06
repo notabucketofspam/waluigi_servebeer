@@ -122,7 +122,8 @@ class WhichStorage {
     "seinfeld_time": false,
     "seinfeld_size": false,
     "somelinks": true,
-    "settings": true
+    "settings": true,
+    "soundboard_gain": true,
   };
   // jank api
   __make_etters = (name) => {
