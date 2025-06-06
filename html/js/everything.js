@@ -106,7 +106,7 @@ function goto_smart(url){
 class WhichStorage {
   // true: use localStorage
   // false: use sessionStorage
-  __item = JSON.parse(localStorage.getItem("settings")??sessionStorage.getItem("settings"))??{
+  __defaultitem = {
     "username": false,
     "used": true,
     "jukebox_track_index": false,
@@ -125,6 +125,7 @@ class WhichStorage {
     "settings": true,
     "soundboard_gain": true,
   };
+  __item = JSON.parse(localStorage.getItem("settings")??sessionStorage.getItem("settings"))??this.__defaultitem;
   // jank api
   __make_etters = (name) => {
     return {
@@ -150,6 +151,11 @@ class WhichStorage {
     this.setItem("settings", JSON.stringify(this.__item));
   };
   constructor(){
+    // reset all settings if it's missing any keys
+    let keystr = (o)=>Object.keys(o).sort().join();
+    if (keystr(this.__item) !== keystr(this.__defaultitem)) {
+      this.__item = this.__defaultitem;
+    }
     for (const name in this.__item){
       Object.defineProperties(this, this.__make_etters(name));
     }
