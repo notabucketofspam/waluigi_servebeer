@@ -14,17 +14,17 @@
 input[type="range"]{
   accent-color:red;
 }
+div.sef.lard *{
+  user-select:none;
+}
 </style>
 </head>
 <body>
 <div class="sef lard">
   <div id="topstuff">
     <h1>Soundboard</h1>
-    <div>
-      <input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/>
-      <br/>
-      Volume
-    </div>  
+    <div><input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/></div>
+    <div>Volume</div>
   </div>
   <div id="booba"></div>
 </div>
