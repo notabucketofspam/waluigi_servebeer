@@ -677,6 +677,12 @@ ins {
 .fl {
   float:left;
 }
+.ledger {
+  max-width: 17in;
+}
+.legal {
+  max-width: 14in;
+}
 .longer {
   max-width:12in;
 }
