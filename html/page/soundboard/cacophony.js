@@ -37,7 +37,7 @@ var board = {
   },
   misc:{
     name:"Misc",
-    sound:["Food Time","KAYORoundWon4"]
+    sound:["Food Time","insult","1149_hmscream","Wilhelm 4","Taunt1_shammy","alottadamage","doublekill","triplekill","killtacular","killingspree","runningriot","old stuff","KAYOClutch2","KAYOEnemyKAYOKill","KAYORoundWon4","Microsoft Windows XP Startup","Microsoft Windows XP Shutdown","dial-up modem","youveGotmail","Navi Hey Listen","PUT IT IN","noot"]
   }
 };
 
