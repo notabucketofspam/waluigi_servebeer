@@ -93,7 +93,7 @@
       <button id="meateater" title="plagiarism, grand theft, and fraud">prime cuts</button>
     </div>
   </div>
-<main></main>
+<main id="main"></main>
 <script src="/js/everything.js"></script>
 <script src="/js/party-og.js"></script>
 <script>
@@ -103,7 +103,7 @@
 if(history.length===1)
   location.assign(hashgrab());
 consume(hashgrab());
-var main = document.querySelector('main');
+var main = document.querySelector('main#main');
 var bread = 
 /(?:(?<=\<title\>)(?<title>.*?)(?=\<\/title\>))|(?:(?<=\<style\>)(?<glitter>.*?)(?=\<\/style\>))|(?<lonk>\<link.*?\>)|(?:(?<=\<script\>)(?<soup>.*?)(?=\<\/script\>))|(?:(?<=\<script src=")(?<scrsrc>.*?)(?="\>\<\/script\>))/gs;
 var titlecase = /&#(?:(?<d>\d+)|(?<x>x[\dA-F]+));/gi;
@@ -144,7 +144,7 @@ function consume(url) {
               const script = document.createElement('script');
               script.innerHTML = groups.soup;
               main.prepend(script);
-            }, 0);
+            }, 100);
           }
           if (groups.scrsrc && groups.scrsrc !== "/js/everything.js" && groups.scrsrc !== "/js/party-og.js") {
             setTimeout(()=> {
