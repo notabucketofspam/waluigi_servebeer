@@ -11,7 +11,7 @@
 #topstuff{
   text-align:center;
 }
-input[type="range"]{
+input{
   accent-color:red;
 }
 div.sef.lard *{
@@ -23,10 +23,21 @@ div.sef.lard *{
 <div class="sef lard">
   <div id="topstuff">
     <h1>Soundboard</h1>
-    <div><input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/></div>
-    <div>Volume</div>
+    <div>
+      <div><input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/></div>
+      <div>Volume</div>
+    </div>
   </div>
   <div id="booba"></div>
+  <div id="clockbot_zone">
+    <h2>ClockBot</h2>
+    <div><label><input type="checkbox" checked id="clockbot"/>Enable</label></div>
+    <div><input type="text" placeholder="Channel ID" id="channel_id" value="723899791330771015"/></div>
+    <div>
+      <button onclick="getinchat()">get in chat</button>
+      <button onclick="leave_chat()">leave chat</button>
+    </div>
+  </div>
 </div>
 <script src="/js/everything.js"></script>
 <script src="/page/soundboard/cacophony.js"></script>

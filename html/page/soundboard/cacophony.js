@@ -2,26 +2,55 @@ var auxcord = new AudioContext();
 var gainode = new GainNode(auxcord, {gain:0.2});
 gainode.connect(auxcord.destination);
 var soundbuffers = new Map();
+var clockbot = document.getElementById("clockbot");
+var channel_id = document.getElementById("channel_id");
+
+var whoishost = window.location.hostname==="localhost"?"http://localhost:39692":"http://clockbot.waluigi-servebeer.com";
 
 async function gimmefile(fname){
-  var far = await fetch(fname);
+  var far = await fetch(`/page/soundboard/${fname}.mp3`);
   var bar = await far.arrayBuffer();
   var dar = await auxcord.decodeAudioData(bar);
   soundbuffers.set(fname, dar);
   return dar;
 }
+
+var postfetch = abode => fetch(`${whoishost}/?q=${channel_id.value}`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "text/plain"
+  },
+  mode: "no-cors",
+  body: abode
+});
+
 async function beep(fname){
-  var somebuffer = soundbuffers.get(fname);
-  if (typeof somebuffer === 'undefined'){
-    somebuffer = await gimmefile(fname);
+  if (clockbot.checked){
+    postfetch(fname);
+  } else {
+    var somebuffer = soundbuffers.get(fname);
+    if (typeof somebuffer === 'undefined'){
+      somebuffer = await gimmefile(fname);
+    }
+    var someabsn = new AudioBufferSourceNode(auxcord, {buffer:somebuffer});
+    someabsn.connect(gainode);
+    someabsn.start();
   }
-  var someabsn = new AudioBufferSourceNode(auxcord, {buffer:somebuffer});
-  someabsn.connect(gainode);
-  someabsn.start();
 }
 function make_group(dad, someboard){
-  var somebuttons = someboard.sound.map(s=>`<button onclick="beep('/page/soundboard/${someboard.name}/${s}.mp3')">${s}</button>`);
+  var somebuttons = someboard.sound.map(s=>`<button onclick="beep('${someboard.name}/${s}')">${s}</button>`);
   dad.insertAdjacentHTML('beforeend', `<div id="group_${someboard.name}"><h2>${someboard.name}</h2>${somebuttons.join('')}</div>`);
+}
+
+function getinchat(){
+  if (clockbot.checked){
+    postfetch('getinchat()');
+  }
+}
+function leave_chat(){
+  if (clockbot.checked){
+    postfetch('leave_chat()');
+  }
 }
 /*
     SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS
