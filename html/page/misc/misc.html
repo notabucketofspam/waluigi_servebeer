@@ -101,8 +101,45 @@ y: <span id="y_px"></span>px
   <br/>
   <ol id="someapache" style="position:absolute;"></ol>
 </div>
+<br/>
+<div>
+  <button onclick="stupid()">stupid</button>
+  <button onclick="dumb()">dumb</button>
+  <button onclick="ruitest()">ruitest</button>
+</div>
 <script src="/js/everything.js"></script>
 <script>
+function stupid(){
+  console.time("stupid");
+  let stupidArray = new Uint32Array(1);
+  for (let i = 0; i<1e7; ++i){
+    crypto.getRandomValues(stupidArray);
+  }
+  console.timeEnd("stupid");
+}
+const randmax = 1e9;
+function dumb(){
+  console.time("dumb");
+  let dumbNumber = 0;
+  for (let i = 0; i<1e7; ++i){
+    dumbNumber = Math.trunc(Math.random() * randmax);
+  }
+  cog(dumbNumber);
+  console.timeEnd("dumb");
+}
+function rui_old(k) {
+  return Math.random() / Number.EPSILON % k;
+}
+function ruitest(){
+  console.time("ruitest");
+  let chadbod = 0;
+  for (let i = 0; i<1e7; ++i){
+    chadbod = rui_old(randmax);
+  }
+  cog(chadbod);
+  console.timeEnd("ruitest");
+}
+
 function apache(fpath){
   fetch(fpath)
   .then(r=>r.text())
