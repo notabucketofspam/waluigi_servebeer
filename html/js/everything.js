@@ -73,13 +73,13 @@ to bring the party with you.
 var cog = console.log;
 /**@param{number}k*/
 function rui (k) {
-  return Math.random() / Number.EPSILON % k;
+  return Math.trunc(Math.random() * k);
 }
 Object.defineProperty(window, "at_outdex",{
-    get(){
-        return Boolean(document.getElementById("this_is_outdex"));
-    }
-})
+  get(){
+    return Boolean(document.getElementById("this_is_outdex"));
+  }
+});
 function popsize(win, hin){
   return `popup,width=${win},height=${hin},left=${(window.screen.availWidth - win)/2},top=${(window.screen.availHeight - hin)/2}`;
 }
