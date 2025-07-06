@@ -5,7 +5,7 @@ var soundbuffers = new Map();
 var clockbot = document.getElementById("clockbot");
 var channel_id = document.getElementById("channel_id");
 
-var whoishost = window.location.hostname==="localhost"?"http://localhost:39692":"http://clockbot.waluigi-servebeer.com";
+var whoishost = window.location.hostname==="localhost"?"http://localhost:39692":"https://clockbot.waluigi-servebeer.com";
 
 async function gimmefile(fname){
   var far = await fetch(`/page/soundboard/${fname}.mp3`);
