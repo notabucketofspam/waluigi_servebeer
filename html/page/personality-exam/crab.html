@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Are you crab? - waluigi-servebeer.com</title>
+<style>
+#how_crab {
+  font-variant: small-caps;
+}
+</style>
+</head>
+<body>
+<div class="lard sef">
+<h1>Are you crab?</h1>
+<form id="xf" method="post" action="/cgi-bin/crab.pl" target="result" onsubmit="xfsub()">
+  <fieldset>
+    <legend>Are you crab?</legend>
+    <label><input type="radio" name="are" value="0" required/>Not yet</label><br/>
+    <label><input type="radio" name="are" value="1" required/>Hella</label><br/>
+    <label><input type="radio" name="are" value="2" required/>Crab? In <em>this</em> economy??</label><br/>
+    <label><input type="radio" name="are" value="3" required/>I'd be willing to give it a try</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Does your mom know you're crab?</legend>
+    <label><input type="radio" name="mom" value="0" required/>My mom is crab, too</label><br/>
+    <label><input type="radio" name="mom" value="1" required/>Bruh she gets carried every run</label><br/>
+    <label><input type="radio" name="mom" value="2" required/>she eated all the sand</label><br/>
+    <label><input type="radio" name="mom" value="3" required/>I think she's having an affair with Tony</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>How crab are you?</legend>
+    <label><input oninput="this_crab(this.valueAsNumber)" type="range" name="how" min="0" max="3" value="0" required/>I am <span id="how_crab">casually</span> crab</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Why are you crab?</legend>
+    <label><input type="radio" name="why" value="0" required/>I'm just here for the music</label><br/>
+    <label><input type="radio" name="why" value="1" required/>The loot is better</label><br/>
+    <label><input type="radio" name="why" value="2" required/>RoR2 is cringe</label><br/>
+    <label><input type="radio" name="why" value="3" required/>I'm already invested in the run</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Which of the following <strong>best</strong> characterizes your crab life?</legend>
+    <label><input type="radio" name="ravelife" value="0" required/>Gambling</label><br/>
+    <label><input type="radio" name="ravelife" value="1" required/>Unexpected death</label><br/>
+    <label><input type="radio" name="ravelife" value="2" required/>Big Shot</label><br/>
+    <label><input type="radio" name="ravelife" value="3" required/>&lt;20fps</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>What do you prefer to hold with your "main" hand?</legend>
+    <label><input type="radio" name="mainhand" value="0" required/>Rifle</label><br/>
+    <label><input type="radio" name="mainhand" value="1" required/>Pistol</label><br/>
+    <label><input type="radio" name="mainhand" value="2" required/>Wand</label><br/>
+    <label><input type="radio" name="mainhand" value="3" required/><code>WEAPONNAME</code></label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>What do you prefer to hold with your "off" hand?</legend>
+    <label><input type="radio" name="offhand" value="0" required/>My bigass hammer (giggity)</label><br/>
+    <label><input type="radio" name="offhand" value="1" required/>Another pistol</label><br/>
+    <label><input type="radio" name="offhand" value="2" required/>Crab</label><br/>
+    <label><input type="radio" name="offhand" value="3" required/><code>WEAPONNAME</code></label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Who would you rather smooch?</legend>
+    <label><input type="radio" name="smooch" value="0" required/>Glass Totem</label><br/>
+    <label><input type="radio" name="smooch" value="1" required/>Health Shot</label><br/>
+    <label><input type="radio" name="smooch" value="2" required/>Tony</label><br/>
+    <label><input type="radio" name="smooch" value="3" required/>Landmine Limpet</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>What kinda crime are you <em>most</em> likely to get convicted for?</legend>
+    <label><input type="radio" name="crime" value="0" required/>Shoplifting</label><br/>
+    <label><input type="radio" name="crime" value="1" required/>Crab</label><br/>
+    <label><input type="radio" name="crime" value="2" required/>Vandalism</label><br/>
+    <label><input type="radio" name="crime" value="3" required/>Unhealthy obsession with schmovement</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>A swarm of Giant Ants is approaching you. How would you refer to them?</legend>
+    <label><input type="radio" name="ants" value="0" required/>By their respective surnames</label><br/>
+    <label><input type="radio" name="ants" value="1" required/>I do not acknowledge their presence and I carry on with my day</label><br/>
+    <label><input type="radio" name="ants" value="2" required/>Stupid fuckers</label><br/>
+    <label><input type="radio" name="ants" value="3" required/>Men</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>How many crabs are you?</legend>
+    <label><input type="radio" name="meat" value="0" required/>None at all</label><br/>
+    <label><input type="radio" name="meat" value="1" required/>One or two of the crabs</label><br/>
+    <label><input type="radio" name="meat" value="2" required/>More than half the crabs</label><br/>
+    <label><input type="radio" name="meat" value="3" required/>Nearly every crab</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>Which of these Greed Perks best characterizes your <em>most recent</em> sexual experience?</legend>
+    <label><input type="radio" name="quote" value="0" required/>Big Bones</label><br/>
+    <label><input type="radio" name="quote" value="1" required/>Rising Star</label><br/>
+    <label><input type="radio" name="quote" value="2" required/>Slippery Slope</label><br/>
+    <label><input type="radio" name="quote" value="3" required/>Brawler</label><br/>
+  </fieldset>
+  <fieldset>
+    <legend>You wake up tomorrow and you are a crab. What's the first thing you do?</legend>
+    <label><input type="radio" name="wakeup" value="0" required/>Check my crab mail in case something got patched while I was sleeping</label><br/>
+    <label><input type="radio" name="wakeup" value="1" required/>Feed my crab and make sure she has enough crystals in her bowl</label><br/>
+    <label><input type="radio" name="wakeup" value="2" required/>Look through the pile of weapon mods on my floor for something nice to shoot today</label><br/>
+    <label><input type="radio" name="wakeup" value="3" required/>Read the crab section of the newspaper while enjoying a fresh cup of saltwater</label><br/>
+  </fieldset>  
+  <fieldset>
+    <legend>You wake up tomorrow and you are Tony. What's the first thing you do?</legend>
+    <label><input type="radio" name="comp" value="0" required/>Go back to sleep in my cave</label><br/>
+    <label><input type="radio" name="comp" value="1" required/>Queue for a competitive game in <i>League of Legends</i></label><br/>
+    <label><input type="radio" name="comp" value="2" required/>Keep the shop</label><br/>
+    <label><input type="radio" name="comp" value="3" required/>Go on a hot date with your mom ;)</label><br/>
+  </fieldset>
+  <br/>
+  <input type="submit" value="Plug it in, coach"/>
+  <button form="nope" onclick="fill_randomly()">I don't have time for this</button>
+</form>
+</div>
+<script src="/js/everything.js"></script>
+<script>
+var xf = document.getElementById("xf");
+var how_crab = document.getElementById("how_crab");
+function this_crab(n) {
+  var w;
+  switch(n){
+    case 0: w="casually";break;
+    case 1: w="committed";break;
+    case 2: w="convicted";break;
+    case 3: w="condemned";break;
+  }
+  if (w)
+    how_crab.innerText = w;
+  return n;
+}
+this_crab(how_crab.valueAsNumber);
+function fill_randomly(){
+  for (const i in xf.elements)
+    if (xf[i] instanceof RadioNodeList)
+        xf[i].value = Math.floor(rui(4));
+  xf.how.value = this_crab(rui(4));
+}
+</script>
+</body>
+</html>
