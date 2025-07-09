@@ -15,7 +15,7 @@ async function gimmefile(fname){
   return dar;
 }
 
-var postfetch = abode => fetch(`${whoishost}/?q=${channel_id.value}`, {
+var postfetch = abode => fetch(`${whoishost}/cmd?q=${channel_id.value}`, {
   method: "POST",
   headers: {
     "Content-Type": "text/plain"
