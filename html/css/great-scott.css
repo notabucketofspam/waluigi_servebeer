@@ -221,6 +221,7 @@ a.shortcut::after{
 }
 #another_funk_thing_idk {
   white-space: nowrap;
+  position:relative;
 }
 #party_zone {
   user-select:none;
@@ -256,7 +257,7 @@ a.shortcut::after{
 }
 #funk_more {
   position:absolute;
-  left:185px;
+  left:177px;
 }
 @media (max-width:5.5in){
   #party_zone {
@@ -883,9 +884,9 @@ main #login-stuffs{
   user-select:none;
 }
 #celebrating {
-  position: absolute;
-  top:95px;
-  left:222px;
+  position: relative;
+  /* top:95px; */
+  /* left:222px; */
   display:block;
 }
 #new_year {
@@ -905,7 +906,7 @@ main #login-stuffs{
     flex-direction:column;
   }
   #celebrating {
-    position:unset;
+    /* position:unset; */
   }
   #new_year {
     float:none;
@@ -1005,14 +1006,14 @@ main #login-stuffs{
   justify-self:center;
   justify-content:center;
 }
-#normalspace>a{
+#normalspace>a.clickbait-article, a.yellow{
   background-color:#ffffdd;
   border-color:#ffeedd;
 }
-#normalspace>a:hover{
+#normalspace>a.clickbait-article:hover, a.yellow:hover{
   background-color:#ffeedd;
 }
-#normalspace>a:active{
+#normalspace>a.clickbait-article:active, a.yellow:active{
   background-color:#ffe3dd;
 }
 #commoncremes{
@@ -1021,10 +1022,54 @@ main #login-stuffs{
   border-color:#AABBBB;
   background-color:#FAFFFF;
   max-width:fit-content;
-  float:right;
+  /* float:right; */
 }
 #normalhold{
   clear:left;
-  row-gap:17px;
+  column-gap:17px;
   margin-top:16px;
+  display:flex;
+}
+.cremelite{
+  text-align:center;
+  font-family:monospace;
+  text-decoration-line:underline;
+  max-width:fit-content;
+}
+a.clickbait-article.topcreme{
+  background-color:#FAF6FF;
+  border-color:#ffc7f7;
+}
+a.clickbait-article.topcreme:hover{
+  background-color:#f7eaf7;
+}
+a.clickbait-article.topcreme:active{
+  background-color:#F0DBF7;
+}
+#commoncremes>h3 {
+  margin:0;
+  font-family:monospace;
+  text-decoration:underline;
+  font-size:20px;
+  font-weight:normal;
+}
+.budget{
+  border-color:#e7e7e7;
+  background-color:#f7f7f7;
+}
+.budget:hover{
+  background-color:#eef9ee;
+}
+.budget:active{
+  background-color:#E5F3E5;
+}
+.juh{
+  justify-items:center;
+}
+/* blink code stolen from wikipedia */
+@keyframes blink {
+	0% { opacity:1 } 75% { opacity:1 } 76% { opacity:0 } 100% { opacity:0 }
+}
+blink, .blink-css {
+	animation:blink 0.75s ease-in infinite alternate!important;
 }
