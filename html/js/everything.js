@@ -32,25 +32,26 @@ document.body.insertAdjacentHTML('beforeend',
 <div id="burgmenu" popover>
   <meta class="meta_party" id="burgmenu_mp" />
 </div>`);
+function move_party(ev){
+  var imp = document.getElementById("index_mp");
+  var bmp = document.getElementById("burgmenu_mp");
+  var party_zone = document.getElementById("party_zone");
+  
+  if (ev.newState === "open") {
+    if (imp) {
+      // take the party and hoist it up to the menu
+      burgmenu.insertBefore(party_zone, bmp);
+    }
+  } else {
+    if (imp) {
+      // put the party back where it belongs
+      imp.parentNode.insertBefore(party_zone, imp);
+    }
+  }
+}
 var breadstick = /^\/outdex.html/;
 if (breadstick.test(location.pathname)){
-  burgmenu.addEventListener("beforetoggle", ev=> {
-    var imp = document.getElementById("index_mp");
-    var bmp = document.getElementById("burgmenu_mp");
-    var party_zone = document.getElementById("party_zone");
-    
-    if (event.newState === "open") {
-      if (imp) {
-        // take the party and hoist it up to the menu
-        burgmenu.insertBefore(party_zone, bmp);
-      }
-    } else {
-      if (imp) {
-        // put the party back where it belongs
-        imp.parentNode.insertBefore(party_zone, imp);
-      }
-    }
-  });
+  burgmenu.addEventListener("beforetoggle", move_party);
 } else {
   burgmenu.insertAdjacentHTML("beforeend", 
 `<div style="text-align:center;font-family:monospace;">
