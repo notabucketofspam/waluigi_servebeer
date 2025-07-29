@@ -86,6 +86,12 @@ a.shortcut::after{
   margin-bottom: -4px;
   height:20px;
 }
+@media (min-width:12in){
+  .steak_corner{
+    right:calc((100vw - 12in)/2);
+    border-right-width:1px;
+  }
+}
 
 /*
     BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER
@@ -123,6 +129,11 @@ a.shortcut::after{
   height:273px;
   overflow:visible;
   border:3px solid black;
+}
+@media (min-width:12in){
+  #burger, #burgmenu{
+    left:calc((100vw - 12in)/2);
+  }
 }
 
 /*
