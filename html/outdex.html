@@ -36,6 +36,11 @@
   z-index: 11;
   white-space:nowrap;
 }
+@media (min-width:12in){
+  #hoverboots{
+    left:calc((100vw - 12in)/2 + 57px);
+  }
+}
 #quit-x {
   border:outset #fcc 3px;
   background-color:#faa;
@@ -91,6 +96,7 @@
       <button id="button" title="did you bring a big enough plate for dinner, son?">plate</button>
       <button id="ick" title="wolfjerkeytm">wolfjerkey&#8482;</button>
       <button id="meateater" title="plagiarism, grand theft, and fraud">prime cuts</button>
+      <button id="teethfeeder" title="You can reset the page, but you can't reset your sins.">reset</button>
     </div>
   </div>
 <main id="main"></main>
@@ -263,6 +269,7 @@ async function stupid_meateater(ev) {
     await import('/page/meat-substrate/words.js');
     kasa = __WORDS.replace(/\u{2019}/gu,"'").split("|");
   }
+  burgmenu.togglePopover();
   var noodles = document.createNodeIterator(main, 4);
   var curry;
   var c = 0;
@@ -281,6 +288,7 @@ async function stupid_meateater(ev) {
     }
     if(c++ > 2011) break; // hehe
   }
+  burgmenu.togglePopover();
 }
 meateater.addEventListener("click", stupid_meateater);
 
@@ -288,6 +296,7 @@ var wolfjerkeytm = "<u>Meat #3: Wolf Jerkey&#8482;</u> I think that Wolf Jerkey&
 ick.title= wolfjerkeytm;
 function become_wolfjerkeytm(ev){
   document.body.style.backgroundColor="#feefee";
+  burgmenu.togglePopover();
   var noodles = document.createNodeIterator(main, 4);
   var curry;
   var c = 0;
@@ -302,8 +311,16 @@ function become_wolfjerkeytm(ev){
     }
     if(c++ > 2020) break; // hehehe
   }
+  burgmenu.togglePopover();
+  document.getElementById('welcome_steak')?.setAttribute("hidden", "true");
 };
 ick.addEventListener('click', become_wolfjerkeytm);
+
+var teethfeeder = document.getElementById("teethfeeder");
+teethfeeder.addEventListener("click", ()=>{
+  consume(hashgrab());
+  document.body.style.backgroundColor = "";
+});
 </script>
 </body>
 </html>
