@@ -41,6 +41,12 @@
   justify-content:center;
   height:1.6in;
 }
+#sponsor{
+  text-align:center;
+  margin:0;
+  font-size:300%;
+  font-family:sans-serif;
+}
 </style>
 </head>
 <body>
@@ -48,7 +54,13 @@
 <div class="lube lard" style="margin-bottom:2lh">This is where we put the machine-generated content.</div>
 
 <div class="sef lard">
-  <div id="spicestuff">
+
+  <div class="fr">
+    <h2 id="sponsor">Today's Sponsor</h2>
+    <img id="banquet" style="max-width:5in;border:3px #309 ridge;" alt="this was supposed to be banquet"/>
+  </div>
+  
+  <div id="spicestuff" class="fl">
     <div id="spicy-fun" class="ffxiv">Fun Fact</div>
     <div id="holder-of-profane-knowledge">
       <div id="funfact"></div>
@@ -59,13 +71,16 @@
 
 <script src="/js/everything.js"></script>
 <script>
-function apache(road, man){
+function apache(road, callman){
   fetch(road)
   .then(r=>r.text())
-  .then(t=>man?.insertAdjacentHTML('beforeend',t));
+  .then(callman);
 }
 var funfact = document.getElementById("funfact");
-apache('/cgi-bin/fact.js', funfact);
+apache('/cgi-bin/fact.js', t=>funfact?.insertAdjacentHTML('beforeend',t));
+
+var banquet = document.getElementById("banquet");
+apache('/cgi-bin/banquet.js',b=>banquet?.setAttribute("src",("data:image/png;base64,"+b)));
 </script>
 </body>
 </html>
