@@ -125,6 +125,8 @@ class WhichStorage {
     "somelinks": true,
     "settings": true,
     "soundboard_gain": true,
+    "soundboard_clockbot_enable": true,
+    "soundboard_clockbot_channel_id": true,
   };
   __item = JSON.parse(localStorage.getItem("settings")??sessionStorage.getItem("settings"))??this.__defaultitem;
   // jank api

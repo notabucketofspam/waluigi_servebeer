@@ -2,7 +2,7 @@ var auxcord = new AudioContext();
 var gainode = new GainNode(auxcord, {gain:0.2});
 gainode.connect(auxcord.destination);
 var soundbuffers = new Map();
-var clockbot = document.getElementById("clockbot");
+var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");
 
 var whoishost = window.location.hostname==="localhost"?"http://localhost:39692":"https://clockbot.waluigi-servebeer.com";
@@ -66,7 +66,11 @@ var board = {
   },
   misc:{
     name:"Misc",
-    sound:["Food Time","insult","1149_hmscream","Wilhelm 4","Taunt1_shammy","alottadamage","doublekill","triplekill","killtacular","killingspree","runningriot","old stuff","KAYOClutch2","KAYOEnemyKAYOKill","KAYORoundWon4","Microsoft Windows XP Startup","Microsoft Windows XP Shutdown","dial-up modem","youveGotmail","Navi Hey Listen","PUT IT IN","noot"]
+    sound:["Food Time","insult","1149_hmscream","Wilhelm 4","Taunt1_shammy","alottadamage","doublekill","triplekill","killtacular","killingspree","runningriot","old stuff","KAYOClutch2","KAYOEnemyKAYOKill","KAYORoundWon4","Microsoft Windows XP Startup","Microsoft Windows XP Shutdown","dial-up modem","youveGotmail","Navi Hey Listen","PUT IT IN","noot","wtf is a kilometer","metal pipes","but i like this","buy everything","buy something","does that make any sense","even crysis","geforce gamer","no geforce gamer","fuck off for even saying that","alotta big words","idgaf","Smash Mouth - Hot","Now youre gonna put a steak in this","prunejuice"]
+  },
+  doubletrouble:{
+    name:"DoubleTrouble",
+    sound:["big trouble","capture pikachu 1","capture pikachu 2","couldnt screw this up Jesse","creators of a grand design","do unto others","even we couldnt screw this one up","for mayhem and madness Full","here they come","ill be the joker of crime","ill be the king","ill be the queen","im always the man","im so gorgeous","Jesse laugh 1","Jesse team rockets rockin","laugh 1","laugh 2","laugh 3","make it double 1","make it double 2","no one can deny it","oooh a riot","Pokemon - Double Trouble (Full Version)","prepare for trouble 1","prepare for trouble 2","stop yappin Full","Team Rocket Slogan Full","team rockets blasting off again","this is our most ingenious plan","this is the boss","truth can be deceiving","walking trouble 1","walking trouble 2","we can cause a riot Full","we fight for whats wrong","well be the richest rogues of all time","well have you believe it","were always gonna try it","were team rocket Full","would you two stop yappin","youre just the players"]
   }
 };
 

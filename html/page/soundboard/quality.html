@@ -17,6 +17,17 @@ input{
 div.sef.lard *{
   user-select:none;
 }
+#greatanswer{
+  margin-bottom:0;
+  position:absolute;
+  bottom:-90px;
+  right:-45px;
+}
+#where_help{
+  font-size:xx-small;
+  padding:1px 3.5px;
+  cursor:help;
+}
 </style>
 </head>
 <body>
@@ -31,14 +42,30 @@ div.sef.lard *{
   <div id="booba"></div>
   <div id="clockbot_zone">
     <h2>ClockBot</h2>
-    <div><label><input type="checkbox" id="clockbot"/>Enable</label></div>
-    <div><input type="text" placeholder="Channel ID" id="channel_id" value=""/></div>
-    <div>
-      <button onclick="getinchat()">get in chat</button>
-      <button onclick="leave_chat()">leave chat</button>
-    </div>
-    <div>
-      <a href="https://discord.com/oauth2/authorize?client_id=821257635973169193" target="_blank">Install</a>
+    <div style="position:relative">
+      <div>
+        <div>
+          <label><input type="checkbox" id="clockbot_enable"/>Enable</label>
+          <a href="https://discord.com/oauth2/authorize?client_id=821257635973169193" target="_blank" style="display:inline-block;margin-left:68px;">Install</a>
+        </div>
+        <div>
+          <input type="text" placeholder="Channel ID" id="channel_id" value=""/>
+          <button id="where_help" popovertarget="greatanswer">where?</button>
+        </div>
+        <div>
+          <button onclick="getinchat()">get in chat</button>
+          <button onclick="leave_chat()">leave chat</button>
+        </div>
+      </div>
+        <dialog id="greatanswer" popover>
+          <div>Where's Channel ID? Great question! So...</div>
+          <ol style="margin:0">
+            <li>Go to &#x26ED;User Settings &rArr; App Settings &ndash; Advanced</li>
+            <li>Flip the <b>Developer Mode</b> switch to the <b>on</b> position</li>
+            <li>Right-click on a voice channel</li>
+            <li><b>Copy Channel ID</b> is at the bottom of the context menu</li>
+          </ol>
+        </dialog>
     </div>
   </div>
 </div>
@@ -50,10 +77,23 @@ somevolume.value = whichStorage["soundboard_gain"];
 make_group(booba, board.adventures);
 make_group(booba, board.pizza);
 make_group(booba, board.misc);
+make_group(booba, board.doubletrouble);
 function setgain(g){
   gainode.gain.setValueAtTime(g,0);
   whichStorage["soundboard_gain"] = g;
 }
+
+whichStorage["soundboard_clockbot_enable"] ??= 0;
+clockbot_enable.checked = Number(whichStorage["soundboard_clockbot_enable"]);
+clockbot_enable.addEventListener('input', (ev)=>{
+  whichStorage["soundboard_clockbot_enable"] = Number(ev.target.checked);
+});
+
+whichStorage["soundboard_clockbot_channel_id"] ??= "";
+channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
+channel_id.addEventListener('input', (ev)=>{
+  whichStorage["soundboard_clockbot_channel_id"] = ev.target.value;
+});
 </script>
 </body>
 </html>
