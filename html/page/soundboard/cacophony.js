@@ -66,7 +66,7 @@ var board = {
   },
   misc:{
     name:"Misc",
-    sound:["Food Time","insult","1149_hmscream","Wilhelm 4","Taunt1_shammy","alottadamage","doublekill","triplekill","killtacular","killingspree","runningriot","old stuff","KAYOClutch2","KAYOEnemyKAYOKill","KAYORoundWon4","Microsoft Windows XP Startup","Microsoft Windows XP Shutdown","dial-up modem","youveGotmail","Navi Hey Listen","PUT IT IN","noot","wtf is a kilometer","metal pipes","but i like this","buy everything","buy something","does that make any sense","even crysis","geforce gamer","no geforce gamer","fuck off for even saying that","alotta big words","idgaf","Smash Mouth - Hot","prunejuice","deepfried","Id make that deal","DAMN GOOD DEAL","gimme dat","I shoulda got that","Im gonna eat the whole thing","Im jokin 1","Im jokin 2","that looks really good"]
+    sound:["Food Time","insult","1149_hmscream","Wilhelm 4","Taunt1_shammy","alottadamage","doublekill","triplekill","killtacular","killingspree","runningriot","old stuff","KAYOClutch2","KAYOEnemyKAYOKill","KAYORoundWon4","Microsoft Windows XP Startup","Microsoft Windows XP Shutdown","dial-up modem","youveGotmail","Navi Hey Listen","PUT IT IN","noot","wtf is a kilometer","metal pipes","but i like this","buy everything","buy something","does that make any sense","even crysis","geforce gamer","no geforce gamer","fuck off for even saying that","alotta big words","idgaf","Smash Mouth - Hot","prunejuice","deepfried","Id make that deal","DAMN GOOD DEAL","gimme dat","I shoulda got that","Im gonna eat the whole thing","Im jokin 1","Im jokin 2","that looks really good","Come On","Falcon","Punch","Scout_no01","Show me your moves"]
   },
   doubletrouble:{
     name:"DoubleTrouble",
