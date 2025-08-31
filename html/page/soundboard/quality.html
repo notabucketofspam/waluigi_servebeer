@@ -19,9 +19,9 @@ div.sef.lard *{
 }
 #greatanswer{
   margin-bottom:0;
-  position:absolute;
-  bottom:-90px;
-  right:-45px;
+  /*position:absolute;*/
+  /*bottom:-90px;*/
+  /*right:-45px;*/
 }
 #where_help{
   font-size:xx-small;
@@ -88,7 +88,9 @@ whichStorage["soundboard_clockbot_enable"] ??= 0;
 clockbot_enable.checked = Number(whichStorage["soundboard_clockbot_enable"]);
 clockbot_enable.addEventListener('input', (ev)=>{
   whichStorage["soundboard_clockbot_enable"] = Number(ev.target.checked);
+  somevolume.disabled = ev.target.checked;
 });
+somevolume.disabled = clockbot_enable.checked;
 
 whichStorage["soundboard_clockbot_channel_id"] ??= "";
 channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
