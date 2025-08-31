@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes"/>
 <title>Soundboard - waluigi-servebeer.com</title>
 <style>
-#booba button {
+:where(#love_zone>h2:not(:only-child)){
+  color:red
+}
+#love_zone{
+  min-height:4lh;
+}
+:where(#booba,#love_zone) button {
   margin:2px;
 }
 #topstuff{
@@ -28,6 +34,10 @@ div.sef.lard *{
   padding:1px 3.5px;
   cursor:help;
 }
+span#how2love{
+  position:absolute;
+  font-size:initial;
+}
 </style>
 </head>
 <body>
@@ -38,6 +48,11 @@ div.sef.lard *{
       <div><input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/></div>
       <div>Volume</div>
     </div>
+  </div>
+  <div id="love_zone">
+    <h2>The Sounds You Love<br/>
+    <span id="how2love">You can love them with right-click</span id="how2love">
+    </h2>
   </div>
   <div id="booba"></div>
   <div id="clockbot_zone">
@@ -97,6 +112,8 @@ channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
 channel_id.addEventListener('input', (ev)=>{
   whichStorage["soundboard_clockbot_channel_id"] = ev.target.value;
 });
+
+write_lovelist();
 </script>
 </body>
 </html>
