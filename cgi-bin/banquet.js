@@ -20,7 +20,7 @@ fs.open(contentpath, "r+", (err, fd)=>{
         paint(err.code);
       } else {
         const lastdate = buffer.readDoubleLE();
-        if (Date.now() - lastdate > 1.2e6){
+        if (Date.now() - lastdate > 8.64e7){
           // ... it's kinda old
           getcontent(fd);
         } else {
