@@ -89,11 +89,8 @@ span#how2love{
 <script>
 whichStorage["soundboard_gain"] ??= 0.20;
 somevolume.value = whichStorage["soundboard_gain"];
-make_group(booba, board.adventures);
-make_group(booba, board.pizza);
-make_group(booba, board.misc);
-make_group(booba, board.doubletrouble);
-make_group(booba, board.turkey);
+Object.keys(board).forEach(key=>make_group(booba, board[key]));
+
 function setgain(g){
   gainode.gain.setValueAtTime(g,0);
   whichStorage["soundboard_gain"] = g;
