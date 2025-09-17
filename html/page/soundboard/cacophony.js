@@ -7,7 +7,7 @@ var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");
 var love_zone = document.getElementById("love_zone");
 
-var whoishost = window.location.hostname==="localhost"?"http://localhost:39692":"https://clockbot.waluigi-servebeer.com";
+var whoishost=window.location.hostname==="localhost"?"http://localhost:39692":"https://clockbot.waluigi-servebeer.com";
 
 async function gimmefile(fname){
   var far = await fetch(`/page/soundboard/${fname}.mp3`);
@@ -51,15 +51,19 @@ function love(fname){
     love_zone.insertAdjacentHTML('beforeend',insert_love(fname));
     lovelist.push(fname);
   }
- whichStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
+  document.getElementById(fname)?.classList.toggle("loved");
+  whichStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
 }
 function write_lovelist(){
-  var somelove = lovelist.map(insert_love);
+  var somelove = lovelist.map(fname=>{
+    document.getElementById(fname)?.classList.add("loved");
+    return insert_love(fname);
+  });
   love_zone.insertAdjacentHTML('beforeend', somelove.join(''));
 }
 
 function make_group(dad, someboard){
-  var somebuttons = someboard.sound.map(s=>`<button onclick="beep('${someboard.name}/${s}')" oncontextmenu="event.preventDefault()||love('${someboard.name}/${s}')">${s}</button>`);
+  var somebuttons = someboard.sound.map(s=>`<button id="${someboard.name}/${s}" onclick="beep('${someboard.name}/${s}')" oncontextmenu="event.preventDefault()||love('${someboard.name}/${s}')">${s}</button>`);
   dad.insertAdjacentHTML('beforeend', `<div id="group_${someboard.name}"><h2>${someboard.name}</h2>${somebuttons.join('')}</div>`);
 }
 
