@@ -100,7 +100,7 @@ button.loved::after{
 <script>
 whichStorage["soundboard_gain"] ??= 0.20;
 somevolume.value = whichStorage["soundboard_gain"];
-Object.keys(board).forEach(key=>make_group(booba, board[key]));
+board.forEach(key=>make_group(booba, key));
 
 function setgain(g){
   gainode.gain.setValueAtTime(g,0);
