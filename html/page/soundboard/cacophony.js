@@ -5,7 +5,7 @@ var soundbuffers = new Map();
 
 var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");
-var love_zone = document.getElementById("love_zone");
+var love_children = document.getElementById("love_children");
 
 var whoishost=window.location.hostname==="localhost"?"http://localhost:39692":"https://clockbot.waluigi-servebeer.com";
 
@@ -48,7 +48,7 @@ function love(fname){
     fav.remove();
     lovelist.splice(lovelist.indexOf(fname), 1);
   } else {    
-    love_zone.insertAdjacentHTML('beforeend',insert_love(fname));
+    love_children.insertAdjacentHTML('beforeend',insert_love(fname));
     lovelist.push(fname);
   }
   document.getElementById(fname)?.classList.toggle("loved");
@@ -59,12 +59,17 @@ function write_lovelist(){
     document.getElementById(fname)?.classList.add("loved");
     return insert_love(fname);
   });
-  love_zone.insertAdjacentHTML('beforeend', somelove.join(''));
+  love_children.insertAdjacentHTML('beforeend', somelove.join(''));
 }
 
 function make_group(dad, someboard){
   var somebuttons = someboard.sound.map(s=>`<button id="${someboard.name}/${s}" onclick="beep('${someboard.name}/${s}')" oncontextmenu="event.preventDefault()||love('${someboard.name}/${s}')">${s}</button>`);
-  dad.insertAdjacentHTML('beforeend', `<div id="group_${someboard.name}"><h2>${someboard.name}</h2>${somebuttons.join('')}</div>`);
+  dad.insertAdjacentHTML('beforeend',`
+<details id="group_${someboard.name}" class="sb">
+  <summary><h2>${someboard.name}</h2></summary>
+  <div class="sounds">${somebuttons.join('')}</div>
+</details>
+`);
 }
 
 function getinchat(){
@@ -77,6 +82,26 @@ function leave_chat(){
     postfetch('leave_chat()');
   }
 }
+
+function setup_open(){  
+  var all_details = document.querySelectorAll("details.sb");
+  
+  var should_open = whichStorage.getItem('soundboard_open');
+  if (should_open) {
+    JSON.parse(should_open).forEach(man=>document.getElementById(man)?.setAttribute("open", true));
+    all_details.forEach(node=>node.addEventListener('toggle',record_open));
+  } else {
+    whichStorage.setItem('soundboard_open', JSON.stringify(Array.from(all_details,el=>el.id)));
+    all_details.forEach(node=>{
+      node.addEventListener('toggle',record_open);
+      node.setAttribute("open", true);
+    });
+  }
+}
+function record_open(ev){
+  whichStorage["soundboard_open"] = JSON.stringify(Array.from(document.querySelectorAll("details.sb[open]"),el=>el.id));
+}
+
 /*
     SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS    SOUNDBOARDS
 */

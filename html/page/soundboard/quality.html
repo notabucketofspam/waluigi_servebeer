@@ -5,14 +5,19 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes"/>
 <title>Soundboard - waluigi-servebeer.com</title>
 <style>
-:where(#love_zone>h2:not(:only-child)){
-  color:red
+details.sb#love_zone>summary>h2{
+  position:relative;
+  margin-bottom:revert;
 }
-#love_zone{
-  min-height:4lh;
+#love_zone[open]{
+  min-height:8.1lh;
+}
+#love_zone>summary:has(+ #love_children:not(:empty)){
+  color:red;
 }
 :where(#booba,#love_zone) button {
   margin:2px;
+  position:relative;
 }
 #topstuff{
   text-align:center;
@@ -34,25 +39,45 @@ div.sef.lard *{
   padding:1px 3.5px;
   cursor:help;
 }
-span#how2love{
+div#how2love{
   position:absolute;
   font-size:initial;
 }
-button.loved::before,button.loved::after{
+button.loved::before{
   content:"<3";
   position:absolute;
   color:white;
   background-color:red;
   font-weight:bold;
   transform:rotate(270deg);
+  left:4px;
+  top:33%;
+  font-size:1lh;
 }
-button.loved::after{
-  margin-left:-14px;
+.sounds {
+  display: grid;
+  grid: auto-flow 3lh / repeat(5, 1fr);
+}
+@media (max-width:600px){
+  .sounds {
+    display: grid;
+    grid: auto-flow 3lh / repeat(3, 1fr);
+  }
+}
+details.sb>summary>h2{
+  display:inline-block;
+  margin-bottom:0;
+  font-size:2rem;
+}
+details.sb>summary{
+  max-width:fit-content;
 }
 </style>
 </head>
 <body>
+<div oncontextmenu="event.preventDefault()">
 <div class="sef lard">
+
   <div id="topstuff">
     <h1>Soundboard</h1>
     <div>
@@ -60,14 +85,21 @@ button.loved::after{
       <div>Volume</div>
     </div>
   </div>
-  <div id="love_zone">
-    <h2>The Sounds You Love<br/>
-    <span id="how2love">You can love them with right-click</span id="how2love">
-    </h2>
-  </div>
+  
+  <details id="love_zone" class="sb">
+    <summary>
+      <h2>
+        The Sounds You Love
+        <div id="how2love">You can love them with right-click</div>
+      </h2>
+    </summary>
+    <div id="love_children" class="sounds"></div>
+  </details>
+  
   <div id="booba"></div>
-  <div id="clockbot_zone">
-    <h2>ClockBot</h2>
+  
+  <details id="clockbot_zone" class="sb">
+    <summary><h2>ClockBot</h2></summary>
     <div style="position:relative">
       <div>
         <div>
@@ -93,7 +125,9 @@ button.loved::after{
           </ol>
         </dialog>
     </div>
-  </div>
+  </details>
+  
+</div>
 </div>
 <script src="/js/everything.js"></script>
 <script src="/page/soundboard/cacophony.js"></script>
@@ -122,6 +156,8 @@ channel_id.addEventListener('input', (ev)=>{
 });
 
 write_lovelist();
+
+setTimeout(setup_open);
 </script>
 </body>
 </html>

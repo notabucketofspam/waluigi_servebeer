@@ -125,6 +125,7 @@ class WhichStorage {
     "somelinks": true,
     "settings": true,
     "soundboard_gain": true,
+    "soundboard_open": true,
     "soundboard_lovelist": true,
     "soundboard_clockbot_enable": true,
     "soundboard_clockbot_channel_id": true,
