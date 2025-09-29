@@ -26,97 +26,7 @@ div.silly:has(input:invalid){
   <h1>Settings</h1>
   <div>If you check a box, then your browser will remember that setting every time you visit this website (<a href="/">waluigi-servebeer.com</a>).</div>
   <div>If you <i>don't</i> check a box, then your browser will forget about that setting once you close this tab.</div>
-
-  <h2>Jukebox</h2>
-  <div>
-    <input type="checkbox" id="r:audio_player_volume" name="audio_player_volume" />
-    <label for="r:audio_player_volume">Remember the volume</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:jukebox_track_index" name="jukebox_track_index" />
-    <label for="r:jukebox_track_index">Remember what song I was playing</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:selch-index" name="selch-index" />
-    <label for="r:selch-index">Remember which playlist I selected</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:loop" name="loop" />
-    <label for="r:loop">Remember if the track was looping</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:shuffle" name="shuffle" />
-    <label for="r:shuffle">Remember if I left shuffle on</label>
-  </div>
-
-  <h2>Hardware Store</h2>
-  <div>
-    <input type="checkbox" id="r:gain" name="gain" />
-    <label for="r:gain">Know about the shopping music's volume</label>
-  </div>
-
-  <h2>Login page</h2>
-  <div>
-    <input type="checkbox" id="r:username" name="username" />
-    <label for="r:username">Keep me logged in for &gt;30 days</label>
-  </div>
-
-  <h2>Cookies</h2>
-  <div>
-    <input type="checkbox" id="r:used" name="used" />
-    <label for="r:used">Recall which banner messages I've seen recently</label>
-  </div>
-
-  <h2>Settings</h2>
-  <div>
-    <input type="checkbox" id="r:settings" name="settings" />
-    <label for="r:settings">Don't forget about all the settings I set on <a href="/page/settings/">the Settings page</a></label>
-  </div>
-
-  <h2>S.P.A.M.</h2>
-  <div>
-    <input type="checkbox" id="r:show_cowtools" name="show_cowtools" />
-    <label for="r:show_cowtools">Think if show cowtools?</label>
-  </div>
-
-  <h2>Seinfeld</h2>
-  <div>
-    <input type="checkbox" id="r:seinfeld_src" name="seinfeld_src" />
-    <label for="r:seinfeld_src">Remember what episode I was watching</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:seinfeld_ep" name="seinfeld_ep" />
-    <label for="r:seinfeld_ep">Remember the name of that episode</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:seinfeld_volume" name="seinfeld_volume" />
-    <label for="r:seinfeld_volume">Remember how loud he can be</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:seinfeld_time" name="seinfeld_time" />
-    <label for="r:seinfeld_time">Remember where I'm at in the episode</label>
-  </div>
-  <div>
-    <input type="checkbox" id="r:seinfeld_size" name="seinfeld_size" />
-    <label for="r:seinfeld_size">Remember the size of this video</label>
-  </div>
-
-  <h2>some links</h2>
-  <div>
-    <input type="checkbox" id="r:somelinks" name="somelinks" />
-    <label for="r:somelinks">Keep those links</label>
-  </div>
-  
-  <h2>Soundboard</h2>
-  <div>
-    <label><input type="checkbox" id="r:soundboard_gain" name="soundboard_gain"/>Gain remembers itself</label>
-  </div>
-  <div><label><input type="checkbox" id="r:soundboard_lovelist" name="soundboard_lovelist"/>You Know What You Like To Hear</label></div>
-  <div>
-    <label><input type="checkbox" id="r:soundboard_clockbot_enable" name="soundboard_clockbot_enable"/>ClockBot knows if you left him on</label>
-  </div>
-  <div><label><input type="checkbox" id="r:soundboard_clockbot_channel_id" name="soundboard_clockbot_channel_id"/>ClockBot doesn't forget your Channel ID</label></div>
-  <div><label><input type="checkbox" id="r:soundboard_open" name="soundboard_open"/>Keep the same categories open</label></div>
+  <div id="setting_zone"></div>
   
   <div class="silly lube">
     <h2>Other</h2>
@@ -138,12 +48,88 @@ div.silly:has(input:invalid){
 </div>
 <script src="/js/everything.js"></script>
 <script>
-var remembering = document.querySelectorAll("input[id^='r:']");
-for (const r of remembering){
-  if (whichStorage.__item[r.name])
-    r.checked = true;
-  r.addEventListener("change", inchange);
-}
+var the_settings = [
+  {
+    h2:"Jukebox",
+    labels:[
+      ["audio_player_volume","Remember the volume"],
+      ["jukebox_track_index","Remember what song I was playing"],
+      ["selch-index","Remember which playlist I selected"],
+      ["loop","Remember if the track was looping"],
+      ["shuffle","Remember if I left shuffle on"]
+    ]
+  },
+  {
+    h2:"Hardware Store",
+    labels:[
+      ["gain","Know about the shopping music's volume"]
+    ]
+  },
+  {
+    h2:"Login page",
+    labels:[
+      ["username","Keep me logged in for >30 days"]
+    ]
+  },
+  {
+    h2:"Cookies",
+    labels:[
+      ["used","Recall which banner messages I've seen recently"]
+    ]
+  },
+  {
+    h2:"Settings",
+    labels:[
+      ["settings","Don't forget about all the settings I set on the Settings page"]
+    ]
+  },
+  {
+    h2:"S.P.A.M.",
+    labels:[
+      ["show_cowtools","Think if show cowtools?"]
+    ]
+  },
+  {
+    h2:"Seinfeld",
+    labels:[
+      ["seinfeld_src","Remember what episode I was watching"],
+      ["seinfeld_ep","Remember the name of that episode"],
+      ["seinfeld_volume","Remember how loud he can be"],
+      ["seinfeld_time","Remember where I'm at in the episode"],
+      ["seinfeld_size","Remember the size of this video"]
+    ]
+  },
+  {
+    h2:"some links",
+    labels:[
+      ["somelinks","Keep those links"]
+    ]
+  },
+  {
+    h2:"Soundboard",
+    labels:[
+      ["soundboard_gain","Gain remembers itself"],
+      ["soundboard_lovelist","You Know What You Like To Hear"],
+      ["soundboard_clockbot_enable","ClockBot knows if you left him on"],
+      ["soundboard_clockbot_channel_id","ClockBot doesn't forget your Channel ID"],
+      ["soundboard_open","Keep the same categories open"]
+    ]
+  }
+];
+
+document.getElementById("setting_zone").insertAdjacentHTML('beforeend',the_settings.map(setting => {
+  var some_labels = setting.labels.map(label => `<div><label><input type="checkbox" id="r:${label[0]}" name="${label[0]}"/>${label[1]}</label></div>`);
+  return `<div><h2>${setting.h2}</h2>${some_labels.join('')}</div>`;
+}).join(''));
+
+setTimeout(function(){
+  var remembering = document.querySelectorAll("input[id^='r:']");
+  for (const r of remembering){
+    if (whichStorage.__item[r.name])
+      r.checked = true;
+    r.addEventListener("change", inchange);
+  }
+});
 function inchange(ev){
   whichStorage.__update(ev.target.name, ev.target.checked);
 }
