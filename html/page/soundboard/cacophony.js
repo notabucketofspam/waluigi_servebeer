@@ -21,7 +21,8 @@ var postfetch = abode => window.fetch(`${whoishost}/cmd?q=${channel_id.value}&f=
   headers: {
     "Content-Type": "text/plain"
   },
-  mode: "no-cors"
+  mode: "no-cors",
+  cache:"no-store"
 });
 
 async function beep(fname){
