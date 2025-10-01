@@ -7,8 +7,6 @@ var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");
 var love_children = document.getElementById("love_children");
 
-var whoishost=window.location.hostname==="localhost"?"http://localhost:39692":"https://waluigi-servebeer.com";
-
 async function gimmefile(fname){
   var far = await fetch(`/page/soundboard/${fname}.mp3`);
   var bar = await far.arrayBuffer();
@@ -17,11 +15,10 @@ async function gimmefile(fname){
   return dar;
 }
 
-var postfetch = abode => window.fetch(`${whoishost}/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`,{
+var postfetch = abode => window.fetch(`${window.origin}/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`,{
   headers: {
     "Content-Type": "text/plain"
   },
-  mode: "no-cors",
   cache:"no-store"
 });
 
