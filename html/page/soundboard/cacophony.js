@@ -7,7 +7,7 @@ var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");
 var love_children = document.getElementById("love_children");
 
-var whoishost=window.location.hostname==="localhost"?"http://localhost:39692":"https://clockbot.waluigi-servebeer.com";
+var whoishost=window.location.hostname==="localhost"?"http://localhost:39692":"https://waluigi-servebeer.com";
 
 async function gimmefile(fname){
   var far = await fetch(`/page/soundboard/${fname}.mp3`);
@@ -17,13 +17,11 @@ async function gimmefile(fname){
   return dar;
 }
 
-var postfetch = abode => fetch(`${whoishost}/cmd?q=${channel_id.value}`, {
-  method: "POST",
+var postfetch = abode => window.fetch(`${whoishost}/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`,{
   headers: {
     "Content-Type": "text/plain"
   },
-  mode: "no-cors",
-  body: abode
+  mode: "no-cors"
 });
 
 async function beep(fname){
