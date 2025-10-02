@@ -40,18 +40,19 @@ fs.open(contentpath, "r+", (err, fd)=>{
 function getcontent(fd){
   // get the gemini request ready
   const GEMINI_API_KEY = fs.readFileSync("../keys/GEMINI_API_KEY", {encoding:"utf8"});
-  const MODEL_ID = "gemini-2.0-flash-preview-image-generation";
+  const MODEL_ID = "gemini-2.5-flash-image-preview";
   const GENERATE_CONTENT_API = "generateContent";
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:${GENERATE_CONTENT_API}?key=${GEMINI_API_KEY}`;
   const postload = {
     "contents": [{
+      "role": "user",
       "parts": [
         {"text": "The image is a package of Banquet frozen dinner. The packaging may additionally include one or more of the following phrases: \"Extra Beans\", \"Extra Long\", \"Extra Calories\", \"Extra Sauce\", \"Extra Numbers\", \"Extra Spaghetti\", \"Extra Tracks\", \"Extra Natural\", \"Extra Pop\", \"Extra Grunge\", \"Extra Particles\", \"Extra Plop\", \"Extra Texture\", \"Extra Crab\". The package is sitting on a freezer shelf in a store. The output shall include exactly one image. Thank you!!"}
       ]
     }],
     "generationConfig": {
       "responseModalities": ["IMAGE", "TEXT"],
-      "temperature": 2,
+      "temperature": 1,
       "topP": 1
     }
   };

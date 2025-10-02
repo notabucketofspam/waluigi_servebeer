@@ -40,12 +40,19 @@
   align-items:center;
   justify-content:center;
   height:1.6in;
+  width:3in;
 }
 #sponsor{
   text-align:center;
   margin:0;
   font-size:300%;
   font-family:sans-serif;
+}
+#banquet{
+  max-width:5in;
+  border:3px #309 ridge;
+  min-width:4in;
+  min-height:3in;
 }
 </style>
 </head>
@@ -57,7 +64,7 @@
 
   <div class="fr">
     <h2 id="sponsor">Today's Sponsor</h2>
-    <img id="banquet" style="max-width:5in;border:3px #309 ridge;" alt="this was supposed to be banquet"/>
+    <img id="banquet" style="" alt="this was supposed to be banquet"/>
   </div>
   
   <div id="spicestuff" class="fl">
@@ -67,20 +74,32 @@
     </div>
     <div id="faction">Check back later for another <span class="ffxiv">Fun Fact</span>!</div>
   </div>
+  
+  <br style="clear:both"/>
+  <hr/>
+  
+  <div id="the_notice">
+    <b>Notice:</b>
+    <div>
+      Artificial Flavor has been temporarily disabled due to
+      <div><s>security concerns</s></div>
+      <div>poverty of speech.</div>
+    </div>
+  </div>
 </div>
 
 <script src="/js/everything.js"></script>
 <script>
-function apache(road, callman){
-  fetch(road)
-  .then(r=>r.text())
-  .then(callman);
-}
-var funfact = document.getElementById("funfact");
-apache('/cgi-bin/fact.js', t=>funfact?.insertAdjacentHTML('beforeend',t));
-
-var banquet = document.getElementById("banquet");
-apache('/cgi-bin/banquet.js',b=>banquet?.setAttribute("src",("data:image/png;base64,"+b)));
+//function apache(road, callman){
+//  fetch(road)
+//  .then(r=>r.text())
+//  .then(callman);
+//}
+//var funfact = document.getElementById("funfact");
+//apache('/cgi-bin/fact.js', t=>funfact?.insertAdjacentHTML('beforeend',t));
+//
+//var banquet = document.getElementById("banquet");
+//apache('/cgi-bin/banquet.js',b=>banquet?.setAttribute("src",("data:image/png;base64,"+b)));
 </script>
 </body>
 </html>
