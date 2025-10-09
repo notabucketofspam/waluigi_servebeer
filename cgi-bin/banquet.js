@@ -4,9 +4,11 @@ var paint = x=> fs.writeSync(1,x);
 paint("Content-Type: text/plain\n\n");
 import * as https from "node:https";
 import { Buffer } from "node:buffer";
+import * as os from "node:os";
+import * as path from "node:path";
 
 // try to read the content file
-const contentpath = "/var/tmp/wsbc/banquet";
+const contentpath = path.join(os.tmpdir(),"wsbc_banquet");
 fs.open(contentpath, "r+", (err, fd)=>{
   if (err){
     // looks like there's no content file
@@ -20,7 +22,7 @@ fs.open(contentpath, "r+", (err, fd)=>{
         paint(err.code);
       } else {
         const lastdate = buffer.readDoubleLE();
-        if (Date.now() - lastdate > 8.64e7){
+        if (Date.now() - lastdate > 8e7){
           // ... it's kinda old
           getcontent(fd);
         } else {
@@ -40,7 +42,7 @@ fs.open(contentpath, "r+", (err, fd)=>{
 function getcontent(fd){
   // get the gemini request ready
   const GEMINI_API_KEY = fs.readFileSync("../keys/GEMINI_API_KEY", {encoding:"utf8"});
-  const MODEL_ID = "gemini-2.5-flash-image-preview";
+  const MODEL_ID = "gemini-2.0-flash-preview-image-generation";
   const GENERATE_CONTENT_API = "generateContent";
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:${GENERATE_CONTENT_API}?key=${GEMINI_API_KEY}`;
   const postload = {
@@ -52,7 +54,7 @@ function getcontent(fd){
     }],
     "generationConfig": {
       "responseModalities": ["IMAGE", "TEXT"],
-      "temperature": 1,
+      "temperature": 1.2,
       "topP": 1
     }
   };
