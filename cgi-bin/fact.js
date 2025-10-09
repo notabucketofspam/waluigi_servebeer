@@ -4,9 +4,11 @@ var paint = x=> fs.writeSync(1,x);
 paint("Content-Type: text/plain\n\n");
 import * as https from "node:https";
 import { Buffer } from "node:buffer";
+import * as os from "node:os";
+import * as path from "node:path";
 
 // try to read the fact file
-const factpath = "/var/tmp/wsbc/fact";
+const factpath = path.join(os.tmpdir(),"wsbc_fact");
 fs.open(factpath, "r+", (err, fd)=>{
   if (err){
     // looks like there's no fact file
@@ -39,7 +41,7 @@ fs.open(factpath, "r+", (err, fd)=>{
 function getfact(fd){
   // get the gemini request ready
   const GEMINI_API_KEY = fs.readFileSync("../keys/GEMINI_API_KEY", {encoding:"utf8"});
-  const MODEL_ID = "gemini-2.5-flash-preview-05-20";
+  const MODEL_ID = "gemini-flash-latest";
   const GENERATE_CONTENT_API = "generateContent";
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:${GENERATE_CONTENT_API}?key=${GEMINI_API_KEY}`;
   const postload = {
