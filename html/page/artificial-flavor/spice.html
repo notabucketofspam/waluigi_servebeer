@@ -76,9 +76,9 @@
   </div>
   
   <br style="clear:both"/>
-  <hr/>
+  <!-- <hr/> -->
   
-  <div id="the_notice">
+  <div id="the_notice" style="display:none">
     <b>Notice:</b>
     <div>
       Artificial Flavor has been temporarily disabled due to
@@ -90,16 +90,16 @@
 
 <script src="/js/everything.js"></script>
 <script>
-//function apache(road, callman){
-//  fetch(road)
-//  .then(r=>r.text())
-//  .then(callman);
-//}
-//var funfact = document.getElementById("funfact");
-//apache('/cgi-bin/fact.js', t=>funfact?.insertAdjacentHTML('beforeend',t));
-//
-//var banquet = document.getElementById("banquet");
-//apache('/cgi-bin/banquet.js',b=>banquet?.setAttribute("src",("data:image/png;base64,"+b)));
+function apache(road, callman){
+  fetch(road)
+  .then(r=>r.text())
+  .then(callman);
+}
+var funfact = document.getElementById("funfact");
+apache('/cgi-bin/fact.js', t=>funfact?.insertAdjacentHTML('beforeend',t));
+
+var banquet = document.getElementById("banquet");
+apache('/cgi-bin/banquet.js',b=>banquet?.setAttribute("src",("data:image/png;base64,"+b)));
 </script>
 </body>
 </html>
