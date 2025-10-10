@@ -8,7 +8,7 @@ var channel_id = document.getElementById("channel_id");
 var love_children = document.getElementById("love_children");
 
 async function gimmefile(fname){
-  var far = await fetch(`/page/soundboard/${fname}.mp3`);
+  var far = await fetch(`/page/soundboard/opodes/${fname}.mp3`);
   var bar = await far.arrayBuffer();
   var dar = await auxcord.decodeAudioData(bar);
   soundbuffers.set(fname, dar);
