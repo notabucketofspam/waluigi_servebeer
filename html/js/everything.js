@@ -101,6 +101,32 @@ function goto_smart(url){
   }
 }
 
+var some_json = response=>response.status<400&&response.json();
+
+function check_online(callback){
+  fetch('/api/users/info',{cache:"no-store"})
+  .then(some_json)
+  .then(jah=>typeof(callback)==='function'&&callback(jah))
+  .catch(console.error);
+}
+
+function post_storage(the_store){
+  return fetch('/api/users/storage',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(the_store)
+  })
+  .catch(console.error);
+}
+
+function get_storage(callback){
+  return fetch('/api/users/storage',{
+    cache:'no-store'
+  })
+  .then(some_json)
+  .catch(console.error);
+}
+
 /*
     STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE
 */

@@ -163,6 +163,7 @@ zone
       <a class="clickbait-article" href="/page/artificial-flavor/spice.html">Artificial Flavor</a>
       <a class="clickbait-article" href="/page/reviews/legit.html">Reviews</a>
       <a id="celebrating" class="mellon" href="/page/retrospective/seven-years.html">Celebrating seven (7) years !!!<br>2017&mdash;2024</a>
+      <a class="clickbait-article" onclick="window.open('/login','login',popsize(800,600))">Login (real)</a>
     </div>
   </div>
   <div class="colgate">
@@ -186,8 +187,22 @@ zone
 <script src="/js/party-og.js"></script>
 <script src="/js/cookizza.js"></script>
 <script>
-if (whichStorage.getItem("username"))
-  username_maybe.innerText = whichStorage.getItem("username");
+setTimeout(function(){
+  var potential_username = localStorage.getItem('online_username');
+  if (potential_username){
+    username_maybe.innerText = potential_username;
+  } else {
+    check_online(jah=>{
+      if (jah.username){
+        username_maybe.innerText = jah.username;
+        localStorage.setItem("online_username", jah.username);
+      } else {
+        localStorage.removeItem("online_username");
+      }
+    });
+  }
+},10);
+
 if (at_outdex) {
   setTimeout(()=>{
     var party_zone = document.getElementById("party_zone");
