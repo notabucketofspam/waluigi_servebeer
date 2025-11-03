@@ -1091,3 +1091,16 @@ a.clickbait-article.topcreme:active{
 blink, .blink-css {
 	animation:blink 0.75s ease-in infinite alternate!important;
 }
+
+#loginfo{
+  position:absolute;
+  right:calc((100vw - 11in ) / 2);
+  text-align:right;
+  /* margin-right:-8px; */
+}
+@media (max-width:11in){
+  #loginfo {
+    right:0px;
+  }
+}
+

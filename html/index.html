@@ -42,13 +42,16 @@ hr {
 </head>
 <body>
 <div id="sausages" class="lef lard">
+<div id="loginfo">
+  <div>Not logged in</div>
+  <a href="/login">Login or signup</a>
+</div>
 <!-- WELCOME TO THE STEAK ZONE -->
 <a id="welcome_steak" class="steak_corner">
 Welcome to the 
 <img src="/resource/steak8.gif" alt="STEAK" class="steak_gif">
 zone
 </a>
-<div id="login-stuffs"></div>
 <!-- WALUIGI-SERVEBEER.COM -->
 <div class="big_section" id="title_bar">
   <h1>waluigi-servebeer.com</h1>
@@ -158,7 +161,6 @@ zone
       <a class="clickbait-article" href="/page/artificial-flavor/spice.html">Artificial Flavor</a>
       <a class="clickbait-article" href="/page/reviews/legit.html">Reviews</a>
       <a id="celebrating" class="mellon" href="/page/retrospective/seven-years.html">Celebrating seven (7) years !!!<br>2017&mdash;2024</a>
-      <a class="clickbait-article" onclick="window.open('/login','login',popsize(800,600))">Login (real)</a>
     </div>
   </div>
   <div class="colgate">
@@ -183,20 +185,15 @@ zone
 <script src="/js/cookizza.js"></script>
 <script>
 setTimeout(function(){
-  var potential_username = localStorage.getItem('online_username');
-  if (potential_username){
-    //username_maybe.innerText = potential_username;
-  } else {
-    check_online(jah=>{
-      if (jah.username){
-        //username_maybe.innerText = jah.username;
-        localStorage.setItem("online_username", jah.username);
-      } else {
-        localStorage.removeItem("online_username");
-      }
-    });
-  }
-},10);
+  check_online(jah=>{
+    if (jah.username){
+      var loginame = document.querySelector('#loginfo>div');
+      loginame.innerHTML = `username: <b>${jah.username}</b>`;
+      var login_anchor = document.querySelector('#loginfo>a');
+      login_anchor.innerText = "goto account";
+    }
+  });
+},0);
 
 if (at_outdex) {
   setTimeout(()=>{
