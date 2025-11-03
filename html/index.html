@@ -48,12 +48,7 @@ Welcome to the
 <img src="/resource/steak8.gif" alt="STEAK" class="steak_gif">
 zone
 </a>
-<div id="login-stuffs">
-  Welcome back, <span id="username_maybe">[USERNAME]</span> !!<br>
-  Not you? <a href="/page/login/real.html">Login here</a>
-  <br>
-  New user? <span class="fakelink" tabindex="0" title="this is not a link">Give up</span>
-</div>
+<div id="login-stuffs"></div>
 <!-- WALUIGI-SERVEBEER.COM -->
 <div class="big_section" id="title_bar">
   <h1>waluigi-servebeer.com</h1>
@@ -190,11 +185,11 @@ zone
 setTimeout(function(){
   var potential_username = localStorage.getItem('online_username');
   if (potential_username){
-    username_maybe.innerText = potential_username;
+    //username_maybe.innerText = potential_username;
   } else {
     check_online(jah=>{
       if (jah.username){
-        username_maybe.innerText = jah.username;
+        //username_maybe.innerText = jah.username;
         localStorage.setItem("online_username", jah.username);
       } else {
         localStorage.removeItem("online_username");

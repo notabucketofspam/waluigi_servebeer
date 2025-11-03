@@ -716,6 +716,9 @@ ins {
 .hdd {
   max-width: 3.5in;
 }
+.ssd {
+  max-width: 2.5in;
+}
 .lard {
   margin-left: auto;
   margin-right:auto;
@@ -729,6 +732,10 @@ body>hr,body>main hr {
 }
 .flax {
   display:flex;
+}
+.noclip {
+  overflow:visible;
+  white-space:nowrap;
 }
 
 /*

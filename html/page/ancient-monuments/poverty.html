@@ -32,6 +32,7 @@
       <div>section</div>
       <div>from the homepage</div>
     </a>
+    
     <div id="commoncremes">
       <h3>Common Cr&egrave;mes</h3>
       <ul style="margin:0;padding-left:20px;list-style-type:circle;">
@@ -41,11 +42,24 @@
         <li><a href="/page/some-links/lonks.html">some links</a></li>
       </ul>
     </div>
+    
+    <div class="ssd noclip" style="border:3px inset gray; background-color:#eeea">
+      <div style="margin:0;text-align:center;font-weight:bold;">The old Login page</div>
+      <hr style="margin:0"/>
+      <div id="login-stuffs">
+        Welcome back, <span id="username_maybe">[USERNAME]</span> !!<br>
+        Not you? <a href="/page/login/real.html">Login here</a>
+        <br>
+        New user? <span class="fakelink" tabindex="0" title="this is not a link">Give up</span>
+      </div>
+    </div>
   </div>
 </div>
 <script src="/js/everything.js"></script>
 <script>
 if (rui(2)) the_u.innerText = "u";
+if (whichStorage.getItem("username"))
+  username_maybe.innerText = whichStorage.getItem("username");
 </script>
 </body>
 </html>
