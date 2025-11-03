@@ -119,7 +119,7 @@ function post_storage(the_store){
   .catch(console.error);
 }
 
-function get_storage(callback){
+function get_storage(){
   return fetch('/api/users/storage',{
     cache:'no-store'
   })
