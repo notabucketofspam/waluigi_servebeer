@@ -81,9 +81,9 @@ details.sb>summary{
   <div id="topstuff">
     <h1>Soundboard</h1>
     <div style="position:absolute;text-align:right;">
-      <button onclick="sync_love()" id="sync_up">Sync cloud &uarr;</button>
+      <button onclick="sync_love()" id="sync_up" disabled>Sync cloud &uarr;</button>
       <br/>
-      <button onclick="get_love()" id="sync_down">Get cloud &darr;</button>
+      <button onclick="get_love()" id="sync_down" disabled>Get cloud &darr;</button>
     </div>
     <div>
       <div><input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/></div>
@@ -179,10 +179,13 @@ function get_love(){
   });
 }
 
-if (!localStorage.getItem('online_username')){
-  document.getElementById('sync_up').setAttribute("disabled", "");
-  document.getElementById('sync_down').setAttribute("disabled", "");
-}
+check_online(dat=>{
+  if (dat.username){
+    document.getElementById('sync_up').removeAttribute("disabled");
+    document.getElementById('sync_down').removeAttribute("disabled");
+    get_love();
+  }
+});
 </script>
 </body>
 </html>
