@@ -49,6 +49,9 @@ function love(fname){
   }
   document.getElementById(fname)?.classList.toggle("loved");
   whichStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
+  if (window.has_username){
+    post_love();
+  }
 }
 function write_lovelist(){
   var somelove = lovelist.map(fname=>{
@@ -101,6 +104,22 @@ function setup_open(){
 }
 function record_open(ev){
   whichStorage["soundboard_open"] = JSON.stringify(Array.from(document.querySelectorAll("details.sb[open]"),el=>el.id));
+}
+
+function post_love(){
+  post_storage({lovelist});
+}
+
+function get_love(){
+  get_storage()
+  .then(the_store=>{
+    if (the_store?.storage?.lovelist){
+      window.lovelist = the_store.storage.lovelist;
+      whichStorage.setItem("soundboard_lovelist", JSON.stringify(window.lovelist));
+      reset_love();
+      write_lovelist();
+    }
+  });
 }
 
 /*
