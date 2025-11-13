@@ -19,6 +19,20 @@ h2 {
   display:flex;
   flex: 0 0 0;
   flex-flow: row wrap;
+  max-width:24in;
+  margin:0 auto;
+}
+#memes img {
+  color: canvastext;
+  background-color: canvas;
+  inset: 0px;
+  margin: auto;
+  border-width: initial;
+  border-style: solid;
+  border-color: initial;
+  border-image: initial;
+  padding: 0.25em;
+  overflow: auto;
 }
 #memes img {
   width:auto;
@@ -29,8 +43,16 @@ h2 {
   max-width:5in;
   min-width:1.5in;
 }
-img[popover] {
-  position:relative;
+
+#realimage{
+  width: clamp(0px, 90vw, 100vw);
+  max-height:90vh;
+  object-fit:contain;
+}
+@media (orientation: portrait){
+  #realimage{
+    width: clamp(0px, 95vw, 100vw);
+  }
 }
 </style>
 </head>
@@ -39,45 +61,22 @@ img[popover] {
 <h2><span id="meme_count">0</span>pcs set</h2>
 <main id="memes">
 </main>
+<img id="realimage" popover onclick="this.togglePopover()" />
 <script src="/js/everything.js"></script>
 <script>
 var bucket = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/";
 var prefix = "?prefix=image";
-var jason;
-var lines;
 var memes = document.getElementById("memes");
+var realimage = document.getElementById("realimage");
 fetch(bucket+prefix)
 .then(response=>response.json())
 .then(json=>{
-  jason=json;
-  lines = json.objects.map(obj=>obj.name).filter(line=>line.startsWith('image')&&line.includes('.'));
-  for (const item of lines) {
-    memes.insertAdjacentHTML("beforeend", '<img src="'+bucket+item+'" popover onclick="this.togglePopover()" onbeforetoggle="before_toggle(event)"/>');
-  }
+  var lines = json.objects
+  .filter(obj=>obj.name.startsWith('image')&&obj.name.includes('.'))
+  .map(obj=>`<img src="${bucket+obj.name}" onclick="realimage.setAttribute('src',this.src)||realimage.togglePopover()"/>`);
+  memes.insertAdjacentHTML("beforeend", lines.join(''));
   meme_count.innerText = lines.length;
 });
-function before_toggle(ev) {
-  if (ev.newState === "open") {
-    ev.target.style.maxWidth="unset";
-    if (ev.target.width > ev.target.height) {
-      ev.target.style.width="90vw";
-      ev.target.style.height="auto";
-      ev.target.style.maxHeight="90vh";
-    } else {
-      ev.target.style.width="auto";
-      ev.target.style.height="90vh";
-      ev.target.style.maxWidth="90vw";
-    }
-    ev.target.style.position="fixed";
-    ev.target.style.marginTop="auto";
-  } else {
-    ev.target.style.width="auto";
-    ev.target.style.height="2.5in";
-    ev.target.style.position="relative";
-    ev.target.style.marginTop="0.2in";
-    ev.target.style.maxWidth="5in";
-  }
-}
 </script>
 </body>
 </html>
