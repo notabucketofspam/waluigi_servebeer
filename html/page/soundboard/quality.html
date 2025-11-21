@@ -15,7 +15,7 @@
 }
 details.sb#love_zone>summary>h2{
   position:relative;
-  margin-bottom:revert;
+  margin-bottom:18px;
 }
 #love_zone[open]{
   min-height:8.1lh;
@@ -76,14 +76,21 @@ textarea.lovesec{
   text-align:center;
   background-color:#fffa;
 }
-
+:where(details).sb[open]{
+  margin-bottom:25px;
+}
 :where(details,div).sb>summary>h2{
   display:inline-block;
-  margin-bottom:0;
+  margin:0;
   font-size:2rem;
 }
 :where(details,div).sb>summary{
-  max-width:fit-content;
+  --max-width:fit-content;
+}
+details.sb summary:hover{
+  h2{
+    text-decoration:wavy underline 1px;
+  }
 }
 .sb h3{
   margin:0;
@@ -93,6 +100,9 @@ textarea.lovesec{
   #clockbot_zone>div.fr{
     float:none;
   }
+}
+#clockbot_zone{
+  margin-bottom:25px;
 }
 </style>
 </head>
