@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, user-scalable=yes"/>
 <title>Soundboard - waluigi-servebeer.com</title>
 <style>
+:root{
+  --how-many-buttons: 5;
+}
+@media (max-width:600px){
+  :root{
+    --how-many-buttons: 3;
+  }
+}
 details.sb#love_zone>summary>h2{
   position:relative;
   margin-bottom:revert;
@@ -12,10 +20,10 @@ details.sb#love_zone>summary>h2{
 #love_zone[open]{
   min-height:8.1lh;
 }
-#love_zone>summary:has(+ #love_children:not(:empty)){
+#love_zone>summary{
   color:red;
 }
-:where(#booba,#love_zone) button {
+:where(#booba,#love_zone) button, textarea.lovesec {
   margin:2px;
   position:relative;
 }
@@ -33,10 +41,8 @@ div.sef.lard *{
   user-select:none;
 }
 #greatanswer{
-  margin-top:0;
-  /*position:absolute;*/
-  /*bottom:-90px;*/
-  /*right:-45px;*/
+  margin:0;
+  position:absolute;
 }
 #where_help{
   font-size:xx-small;
@@ -60,14 +66,17 @@ button.loved::before{
 }
 .sounds {
   display: grid;
-  grid: auto-flow 3lh / repeat(5, 1fr);
+  grid: auto-flow 3lh / repeat(var(--how-many-buttons), 1fr);
 }
-@media (max-width:600px){
-  .sounds {
-    display: grid;
-    grid: auto-flow 3lh / repeat(3, 1fr);
-  }
+textarea.lovesec{
+  grid-column-start:1;
+  border:1px solid black;
+  resize:none;
+  align-content:center;
+  text-align:center;
+  background-color:#fffa;
 }
+
 :where(details,div).sb>summary>h2{
   display:inline-block;
   margin-bottom:0;
@@ -88,7 +97,6 @@ button.loved::before{
 </style>
 </head>
 <body>
-<div oncontextmenu="event.preventDefault()">
 <div class="sef lard">
 
   <div id="topstuff">
@@ -99,8 +107,8 @@ button.loved::before{
     <summary><h2>Controls</h2></summary>
     
     <div id="local_volume" style="text-align:center" class="lube fr">
+      <h3 style="justify-self:center;">Local Volume</h3>
       <div><input id="somevolume" type="range" step="any" min="0" max="1" value="0.0" oninput="setgain(this.valueAsNumber)"/></div>
-      <div>Local Volume</div>
       <div><span style="font-size:78%;font-family:monospace;font-weight:bold;">(doesn't affect ClockBot)</span></div>
     </div>
     
@@ -139,8 +147,13 @@ button.loved::before{
         <div id="how2love">You can love them with right-click</div>
       </h2>
     </summary>
+    <div>
+      <button onclick="nuke_love()"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
+      <button onclick="kill_shelf()"><b>&#x2796;&#xFE0F;</b> kill shelf</button>
+      <button onclick="add_shelf()"><b>&#x2795;&#xFE0F;</b> add shelf</button>
+    </div>
     <div id="love_children" class="sounds"></div>
-  </details>
+  </details>  
   
   <div id="booba"></div>
 </div>
@@ -148,8 +161,20 @@ button.loved::before{
 <script src="/js/everything.js"></script>
 <script src="/page/soundboard/cacophony.js"></script>
 <script>
+document.getElementById('where_help').addEventListener('click', ev=>{
+  var greatanswer = document.getElementById('greatanswer');
+  greatanswer.style.left = ev.x+'px';
+  greatanswer.style.top = ev.y+'px';
+});
+
+var kiddos = document.getElementById('love_children');
+kiddos.addEventListener("dragover",ev=>ev.preventDefault());
+kiddos.addEventListener("drop", lovelist_drop);
+
 whichStorage["soundboard_gain"] ??= 0.20;
 somevolume.value = whichStorage["soundboard_gain"];
+setgain(whichStorage["soundboard_gain"]);
+
 board.forEach(key=>make_group(booba, key));
 
 function setgain(g){

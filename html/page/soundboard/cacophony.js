@@ -35,23 +35,37 @@ async function beep(fname){
     someabsn.start();
   }
 }
+function save_lovelist(){
+  whichStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
+  if (window.has_username){
+    post_love();
+  }
+}
+
+function update_shelf(someshelf){
+  let x = lovelist.findIndex(el=>el.startsWith(someshelf.id));
+  lovelist[x] = someshelf.id + someshelf.value;
+  save_lovelist();
+}
 
 var lovelist = JSON.parse(whichStorage.getItem('soundboard_lovelist'))??[];
-var insert_love = fname => `<button id="love_${fname}" onclick="beep('${fname}')" oncontextmenu="event.preventDefault()||love('${fname}')">${fname.split('/')[1]}</button>`;
+var insert_love = fname => 
+  fname.startsWith('<') ?
+    `<textarea class="lovesec" id="${fname.substring(0,6)}" onchange="update_shelf(this)">${fname.substring(6)}</textarea>`
+  :
+    `<button id="love_${fname}" onclick="beep('${fname}')" draggable="true" oncontextmenu="event.preventDefault()||love('${fname}')">${fname.split('/')[1]}</button>`;
 function love(fname){
   let fav = document.getElementById(`love_${fname}`);
   if (fav){
     fav.remove();
     lovelist.splice(lovelist.indexOf(fname), 1);
-  } else {    
+  } else {
     love_children.insertAdjacentHTML('beforeend',insert_love(fname));
+    document.getElementById(`love_${fname}`)?.addEventListener('dragstart', love_dragstart);
     lovelist.push(fname);
   }
   document.getElementById(fname)?.classList.toggle("loved");
-  whichStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
-  if (window.has_username){
-    post_love();
-  }
+  save_lovelist();
 }
 function write_lovelist(){
   var somelove = lovelist.map(fname=>{
@@ -59,7 +73,70 @@ function write_lovelist(){
     return insert_love(fname);
   });
   love_children.insertAdjacentHTML('beforeend', somelove.join(''));
+  document.querySelectorAll('#love_children button').forEach(kid=>{
+    kid.addEventListener('dragstart', love_dragstart);
+  });
 }
+
+function nuke_love(){
+  lovelist.length = 0;
+  save_lovelist();
+  reset_love();
+}
+function kill_shelf(){
+  let kill_this = lovelist.findLastIndex(x=>x.startsWith('<'));
+  if (kill_this >= 0){
+    let killme = document.getElementById((lovelist[kill_this]).substring(0,6));
+    lovelist.splice(kill_this,1);
+    killme.remove();
+    save_lovelist();
+  }
+}
+function add_shelf(){
+  let freshelf = `<${String(rui(0xffff)).padStart(5,'0')}sample_text`;
+  love(freshelf);
+  setTimeout(function(){
+    let the_man = document.getElementById(freshelf.substring(0,6));
+    the_man.focus();
+    the_man.selectionStart = 0;
+    the_man.selectionEnd = the_man.textLength;
+  });
+}
+
+function love_dragstart(ev){
+  ev.dataTransfer.clearData();
+  ev.dataTransfer.setData('text/plain', ev.target.id);
+  ev.dataTransfer.effectAllowed = 'move';
+  // cog(ev);
+}
+function lovelist_drop(ev){
+  ev.preventDefault();
+  var transit_id = ev.dataTransfer.getData('text/plain');
+  
+  var cox = ev.x;
+  var ref_el;
+  do {
+    if (cox < 0)
+      break;
+    ref_el = document.elementFromPoint(cox, ev.y);
+    cox -=10;
+  } while (ref_el.tagName !== 'BUTTON' && ref_el.tagName !== 'TEXTAREA');
+
+  
+  var real_id = x=> x.startsWith("love_")?x.slice(5):x;
+  try{
+    ref_el.insertAdjacentElement('afterend',document.getElementById(transit_id));
+
+    lovelist.splice(lovelist.indexOf(real_id(transit_id)),1);
+
+    let insert_place = lovelist.findIndex(el=>el.startsWith(real_id(ref_el.id)));
+
+    lovelist.splice((insert_place+1),0,real_id(transit_id));
+
+    save_lovelist();
+  }catch(eee){}
+}
+
 
 function reset_love(){
   document.getElementById('love_children').replaceChildren();
