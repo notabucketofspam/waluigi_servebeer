@@ -41,8 +41,6 @@ fs.open(contentpath, "r+", (err, fd)=>{
 */
 function getcontent(fd){
   // get the gemini request ready
-  const GEMINI_API_KEY = fs.readFileSync("../keys/GEMINI_API_KEY", {encoding:"utf8"});
-  const MODEL_ID = "gemini-2.0-flash-preview-image-generation";
   const GENERATE_CONTENT_API = "generateContent";
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:${GENERATE_CONTENT_API}?key=${GEMINI_API_KEY}`;
   const postload = {
@@ -56,9 +54,11 @@ function getcontent(fd){
       "responseModalities": ["IMAGE", "TEXT"],
       "temperature": 1.2,
       "topP": 1
+        "aspectRatio": "1:1",
     }
-  };
   const postring = JSON.stringify(postload);
+  
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/${MODEL_ID}:predict?key=${GEMINI_API_KEY}`;
   
   // how to handle the response
   const req = https.request(endpoint,{method: "POST", headers:{"Content-Type": "application/json"}}, res=>{
@@ -70,8 +70,7 @@ function getcontent(fd){
     res.on("end", ()=>{
       // parse the data
       var fulldata = JSON.parse(fulltext);
-      var parts = fulldata["candidates"][0]["content"]["parts"];
-      var truesauce = parts.find(item=>item["inlineData"])["inlineData"]["data"];
+      var truesauce = fulldata["predictions"][0]["bytesBase64Encoded"];
       // write down the data using pen-and-paper
       const buffer = Buffer.alloc(8 + Buffer.byteLength(truesauce));
       buffer.writeDoubleLE(Date.now());
