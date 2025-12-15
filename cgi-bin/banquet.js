@@ -41,22 +41,24 @@ fs.open(contentpath, "r+", (err, fd)=>{
 */
 function getcontent(fd){
   // get the gemini request ready
-  const GENERATE_CONTENT_API = "generateContent";
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:${GENERATE_CONTENT_API}?key=${GEMINI_API_KEY}`;
-  const postload = {
-    "contents": [{
-      "role": "user",
-      "parts": [
-        {"text": "The image is a package of Banquet frozen dinner. The packaging may additionally include one or more of the following phrases: \"Extra Beans\", \"Extra Long\", \"Extra Calories\", \"Extra Sauce\", \"Extra Numbers\", \"Extra Spaghetti\", \"Extra Tracks\", \"Extra Natural\", \"Extra Pop\", \"Extra Grunge\", \"Extra Particles\", \"Extra Plop\", \"Extra Texture\", \"Extra Crab\". The package is sitting on a freezer shelf in a store. The output shall include exactly one image. Thank you!!"}
-      ]
-    }],
-    "generationConfig": {
-      "responseModalities": ["IMAGE", "TEXT"],
-      "temperature": 1.2,
-      "topP": 1
+  
+  const GEMINI_API_KEY = fs.readFileSync("../keys/GEMINI_API_KEY_paid", {encoding:"utf8"});
+  const MODEL_ID = "models/imagen-4.0-fast-generate-001";
+
+  const request_json = {
+    "instances": [
+        {
+            "prompt": "A package of Banquet frozen dinner. The packaging may additionally include one or more of the following phrases: \"Extra Beans\", \"Extra Long\", \"Extra Calories\", \"Extra Sauce\", \"Extra SO-DIMM Slots\", \"Extra Banquet\", \"Bonus Songs\", \"Extra Natural\", \"Extra Pop\", \"More Grunge\", \"Extra Particles\", \"Extra Plop\", \"Extra Texture\", \"100% Natural 'Crab'\", \"Very Special\", \"Reduced Guilt\". The package is sitting on a freezer shelf in a store."
+        }
+    ],
+    "parameters": {
+        "outputMimeType": "image/jpeg",
+        "sampleCount": 1,
+        "personGeneration": "ALLOW_ALL",
         "aspectRatio": "1:1",
     }
-  const postring = JSON.stringify(postload);
+};
+  const postring = JSON.stringify(request_json);
   
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/${MODEL_ID}:predict?key=${GEMINI_API_KEY}`;
   
