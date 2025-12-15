@@ -12,6 +12,13 @@
   :root{
     --how-many-buttons: 3;
   }
+  #local_volume, #username_perchance{
+    float:none;
+  }
+}
+#username_perchance{
+  margin-right: 1in;
+  max-width:3in;
 }
 details.sb#love_zone>summary>h2{
   position:relative;
@@ -122,6 +129,8 @@ details.sb summary:hover{
       <div><span style="font-size:78%;font-family:monospace;font-weight:bold;">(doesn't affect ClockBot)</span></div>
     </div>
     
+    <div id="username_perchance" class="lube fr">Not logged in</div>
+    
     <div style="position:relative" class="lube">
       <div>
         <h3>ClockBot</h3>
@@ -169,6 +178,7 @@ details.sb summary:hover{
 </div>
 </div>
 <script src="/js/everything.js"></script>
+<script src="/page/soundboard/boards.js"></script>
 <script src="/page/soundboard/cacophony.js"></script>
 <script>
 document.getElementById('where_help').addEventListener('click', ev=>{
@@ -212,6 +222,8 @@ setTimeout(setup_open);
 var has_username = false;
 check_online(dat=>{
   if (dat.username){
+    var username_perchance = document.getElementById("username_perchance")
+    username_perchance.innerHTML = "Logged in as <em>"+dat.username+"</em>";
     has_username = true;
     get_love();
   }
