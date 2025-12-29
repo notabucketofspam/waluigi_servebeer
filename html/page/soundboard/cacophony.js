@@ -49,11 +49,14 @@ function update_shelf(someshelf){
 }
 
 var lovelist = JSON.parse(whichStorage.getItem('soundboard_lovelist'))??[];
-var insert_love = fname => 
-  fname.startsWith('<') ?
-    `<textarea class="lovesec" id="${fname.substring(0,6)}" onchange="update_shelf(this)">${fname.substring(6)}</textarea>`
-  :
-    `<button id="love_${fname}" onclick="beep('${fname}')" draggable="true" oncontextmenu="event.preventDefault()||love('${fname}')">${fname.split('/')[1]}</button>`;
+
+function insert_love(fname){
+  if (fname.startsWith('<')){
+    return `<textarea class="lovesec" id="${fname.substring(0,6)}" onchange="update_shelf(this)">${fname.substring(6)}</textarea>`;
+  } else {
+    return `<button id="love_${fname}" onclick="beep('${fname}')" draggable="true" oncontextmenu="event.preventDefault()||love('${fname}')">${fname.split('/')[1]}</button>`;
+  }
+}
 function love(fname){
   let fav = document.getElementById(`love_${fname}`);
   if (fav){
@@ -134,7 +137,7 @@ function lovelist_drop(ev){
     lovelist.splice((insert_place+1),0,real_id(transit_id));
 
     save_lovelist();
-  }catch(eee){}
+  }catch(eee){cog(eee);}
 }
 
 
