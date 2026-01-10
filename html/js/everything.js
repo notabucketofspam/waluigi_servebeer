@@ -12,7 +12,7 @@ document.documentElement.insertAdjacentHTML("beforeend",
 `<footer>
 <hr/>
 <div style="text-align: center;">
-Bar Stool Committee &#169; 2017&ndash;2025
+Bar Stool Committee &#169; 2017&ndash;${new Date().getFullYear()}
 <br/>
 Site maintained by not.a.bucket.of.spam, @ me if something's up
 <br/>
