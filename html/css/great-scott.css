@@ -15,7 +15,7 @@
   text-decoration-line:underline;
   user-select:none;
 }
-:where(a:not([class],:has(img)),.fakelink,a.no-almonds){
+:where(a:not([class],:has(img)),.fakelink,a.no-almonds,a.bro){
   display:inline-block;
   &:link{
     color:#551A8B;
@@ -41,6 +41,16 @@
     color:#f00;
     text-decoration-color:#f00;
   }
+}
+a.bro {
+  border:2px outset;
+  border-color:#551A8B;
+  padding:1px;
+  text-decoration:none;
+  background-color:#eeea;
+}
+a.bro:active{
+  border-color:#F00;
 }
 html {
   overflow-y:scroll;
@@ -888,10 +898,10 @@ body>hr,body>main hr {
   float:right;
   text-align: right;
 }
-main #login-stuffs{
-  position:relative;
-  top:-27px;
-}
+/* main #login-stuffs{ */
+  /* position:relative; */
+  /* top:-27px; */
+/* } */
 #easier-for-you-taunt {
   text-align:right;
   margin-left: 40px;
