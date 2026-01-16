@@ -76,6 +76,16 @@ var cog = console.log;
 function rui (k) {
   return Math.trunc(Math.random() * k);
 }
+/**@param {string} msg*/
+function alert_II(msg){
+  var dog = document.createElement('dialog');
+  dog.innerHTML = msg;
+  dog.insertAdjacentHTML('beforeend', `<button class="alert_II" onclick="this.parentElement.close()">ok</button>`);
+  dog.classList.add("alert_II");
+  dog.onclose = ev=>ev.target.remove();
+  window.document.body.appendChild(dog);
+  dog.showModal();
+}
 Object.defineProperty(window, "at_outdex",{
   get(){
     return Boolean(document.getElementById("this_is_outdex"));
@@ -89,7 +99,7 @@ function xfsub() {
   if (great) {
     goto_smart('/page/personality-exam/end-screen.html');
   } else {
-    window.alert('no popup window. sad.');
+    alert_II('no popup window. sad.');
   }
 }
 function goto_smart(url){
