@@ -61,7 +61,7 @@ document.querySelector("meta.meta_party").insertAdjacentHTML('beforebegin',
       <option value="classic_mode">Classic Jukebox (7)</option>
       <option value="bsc_prime_cuts">BSC Prime Cuts (204)</option>
       <option value="pro_playlist">pro playlist (70)</option>
-      <option value="instru_metal">Instru-metal (132)</option>
+      <option value="instru_metal">Some metal (132)</option>
     </select>
     <div class="white_in_burgmenu" id="change_album_message">Select<br/>playlist</div>
     <details id="whats_in_this_playlist">
