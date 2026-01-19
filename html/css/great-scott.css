@@ -1127,3 +1127,9 @@ dialog.alert_II{
   margin-top:2em;
   max-width:3.5in;
 }
+
+/* jukebox */
+#jukebox_volume_element, #jukebox_volume_bar{
+  cursor:grab;
+}
+

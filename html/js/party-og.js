@@ -233,20 +233,6 @@ var track_list_now=document.getElementById("track_list_now");
 var now_tracks = track_list_now.getElementsByTagName("li");
 
 audio_player.volume = 0.15;
-jukebox_volume_element.addEventListener("touchstart", touch_start_coord, false);
-jukebox_volume_element.addEventListener("touchmove", update_jukebox_volume, false);
-jukebox_current_track.addEventListener("touchstart", touch_start_coord, false);
-jukebox_current_track.addEventListener("touchmove", update_jukebox_volume, false);
-singular_jukebox_divider.addEventListener("touchstart", touch_start_coord, false);
-singular_jukebox_divider.addEventListener("touchmove", update_jukebox_volume, false);
-another_jukebox_divider.addEventListener("touchstart", touch_start_coord, false);
-another_jukebox_divider.addEventListener("touchmove", update_jukebox_volume, false);
-
-var touch_start = [ 0, 0 ];
-function touch_start_coord(event) {
-  touch_start[0] = event.touches[0].pageX;
-  touch_start[1] = event.touches[0].pageY;
-}
 
 function toggle_audio_text(force) {
   audio_button.classList.toggle("active", force);
@@ -312,12 +298,31 @@ function jukebox_load_audio(){
   set_audio_playing();
 }
 
+// -------------------------- jukebox volume things ----------------------------
+
+var jvb = document.getElementById("jukebox_volume_bar");
+var jve = document.getElementById("jukebox_volume_element");
+jve.addEventListener('pointerdown',(ev)=>{
+  set_volobar(ev.offsetX/500);
+  jvb.setPointerCapture(ev.pointerId);
+  jvb.style.cursor = "grabbing";
+});
+jvb.addEventListener('pointermove', ev=>{
+  if (jvb.hasPointerCapture(ev.pointerId)){
+    set_volobar(ev.offsetX/500);
+  }
+});
+jvb.addEventListener('pointerup', ev=>{
+  jvb.releasePointerCapture(ev.pointerId);
+  jvb.style.cursor = 'grab';
+});
+
 function update_jukebox_volume(event) {
   var new_volume = audio_player.volume;
   if (event.type === "wheel")
     new_volume += (event.deltaY < 0) ? 0.004 : -0.004;
   else {
-    new_volume += ((event.touches[0].pageX > touch_start[0])?1:-1)/600;
+    // new_volume += ((event.touches[0].pageX > touch_start[0])?1:-1)/600;
   }
   if (new_volume < 0.0)
     new_volume = 0.0;
@@ -326,6 +331,7 @@ function update_jukebox_volume(event) {
   set_volobar(new_volume);
 }
 function set_volobar(new_volume){
+  new_volume = Math.min(1, Math.max(new_volume,0));
   audio_player.volume = new_volume;
   whichStorage["audio_player_volume"] = new_volume;
   jukebox_volume_bar.style.width = (audio_player.volume * 500)+"px";
