@@ -144,6 +144,51 @@ div#topstuff>h1{
 div#topstuff>h2{
   margin-top:0;
 }
+div#navboat{
+  position:fixed;
+  left:0;
+  max-width:min-content;
+  top:60px;
+  overflow-x:visible;
+  white-space:nowrap;
+  flex-direction:column;
+  display:flex;
+  z-index:2;
+}
+div#navboat #captains{
+  max-width:fit-content;
+  display:contents;
+}
+div#navboat button{
+  flex:1;  
+  font-family:cursive;
+  font-style:italic;
+  border:2px outset #ddd;
+}
+#navboat button:hover, #navboat button:focus{
+  transform: matrix(1.1,0,0,1.1,0,0);
+}
+#navboat button:active{
+  transform: matrix(0.85,0,0,1.4,15,0);
+}
+div#navboat #captains buttons{
+  min-width:100%;
+}
+#boat_hider{
+  width:108px;
+  text-align:left;
+}
+:where(#booba, #love_children) button:hover{
+  z-index:1;
+  transform: matrix(1.05,0,0,1.05,0,0);
+}
+:where(#booba, #love_children) button:active{
+  z-index:1;
+  transform: matrix(1.1,0,0,1.1,0,0);
+}
+.navboat_classical{
+  height:calc(100% - 60px);
+}
 </style>
 </head>
 <body>
@@ -155,6 +200,15 @@ div#topstuff>h2{
   <div>Time Remaining: <span id="arm_nuke_timer">5.00</span></div>
   <meter id="arm_nuke_meter" min="0" max="5000" low="1500" high="3500" optimum="5000" value="5000"></meter>
 </div>
+
+<div id="navboat">
+  <div>
+    <button id="boat_hider" onclick="window.hidemyboat()">&gt;&gt;&gt;&gt; NAVBOAT</button>
+  </div>
+  <div id="captains" style="display:none">
+  </div>
+</div>
+
 <div class="sef lard">
 
   <div id="topstuff">
@@ -244,6 +298,35 @@ setTimeout(function(){
   var toppo = document.querySelector('div#topstuff>h2');
   toppo.innerText = pisces+'pcs set';
 });
+(()=>{
+  var navboat = document.getElementById('navboat');
+  var shareholders = document.querySelectorAll('summary>h2');
+  shareholders.forEach(man=>{
+    navboat.lastElementChild.insertAdjacentHTML('beforeend',`<button class="choking_hazard" onclick="document.getElementById('${man.closest('.sb').id}').scrollIntoView()">${man.innerText.split('\n')[0]}</button>`);
+  });
+  var navboat_shown = localStorage.getItem("soundboard_navboat_captains_style_display");
+  navboat_shown ??= 'none';
+  var captains = document.getElementById("captains");
+  captains.style.display = navboat_shown==='none'?'contents':'none';
+  hidemyboat();
+})();
+function hidemyboat(){
+  var navboat = document.getElementById('navboat');
+  var boat_hider = document.getElementById('boat_hider');
+  var captains = document.getElementById("captains");
+  if (captains.style.display==='contents'){
+    // we are hiding the boat
+    navboat.classList.remove('navboat_classical');
+    captains.style.display = 'none';
+    boat_hider.innerHTML = '&gt;&gt;&gt;&gt; NAVBOAT';
+  } else {
+    // we are SHOWING the navboat
+    navboat.classList.add('navboat_classical');
+    captains.style.display = 'contents';
+    boat_hider.innerHTML = '&lt;&lt;&lt;&lt; HIDE';
+  }
+  localStorage.setItem('soundboard_navboat_captains_style_display', captains.style.display);
+}
 
 function setgain(g){
   gainode.gain.setValueAtTime(g,0);
