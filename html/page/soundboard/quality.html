@@ -138,6 +138,12 @@ div#arm_nuke_display>meter{
   width:100%;
   transform:scaleY(2);
 }
+div#topstuff>h1{
+  margin-bottom:0;
+}
+div#topstuff>h2{
+  margin-top:0;
+}
 </style>
 </head>
 <body>
@@ -153,6 +159,7 @@ div#arm_nuke_display>meter{
 
   <div id="topstuff">
     <h1>Soundboard</h1>
+    <h2>0000pcs set</h2>
   </div>
   
   <div id="clockbot_zone" class="sb">
@@ -232,6 +239,11 @@ somevolume.value = whichStorage["soundboard_gain"];
 setgain(whichStorage["soundboard_gain"]);
 
 board.forEach(key=>make_group(booba, key));
+setTimeout(function(){
+  var pisces = document.querySelectorAll('div#booba button').length;
+  var toppo = document.querySelector('div#topstuff>h2');
+  toppo.innerText = pisces+'pcs set';
+});
 
 function setgain(g){
   gainode.gain.setValueAtTime(g,0);
