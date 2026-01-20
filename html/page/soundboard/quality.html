@@ -111,9 +111,43 @@ details.sb summary:hover{
 #clockbot_zone{
   margin-bottom:25px;
 }
+div#arm_nuke_display{
+  z-index:5;
+  aspect-ratio:1;
+  background-color:white;
+  border:2px solid black;
+  width:190px;
+  position:fixed;
+  left:calc(50vw - 95px);
+  top:25%;
+  text-align:center;
+  padding:6px;
+  align-content:center;  
+  pointer-events:none;
+  user-select:none;
+}
+div#arm_nuke_display>div{
+  font-size:larger;
+  font-variant:small-caps;
+}
+div#arm_nuke_display>button{
+  pointer-events:none;
+  user-select:none;
+}
+div#arm_nuke_display>meter{
+  width:100%;
+}
 </style>
 </head>
 <body>
+<div hidden id="arm_nuke_display">
+  <div>Press Both</div>
+  <button><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
+  <div>To Finalize Nuke</div>
+  <br/>
+  <div>Time Remaining: <span id="arm_nuke_timer">5.00</span></div>
+  <meter id="arm_nuke_meter" min="0" max="5000" low="1500" high="3500" optimum="5000" value="5000"></meter>
+</div>
 <div class="sef lard">
 
   <div id="topstuff">
@@ -167,9 +201,10 @@ details.sb summary:hover{
       </h2>
     </summary>
     <div>
-      <button onclick="nuke_love()"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
+      <button onclick="window.nuke_control.arm('L')"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
       <button onclick="kill_shelf()"><b>&#x2796;&#xFE0F;</b> kill shelf</button>
       <button onclick="add_shelf()"><b>&#x2795;&#xFE0F;</b> add shelf</button>
+      <button onclick="window.nuke_control.arm('R')" style="float:right"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
     </div>
     <div id="love_children" class="sounds"></div>
   </details>  

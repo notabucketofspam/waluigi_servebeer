@@ -81,11 +81,53 @@ function write_lovelist(){
   });
 }
 
-function nuke_love(){
-  lovelist.length = 0;
-  save_lovelist();
-  reset_love();
-}
+// -------------------------------- shelf controls -----------------------------
+
+var nuke_control = {
+  display: document.getElementById('arm_nuke_display'),
+  timer: document.getElementById('arm_nuke_timer'),
+  meter: document.getElementById('arm_nuke_meter'),
+  starttime:0,
+  L: false,
+  R: false,
+  detonate:function(){
+    lovelist.length = 0;
+    save_lovelist();
+    reset_love();
+    return;
+  },
+  setnt:function(){
+    this.display.setAttribute('hidden','');
+    this.L = false;
+    this.R = false;
+    return;
+  },
+  arm: function (which_side){
+    if (this[which_side])
+      return;
+    this[which_side] = true;
+    if (this.L && this.R){
+      this.detonate();
+      this.setnt();
+      return;
+    }
+    this.display.removeAttribute('hidden');
+    this.starttime = window.document.timeline.currentTime;
+    window.requestAnimationFrame(this.anim_cb);
+  },
+  anim_cb: function(timestamp){
+    var display_time = (window.nuke_control.starttime - timestamp) + 5000;
+    if (display_time<0){
+      window.nuke_control.setnt();
+      return;
+    }
+    window.nuke_control.meter.value = display_time;
+    window.nuke_control.timer.innerText = (display_time/1000).toFixed(2);
+    window.requestAnimationFrame(window.nuke_control.anim_cb);
+  }
+};
+
+ 
 function kill_shelf(){
   let kill_this = lovelist.findLastIndex(x=>x.startsWith('<'));
   if (kill_this >= 0){
@@ -106,6 +148,7 @@ function add_shelf(){
   });
 }
 
+// --------------------------- some other ui things ----------------------------
 function love_dragstart(ev){
   ev.dataTransfer.clearData();
   ev.dataTransfer.setData('text/plain', ev.target.id);
