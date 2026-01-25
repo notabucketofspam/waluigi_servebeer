@@ -192,16 +192,36 @@ function lovelist_drop(ev){
     cox -=10;
   } while (ref_el.tagName !== 'BUTTON' && ref_el.tagName !== 'TEXTAREA');
 
-  
   var real_id = x=> x.startsWith("love_")?x.slice(5):x;
   try{
-    ref_el.insertAdjacentElement('afterend',document.getElementById(transit_id));
+    if (!ref_el){
+      return;
+    }
+    let lx_ref = lovelist.findIndex(el=>el.startsWith(real_id(ref_el.id)));
+    //cog("ref:", ref_el.id, lx_ref);
+    let lx_transit = lovelist.findIndex(el=>el.startsWith(real_id(transit_id)));
+    //cog("transit:",transit_id, lx_transit);
+    
+    let where_to_put = 'afterend';
+    if (lx_ref < lx_transit){
+      let who_is_this = document.elementFromPoint(ev.x, ev.y);
+      if (who_is_this.tagName === 'BUTTON'){
+        where_to_put = 'beforebegin';
+      }
+    } else if (lx_ref === lx_transit){
+      return;
+    }
+    
+    ref_el.insertAdjacentElement(where_to_put,document.getElementById(transit_id));
 
-    lovelist.splice(lovelist.indexOf(real_id(transit_id)),1);
+    lovelist.splice(lx_transit,1);
 
-    let insert_place = lovelist.findIndex(el=>el.startsWith(real_id(ref_el.id)));
+    let insert_place = lx_ref;
+    if (where_to_put === 'afterend'){
+      insert_place++;
+    }
 
-    lovelist.splice((insert_place+1),0,real_id(transit_id));
+    lovelist.splice(insert_place,0,real_id(transit_id));
 
     save_lovelist();
   }catch(eee){cog(eee);}
