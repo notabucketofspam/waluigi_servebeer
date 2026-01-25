@@ -172,7 +172,7 @@ function add_shelf(){
   });
 }
 
-// ------------------ some other love-based ui things --------------------------
+// ------------------ lovezone drag-and-drop buttons ---------------------------
 function love_dragstart(ev){
   ev.dataTransfer.clearData();
   ev.dataTransfer.setData('text/plain', ev.target.id);
@@ -194,9 +194,15 @@ function lovelist_drop(ev){
 
   var real_id = x=> x.startsWith("love_")?x.slice(5):x;
   try{
-    if (!ref_el){
+    // they're the same picture
+    if (ref_el.id === transit_id)
       return;
-    }
+    
+    // that isn't a valid drop point
+    // (sometimes it shows up as 'HTML' or 'BODY')
+    if (ref_el.tagName !== 'BUTTON' && ref_el.tagName !== 'TEXTAREA')
+      return;
+    
     let lx_ref = lovelist.findIndex(el=>el.startsWith(real_id(ref_el.id)));
     //cog("ref:", ref_el.id, lx_ref);
     let lx_transit = lovelist.findIndex(el=>el.startsWith(real_id(transit_id)));
@@ -208,8 +214,6 @@ function lovelist_drop(ev){
       if (who_is_this.tagName === 'BUTTON'){
         where_to_put = 'beforebegin';
       }
-    } else if (lx_ref === lx_transit){
-      return;
     }
     
     ref_el.insertAdjacentElement(where_to_put,document.getElementById(transit_id));
