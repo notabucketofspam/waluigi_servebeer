@@ -114,6 +114,7 @@ function goto_smart(url){
 var some_json = response=>response.status<400&&response.json();
 
 function check_online(callback){
+  if (window.location.hostname !== 'localhost')
   fetch('/api/users/info',{cache:"no-store"})
   .then(some_json)
   .then(jah=>typeof(callback)==='function'&&callback(jah))
