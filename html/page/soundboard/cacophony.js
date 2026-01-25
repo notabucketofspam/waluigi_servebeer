@@ -7,6 +7,12 @@ var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");
 var love_children = document.getElementById("love_children");
 
+var breadlink = /.*?\/?(\d+)$/;
+channel_id.addEventListener('change',ev=>{
+  ev.target.value = ev.target.value.replace(breadlink, "$1");
+  window.whichStorage["soundboard_clockbot_channel_id"] = ev.target.value;
+});
+
 async function gimmefile(fname){
   var far = await fetch(`/page/soundboard/opodes/${fname}.opus`);
   var bar = await far.arrayBuffer();
@@ -14,13 +20,14 @@ async function gimmefile(fname){
   soundbuffers.set(fname, dar);
   return dar;
 }
-
-var postfetch = abode => window.fetch(`${window.origin}/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`,{
-  headers: {
-    "Content-Type": "text/plain"
-  },
-  cache:"no-store"
-});
+function postfetch(abode){
+  window.fetch(`${window.origin}/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`,{
+    headers: {
+      "Content-Type": "text/plain"
+    },
+    cache:"no-store"
+  });
+}
 
 async function beep(fname){
   if (clockbot.checked){

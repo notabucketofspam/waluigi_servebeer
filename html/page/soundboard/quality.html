@@ -235,7 +235,7 @@ div#navboat #captains buttons{
           <a href="https://discord.com/oauth2/authorize?client_id=821257635973169193" target="_blank" style="display:inline-block;margin-left:68px;">Install</a>
         </div>
         <div>
-          <input type="text" placeholder="Channel ID" id="channel_id" value=""/>
+          <input type="text" placeholder="Put link to voice channel here" id="channel_id" size="21" value=""/>
           <button id="where_help" popovertarget="greatanswer">where?</button>
         </div>
         <div>
@@ -244,12 +244,11 @@ div#navboat #captains buttons{
         </div>
       </div>
         <dialog id="greatanswer" popover>
-          <div>Where's Channel ID? Great question! So...</div>
           <ol style="margin:0">
-            <li>Go to &#x26ED;User Settings &rArr; App Settings &ndash; Advanced</li>
-            <li>Flip the <b>Developer Mode</b> switch to the <b>on</b> position</li>
-            <li>Right-click on a voice channel</li>
-            <li><b>Copy Channel ID</b> is at the bottom of the context menu</li>
+            <li>Right-click on a voice channel in Discord</li>
+            <li><b>Copy Link</b> is near the top of the context menu</li>
+            <li>Paste that link into the box on your left
+            <br/><sup style="line-height:0">The box that says <q>Put link to voice channel here</q></sup></li>
           </ol>
         </dialog>
     </div>
@@ -343,9 +342,6 @@ somevolume.disabled = clockbot_enable.checked;
 
 whichStorage["soundboard_clockbot_channel_id"] ??= "";
 channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
-channel_id.addEventListener('input', (ev)=>{
-  whichStorage["soundboard_clockbot_channel_id"] = ev.target.value;
-});
 
 write_lovelist();
 
