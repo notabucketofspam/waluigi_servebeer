@@ -1,11 +1,13 @@
+// ============== ui controls
+// ============== for the top of the page
+// ------ local volume
 var auxcord = new AudioContext();
 var gainode = new GainNode(auxcord, {gain:0.2});
 gainode.connect(auxcord.destination);
-var soundbuffers = new Map();
 
+// -------- clockbot things
 var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");
-var love_children = document.getElementById("love_children");
 
 var breadlink = /.*?\/?(\d+)$/;
 channel_id.addEventListener('change',ev=>{
@@ -13,6 +15,19 @@ channel_id.addEventListener('change',ev=>{
   window.whichStorage["soundboard_clockbot_channel_id"] = ev.target.value;
 });
 
+function getinchat(){
+  if (clockbot.checked){
+    postfetch('getinchat()');
+  }
+}
+function leave_chat(){
+  if (clockbot.checked){
+    postfetch('leave_chat()');
+  }
+}
+
+// -------------------------- how to actually play the sounds ------------------
+var soundbuffers = new Map();
 async function gimmefile(fname){
   var far = await fetch(`/page/soundboard/opodes/${fname}.opus`);
   var bar = await far.arrayBuffer();
@@ -42,6 +57,9 @@ async function beep(fname){
     someabsn.start();
   }
 }
+
+// ====================== The Sounds You Love ==================================
+var love_children = document.getElementById("love_children");
 function save_lovelist(){
   whichStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
   if (window.has_username){
@@ -133,7 +151,6 @@ var nuke_control = {
     window.requestAnimationFrame(window.nuke_control.anim_cb);
   }
 };
-
  
 function kill_shelf(){
   let kill_this = lovelist.findLastIndex(x=>x.startsWith('<'));
@@ -155,7 +172,7 @@ function add_shelf(){
   });
 }
 
-// --------------------------- some other ui things ----------------------------
+// ------------------ some other love-based ui things --------------------------
 function love_dragstart(ev){
   ev.dataTransfer.clearData();
   ev.dataTransfer.setData('text/plain', ev.target.id);
@@ -196,6 +213,8 @@ function reset_love(){
   document.querySelectorAll('button.loved').forEach(kid=>kid.classList.remove('loved'));
 }
 
+// ================ this one's kinda important, so don't talk to him
+// ============== i need him to focus on what he's doing
 function make_group(dad, someboard){
   var somebuttons = someboard.sound.map(s=>`<button id="${someboard.name}/${s}" onclick="beep('${someboard.name}/${s}')" oncontextmenu="event.preventDefault()||love('${someboard.name}/${s}')">${s}</button>`);
   dad.insertAdjacentHTML('beforeend',`
@@ -206,17 +225,7 @@ function make_group(dad, someboard){
 `);
 }
 
-function getinchat(){
-  if (clockbot.checked){
-    postfetch('getinchat()');
-  }
-}
-function leave_chat(){
-  if (clockbot.checked){
-    postfetch('leave_chat()');
-  }
-}
-
+// ----------- what categories are open and not
 function setup_open(){  
   var all_details = document.querySelectorAll("details.sb");
   
@@ -236,6 +245,7 @@ function record_open(ev){
   whichStorage["soundboard_open"] = JSON.stringify(Array.from(document.querySelectorAll("details.sb[open]"),el=>el.id));
 }
 
+// ----- network functions
 function post_love(){
   post_storage({lovelist});
 }

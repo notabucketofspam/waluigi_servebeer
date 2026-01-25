@@ -277,26 +277,44 @@ div#navboat #captains buttons{
 <script src="/page/soundboard/opodes/boards.js"></script>
 <script src="/page/soundboard/cacophony.js"></script>
 <script>
+// ===================================== a whole lot of topmost ui things ======
+// ------- that lil button that says "where?"
 document.getElementById('where_help').addEventListener('click', ev=>{
   var greatanswer = document.getElementById('greatanswer');
   greatanswer.style.left = ev.x+'px';
   greatanswer.style.top = ev.y+'px';
 });
-
-var kiddos = document.getElementById('love_children');
-kiddos.addEventListener("dragover",ev=>ev.preventDefault());
-kiddos.addEventListener("drop", lovelist_drop);
-
+// ------- some stuff for controlling the local volume
 whichStorage["soundboard_gain"] ??= 0.20;
 somevolume.value = whichStorage["soundboard_gain"];
 setgain(whichStorage["soundboard_gain"]);
+function setgain(g){
+  gainode.gain.setValueAtTime(g,0);
+  whichStorage["soundboard_gain"] = g;
+}
+// --------- some more ui things at the top
+whichStorage["soundboard_clockbot_enable"] ??= 0;
+clockbot_enable.checked = Number(whichStorage["soundboard_clockbot_enable"]);
+clockbot_enable.addEventListener('input', (ev)=>{
+  whichStorage["soundboard_clockbot_enable"] = Number(ev.target.checked);
+  somevolume.disabled = ev.target.checked;
+});
+somevolume.disabled = clockbot_enable.checked;
 
+whichStorage["soundboard_clockbot_channel_id"] ??= "";
+channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
+
+// =========== put the actual soundboards on the page
 board.forEach(key=>make_group(booba, key));
+
+// --------- show the total number of sounds at the top of the page
 setTimeout(function(){
   var pisces = document.querySelectorAll('div#booba button').length;
   var toppo = document.querySelector('div#topstuff>h2');
   toppo.innerText = pisces+'pcs set';
 });
+
+// --------- where is the boat?
 (()=>{
   var navboat = document.getElementById('navboat');
   var shareholders = document.querySelectorAll('summary>h2');
@@ -327,21 +345,11 @@ function hidemyboat(){
   localStorage.setItem('soundboard_navboat_captains_style_display', captains.style.display);
 }
 
-function setgain(g){
-  gainode.gain.setValueAtTime(g,0);
-  whichStorage["soundboard_gain"] = g;
-}
-
-whichStorage["soundboard_clockbot_enable"] ??= 0;
-clockbot_enable.checked = Number(whichStorage["soundboard_clockbot_enable"]);
-clockbot_enable.addEventListener('input', (ev)=>{
-  whichStorage["soundboard_clockbot_enable"] = Number(ev.target.checked);
-  somevolume.disabled = ev.target.checked;
-});
-somevolume.disabled = clockbot_enable.checked;
-
-whichStorage["soundboard_clockbot_channel_id"] ??= "";
-channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
+// ======================= this section deals with love ========================
+// =========================== and its repurcussions ===========================
+var kiddos = document.getElementById('love_children');
+kiddos.addEventListener("dragover",ev=>ev.preventDefault());
+kiddos.addEventListener("drop", lovelist_drop);
 
 write_lovelist();
 
