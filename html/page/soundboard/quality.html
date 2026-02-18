@@ -73,7 +73,13 @@ button.loved::before{
 }
 .sounds {
   display: grid;
-  grid: auto-flow 3lh / repeat(var(--how-many-buttons), 1fr);
+  /*grid: auto-flow 3lh / repeat(var(--how-many-buttons), 1fr);*/
+  grid-template-columns: repeat(var(--how-many-buttons), 1fr);
+  grid-template-rows: none;
+  grid-template-areas: none;
+  grid-auto-flow: row;
+  grid-auto-columns: auto;
+  grid-auto-rows: 3lh;
 }
 textarea.lovesec{
   grid-column-start:1;
@@ -189,6 +195,14 @@ div#navboat #captains buttons{
 .navboat_classical{
   height:calc(100% - 60px);
 }
+div.sounds>button{
+  width:160px;
+  height:50px;
+}
+#how-many-columns{
+  clear:right;
+  font-variant:small-caps;
+}
 </style>
 </head>
 <body>
@@ -209,14 +223,14 @@ div#navboat #captains buttons{
   </div>
 </div>
 
-<div class="sef lard">
+<div >
 
-  <div id="topstuff">
+  <div id="topstuff" class="sef lard">
     <h1>Soundboard</h1>
     <h2>0000pcs set</h2>
   </div>
   
-  <div id="clockbot_zone" class="sb">
+  <div id="clockbot_zone" class="sb sef lard">
     <summary><h2>Controls</h2></summary>
     
     <div id="local_volume" style="text-align:center" class="lube fr">
@@ -225,7 +239,14 @@ div#navboat #captains buttons{
       <div><span style="font-size:78%;font-family:monospace;font-weight:bold;">(doesn't affect ClockBot)</span></div>
     </div>
     
-    <div id="username_perchance" class="lube fr">Not logged in</div>
+    <div class="lube fr">
+      <div id="username_perchance" class="lube fr">Not logged in</div>
+    </div>
+    
+      <div id="how-many-columns" class="lube fr" style="text-align:center">
+        <div>How Many Buttons?</div>
+        <input id="width_control" type="range" value="5" step="1" min="1" max="20" style="accent-color:darkcyan;"/>
+      </div>
     
     <div style="position:relative" class="lube">
       <div>
@@ -254,7 +275,7 @@ div#navboat #captains buttons{
     </div>
   </div>
   
-  <details id="love_zone" class="sb">
+  <details id="love_zone" class="sb sef lard">
     <summary>
       <h2>
         The Sounds You Love
@@ -278,6 +299,32 @@ div#navboat #captains buttons{
 <script src="/page/soundboard/cacophony.js"></script>
 <script>
 // ===================================== a whole lot of topmost ui things ======
+// -------- the number of columns for all the groups of buttons
+function setHowManyButtons(ev){
+  var wideness = ev.target.valueAsNumber;
+  localStorage["sb_width"] = wideness;
+  var body_size = document.body.getBoundingClientRect().width;
+  var max_buttons = Math.trunc(body_size/160);
+  var wideness_real = Math.min(wideness, max_buttons);
+  
+  var div_sounds = document.querySelectorAll('div.sounds');
+  div_sounds.forEach(dale=>{
+    dale.style.setProperty('grid-template-columns', `repeat(${wideness_real}, 1fr)`);
+  });
+  var sounds_havers = document.querySelectorAll(':has(>div.sounds)');
+  sounds_havers.forEach(haver=>{
+    haver.style.setProperty('max-width', `calc(8.5in + ${(wideness_real - 5)*160}px)`);
+  });
+}
+var width_control = document.getElementById('width_control');
+width_control.addEventListener('input', setHowManyButtons);
+//var howmany = getComputedStyle(document.querySelector(':root')).getPropertyValue('--how-many-buttons');
+localStorage["sb_width"] ??= getComputedStyle(document.querySelector(':root')).getPropertyValue('--how-many-buttons');
+width_control.setAttribute('value', localStorage["sb_width"]);
+setTimeout(function(){
+  setHowManyButtons({target:width_control});
+});
+
 // ------- that lil button that says "where?"
 document.getElementById('where_help').addEventListener('click', ev=>{
   var greatanswer = document.getElementById('greatanswer');

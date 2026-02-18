@@ -242,7 +242,7 @@ function reset_love(){
 function make_group(dad, someboard){
   var somebuttons = someboard.sound.map(s=>`<button id="${someboard.name}/${s}" onclick="beep('${someboard.name}/${s}')" oncontextmenu="event.preventDefault()||love('${someboard.name}/${s}')">${s}</button>`);
   dad.insertAdjacentHTML('beforeend',`
-<details id="group_${someboard.name}" class="sb">
+<details id="group_${someboard.name}" class="sb sef lard">
   <summary><h2>${someboard.name}</h2></summary>
   <div class="sounds">${somebuttons.join('')}</div>
 </details>
