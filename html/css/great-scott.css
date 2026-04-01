@@ -1011,6 +1011,16 @@ body>hr,body>main hr {
   display:block;
   height:70px;
   font-weight:bold;
+  position: relative;
+  animation-name: marqueme;
+  animation-duration: 20ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes marqueme {
+  0% { top: 0px }
+  100% { top: 3px }
 }
 #wpc {
   text-decoration: underline;
