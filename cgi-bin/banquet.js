@@ -9,6 +9,7 @@ import * as path from "node:path";
 
 // try to read the content file
 const contentpath = path.join(os.tmpdir(),"wsbc_banquet");
+const max_fresh = 8e7;
 fs.open(contentpath, "r+", (err, fd)=>{
   if (err){
     // looks like there's no content file
@@ -22,7 +23,7 @@ fs.open(contentpath, "r+", (err, fd)=>{
         paint(err.code);
       } else {
         const lastdate = buffer.readDoubleLE();
-        if (Date.now() - lastdate > 8e7){
+        if (Date.now() - lastdate > max_fresh){
           // ... it's kinda old
           getcontent(fd);
         } else {
