@@ -9,7 +9,7 @@ import * as path from "node:path";
 
 // try to read the content file
 const contentpath = path.join(os.tmpdir(),"wsbc_banquet");
-const max_fresh = 8e7;
+const max_fresh = 8e8;
 fs.open(contentpath, "r+", (err, fd)=>{
   if (err){
     // looks like there's no content file
