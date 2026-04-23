@@ -59,24 +59,53 @@ h2 {
 <body>
 <h1>MEMES</h1>
 <h2><span id="meme_count">0</span>pcs set</h2>
-<main id="memes">
-</main>
+<div id="memes">
+</div>
 <img id="realimage" popover onclick="this.togglePopover()" />
 <script src="/js/everything.js"></script>
 <script>
 var bucket = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/";
-var prefix = "?prefix=image";
+var req_query = "?prefix=image&fields=name,timeModified";
 var memes = document.getElementById("memes");
+var meme_count = document.getElementById("meme_count");
 var realimage = document.getElementById("realimage");
-fetch(bucket+prefix)
+
+fetch(bucket+req_query)
 .then(response=>response.json())
 .then(json=>{
   var lines = json.objects
   .filter(obj=>obj.name.startsWith('image')&&obj.name.includes('.'))
-  .map(obj=>`<img src="${bucket+obj.name}" onclick="realimage.setAttribute('src',this.src)||realimage.togglePopover()"/>`);
+  .sort((a,b)=>b['timeModified'].localeCompare(a['timeModified']))
+  .map(obj=>`<img src="${bucket+obj.name}" loading="lazy"/>`);
+  
   memes.insertAdjacentHTML("beforeend", lines.join(''));
   meme_count.innerText = lines.length;
+  
+  setTimeout(function(){
+    document.querySelectorAll('#memes img').forEach(img=>{
+      img.addEventListener('click', set_realimage);
+    });
+  });
 });
+
+/**@param {PointerEvent} ev*/
+function set_realimage(ev){
+  const this_src = ev.target.src;
+  if (this_src === realimage.src){
+    realimage.hidePopover();
+  } else{
+    realimage.setAttribute('src',this_src)||realimage.togglePopover();
+  }
+}
+
+/**@param {ToggleEvent} ev*/
+function realimage_ontoggle(ev){
+  if (ev.oldState === 'open' && ev.newState === 'closed'){
+    realimage.removeAttribute('src');
+  }
+}
+realimage.addEventListener('toggle', realimage_ontoggle);
+
 </script>
 </body>
 </html>
