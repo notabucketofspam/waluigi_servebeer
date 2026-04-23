@@ -57,8 +57,10 @@ h2 {
 </style>
 </head>
 <body>
-<h1>MEMES</h1>
-<h2><span id="meme_count">0</span>pcs set</h2>
+<div id="memes_topkek" style="color:#0000">
+  <h1>MEMES</h1>
+  <h2><span id="meme_count">0</span>pcs set</h2>
+</div>
 <div id="memes">
 </div>
 <img id="realimage" popover onclick="this.togglePopover()" />
@@ -66,8 +68,6 @@ h2 {
 <script>
 var bucket = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/";
 var req_query = "?prefix=image&fields=name,timeModified";
-var memes = document.getElementById("memes");
-var meme_count = document.getElementById("meme_count");
 var realimage = document.getElementById("realimage");
 
 fetch(bucket+req_query)
@@ -78,6 +78,8 @@ fetch(bucket+req_query)
   .sort((a,b)=>b['timeModified'].localeCompare(a['timeModified']))
   .map(obj=>`<img src="${bucket+obj.name}" loading="lazy"/>`);
   
+  var memes = document.getElementById("memes");
+  var meme_count = document.getElementById("meme_count");
   memes.insertAdjacentHTML("beforeend", lines.join(''));
   meme_count.innerText = lines.length;
   
@@ -86,6 +88,12 @@ fetch(bucket+req_query)
       img.addEventListener('click', set_realimage);
     });
   });
+  
+  var memes_topkek = document.getElementById('memes_topkek');
+  memes_topkek.removeAttribute('style');
+  
+  // scroll back to where we were
+  window.scroll(0, nowtop);
 });
 
 /**@param {PointerEvent} ev*/
@@ -106,6 +114,12 @@ function realimage_ontoggle(ev){
 }
 realimage.addEventListener('toggle', realimage_ontoggle);
 
+// support for remembering place on page
+var nowtop = localStorage['/page/gallery/memes.html?top']??0;
+document.addEventListener('scroll', ev=>{
+  nowtop = Math.abs(document.documentElement.getBoundingClientRect().top);
+  localStorage['/page/gallery/memes.html?top'] = nowtop;
+});
 </script>
 </body>
 </html>
