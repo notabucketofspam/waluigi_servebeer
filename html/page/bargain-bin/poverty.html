@@ -38,7 +38,7 @@
       <div>from the homepage</div>
     </a>
     
-    <div id="commoncremes">
+    <div id="commoncremes" style="order:0">
       <h3>Common Cr&egrave;mes</h3>
       <ul style="margin:0;padding-left:20px;list-style-type:circle;">
         <li><a style="text-decoration-line: none;" href="/page/bargain-bin/sonic/gotta-go-fast.html"><span id="wpc">WAY PAST COOL</span><sup>&#8482;</sup></a></li>
@@ -59,17 +59,26 @@
       </div>
     </div>
     
-    <p>
+    <div>
       <a class="bro" href="/page/bargain-bin/product-key/winxp.html" style="text-align:center">Generate a<br/>product key for<br/>Microsoft&reg; Windows&reg;</a>
-    </p>
+    </div>
     
-    <p><a class="bro" href="/page/bargain-bin/misc-ii">misc II</a></p>
+    <div><a class="bro" href="/page/bargain-bin/misc-ii">misc II</a></div>
     
-    <p>
+    <div>
       <a class="nostyle" target="_blank" href="https://waluigi-servebeer.com/">
         <img src="https://waluigi-servebeer.com/wsbc_83.gif"/>
       </a>
-    </p>
+    </div>
+    
+    <div id="thatshimofficer">
+      <button id="gototheburger" onclick="window.location.assign('/outdex.html#'+window.location)">
+        GO TO THE<br/>
+        <img alt="BURGER" src="/resource/retro_burger.png"/><br/>
+        BURGER
+      </button>
+      <meta class="meta_party" id="index_mp" itemprop="this is where we put the party stuff" />
+    </div>
     
   </div>
 </div>
@@ -78,6 +87,15 @@
 if (rui(2)) the_u.innerText = "u";
 if (whichStorage.getItem("username"))
   username_maybe.innerText = whichStorage.getItem("username");
+
+if (window.at_outdex){
+  document.getElementById('gototheburger')?.setAttribute('hidden','');
+  document.getElementById('thatshimofficer')?.setAttribute('style','min-height:5.5in;');
+  setTimeout(()=>{
+    document.getElementById('burgmenu')?.togglePopover();
+    document.getElementById('burgmenu')?.togglePopover();
+  },100);
+}
 </script>
 </body>
 </html>
