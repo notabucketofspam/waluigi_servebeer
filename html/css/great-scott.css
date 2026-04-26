@@ -458,7 +458,7 @@ a.shortcut::after{
 }
 @media (max-width:309px){
   :not(script, style, [popover], button, input, [hidden]){
-    display:inline-grid;
+    /* display:inline-grid; */
     margin:0;
     padding:0;
     word-break:break-all;
