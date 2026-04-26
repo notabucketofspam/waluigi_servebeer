@@ -115,10 +115,10 @@ function realimage_ontoggle(ev){
 realimage.addEventListener('toggle', realimage_ontoggle);
 
 // support for remembering place on page
-var nowtop = localStorage['/page/gallery/memes.html?top']??0;
+var nowtop = sessionStorage['/page/gallery/memes.html?top']??0;
 document.addEventListener('scroll', ev=>{
   nowtop = Math.abs(document.documentElement.getBoundingClientRect().top);
-  localStorage['/page/gallery/memes.html?top'] = nowtop;
+  sessionStorage['/page/gallery/memes.html?top'] = nowtop;
 });
 </script>
 </body>
