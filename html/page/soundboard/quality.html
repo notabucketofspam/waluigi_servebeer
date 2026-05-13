@@ -297,8 +297,8 @@ input#soundsearch {
   <div class="sef lard" id="searchmania">
     <div id="searchmania-superslam">
       <input id="soundsearch" name="soundsearch" type="search" list="all-sounds" placeholder="this is a search bar" />
-      <button onclick="soundsearch.value='';soundsearch.focus();">&#x1F6AE;CLEAR</button>
-      <button onclick="soundsearch.dispatchEvent(new Event('input'))">&#x25B6;&#xFE0F;PLAY</button>
+      <button onclick="rewind_search()">&#x1F504;FIND</button>
+      <button onclick="play_from_search()">&#x25B6;&#xFE0F;PLAY</button>
     </div>
 		<datalist id="all-sounds"></datalist>
   </div>
@@ -345,10 +345,30 @@ soundsearch.addEventListener('input', ev => {
 				soundsearch.focus();
       } else if (flatbread.includes(ev.target.value)){
         beep(ev.target.value);
+      } else {
+        sessionStorage.setItem('most-recent-search', ev.target.value);
       }
     }
   } catch(err){}
 });
+function rewind_search() {
+	let mrs_maybe = sessionStorage.getItem('most-recent-search');
+  if (mrs_maybe){
+    soundsearch.value = mrs_maybe;
+  } else {
+		soundsearch.value = '';
+  }
+	soundsearch.blur();
+	soundsearch.focus();
+}
+function play_from_search() {
+	if (soundsearch.value === '') {
+		soundsearch.blur();
+		soundsearch.focus();
+	} else if (flatbread.includes(soundsearch.value)) {
+		beep(soundsearch.value);
+	}
+}
 // -------- the number of columns for all the groups of buttons
 function setHowManyButtons(ev){
   var wideness = ev.target.valueAsNumber;
