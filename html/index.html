@@ -190,7 +190,7 @@ setTimeout(function(){
   check_online(jah=>{
     if (jah.username){
       var loginame = document.querySelector('#loginfo>div');
-      loginame.innerHTML = `username: <b>${jah.username}</b>`;
+      loginame.innerHTML = `<b>${jah.username}</b>`;
       var login_anchor = document.querySelector('#loginfo>a');
       login_anchor.innerText = "goto account";
     }

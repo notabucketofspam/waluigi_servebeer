@@ -259,7 +259,7 @@ input#soundsearch {
     </div>
     
     <div class="lube fr">
-      <div id="username_perchance" class="lube fr">Not logged in</div>
+      <div id="username_perchance" class="lube fr logged-in-as">Not logged in</div>
     </div>
     
       <div id="how-many-columns" class="lube fr" style="text-align:center">
@@ -455,7 +455,7 @@ var has_username = false;
 check_online(dat=>{
   if (dat.username){
     var username_perchance = document.getElementById("username_perchance")
-    username_perchance.innerHTML = "Logged in as <em>"+dat.username+"</em>";
+    username_perchance.innerHTML = "Logged in as <div><b>"+dat.username+"</b></div>";
     has_username = true;
     get_love();
   }

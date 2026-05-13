@@ -1160,3 +1160,7 @@ dialog.alert_II{
   position: absolute;
 }
 
+div.logged-in-as{
+  text-align:center;
+}
+
