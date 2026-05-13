@@ -56,9 +56,10 @@ div#please-dont-select-anything-here *{
   padding:1px 3.5px;
   cursor:help;
 }
-div#how2love{
+#how2love{
   position:absolute;
   font-size:initial;
+  display:block;
 }
 button.loved::before{
   content:"<3";
@@ -92,7 +93,7 @@ textarea.lovesec{
 :where(details).sb[open]{
   margin-bottom:10px;
 }
-:where(details,div).sb>summary>h2{
+:where(details,div).sb>:where(summary,div)>h2{
   display:inline-block;
   margin:4px 0px;
   font-size:2rem;
@@ -203,6 +204,24 @@ div.sounds>button{
   clear:right;
   font-variant:small-caps;
 }
+div#searchmania{
+  position:sticky;
+  top:0px;
+  z-index:3;
+}
+div#searchmania-superslam {
+	max-width: fit-content;
+	background-color: #ffff;
+	padding: 5px;
+	border: inset 3px #eee;
+	display: grid;
+	grid-template-areas: "a a"
+			                 "b c";
+}
+input#soundsearch {
+  grid-area:a;
+  width:200px;
+}
 </style>
 </head>
 <body>
@@ -231,7 +250,7 @@ div.sounds>button{
   </div>
   
   <div id="clockbot_zone" class="sb sef lard">
-    <summary><h2>Controls</h2></summary>
+    <div><h2>Controls</h2></div>
     
     <div id="local_volume" style="text-align:center" class="lube fr">
       <h3 style="justify-self:center;">Local Volume</h3>
@@ -275,11 +294,20 @@ div.sounds>button{
     </div>
   </div>
   
+  <div class="sef lard" id="searchmania">
+    <div id="searchmania-superslam">
+      <input id="soundsearch" name="soundsearch" type="search" list="all-sounds" placeholder="this is a search bar" />
+      <button onclick="soundsearch.value='';soundsearch.focus();">&#x1F6AE;CLEAR</button>
+      <button onclick="soundsearch.dispatchEvent(new Event('input'))">&#x25B6;&#xFE0F;PLAY</button>
+    </div>
+		<datalist id="all-sounds"></datalist>
+  </div>
+
   <details id="love_zone" class="sb sef lard">
     <summary>
       <h2>
         The Sounds You Love
-        <div id="how2love">You can love them with right-click</div>
+        <span id="how2love">You can love them with right-click</span>
       </h2>
     </summary>
     <div>
@@ -293,12 +321,34 @@ div.sounds>button{
   
   <div id="booba"></div>
 </div>
-</div>
+
 <script src="/js/everything.js"></script>
 <script src="/page/soundboard/opodes/boards.js"></script>
 <script src="/page/soundboard/cacophony.js"></script>
 <script>
 // ===================================== a whole lot of topmost ui things ======
+// --------------- this is how we do searches
+var allsounds_datalist = document.getElementById('all-sounds');
+/**@type{string[]} */
+var flatbread = window.board.flatMap(boa=>boa.sound.map(sou=>boa.name+'/'+sou));
+flatbread.forEach(slice=>{
+	var option = document.createElement('option');
+	option.value = slice;
+	allsounds_datalist.appendChild(option);
+});
+var soundsearch = document.getElementById('soundsearch');
+soundsearch.addEventListener('input', ev => {
+  try {
+    if (typeof ev?.target?.value === 'string'){
+      if (ev.target.value === ''){
+				soundsearch.blur();
+				soundsearch.focus();
+      } else if (flatbread.includes(ev.target.value)){
+        beep(ev.target.value);
+      }
+    }
+  } catch(err){}
+});
 // -------- the number of columns for all the groups of buttons
 function setHowManyButtons(ev){
   var wideness = ev.target.valueAsNumber;
