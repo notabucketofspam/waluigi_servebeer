@@ -9,16 +9,16 @@
 	h3, ol, ul {
 		margin: 0;
 	}
-	#webrings img {
+	#bhorts img {
 		width: 1em;
 		height: 1em;
 		vertical-align: middle;
 		margin-right: 0.5em;
 	}
-	#webrings li {
+	#bhorts li {
 		list-style-type: none;
 	}
-	#webrings {
+	#bhorts {
 		padding-left: 16px;
 	}
 </style>
@@ -31,7 +31,7 @@
 <div>
 	<!--<hr/>-->
 	<h3>Serial goofballery</h3>
-	<ol>
+	<ul>
 		<li><a class="bhortcut" href="https://www.grass.eu/en/" target="_blank">GRASS</a></li>
 		<li><a class="bhortcut" href="https://www.mi.com/global/" target="_blank">Xiaomi Global</a></li>
 		<li><a class="bhortcut" href="https://dbrand.com/shop/limited-edition/touch-grass" target="_blank">It's Time to Touch Grass</a></li>
@@ -41,13 +41,13 @@
 		<li><a class="bhortcut" href="https://alwaysjudgeabookbyitscover.com/" target="_blank">Always Judge a Book by its Cover</a></li>
 		<li><a class="bhortcut" href="https://www.amazon.com/hz/wishlist/ls/1L1WVA8GAOEOL?ref_=wl_share" target="_blank">stupid books</a></li>
 		<li><a class="bhortcut" href="https://www.lifeisbetterwithalpacas.com/" target="_blank">Life Is Better With Alpacas</a></li>
-	</ol>
+	</ul>
 </div>
 
 <div>
 	<!--<hr/>-->
 	<h3>webring et al.</h3>
-	<ul id="webrings"></ul>
+	<ul id="bhorts"></ul>
 </div>
 
 </div>
@@ -57,7 +57,7 @@ async function reality() {
 	// get the resources
 	const res = await fetch('/page/bargain-bin/linktargets.html');
 	const rtext = await res.text();
-	const webrings = document.getElementById('webrings');
+	const bhorts = document.getElementById('bhorts');
 	const parser = new DOMParser();
 	var contract = parser.parseFromString(rtext, 'text/html');
 
@@ -71,7 +71,7 @@ async function reality() {
 		A.classList.add('bhortcut');
 		const lizard = document.createElement('li');		
 		lizard.appendChild(A);
-		webrings.appendChild(lizard);
+		bhorts.appendChild(lizard);
 	});
 }
 reality();
