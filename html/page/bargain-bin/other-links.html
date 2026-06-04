@@ -70,6 +70,7 @@ async function reality() {
 	const res = await fetch('/page/bargain-bin/linktargets.html');
 	const rtext = await res.text();
 	const bhorts = document.getElementById('bhorts');
+	const bhortment = document.createDocumentFragment();
 	const parser = new DOMParser();
 	var contract = parser.parseFromString(rtext, 'text/html');
 
@@ -83,8 +84,9 @@ async function reality() {
 		A.classList.add('bhortcut');
 		const lizard = document.createElement('li');		
 		lizard.appendChild(A);
-		bhorts.appendChild(lizard);
+		bhortment.appendChild(lizard);
 	});
+	bhorts.appendChild(bhortment);
 	window.scrollTo(0, nowtop);
 }
 reality();
