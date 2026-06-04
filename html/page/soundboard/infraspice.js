@@ -42,7 +42,7 @@ function allsounds_construct(etv) {
   allsounds.insertAdjacentHTML('beforeend', johnbread);
   allsounds_show(true);
 }
-allsounds.addEventListener('click', ev => {
+allsounds.addEventListener('mousedown', ev => {
   try {
     const target_real = ev.target.closest('span');
     if (target_real?.dataset?.sound) {
