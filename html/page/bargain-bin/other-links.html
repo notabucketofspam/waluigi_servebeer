@@ -6,32 +6,83 @@
 <title>Other links - waluigi-servebeer.com</title>
 <style>
 
+	h3, ol, ul {
+		margin: 0;
+	}
+	#webrings img {
+		width: 1em;
+		height: 1em;
+		vertical-align: middle;
+		margin-right: 0.5em;
+	}
+	#webrings li {
+		list-style-type: none;
+	}
+	#webrings {
+		padding-left: 16px;
+	}
 </style>
 </head>
 <body>
 <div class="sef lard">
 <h1>Other links</h1>
 <small>Note: we don't endorse anyone here.</small>
-<ol>
-<li><a class="shortcut" href="https://www.grass.eu/en/" target="_blank">GRASS</a></li>
-<li><a class="shortcut" href="https://www.mi.com/global/" target="_blank">Xiaomi Global</a></li>
-<li><a class="shortcut" href="https://www.dingusland.fun/" target="_blank">dingusland</a></li>
-<li><a class="shortcut" href="https://dbrand.com/shop/limited-edition/touch-grass" target="_blank">It's Time to Touch Grass</a></li>
-<li><a class="shortcut" href="https://dbrand.com/shop/limited-edition/solitaire" target="_blank">Solitaire</a></li>
-<li><a class="shortcut" href="http://toastytech.com/index.html" target="_blank">toastytech</a></li>
-<li><a class="shortcut" href="https://theuselessweb.com/" target="_blank">the useless web</a></li>
-<li><a class="shortcut" href="https://puginarug.com/" target="_blank">The Pug In A Rug</a></li>
-<li><a class="shortcut" href="https://longdogechallenge.com/" target="_blank">long doge</a></li>
-<li><a class="shortcut" href="https://alwaysjudgeabookbyitscover.com/" target="_blank">Always Judge a Book by its Cover</a></li>
-<li><a class="shortcut" href="https://www.amazon.com/hz/wishlist/ls/1L1WVA8GAOEOL?ref_=wl_share" target="_blank">stupid books</a></li>
-<li><a class="shortcut" href="https://www.lifeisbetterwithalpacas.com/" target="_blank">Life Is Better With Alpacas</a></li>
-<li><span style="vertical-align:top"><iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/5c1R9MePwZMYYmHwepK5b6?utm_source=generator" width="290" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></span></li>
-</ol>
 
+<div>
+	<!--<hr/>-->
+	<h3>Serial goofballery</h3>
+	<ol>
+		<li><a class="shortcut" href="https://www.grass.eu/en/" target="_blank">GRASS</a></li>
+		<li><a class="shortcut" href="https://www.mi.com/global/" target="_blank">Xiaomi Global</a></li>
+		<li><a class="shortcut" href="https://dbrand.com/shop/limited-edition/touch-grass" target="_blank">It's Time to Touch Grass</a></li>
+		<li><a class="shortcut" href="https://dbrand.com/shop/limited-edition/solitaire" target="_blank">Solitaire</a></li>
+		<li><a class="shortcut" href="https://tholman.com/" target="_blank">Tim Holtman</a></li>
+		<li><a class="shortcut" href="https://theuselessweb.com/" target="_blank">the useless web</a></li>
+		<li><a class="shortcut" href="https://alwaysjudgeabookbyitscover.com/" target="_blank">Always Judge a Book by its Cover</a></li>
+		<li><a class="shortcut" href="https://www.amazon.com/hz/wishlist/ls/1L1WVA8GAOEOL?ref_=wl_share" target="_blank">stupid books</a></li>
+		<li><a class="shortcut" href="https://www.lifeisbetterwithalpacas.com/" target="_blank">Life Is Better With Alpacas</a></li>
+	</ol>
 </div>
 
+<div>
+	<!--<hr/>-->
+	<h3>webring et al.</h3>
+	<ul id="webrings"></ul>
+</div>
+
+</div>
 <script src="/js/everything.js"></script>
 <script>
+async function reality() {
+	// get the resources
+	const res = await fetch('/page/bargain-bin/linktargets.html');
+	const rtext = await res.text();
+	const webrings = document.getElementById('webrings');
+	const parser = new DOMParser();
+	var contract = parser.parseFromString(rtext, 'text/html');
+
+	// actually append them to the page
+	Array.from(contract.body.children).forEach(A => {
+		const icon_perchance = A.getAttribute('ICON');
+		A.insertAdjacentHTML('afterbegin', `<img src="${icon_perchance??''}"/>`);
+		A.removeAttribute('ICON');
+		A.setAttribute('target', '_blank');
+		A.setAttribute('rel', 'noopener');
+		A.classList.add('bortcut');
+		const lizard = document.createElement('li');		
+		lizard.appendChild(A);
+		webrings.appendChild(lizard);
+	});
+}
+reality();
+
+// thanks, gemini
+function encodeToHtmlSafe(str) {
+	return Array.from(str).map(char => {
+		const code = char.codePointAt(0);
+		return code > 127 ? `&#${code};` : char;
+	}).join('');
+}
 
 </script>
 </body>

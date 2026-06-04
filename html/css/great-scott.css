@@ -15,7 +15,7 @@
   text-decoration-line:underline;
   user-select:none;
 }
-:where(a:not([class],:has(img)),.fakelink,a.no-almonds,a.bro){
+:where(a:not([class],:has(img)),.fakelink,a.no-almonds,a.bro,a.bortcut){
   display:inline-block;
   &:link{
     color:#551A8B;
