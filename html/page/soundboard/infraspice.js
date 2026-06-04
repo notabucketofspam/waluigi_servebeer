@@ -1,8 +1,10 @@
 // ===================================== a whole lot of topmost ui things ======
 // --------------- this is how we do searches
 var allsounds_datalist = document.getElementById('all-sounds');
+var allsounds = document.getElementById('all-sounds');
 /**@type{string[]} */
 var flatbread = window.board.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou));
+if (0)
 flatbread.forEach(slice => {
   var option = document.createElement('option');
   option.value = slice;
@@ -12,17 +14,62 @@ var soundsearch = document.getElementById('soundsearch');
 soundsearch.addEventListener('input', ev => {
   try {
     if (typeof ev?.target?.value === 'string') {
-      if (ev.target.value === '') {
+      /**@type{string} */
+			let etv = ev.target.value;
+      if (etv === '') {
         soundsearch.blur();
         soundsearch.focus();
-      } else if (flatbread.includes(ev.target.value)) {
-        beep(ev.target.value);
+        allsounds_construct(etv);
+      } else if (flatbread.includes(etv)) {
+        beep(etv);
+        allsounds_show(false);
       } else {
-        sessionStorage.setItem('most-recent-search', ev.target.value);
+        sessionStorage.setItem('most-recent-search', etv);
+				allsounds_construct(etv);
       }
     }
   } catch (err) {}
 });
+/**
+ * this is where we create the list
+ * @param {string} etv
+ */
+function allsounds_construct(etv) {
+  const filterbread = etv ? flatbread.filter(s => (s.toLowerCase()).includes(etv.toLowerCase())) : flatbread;
+  const phatbread = filterbread.map(s => `<span data-sound="${s}">${s}</span>`);
+  const johnbread = phatbread.join('');
+  allsounds.replaceChildren();
+  allsounds.insertAdjacentHTML('beforeend', johnbread);
+  allsounds_show(true);
+}
+allsounds.addEventListener('click', ev => {
+  try {
+    const target_real = ev.target.closest('span');
+    if (target_real?.dataset?.sound) {
+			let thesound = target_real.dataset.sound;
+			soundsearch.value = thesound;
+      allsounds_show(false);
+			beep(thesound);
+    }
+	} catch (err) { }
+});
+soundsearch.addEventListener('blur', ev => {
+  setTimeout(() => {
+    allsounds_show(false);
+	});
+});
+soundsearch.addEventListener('focus', ev => {
+  setTimeout(() => {
+    allsounds_construct(soundsearch.value);
+  });
+});
+function allsounds_show(actually) {
+	if (actually) {
+		allsounds.removeAttribute('hidden');
+	} else {
+		allsounds.setAttribute('hidden', '');
+	}
+}
 function rewind_search() {
   let mrs_maybe = sessionStorage.getItem('most-recent-search');
   if (mrs_maybe) {
@@ -32,6 +79,9 @@ function rewind_search() {
   }
   soundsearch.blur();
   soundsearch.focus();
+  if (mrs_maybe) {
+		allsounds_construct(mrs_maybe);
+  }
 }
 function play_from_search() {
   if (soundsearch.value === '') {

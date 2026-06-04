@@ -261,3 +261,29 @@ input#soundsearch {
 	width: 200px;
 }
 
+#all-sounds {
+	position: absolute;
+	z-index: 4;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000;
+	background-color: #fff;
+	min-width: 198px;
+	max-width: clamp(200px, 85%, 500px);
+	white-space: nowrap;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	top: -32px;
+	left: 8px;
+	user-select: none;
+	max-height: 30lh;
+	min-height: 1lh;
+}
+
+div#all-sounds>span {
+	display: block;
+}
+	div#all-sounds > span:hover {
+		background-color: #eee;
+	}
+
