@@ -85,6 +85,7 @@ async function reality() {
 		lizard.appendChild(A);
 		bhorts.appendChild(lizard);
 	});
+	window.scrollTo(0, nowtop);
 }
 reality();
 
@@ -95,6 +96,11 @@ function encodeToHtmlSafe(str) {
 		return code > 127 ? `&#${code};` : char;
 	}).join('');
 }
+
+var nowtop = Number(sessionStorage.getItem(location.pathname+"::nowtop")??0);
+document.addEventListener('scroll', () => {
+	sessionStorage.setItem(location.pathname + "::nowtop", window.scrollY);
+});
 
 </script>
 </body>
