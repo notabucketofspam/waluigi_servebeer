@@ -1164,3 +1164,44 @@ div.logged-in-as{
   text-align:center;
 }
 
+/*dvdbox gets an upgrade*/
+#dvdbox {
+	width: 250px;
+	height: 200px;
+	border: 3px solid black;
+	background-color: #fffa;
+	position: relative;
+	overflow: hidden;
+}
+/*
+* the animation scale is based on the good old-fashioned marquee:
+* 85ms scroll delay, 6px scroll amount.
+* as such, the animation delays used below is 
+* how long it takes to travel the relevant number of pixels
+*/
+#dvdbox-y {
+	position: absolute;
+	animation: dvdboxY 2337ms linear infinite alternate;
+}
+@keyframes dvdboxY {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(200px - 35px));
+  }
+}
+#dvdbox-x {
+  position: absolute;
+  animation: dvdboxX 3046ms linear infinite alternate;
+}
+@keyframes dvdboxX {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(250px - 35px));
+  }
+}
+
+

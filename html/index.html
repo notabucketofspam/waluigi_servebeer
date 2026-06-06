@@ -92,11 +92,13 @@ zone
       <div class="f3">Try our tasty New Coal!</div>
     </a>
     <!-- marquee code thrifted from MDN -->
-    <marquee id="dvdbox" direction="up" width="250" height="200" behavior="alternate" style="border:solid; background-color:#fffa">
-      <marquee behavior="alternate" style="margin-bottom:-8px;">
-        <img src="/resource/dvd.png" height="35" style="user-select:none;">
-      </marquee>
-    </marquee>
+    <div class="dvdbox" id="dvdbox">
+      <div id="dvdbox-y">
+        <div id="dvdbox-x">
+          <img src="/resource/dvd.png" height="35" style="user-select:none;display:none;">
+        </div>
+      </div>
+    </div>
   </div>
   <div id="rhs" style="grid-area:c" class="colgate fr">
     <a href="/page/new-year/2025.html" class="fake_advertisement" id="new_year">
@@ -203,6 +205,16 @@ if (at_outdex) {
     index_mp.parentNode.insertBefore(party_zone, index_mp)
   },55);
 }
+// start the dvd logo somewhere random,
+// but canonically plausible.
+setTimeout(function() {
+  var whereat = `-${rui(3600)}s`;
+	var dvdbox_x = document.getElementById("dvdbox-x");
+	dvdbox_x.style.animationDelay = whereat;
+  var dvdbox_y = document.getElementById("dvdbox-y");
+	dvdbox_y.style.animationDelay = whereat;
+  dvdbox_x.firstElementChild.style.display = 'unset';
+});
 </script>
 </div>
 </body>
