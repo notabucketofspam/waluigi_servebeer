@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Digital Circus - waluigi-servebeer.com</title>
+<style>
+h1{
+margin-bottom:0;
+}
+h2{
+margin-top:0;
+}
+.indentured {
+text-indent:4ch hanging;
+margin:5px 0px;
+}
+#proggers{
+max-width:300px;
+border:3px ridge #ddd;
+user-select:none;
+background-color:#fff;
+cursor:pointer;
+}
+	#pog-soda {
+		text-align: center;
+		border-top: 1px solid black;
+		background-color: #f7f7f7;
+		color: #fff;
+		font-weight: bold;
+	}
+
+h3 {
+	margin-bottom: 0;
+}
+</style>
+</head>
+<body>
+<div class="sef lard">
+	<div class="lube lard" style="text-align:center;">
+		<h1>The Amazing Digital Circus</h1>
+		<h2>The Last Act</h2>
+	</div>
+	<div class="indentured">
+		The movie is pretty good, but it failed to answer everybody's number-one question...
+	</div>
+	<p style="font-weight:bold;text-indent:8ch;">
+		Who's paying the electric bill?
+	</p>
+	<div class="indentured">
+		This is the <em>exact</em> same problem that Cyberpunk had. There's some super-advanced 
+		Artificial Intelligence that's located in the middle of quite-literally nowhere. 
+		We, the audience, know who built it. We know why it was built. But we have no clue how
+		it's still running. 
+		Someone's gotta be paying to keep that lil' digital world alive. Electricity ain't free, y'know.
+	</div>
+	<div class="indentured">
+		It's pretty much every day that you see yet another headline complaining about 
+		how much juice it takes to run AI.
+		Surely it <em>can't</em> be the case that someone simply forgot to turn the 
+		"Digital Circus" model off. Right? That would
+		<em>never</em> happen, especially at an AI company, double-especially at 
+		<span style="font-variant:small-caps">an AI company that loves the clowns</span>.
+	</div>
+	
+	<div>
+		<h3>The Verdict</h3>
+		<div>7.8/10 too much power</div>
+	</div>
+	
+	<p><a href="/page/reviews/legit.html">Back To The Reviews</a></p>
+
+	<figure id="proggers">
+		<img alt="proggers" style="width:100%" src="/page/reviews/proggers.png"/>
+		<figcaption class="bubbly" id="pog-soda">
+			Of course! The ultimate evil in the world:<br/>gambling.
+		</figcaption>
+	</figure>
+
+</div>
+
+<script src="/js/everything.js"></script>
+<script>
+var gambling = {	
+	auxcord: null,
+	gainode: null,
+	soundbuffer: null,
+	async init() {
+		gambling.auxcord = new AudioContext();
+		gambling.gainode = new GainNode(gambling.auxcord, {gain:0.3});
+		gambling.gainode.connect(gambling.auxcord.destination);
+		const fname = 'SnapcubeShadow/the%20ultimate%20evil%20in%20the%20world%20-%20gambling';
+		var far = await fetch(`/page/soundboard/opodes/${fname}.opus`);
+		var bar = await far.arrayBuffer();
+		var dar = await gambling.auxcord.decodeAudioData(bar);
+		gambling.soundbuffer = dar;
+	},
+	pogsoda_onclick(ev) {
+		if (gambling.soundbuffer) {
+			const source = new AudioBufferSourceNode(gambling.auxcord, {buffer: gambling.soundbuffer});
+			source.connect(gambling.gainode);
+			source.start();
+		}
+	}
+};
+	gambling.init();
+document.getElementById('proggers').addEventListener('click', gambling.pogsoda_onclick);
+</script>
+</body>
+</html>
