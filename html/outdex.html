@@ -217,7 +217,7 @@ function dubiousLink(ev) {
 }
 
 function quit_more() {
-  alert("The door is closed.");
+  alert_II("The door is closed.");
   //prompt("Headin' back to Sydney, bruv?", "S\xED");
   location.assign("/");
   return;
@@ -261,7 +261,7 @@ function how_big() {
   var snide_comment = (how_wide<3||how_tall<3)?"that's a *small* plate you got there, bud!":
     (how_wide>18||how_tall>18)?"that's a *huge* plate you got there, my dude!":
     "that's an ok size for a plate.";
-  alert("your dinner plate is "+how_wide.toFixed(2)+'" wide and '+how_tall.toFixed(2)+'" tall. '+snide_comment);
+  alert_II("your dinner plate is "+how_wide.toFixed(2)+'" wide and '+how_tall.toFixed(2)+'" tall. '+snide_comment);
 }
 var kasa;
 async function stupid_meateater(ev) {

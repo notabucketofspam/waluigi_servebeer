@@ -40,13 +40,12 @@ q{font-family:cursive;}
 <script src="/js/everything.js"></script>
 <script>
 function thanks_chief(){
-  alert("Thanks, chief !!!");
-  if (at_outdex) {
-    location.hash = "/";
-    consume("/");
-  } else {
-    location.assign("/");
-  }
+  var dog = alert_II("Thanks, chief !!!");
+  if (dog) {
+    dog.addEventListener('close', function(){
+			goto_smart("/");
+    }, { once: true });
+  } else {}
 }
 </script>
 </body></html>

@@ -36,7 +36,7 @@ var cookizza_memes = [
   "I would have used your cookies, but the sun was in my eyes.",
   "This website deliberately violates the <abbr title=\"no it doesn't\">Geneva Convention</abbr>.",
   "This site used cookies before they were cool.",
-  "This site uses cookies that can only be cleared by emailing a $5 iTunes gift card to <a href=\"javascript:alert('this is a scam!!!')\">not.a.scam@waluigi-servebeer.com</a>",
+  "This site uses cookies that can only be cleared by emailing a $5 iTunes gift card to <a href=\"javascript:alert_II('this is a scam!!!')\">not.a.scam@waluigi-servebeer.com</a>",
   "This site corrupts its users' cookies for fun and profit.",
   "NetworkError: Connection failure due to HTTP 500",
   "<q>What is a cookie? A miserable little pile of secrets. But enough talk... Have at you!</q> &horbar; Dracula.com, probably",

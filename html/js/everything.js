@@ -82,9 +82,10 @@ function alert_II(msg){
   dog.innerHTML = msg;
   dog.insertAdjacentHTML('beforeend', `<button class="alert_II" onclick="this.parentElement.close()">ok</button>`);
   dog.classList.add("alert_II");
-  dog.onclose = ev=>ev.target.remove();
+  dog.addEventListener('close',function(){dog.remove();},{once:true});
   window.document.body.appendChild(dog);
   dog.showModal();
+  return dog;
 }
 Object.defineProperty(window, "at_outdex",{
   get(){
