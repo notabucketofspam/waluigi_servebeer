@@ -42,10 +42,21 @@ doggo doggo doggo doggo doggo doggo doggo doggo')">doggo</button>
 
 <p><img src="/wsbc_98.png"/></p>
 
+<div>
+  <input type="text" id="numbers_input" oninput="num2eng(this.value)" />
+  <div id="the_numbers"></div>
+</div>
+
 </div>
 
 <script src="/js/everything.js"></script>
+<script src="/js/english-lang.js"></script>
 <script>
+var the_numbers = document.getElementById('the_numbers');
+
+function num2eng(nuh){
+  the_numbers.innerText = EnglishLang.num(nuh);
+}
 
 </script>
 </body>
