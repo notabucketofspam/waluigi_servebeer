@@ -161,6 +161,18 @@ async function mellonTime() {
 }
 setTimeout(mellonTime, 0);
 
+setTimeout(function(){
+  if (window.location.pathname.includes('/page/bargain-bin/')){
+    let insertable = 
+      `<div style="position:absolute;top:0;left:47%;">
+        <a href="/page/bargain-bin/poverty.html" class="bro">
+          Return to the<br/>Bargain Bin
+        </a>
+      </div>`;
+      document.documentElement.insertAdjacentHTML('beforeend', insertable);
+  }
+});
+
 /*
     STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE
 */
