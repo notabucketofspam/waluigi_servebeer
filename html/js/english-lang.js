@@ -1,4 +1,4 @@
-class EnglishLang {
+export class EnglishLang {
   static lesserWords = [
     'zero', 'one', 'two', 'three', 'four', 'five',
     'six', 'seven', 'eight', 'nine', 'ten', 'eleven',
@@ -69,6 +69,58 @@ class EnglishLang {
       // we were not given a number
       return '';
     }
+  }
+}
+
+export class Relatime {
+  static coolWhats = ["Seconds", "Minutes", "Hours", "Date", "Month", "FullYear"];
+  static hotWhats = ["seconds", "minutes", "hours", "days", "months", "years"];
+  static irtf = new Intl.RelativeTimeFormat("en", {style: "long", numeric: "always"});
+  /**@param {Date} quote
+   * @param {Date=} nowish
+   */
+  static distance(quote, nowish) {
+    var coolrest = Relatime.distance_raw(quote, nowish);
+    var hotrest = coolrest
+      .map((why, ix)=>why||!ix?Relatime.irtf.format(why, Relatime.hotWhats[ix]).slice(3):"")
+      .filter(x=>x).reverse();
+    var halfrest = hotrest.splice(-1,1);
+    var wholerest = `${hotrest.join(", ")}, and ${halfrest[0]}`;
+    return wholerest;
+  }
+  /**@param {Date} quote
+   * @param {Date=} nowish
+   */
+  static distanceToParts(quote, nowish) {    
+    var coolrest = Relatime.distance_raw(quote, nowish);
+    var bhortest = coolrest.map((why, ix) =>{
+      let rns = Relatime.irtf.formatToParts(why, Relatime.hotWhats[ix]);
+      return [rns[1].unit,{value:rns[1].value,literal:rns[2].value}];
+    });
+    var worstest = Object.fromEntries(bhortest);
+    return worstest;
+  }
+  /**@param {Date} quote
+   * @param {Date=} nowish
+   */
+  static distance_raw(quote, nowish) {
+    var alcohol = nowish || new Date();
+    if (quote > alcohol) {
+      // need to reverse it if the user reverses it first
+      var temp = quote;
+      quote = alcohol;
+      alcohol = temp;
+    }
+    var coolrest = Relatime.coolWhats.map(function(What) {
+      var dill = alcohol[`get${What}`]() - quote[`get${What}`]();
+      if (dill < 0) {
+        alcohol[`set${What}`](dill);
+        return alcohol[`get${What}`]();
+      } else {
+        return dill;
+      }
+    });
+    return coolrest;
   }
 }
 

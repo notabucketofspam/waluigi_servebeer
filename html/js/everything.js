@@ -139,6 +139,28 @@ function get_storage(){
   .catch(console.error);
 }
 
+async function mellonTime() {
+  if (typeof EnglishLang === 'undefined') {
+    var {EnglishLang, Relatime} = await import('/js/english-lang.js');
+    window.EnglishLang = EnglishLang;
+    window.Relatime = Relatime;
+  }
+	let mellons = document.getElementsByClassName('mellon');
+	if (mellons.length) {
+		let mellon = mellons[0];
+    let rightnow = new Date();
+    let distime = Relatime.distanceToParts(new Date("2017-11-01T00:00:00Z"), rightnow);
+      
+    let inside_melon = `Celebrating 
+    ${EnglishLang.num(distime.year.value)} 
+    (${distime.year.value}) ${distime.year.literal} !!!
+    <br>2017&mdash;${rightnow.getFullYear()}`;
+
+    mellon.innerHTML = inside_melon;
+  }
+}
+setTimeout(mellonTime, 0);
+
 /*
     STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE
 */

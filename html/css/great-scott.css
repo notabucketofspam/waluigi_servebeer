@@ -832,6 +832,7 @@ body>hr,body>main hr {
   max-width:fit-content;
   text-decoration:none;
   position:relative;
+  display:inline-block;
 }
 .mellon:hover {
   background-color:#ff00ff;
