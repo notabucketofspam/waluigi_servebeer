@@ -19,14 +19,11 @@ async function universal_almonds(event: PointerEvent) {
   event.preventDefault();
   const url = link.href;
   await consume_II(url);
-  window.history.pushState({}, '', url);
 }
 document.addEventListener('click', universal_almonds);
 
 window.addEventListener('popstate', async function(ev) {
-  if (ev.state !== null) {
-    await consume_II(ev.state);
-  }
+	await consume_II(window.location.pathname);
 });
 
 /** YOU KNOW I LOVE THE TUBA */
@@ -77,8 +74,7 @@ export async function consume_II(url: string) {
 				lastModified.innerText = lmHeader;
       }
 			// update the url bar
-      // window.history.pushState(url, '', url);
-      // window.history.replaceState(url, '', url);
+      window.history.replaceState(url, '', url);
 
       (window as any).mellonTime();
 
@@ -109,7 +105,7 @@ function executeScripts(container: HTMLElement) {
 }
 
 // actually do the loading
-if (window.location.pathname !== '/chef.html') {
+if (window.location.pathname === '/chef.html') {
   let chef_pathname = sessionStorage.getItem('chef_pathname');
   consume_II(chef_pathname ?? '/');
 }

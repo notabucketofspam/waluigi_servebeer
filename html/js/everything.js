@@ -124,12 +124,11 @@ function goto_smart(url){
 
 function get_permaspam() {
   const permaspam = localStorage.getItem('permaspam');
-  return permaspam !== '0';
+  return permaspam === '1';
 }
 if (get_permaspam() && window.location.pathname !== '/chef.html') {
   sessionStorage.setItem('chef_pathname', window.location.pathname);
-  // window.location.assign('/chef.html');
-	// window.history.replaceState({}, '', '/chef.html');
+  window.location.assign('/chef.html');
 }
 
 var some_json = response=>response.status<400&&response.json();
