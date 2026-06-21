@@ -87,6 +87,7 @@ export async function consume_II(url: string) {
   }
 }
 Object.defineProperty(window, 'consume_II', {value: consume_II});
+
 /** thanks gemini */
 function executeScripts(container: HTMLElement) {
   const scripts = container.querySelectorAll('script');
@@ -104,14 +105,7 @@ function executeScripts(container: HTMLElement) {
   });
 }
 
-// actually do the loading
-if (window.location.pathname === '/chef.html') {
-  let chef_pathname = sessionStorage.getItem('chef_pathname');
-  consume_II(chef_pathname ?? '/');
-}
-
 // scrolling yeah
-// This fires the moment the user clicks refresh, closes the tab, or switches apps
 document.addEventListener('visibilitychange', function() {
   if (document.visibilityState === 'hidden') {
     sessionStorage.setItem('savedScrollY', String(window.scrollY));
@@ -127,3 +121,10 @@ function restoreScrollPosition() {
     sessionStorage.removeItem('savedScrollY');
   }
 }
+
+// actually do the loading
+if (window.location.pathname === '/chef.html') {
+  let chef_pathname = sessionStorage.getItem('chef_pathname');
+  consume_II(chef_pathname ?? '/');
+}
+
