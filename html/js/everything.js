@@ -50,10 +50,11 @@ function move_party(ev){
   }
 }
 var breadstick = /^\/outdex.html/;
-if (breadstick.test(location.pathname)){
-  burgmenu.addEventListener("beforetoggle", move_party);
-} else {
-  burgmenu.insertAdjacentHTML("beforeend", 
+setTimeout(function(){
+  if (window.at_outdex){
+    burgmenu.addEventListener("beforetoggle", move_party);
+  } else {
+    burgmenu.insertAdjacentHTML("beforeend", 
 `<div style="text-align:center;font-family:monospace;">
 This is where we put the party stuff. You need to<br><br>
 <div id="outdexportal" style="float:none;margin:auto;">
@@ -66,7 +67,8 @@ This is where we put the party stuff. You need to<br><br>
 </div><br>
 to bring the party with you.
 </div>`);
-}
+  }
+});
 
 /*
     MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF    MORE STUFF
@@ -92,6 +94,11 @@ Object.defineProperty(window, "at_outdex",{
     return Boolean(document.getElementById("this_is_outdex"));
   }
 });
+Object.defineProperty(window, "at_chef", {
+  get() {
+    return Boolean(document.getElementById("actually_chef"));
+  }
+});
 function popsize(win, hin){
   return `popup,width=${win},height=${hin},left=${(window.screen.availWidth - win)/2},top=${(window.screen.availHeight - hin)/2}`;
 }
@@ -104,12 +111,25 @@ function xfsub() {
   }
 }
 function goto_smart(url){
+  if (at_chef) {
+    window.consume_II(url);
+  } else
   if (at_outdex) {
     location.hash = url;
     consume(url);
   } else {
     location.assign(url);
   }
+}
+
+function get_permaspam() {
+  const permaspam = localStorage.getItem('permaspam');
+  return permaspam !== '0';
+}
+if (get_permaspam() && window.location.pathname !== '/chef.html') {
+  sessionStorage.setItem('chef_pathname', window.location.pathname);
+  // window.location.assign('/chef.html');
+	// window.history.replaceState({}, '', '/chef.html');
 }
 
 var some_json = response=>response.status<400&&response.json();
@@ -160,6 +180,7 @@ async function mellonTime() {
   }
 }
 setTimeout(mellonTime, 0);
+window.mellonTime = mellonTime;
 
 setTimeout(function(){
   if (window.location.pathname.includes('/page/bargain-bin/')){

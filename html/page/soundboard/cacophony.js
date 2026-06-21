@@ -4,6 +4,8 @@
 var auxcord = new AudioContext();
 var gainode = new GainNode(auxcord, {gain:0.2});
 gainode.connect(auxcord.destination);
+window.auxcord = auxcord;
+window.gainode = gainode;
 
 // -------- clockbot things
 var clockbot = document.getElementById("clockbot_enable");

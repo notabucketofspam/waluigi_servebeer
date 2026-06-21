@@ -1,6 +1,4 @@
 #!/bin/sh
-mkdir -p html/dist
-cp dist/*.js html/dist/
 find html | sed s/"html\/"/"\/"/g | sed ':a;N;$!ba;s/\/desktop.ini\n//g' | sed -n -e "2,65535p" > html/page/sitemap/sitemap.txt
 rsync --compress --times --quiet --recursive --include-from="./rsync-include.txt" --exclude="*" --delete -e "ssh -i \"./notkeys/key\"" ./ ubuntu@193.122.154.50:/httpd/waluigi_servebeer/
 echo "Done"

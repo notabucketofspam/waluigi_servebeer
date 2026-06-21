@@ -1,15 +1,17 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
+  "compileOnSave": true,
   "compilerOptions": {
     // File Layout
-     "rootDir": "./src",
-     "outDir": "./dist",
-
+    "rootDir": "./src",
+    "outDir": "./html/dist",
+    "tsBuildInfoFile": "./html/dist/tsconfig.tsbuildinfo",
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "esnext",
     "target": "esnext",
     "types": [],
+    "lib": ["DOM", "ESNext"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
