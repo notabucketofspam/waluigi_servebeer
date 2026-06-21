@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="waluigi_servebeer.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
