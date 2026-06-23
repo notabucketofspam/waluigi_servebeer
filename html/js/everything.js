@@ -226,7 +226,10 @@ async function chefinate() {
       document.body.insertAdjacentHTML('beforeend', 
         `<meta id="this_is_outdex"/><meta id="actually_chef"/>`);
       // insert the gubbins
-      mimog.appendChild(document.head);
+			const style_maybe = document.head.querySelector('style');
+      if (style_maybe) {
+        mimog.appendChild(style_maybe);
+      }
       const forbiddenFruits = [
         'burger', 'burgmenu', 'mimog',
         'index_mp','burgmenu_mp',
