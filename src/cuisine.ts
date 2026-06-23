@@ -7,8 +7,8 @@
 /** similar to dubiousLink */
 export async function universal_almonds(ev: PointerEvent) {
   const link = (ev.target as Element)?.closest('a');
-  if (!link || link.origin !== window.location.origin || link.target === '_blank'
-    || !link.href) {
+  if (!link || link.origin !== window.location.origin || link.target === '_blank' || !link.href 
+    || link.pathname === '/page/ancient-monuments/precisely-aligned-to-celestial-events.html') {
     // we dont do this to strangers' pages, or to homeless pages
     return;
   }
