@@ -3,13 +3,21 @@
 var allsounds_datalist = document.getElementById('all-sounds');
 var allsounds = document.getElementById('all-sounds');
 /**@type{string[]} */
-var flatbread = window.board.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou));
-if (0)
-flatbread.forEach(slice => {
-  var option = document.createElement('option');
-  option.value = slice;
-  allsounds_datalist.appendChild(option);
-});
+var flatbread = [];
+
+function generate_flatbread() {
+  if (!flatbread.length) {
+    flatbread = window?.board?.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou)) || [];
+		window.requestAnimationFrame(generate_flatbread);
+  }
+}
+
+function init_realest() {
+  generate_flatbread();
+  generate_booba();
+}
+setTimeout(init_realest);
+
 var soundsearch = document.getElementById('soundsearch');
 soundsearch.addEventListener('input', ev => {
   try {
@@ -123,14 +131,6 @@ document.getElementById('where_help').addEventListener('click', ev => {
   greatanswer.style.left = ev.x + 'px';
   greatanswer.style.top = ev.y + 'px';
 });
-// ------- some stuff for controlling the local volume
-whichStorage["soundboard_gain"] ??= 0.20;
-somevolume.value = whichStorage["soundboard_gain"];
-setgain(whichStorage["soundboard_gain"]);
-function setgain(g) {
-  gainode.gain.setValueAtTime(g, 0);
-  whichStorage["soundboard_gain"] = g;
-}
 // --------- some more ui things at the top
 whichStorage["soundboard_clockbot_enable"] ??= 0;
 clockbot_enable.checked = Number(whichStorage["soundboard_clockbot_enable"]);
@@ -144,14 +144,21 @@ whichStorage["soundboard_clockbot_channel_id"] ??= "";
 channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
 
 // =========== put the actual soundboards on the page
-board.forEach(key => make_group(booba, key));
+function generate_booba() {
+	var booba_real = document.getElementById('booba');
+  if (!booba_real.childElementCount) {
+    window?.board?.forEach(key => make_group(booba, key));
+		show_booba_size();
+		window.requestAnimationFrame(generate_booba);
+  }
+}
 
 // --------- show the total number of sounds at the top of the page
-setTimeout(function() {
+function show_booba_size() {
   var pisces = document.querySelectorAll('div#booba button').length;
   var toppo = document.querySelector('div#topstuff>h2');
   toppo.innerText = pisces + 'pcs set';
-});
+}
 
 // --------- where is the boat?
 function dudeWheresMyBoat() {

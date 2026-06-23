@@ -1,7 +1,8 @@
 {
+  "exclude": ["html/src/***"],
   // Visit https://aka.ms/tsconfig to read more about this file
   "compileOnSave": true,
-  "compilerOptions": {
+  "compilerOptions": {  
     // File Layout
     "rootDir": "./src",
     "outDir": "./html/dist",

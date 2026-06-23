@@ -7,6 +7,15 @@ gainode.connect(auxcord.destination);
 window.auxcord = auxcord;
 window.gainode = gainode;
 
+// ------- some stuff for controlling the local volume
+whichStorage["soundboard_gain"] ??= 0.20;
+somevolume.value = whichStorage["soundboard_gain"];
+setgain(whichStorage["soundboard_gain"]);
+function setgain(g) {
+  gainode.gain.setValueAtTime(g, 0);
+  whichStorage["soundboard_gain"] = g;
+}
+
 // -------- clockbot things
 var clockbot = document.getElementById("clockbot_enable");
 var channel_id = document.getElementById("channel_id");

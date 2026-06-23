@@ -1,13 +1,16 @@
 /*
     INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML    INSERT HTML
 */
-if (!document.getElementById('welcome_steak'))
+// if (!document.getElementById('welcome_steak'))
 document.body.insertAdjacentHTML("afterbegin",
 `<a href="/" id="return_steak" class="steak_corner">
 Return to the 
 <img src="/resource/steak8.gif" alt="STEAK" class="steak_gif">
 zone
 </a>`);
+if (document.getElementById('welcome_steak')) {
+	document.getElementById('return_steak').setAttribute('hidden', '');
+}
 document.documentElement.insertAdjacentHTML("beforeend",
 `<footer>
 <hr/>
@@ -51,7 +54,7 @@ function move_party(ev){
 }
 var breadstick = /^\/outdex.html/;
 setTimeout(function(){
-  if (window.at_outdex){
+  if (true){
     burgmenu.addEventListener("beforetoggle", move_party);
   } else {
     burgmenu.insertAdjacentHTML("beforeend", 
@@ -181,17 +184,80 @@ async function mellonTime() {
 setTimeout(mellonTime, 0);
 window.mellonTime = mellonTime;
 
-setTimeout(function(){
-  if (window.location.pathname.includes('/page/bargain-bin/')){
-    let insertable = 
-      `<div style="position:absolute;top:0;left:47%;">
+function checkIfBargainBin() {
+  let removable_guy = document.getElementById('return_to_bargain_bin');
+  if (window.location.pathname.includes('/page/bargain-bin/')
+  && window.location.pathname !== '/page/bargain-bin/other-links.html') {
+    // we are in the bargain bin, but we are near the bottom 10% of the income bracket
+    if (!removable_guy) {
+      let insertable =
+        `<div id="return_to_bargain_bin" style="position:absolute;top:0;left:47%;">
         <a href="/page/bargain-bin/poverty.html" class="bro">
           Return to the<br/>Bargain Bin
         </a>
       </div>`;
       document.documentElement.insertAdjacentHTML('beforeend', insertable);
+    }
+  } else {
+    // we are out of the bargain bin
+		if (removable_guy) {
+      removable_guy.remove();
+    }
   }
-});
+}
+window.checkIfBargainBin = checkIfBargainBin;
+setTimeout(checkIfBargainBin, 0);
+
+async function chefinate() {
+	if (typeof consume_II === 'undefined') {
+		const {consume_II, universal_almonds} = await import('/dist/cuisine.js');
+		window.consume_II = consume_II;
+    window.universal_almonds = universal_almonds;
+
+    document.addEventListener('click', universal_almonds);
+
+		let mimog  = document.getElementById('mimog');
+    if (!mimog) {
+      // please don't hurt my dog
+      mimog = document.createElement('div');
+      mimog.id = 'mimog';
+      document.body.appendChild(mimog);
+      // insert some important metadata
+      document.body.insertAdjacentHTML('beforeend', 
+        `<meta id="this_is_outdex"/><meta id="actually_chef"/>`);
+      // insert the gubbins
+      mimog.appendChild(document.head);
+      const forbiddenFruits = [
+        'burger', 'burgmenu', 'mimog',
+        'index_mp','burgmenu_mp',
+        'this_is_outdex','actually_chef',
+				'welcome_steak', 'return_steak'
+      ];
+			const chonkers = Array.from(document.body.children);
+			for (const chonk of chonkers) {
+				if (chonk !== mimog && !forbiddenFruits.includes(chonk.id)) {
+					mimog.appendChild(chonk);
+				}
+			}
+      if (!document.querySelector('script[src="/js/party-og.js"]')) {
+        // no party? we gotta fix that.
+				const respirator = await fetch('/js/party-og.js');
+				const partyText = await respirator.text();
+				const newParty = document.createElement('script');
+				newParty.setAttribute('src', '/js/party-og.js');
+				newParty.textContent = partyText;
+        document.body.appendChild(newParty);
+      } else {
+        // party exists
+      }
+    } else {
+      // mimog is real
+    }
+  } else {
+    // consume_II is already defined
+  }
+}
+setTimeout(chefinate, 0);
 
 /*
     STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE

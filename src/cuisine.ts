@@ -1,41 +1,50 @@
 /** the next generation of outdex */
-const mimog = document.getElementById('mimog') as HTMLDivElement;
-const dogParser = new DOMParser();
 
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+// if ('scrollRestoration' in history) {
+//   history.scrollRestoration = 'manual';
+// }
 
 /** similar to dubiousLink */
-async function universal_almonds(event: PointerEvent) {
-  const link = (event.target as Element)?.closest('a');
-
+export async function universal_almonds(ev: PointerEvent) {
+  const link = (ev.target as Element)?.closest('a');
   if (!link || link.origin !== window.location.origin || link.target === '_blank'
     || !link.href) {
     // we dont do this to strangers' pages, or to homeless pages
     return;
   }
 
-  event.preventDefault();
+  // console.log(ev);
+  ev.preventDefault();
+	// ev.stopPropagation();
   const url = link.href;
   await consume_II(url);
+	window.history.pushState(null, '', url);
+  window.scroll(0, 0);
+  const windog = window as any;
+  windog.checkIfBargainBin();
 }
-document.addEventListener('click', universal_almonds);
+// document.addEventListener('click', universal_almonds);
 
 window.addEventListener('popstate', async function(ev) {
-	await consume_II(window.location.pathname);
+	// console.log(ev);
+	await consume_II((ev.target as Window)?.location.pathname);
 });
 
 /** YOU KNOW I LOVE THE TUBA */
 export async function consume_II(url: string) {
   try {
-    // stash the burgmenu if it exists, 
+    const mimog = document.getElementById('mimog') as HTMLDivElement;
+    const dogParser = new DOMParser();
+    const windog = window as any;
+    // stash the burgmenu if it exists
     const burgmenu = document.getElementById("burgmenu");
-    burgmenu && burgmenu.hidePopover();
+    if (burgmenu) {
+      burgmenu.hidePopover();
+    }
     const bmp = document.getElementById("burgmenu_mp");
     const party_zone = document.getElementById("party_zone");
-    if (party_zone) {
-      burgmenu && burgmenu.insertBefore(party_zone, bmp);
+    if (party_zone && burgmenu && bmp) {
+      burgmenu.insertBefore(party_zone, bmp);
     }
 
     if (url === '/chef.html'){
@@ -43,12 +52,10 @@ export async function consume_II(url: string) {
       url = '/';
     }
 
-    const response = await fetch(url, {
-      headers: {'X-SPA-Request': 'true'}
-    });
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error('Page not found');
+      // throw new Error('Page not found');
     }
 
     const htmlString = await response.text();
@@ -61,7 +68,7 @@ export async function consume_II(url: string) {
 
     if (doc.documentElement) {
       mimog.innerHTML = doc.documentElement.innerHTML;
-      executeScripts(mimog);
+      await executeScripts(mimog);
       // show steak or nah
 			const returnSteak = document.getElementById('return_steak');
 			if (returnSteak) {
@@ -74,11 +81,11 @@ export async function consume_II(url: string) {
 				lastModified.innerText = lmHeader;
       }
 			// update the url bar
-      window.history.replaceState(url, '', url);
+      // window.history.replaceState(url, '', url);
 
-      (window as any).mellonTime();
+      windog.mellonTime();
 
-      restoreScrollPosition();
+      // restoreScrollPosition();
     }
 
   } catch (error) {
@@ -89,28 +96,42 @@ export async function consume_II(url: string) {
 Object.defineProperty(window, 'consume_II', {value: consume_II});
 
 /** thanks gemini */
-function executeScripts(container: HTMLElement) {
+async function executeScripts(container: HTMLElement) {
   const scripts = container.querySelectorAll('script');
 
-  scripts.forEach(oldScript => {
+  for (const oldScript of scripts) {
+		if (oldScript.src === "/js/everything.js" || oldScript.src === "/js/party-og.js") {
+      continue;
+    }
+
     const newScript = document.createElement('script');
 
     Array.from(oldScript.attributes).forEach(attr => {
-      if (!(attr.name === 'src' && (attr.value === "/js/everything.js" || attr.value === "/js/party-og.js")))
-      newScript.setAttribute(attr.name, attr.value);
+      if (!(attr.name === 'src' &&
+      (attr.value === "/js/everything.js" || attr.value === "/js/party-og.js"))) {
+        newScript.setAttribute(attr.name, attr.value);
+      }
     });
 
+    // copy the actual script content
+   //  if (newScript.src){
+			// const response = await fetch(newScript.src);
+			// const responseText = await response.text();
+			// newScript.textContent = responseText;
+   //  } else {
+			// newScript.textContent = oldScript.textContent;
+   //  }
     newScript.textContent = oldScript.textContent;
     oldScript.parentNode?.replaceChild(newScript, oldScript);
-  });
+  }
 }
 
 // scrolling yeah
-document.addEventListener('visibilitychange', function() {
-  if (document.visibilityState === 'hidden') {
-    sessionStorage.setItem('savedScrollY', String(window.scrollY));
-  }
-});
+// document.addEventListener('visibilitychange', function() {
+//   if (document.visibilityState === 'hidden') {
+//     sessionStorage.setItem('savedScrollY', String(window.scrollY));
+//   }
+// });
 function restoreScrollPosition() {
   const savedY = sessionStorage.getItem('savedScrollY');
   if (savedY !== null) {
