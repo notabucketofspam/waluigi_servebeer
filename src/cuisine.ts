@@ -27,7 +27,9 @@ export async function universal_almonds(ev: PointerEvent) {
 
 window.addEventListener('popstate', async function(ev) {
 	// console.log(ev);
-	await consume_II((ev.target as Window)?.location.pathname);
+  await consume_II((ev.target as Window)?.location.pathname);
+  const windog = window as any;
+  windog.checkIfBargainBin();
 });
 
 /** YOU KNOW I LOVE THE TUBA */
