@@ -8,7 +8,8 @@
 export async function universal_almonds(ev: PointerEvent) {
   const link = (ev.target as Element)?.closest('a');
   if (!link || link.origin !== window.location.origin || link.target === '_blank' || !link.href 
-    || link.pathname === '/page/ancient-monuments/precisely-aligned-to-celestial-events.html') {
+    || link.pathname === '/page/ancient-monuments/precisely-aligned-to-celestial-events.html'
+    || link.closest('ul[id="sitemap"]') ) {
     // we dont do this to strangers' pages, or to homeless pages
     return;
   }
