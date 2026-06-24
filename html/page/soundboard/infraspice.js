@@ -5,6 +5,20 @@ var allsounds = document.getElementById('all-sounds');
 /**@type{string[]} */
 var flatbread = [];
 
+var real_n = 0;
+/**this is a debug function and I would not recommend it.*/
+function playAll() {
+  if (flatbread[real_n]) {
+    // keep playing sounds until we're out of stock
+    beep(flatbread[real_n]);
+    real_n++;
+    requestAnimationFrame(playAll);
+  } else {
+    // reset that counter
+		real_n = 0;
+  }
+}
+
 function generate_flatbread() {
   if (!flatbread.length) {
     flatbread = window?.board?.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou)) || [];
@@ -15,6 +29,7 @@ function generate_flatbread() {
 function init_realest() {
   generate_flatbread();
   generate_booba();
+  dudeWheresMyBoat();
 }
 setTimeout(init_realest);
 
@@ -173,7 +188,6 @@ function dudeWheresMyBoat() {
   captains.style.display = navboat_shown === 'none' ? 'contents' : 'none';
   hidemyboat();
 }
-dudeWheresMyBoat();
 function hidemyboat() {
   var navboat = document.getElementById('navboat');
   var boat_hider = document.getElementById('boat_hider');
