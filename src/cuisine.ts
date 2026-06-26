@@ -1,9 +1,5 @@
 /** the next generation of outdex */
 
-// if ('scrollRestoration' in history) {
-//   history.scrollRestoration = 'manual';
-// }
-
 /** similar to dubiousLink */
 export async function universal_almonds(ev: PointerEvent) {
   const link = (ev.target as Element)?.closest('a');
@@ -16,7 +12,6 @@ export async function universal_almonds(ev: PointerEvent) {
 
   // console.log(ev);
   ev.preventDefault();
-	// ev.stopPropagation();
   const url = link.href;
   await consume_II(url);
 	window.history.pushState(null, '', url);
@@ -24,7 +19,6 @@ export async function universal_almonds(ev: PointerEvent) {
   const windog = window as any;
   windog.checkIfBargainBin();
 }
-// document.addEventListener('click', universal_almonds);
 
 window.addEventListener('popstate', async function(ev) {
 	// console.log(ev);
@@ -83,12 +77,9 @@ export async function consume_II(url: string) {
 			if (lastModified && lmHeader) {
 				lastModified.innerText = lmHeader;
       }
-			// update the url bar
-      // window.history.replaceState(url, '', url);
 
       windog.mellonTime();
 
-      // restoreScrollPosition();
     }
 
   } catch (error) {
@@ -117,32 +108,8 @@ async function executeScripts(container: HTMLElement) {
     });
 
     // copy the actual script content
-   //  if (newScript.src){
-			// const response = await fetch(newScript.src);
-			// const responseText = await response.text();
-			// newScript.textContent = responseText;
-   //  } else {
-			// newScript.textContent = oldScript.textContent;
-   //  }
     newScript.textContent = oldScript.textContent;
     oldScript.parentNode?.replaceChild(newScript, oldScript);
-  }
-}
-
-// scrolling yeah
-// document.addEventListener('visibilitychange', function() {
-//   if (document.visibilityState === 'hidden') {
-//     sessionStorage.setItem('savedScrollY', String(window.scrollY));
-//   }
-// });
-function restoreScrollPosition() {
-  const savedY = sessionStorage.getItem('savedScrollY');
-  if (savedY !== null) {
-    window.scrollTo({
-      top: parseInt(savedY, 10),
-      behavior: 'instant'
-    });
-    sessionStorage.removeItem('savedScrollY');
   }
 }
 
