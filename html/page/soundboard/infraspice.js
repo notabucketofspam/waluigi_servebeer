@@ -29,9 +29,19 @@ function generate_flatbread() {
 function init_realest() {
   generate_flatbread();
   generate_booba();
-  dudeWheresMyBoat();
+  actual_init_boat();
+  generate_writeLovelist();
 }
 setTimeout(init_realest);
+
+function actual_init_boat() {
+	var booba_real = document.getElementById('booba');
+	if (window.board && booba_real && booba_real.childElementCount) {
+		dudeWheresMyBoat();
+	} else {
+		window.requestAnimationFrame(actual_init_boat);
+  }
+}
 
 var soundsearch = document.getElementById('soundsearch');
 soundsearch.addEventListener('input', ev => {
@@ -210,11 +220,19 @@ function hidemyboat() {
 // =========================== and its repurcussions ===========================
 var kiddos = document.getElementById('love_children');
 kiddos.addEventListener("dragover", ev => ev.preventDefault());
-kiddos.addEventListener("drop", lovelist_drop);
 
-write_lovelist();
+function generate_writeLovelist(){
+  var booba_real = document.getElementById('booba');
+	if (window.lovelist instanceof Array && typeof write_lovelist === 'function'
+    && booba_real && booba_real?.childElementCount) {
+    // we can actually do this now
+    write_lovelist();
+  } else {
+    // try again later
+		window.requestAnimationFrame(generate_writeLovelist);
+  }
+}
 
-setTimeout(setup_open);
 var has_username = false;
 check_online(dat => {
   if (dat.username) {

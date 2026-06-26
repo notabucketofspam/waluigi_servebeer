@@ -109,6 +109,7 @@ textarea.lovesec {
 	display: inline-block;
 	margin: 4px 0px;
 	font-size: 2rem;
+	/*overflow-x:clip;*/
 }
 
 :where(details,div).sb > summary {
@@ -286,4 +287,8 @@ div#all-sounds>span {
 	div#all-sounds > span:hover {
 		background-color: #eee;
 	}
+
+#booba {
+	overflow-x:clip;
+}
 

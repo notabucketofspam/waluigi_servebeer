@@ -85,6 +85,7 @@ function update_shelf(someshelf){
 }
 
 var lovelist = JSON.parse(whichStorage.getItem('soundboard_lovelist'))??[];
+window.lovelist = lovelist;
 
 function insert_love(fname){
   if (fname.startsWith('<')){
@@ -241,7 +242,7 @@ function lovelist_drop(ev){
     save_lovelist();
   }catch(eee){cog(eee);}
 }
-
+document.getElementById('love_children').addEventListener("drop", lovelist_drop);
 
 function reset_love(){
   document.getElementById('love_children').replaceChildren();
@@ -277,8 +278,18 @@ function setup_open(){
   }
 }
 function record_open(ev){
-  whichStorage["soundboard_open"] = JSON.stringify(Array.from(document.querySelectorAll("details.sb[open]"),el=>el.id));
+  whichStorage["soundboard_open"] = JSON.stringify(Array.from(document.querySelectorAll("details.sb[open]"), el => el.id));
 }
+
+function actual_init_open(){
+  var booba_real = document.getElementById('booba');
+  if (window.board && booba_real && booba_real.childElementCount) {
+    setup_open();
+  } else {
+		window.requestAnimationFrame(actual_init_open);
+  }
+}
+setTimeout(actual_init_open);
 
 // ----- network functions
 function post_love(){
