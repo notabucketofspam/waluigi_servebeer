@@ -171,7 +171,7 @@ async function mellonTime() {
 	if (mellons.length) {
 		let mellon = mellons[0];
     let rightnow = new Date();
-    let distime = Relatime.distanceToParts(new Date("2017-11-01T00:00:00Z"), rightnow);
+    let distime = Relatime.distanceToParts(new Date("2017-01-01T00:00:00Z"), rightnow);
       
     let inside_melon = `Celebrating 
     ${EnglishLang.num(distime.year.value)} 
