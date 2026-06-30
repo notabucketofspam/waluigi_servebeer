@@ -1,4 +1,8 @@
 <Solution>
+  <Project Path="aaaaa.esproj">
+    <Build />
+    <Deploy />
+  </Project>
   <Project Path="basic/basic.esproj">
     <Build />
     <Deploy />
