@@ -2,6 +2,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Vite Server",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "console": "externalTerminal"
+    },
+    {
       "name": "Launch Program",
       "type": "node",
       "request": "launch",
@@ -11,6 +23,12 @@
         "<node_internals>/**"
       ],
       "console": "externalTerminal"
+    },
+    {
+      "name": "Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost/windows/"
     }
   ],
   "compounds": []

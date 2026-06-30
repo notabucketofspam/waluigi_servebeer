@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Window Manager</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+<style>
+  body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #008080;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+  }
+  .window:not(.active) .title-bar { background: #808080; }
+  .taskbar {
+      position: fixed; bottom: 0; left: 0; width: 100%; height: 35px;
+      display: flex; align-items: center; padding: 2px 4px;
+      background: #c0c0c0; border-top: 2px solid #dfdfdf;
+      box-shadow: inset 0 1px 0 #fff; box-sizing: border-box; z-index: 99999;
+  }
+  .taskbar-tasks { display: flex; gap: 4px; flex-grow: 1; }
+  .taskbar-tasks button.active {
+      box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+      background: #e4e4e4;
+  }
+  #user-desktop{
+    user-select:none;
+  }
+</style>
+</head>
+<body>
+	<div id="user-desktop">
+		<div class="window active" id="chat-window" style="position: absolute; left: 50px; top: 50px; width: 400px; z-index: 1;">
+			<div class="title-bar" id="header-chat-window">
+				<div class="title-bar-text">LiveKit Video Chat</div>
+				<div class="title-bar-controls">
+					<button aria-label="Minimize" class="btn-minimize" data-target="chat-window"></button>
+					<button aria-label="Close"></button>
+				</div>
+			</div>
+			<div class="window-body" style="background: #000; padding: 2px;">
+				<video id="remote-video" autoplay playsinline style="width: 100%; height: auto; display: block;"></video>
+				<audio id="remote-audio" autoplay></audio>
+			</div>
+		</div>
+
+   
+
+		<div class="window" id="connect-window" style="position: absolute; left: 500px; top: 50px; width: 200px; z-index: 1;">
+		<div class="title-bar" id="header-connect-window">
+			<div class="title-bar-text">Connect</div>
+			<div class="title-bar-controls">
+				<button aria-label="Minimize" class="btn-minimize" data-target="connect-window"></button>
+				<button aria-label="Close"></button>
+			</div>
+		</div>
+		<div class="window-body" style="background: #000; padding: 2px;">
+			<button id="connect-btn">Connect</button>
+			
+				<button id="disconnect-btn">Disconnect</button>
+		</div>
+</div>
+
+		<div class="taskbar">
+			<button style="font-weight: bold; margin-right: 10px; padding: 2px 6px;">Start</button>
+			<div class="taskbar-tasks">
+				<button class="task-btn active" id="task-btn-chat-window" data-target="chat-window">LiveKit Chat</button>
+				<button class="task-btn active" id="task-btn-connect-window" data-target="connect-window">Connect</button>
+			</div>
+		</div>
+	</div>
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/dwm.ts"></script>
+</body>
+</html>

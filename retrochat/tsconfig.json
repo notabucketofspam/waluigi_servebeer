@@ -1,9 +1,10 @@
 {
-  "include": [ "./src/*" ],
+  "include": [ "./src/*","vite.config.ts" ],
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
+
+    //"rootDir": "./src",
     "outDir": "./dist",
     "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
 
@@ -17,6 +18,10 @@
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
+    "moduleResolution": "bundler",
+    "paths": {
+
+    },
 
     // Other Outputs
     "sourceMap": true,
