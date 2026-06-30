@@ -2,4 +2,10 @@
   <PropertyGroup>
     <ShouldRunNpmAudit>false</ShouldRunNpmAudit>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="basic\**" />
+    <None Remove="retrochat\**" />
+    <TypeScriptConfiguration Remove="basic\**" />
+    <TypeScriptConfiguration Remove="retrochat\**" />
+  </ItemGroup>
 </Project>
