@@ -2,3 +2,4 @@ node_modules
 obj
 package-lock.json
 tsconfig.tsbuildinfo
+dist/***
