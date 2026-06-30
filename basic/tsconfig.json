@@ -5,8 +5,8 @@
   "compilerOptions": {  
     // File Layout
     "rootDir": "./src",
-    "outDir": "./html/dist",
-    "tsBuildInfoFile": "./html/dist/tsconfig.tsbuildinfo",
+    "outDir": "../html/dist",
+    "tsBuildInfoFile": "../html/dist/tsconfig.tsbuildinfo",
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "esnext",
