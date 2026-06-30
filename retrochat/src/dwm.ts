@@ -42,6 +42,24 @@ document.querySelectorAll('.window').forEach(win => {
   });
 });
 
+document.addEventListener('mousedown', (e) => {
+	try{
+    let element = e.target as HTMLElement | null;
+    if (element && element.closest('.window')) {
+
+    } else {
+			// Clicked outside any window, remove focus from all
+			document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
+			document.querySelectorAll('.task-btn').forEach(b => b.classList.remove('active'));
+			activeWindowId = null;
+    }
+	} catch (error) {
+    if (error instanceof Error) {
+      console.error('Error handling mousedown:', error.message);
+    }
+  }
+});
+
 // --- Dragging Logic ---
 document.querySelectorAll('.title-bar').forEach(header => {
   header.addEventListener('mousedown', (e) => {

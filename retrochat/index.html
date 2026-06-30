@@ -40,7 +40,7 @@
 					<button aria-label="Close"></button>
 				</div>
 			</div>
-			<div class="window-body" style="background: #000; padding: 2px;">
+			<div class="window-body" style="padding: 2px;">
 				<video id="remote-video" autoplay playsinline style="width: 100%; height: auto; display: block;"></video>
 				<audio id="remote-audio" autoplay></audio>
 			</div>
@@ -56,18 +56,32 @@
 				<button aria-label="Close"></button>
 			</div>
 		</div>
-		<div class="window-body" style="background: #000; padding: 2px;">
+		<div class="window-body" style="padding: 2px;">
 			<button id="connect-btn">Connect</button>
 			
 				<button id="disconnect-btn">Disconnect</button>
 		</div>
-</div>
+		</div>
+
+		<div id="participants-window" class="window" style="position: absolute; left: 750px; top: 50px; width: 200px;height:200px; z-index: 1;">
+			<div class="title-bar" id="header-participants-window">
+				<div class="title-bar-text">Participants</div>
+				<div class="title-bar-controls">
+					<button aria-label="Minimize" class="btn-minimize" data-target="participants-window"></button>
+					<button aria-label="Close"></button>
+				</div>
+			</div>
+			<div class="window-body" style="padding: 2px;">
+				<ul id="participant-list" style="list-style-type: none; padding: 0; margin: 0;"></ul>
+			</div>
+		</div>
 
 		<div class="taskbar">
 			<button style="font-weight: bold; margin-right: 10px; padding: 2px 6px;">Start</button>
 			<div class="taskbar-tasks">
 				<button class="task-btn active" id="task-btn-chat-window" data-target="chat-window">LiveKit Chat</button>
 				<button class="task-btn active" id="task-btn-connect-window" data-target="connect-window">Connect</button>
+				<button class="task-btn active" id="task-btn-participants-window" data-target="participants-window">Participants</button>
 			</div>
 		</div>
 	</div>
