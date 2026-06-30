@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="waluigi_servebeer.esproj">
+  <Project Path="basic/waluigi_servebeer.esproj">
     <Build />
     <Deploy />
   </Project>
