@@ -3,4 +3,8 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="retrochat/retrochat.esproj">
+    <Build />
+    <Deploy />
+  </Project>
 </Solution>
