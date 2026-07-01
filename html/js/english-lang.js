@@ -104,15 +104,16 @@ export class Relatime {
    * @param {Date=} nowish
    */
   static distance_raw(quote, nowish) {
-    var alcohol = nowish || new Date();
-    if (quote > alcohol) {
+		var quote_II = new Date(quote);
+    var alcohol = nowish ? new Date(nowish) : new Date();
+    if (quote_II > alcohol) {
       // need to reverse it if the user reverses it first
-      var temp = quote;
-      quote = alcohol;
+      var temp = quote_II;
+      quote_II = alcohol;
       alcohol = temp;
     }
     var coolrest = Relatime.coolWhats.map(function(What) {
-      var dill = alcohol[`get${What}`]() - quote[`get${What}`]();
+      var dill = alcohol[`get${What}`]() - quote_II[`get${What}`]();
       if (dill < 0) {
         alcohol[`set${What}`](dill);
         return alcohol[`get${What}`]();
