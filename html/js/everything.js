@@ -176,7 +176,7 @@ async function mellonTime() {
     let inside_melon = `Celebrating 
     ${EnglishLang.num(distime.year.value)} 
     (${distime.year.value}) ${distime.year.literal} !!!
-    <br>2017&mdash;${rightnow.getFullYear()}`;
+    <br>2017&mdash;${(new Date()).getFullYear()}`;
 
     mellon.innerHTML = inside_melon;
   }
