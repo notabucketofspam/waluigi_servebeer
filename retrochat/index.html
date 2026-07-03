@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Window Manager</title>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Retro Window Manager</title>
     <link rel="stylesheet" href="https://unpkg.com/98.css">
 <style>
+footer {
+	display:none;
+}
   body {
+	padding-top:0px;
       margin: 0;
       overflow: hidden;
       background-color: #008080;
@@ -28,11 +32,18 @@
   #user-desktop{
     user-select:none;
   }
+	div.window{
+		position:absolute;
+		z-index:1;
+	}
+	div.window-body {
+		padding: 2px;
+	}
 </style>
 </head>
 <body>
 	<div id="user-desktop">
-		<div class="window active" id="chat-window" style="position: absolute; left: 50px; top: 50px; width: 400px; z-index: 1;">
+		<!--<div class="window active" id="chat-window" style="position: absolute; left: 50px; top: 50px; width: 400px; z-index: 1;">
 			<div class="title-bar" id="header-chat-window">
 				<div class="title-bar-text">LiveKit Video Chat</div>
 				<div class="title-bar-controls">
@@ -44,11 +55,11 @@
 				<video id="remote-video" autoplay playsinline style="width: 100%; height: auto; display: block;"></video>
 				<audio id="remote-audio" autoplay></audio>
 			</div>
-		</div>
+		</div>-->
 
    
 
-		<div class="window" id="connect-window" style="position: absolute; left: 500px; top: 50px; width: 200px; z-index: 1;">
+		<!--<div class="window" id="connect-window" style="position: absolute; left: 500px; top: 50px; width: 200px; z-index: 1;">
 		<div class="title-bar" id="header-connect-window">
 			<div class="title-bar-text">Connect</div>
 			<div class="title-bar-controls">
@@ -61,9 +72,9 @@
 			
 				<button id="disconnect-btn">Disconnect</button>
 		</div>
-		</div>
+		</div>-->
 
-		<div id="participants-window" class="window" style="position: absolute; left: 750px; top: 50px; width: 200px;height:200px; z-index: 1;">
+		<!--<div id="participants-window" class="window" style="position: absolute; left: 750px; top: 50px; width: 200px;height:200px; z-index: 1;">
 			<div class="title-bar" id="header-participants-window">
 				<div class="title-bar-text">Participants</div>
 				<div class="title-bar-controls">
@@ -74,18 +85,19 @@
 			<div class="window-body" style="padding: 2px;">
 				<ul id="participant-list" style="list-style-type: none; padding: 0; margin: 0;"></ul>
 			</div>
-		</div>
+		</div>-->
 
 		<div class="taskbar">
 			<button style="font-weight: bold; margin-right: 10px; padding: 2px 6px;">Start</button>
 			<div class="taskbar-tasks">
-				<button class="task-btn active" id="task-btn-chat-window" data-target="chat-window">LiveKit Chat</button>
-				<button class="task-btn active" id="task-btn-connect-window" data-target="connect-window">Connect</button>
-				<button class="task-btn active" id="task-btn-participants-window" data-target="participants-window">Participants</button>
+				<!--<button class="task-btn active" id="task-btn-chat-window" data-target="chat-window">LiveKit Chat</button>-->
+				<!--<button class="task-btn" id="task-btn-connect-window" data-target="connect-window">Connect</button>-->
+				<!--<button class="task-btn" id="task-btn-participants-window" data-target="participants-window">Participants</button>-->
 			</div>
 		</div>
 	</div>
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/dwm.ts"></script>
+	<script src="/js/everything.js"></script>
 </body>
 </html>
