@@ -88,6 +88,19 @@ export async function consume_II(url: string) {
 			partyOgJs.remove();
 		}
 
+    // get rid of stuff that may be left in the head
+		const spareStyleSheets = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]'));
+		for (const link of spareStyleSheets) {
+			if (link.tagName === 'LINK' && link.getAttribute('href') !== '/css/great-scott.css') {
+				link.remove();
+      }
+		}
+		const spareScripts = Array.from(document.head.querySelectorAll('script[src]'));
+		for (const script of spareScripts) {
+      // there shouldnt be any WSBC-like scripts in the head anyways
+      script.remove();
+    }
+
     if (doc.documentElement) {
       mimog.innerHTML = doc.documentElement.innerHTML;
       await executeScripts(mimog);
