@@ -9,7 +9,8 @@
     "dev": "vite",
     "build": "tsc",
     "preview": "vite preview",
-    "vbuild": "vite build"
+    "vbuild": "vite build",
+    "vwatch": "vite build --watch"
   },
   "keywords": [],
   "author": "",
