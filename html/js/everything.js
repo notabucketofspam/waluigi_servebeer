@@ -246,11 +246,8 @@ async function chefinate() {
 			}
       if (!document.querySelector('script[src="/js/party-og.js"]')) {
         // no party? we gotta fix that.
-				const respirator = await fetch('/js/party-og.js');
-				const partyText = await respirator.text();
 				const newParty = document.createElement('script');
 				newParty.setAttribute('src', '/js/party-og.js');
-				newParty.textContent = partyText;
         document.body.appendChild(newParty);
       } else {
         // party exists
