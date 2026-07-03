@@ -88,16 +88,23 @@ footer {
 		</div>-->
 
 		<div class="taskbar">
-			<button style="font-weight: bold; margin-right: 10px; padding: 2px 6px;">Start</button>
-			<div class="taskbar-tasks">
-				<!--<button class="task-btn active" id="task-btn-chat-window" data-target="chat-window">LiveKit Chat</button>-->
-				<!--<button class="task-btn" id="task-btn-connect-window" data-target="connect-window">Connect</button>-->
-				<!--<button class="task-btn" id="task-btn-participants-window" data-target="participants-window">Participants</button>-->
-			</div>
+			<button id="start-btn" style="font-weight: bold; margin-right: 10px; padding: 2px 6px;">Start</button>
+			<div class="taskbar-tasks" id="taskbar-tasks">
+				</div>
 		</div>
 	</div>
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/dwm.ts"></script>
 	<script src="/js/everything.js"></script>
+	<script>
+function pleaseInitializeMeCapn() {
+	if (typeof NowThatsWhatICallInitialization === 'function') {
+		NowThatsWhatICallInitialization();
+	} else {
+		requestAnimationFrame(pleaseInitializeMeCapn);
+	}
+}
+		pleaseInitializeMeCapn();
+	</script>
 </body>
 </html>

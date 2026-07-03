@@ -8,6 +8,9 @@ let dragTarget: HTMLElement | null = null;
 let offsetX = 0;
 let offsetY = 0;
 
+let currentOffsetX = 100;
+let currentOffsetY = 100;
+
 // --- Core Focus Function ---
 function focusWindow(windowId: string) {
   const win = document.getElementById(windowId);
@@ -41,25 +44,6 @@ function focusWindowHandler(ev: MouseEvent) {
   }
 }
 
-document.addEventListener('mousedown', document_mousedownHandler);
-function document_mousedownHandler(ev: MouseEvent) {
-  try {
-    let element = ev.target as HTMLElement | null;
-    if (element && element.closest('.window')) {
-
-    } else {
-      // Clicked outside any window, remove focus from all
-      document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
-      document.querySelectorAll('.task-btn').forEach(b => b.classList.remove('active'));
-      activeWindowId = null;
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error('Error handling mousedown:', error.message);
-    }
-  }
-}
-
 // --- Dragging Logic ---
 
 function titlebarMousedownHandler(ev: MouseEvent) {
@@ -79,27 +63,6 @@ function titlebarMousedownHandler(ev: MouseEvent) {
   offsetX = ev.clientX - rect.left;
   offsetY = ev.clientY - rect.top;
 }
-
-function document_mousemoveHandler(ev: MouseEvent) {
-  if (!(ev instanceof MouseEvent)) return;
-  if (!isDragging || !dragTarget) return;
-
-  ev.preventDefault(); // Prevent accidental text highlighting
-
-  const newX = ev.clientX - offsetX;
-  const newY = ev.clientY - offsetY;
-
-  dragTarget.style.left = `${newX}px`;
-  dragTarget.style.top = `${newY}px`;
-}
-document.addEventListener('mousemove', document_mousemoveHandler);
-
-function document_mouseupHandler(ev: MouseEvent) {
-  if (!(ev instanceof MouseEvent)) return;
-  isDragging = false;
-  dragTarget = null;  
-}
-document.addEventListener('mouseup', document_mouseupHandler);
 
 // --- Taskbar Button Logic ---
 function taskButtonHandler(ev: MouseEvent) {
@@ -171,13 +134,17 @@ function createWindow(id: string, title: string, content: string) {
 	const win = document.createElement('div');
   win.classList.add('window');
   win.id = id;
+	win.style.left = `${currentOffsetX}px`;
+	win.style.top = `${currentOffsetY}px`;
+	currentOffsetX += 30; // Increment for next window
+	currentOffsetY += 30; // Increment for next window
+	win.style.zIndex = highestZ.toString();
 	win.addEventListener('mousedown', focusWindowHandler);
 
 	const titlebar = document.createElement('div');
 	titlebar.classList.add('title-bar');
 	titlebar.id = `header-${id}`;
 	titlebar.addEventListener('mousedown', titlebarMousedownHandler);
-
 
 	const titleText = document.createElement('div');
 	titleText.classList.add('title-bar-text');
@@ -216,8 +183,64 @@ function createWindow(id: string, title: string, content: string) {
 	taskBtn.addEventListener('click', taskButtonHandler);
 
 	document.getElementById('taskbar-tasks')?.appendChild(taskBtn);
+
+	focusWindow(id);
 }
 
-
+// =================================================================
 // all of the document handlers
+
+function document_mousedownHandler(ev: MouseEvent) {
+  try {
+    let element = ev.target as HTMLElement | null;
+    if (element && element.closest('.window')) {
+
+    } else {
+      // Clicked outside any window, remove focus from all
+      document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
+      document.querySelectorAll('.task-btn').forEach(b => b.classList.remove('active'));
+      activeWindowId = null;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Error handling mousedown:', error.message);
+    }
+  }
+}
+
+function document_mousemoveHandler(ev: MouseEvent) {
+  if (!(ev instanceof MouseEvent)) return;
+  if (!isDragging || !dragTarget) return;
+
+  ev.preventDefault(); // Prevent accidental text highlighting
+
+  const newX = ev.clientX - offsetX;
+  const newY = ev.clientY - offsetY;
+
+  dragTarget.style.left = `${newX}px`;
+  dragTarget.style.top = `${newY}px`;
+}
+
+function document_mouseupHandler(ev: MouseEvent) {
+  if (!(ev instanceof MouseEvent)) return;
+  isDragging = false;
+  dragTarget = null;
+}
+
+document.addEventListener('mousedown', document_mousedownHandler);
+document.addEventListener('mousemove', document_mousemoveHandler);
+document.addEventListener('mouseup', document_mouseupHandler);
+
+// =================================================================
+// some more junk
+
+function createWindowHandler(ev: MouseEvent) {
+	let thedate = Date.now();
+	createWindow(`window${thedate}`, `Window ${thedate}`, `<p>This is the content of the window: ${thedate}</p>`);
+}
+/**This is the collection of junk that may be lost whenever we navigate away from this page*/
+function NowThatsWhatICallInitialization() {
+  document.getElementById('start-btn')?.addEventListener('click', createWindowHandler);
+}
+Object.defineProperty(window, 'NowThatsWhatICallInitialization', {value: NowThatsWhatICallInitialization});
 
