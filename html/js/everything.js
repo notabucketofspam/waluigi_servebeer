@@ -116,6 +116,7 @@ function xfsub() {
 function goto_smart(url){
   if (at_chef) {
     window.consume_II(url);
+    window.postconsume_II(url);
   } else
   if (at_outdex) {
     location.hash = url;
@@ -210,9 +211,10 @@ setTimeout(checkIfBargainBin, 0);
 
 async function chefinate() {
 	if (typeof consume_II === 'undefined') {
-		const {consume_II, universal_almonds} = await import('/dist/cuisine.js');
+		const {consume_II, universal_almonds, postconsume_II} = await import('/dist/cuisine.js');
 		window.consume_II = consume_II;
     window.universal_almonds = universal_almonds;
+    window.postconsume_II = postconsume_II;
 
     document.addEventListener('click', universal_almonds);
 

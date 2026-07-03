@@ -14,11 +14,16 @@ export async function universal_almonds(ev: PointerEvent) {
   ev.preventDefault();
   const url = link.href;
   await consume_II(url);
-	window.history.pushState(null, '', url);
+	postconsume_II(url);
+}
+/** what we do after we consume_II */
+export function postconsume_II(url:string) {
+  window.history.pushState(null, '', url);
   window.scroll(0, 0);
   const windog = window as any;
   windog.checkIfBargainBin();
 }
+Object.defineProperty(window, 'postconsume_II', {value: postconsume_II});
 
 window.addEventListener('popstate', async function(ev) {
 	// console.log(ev);
