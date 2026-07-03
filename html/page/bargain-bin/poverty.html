@@ -83,6 +83,7 @@
     <div>
       <a class="bro" href="/livekit/" style="text-align:center"><div>LiveKit</div><div>Chat</div></a>
     </div>
+    <!--
     <div>
       <a class="bro" href="/chat/" style="text-align:center">
         <div>LiveKit Chat</div>
@@ -96,6 +97,7 @@
       </a>
     </div>
     
+    -->
   </div>
 </div>
 <script src="/js/everything.js"></script>
@@ -104,13 +106,16 @@ if (rui(2)) the_u.innerText = "u";
 if (whichStorage.getItem("username"))
   username_maybe.innerText = whichStorage.getItem("username");
 
-if (window.at_outdex){
+if (1) {
   document.getElementById('gototheburger')?.setAttribute('hidden','');
   document.getElementById('thatshimofficer')?.setAttribute('style','min-height:5.5in;');
   setTimeout(()=>{
-    document.getElementById('burgmenu')?.togglePopover();
-    document.getElementById('burgmenu')?.togglePopover();
-  },100);
+    var party_zone = document.getElementById("party_zone");
+    var index_mp = document.getElementById("index_mp");
+    if (party_zone && index_mp) {
+      index_mp.parentNode.insertBefore(party_zone, index_mp);
+    }
+  },255);
 }
 </script>
 </body>
