@@ -226,12 +226,15 @@ footer hr{
     <li>
       rgb
       <ul>
-        <li>red</li>
+        <li>red
           <ul><li>$1</li></ul>
-        <li>green</li>
+        </li>          
+        <li>green
           <ul><li>$1</li></ul>
-        <li>blue</li>
+        </li>          
+        <li>blue
           <ul><li>$1</li></ul>
+        </li>
       </ul>
     </li>
     <li>
@@ -256,15 +259,19 @@ footer hr{
 </div>
 <script src="/js/everything.js"></script>
 <script>
+var gains = document.getElementById("gains");
+var threads = document.getElementById("threads");
+var gib_ram = document.getElementById("gib_ram");
 whichStorage["gain"] ??= 0.10;
-gains.value = whichStorage["gain"];
-set_gain(whichStorage["gain"]);
+gains.value = ((whichStorage["gain"] && whichStorage["gain"] !== 'null') ? whichStorage["gain"] : 0.10);
+set_gain(gains.valueAsNumber);
 gains.addEventListener("input",(ev)=>{
   set_gain(ev.target.valueAsNumber);
   gainer.gain.linearRampToValueAtTime(ev.target.valueAsNumber,auxcord.currentTime+Math.random());
   whichStorage["gain"] = ev.target.valueAsNumber;
 });
 function set_gain(k){
+  var gaining = document.getElementById("gaining");
   gaining.innerText = (10*Math.log10(k)).toLocaleString(undefined,{
     minimumSignificantDigits:3,
     maximumSignificantDigits:3,
@@ -273,13 +280,13 @@ function set_gain(k){
 }
 threads.innerText = navigator.hardwareConcurrency;
 gib_ram.innerText = navigator.deviceMemory;
-var gup;
 (async function() {
-  gup = await navigator.gpu.requestAdapter();
-  gpu.innerText = (gup.info.vendor + " " + gup.info.architecture).toUpperCase();
+  var gup = await navigator.gpu.requestAdapter();
+	var gpu = document.getElementById("gpu");
+  gpu.innerText = (gup?.info?.vendor + " " + gup?.info?.architecture).toUpperCase();
 })();
 var auxcord = new AudioContext();
-var gainer = new GainNode(auxcord, {gain:whichStorage["gain"]});
+var gainer = new GainNode(auxcord, {gain:(gains.value ? gains.valueAsNumber : 0.10)});
 var absn;
 var detuner = ()=> (20+80*Math.random())*(rui(2)?1:-1);
 fetch("/page/hardware-store/wii_shop_loop.mp3")
@@ -295,6 +302,7 @@ fetch("/page/hardware-store/wii_shop_loop.mp3")
     absn.connect(gainer);
     gainer.connect(auxcord.destination);
     absn.start();
+    var soundcard = document.getElementById("soundcard");
     soundcard.innerText = freedom_bucks.format(absn?.detune?.value/100);
 });
 // wii shop theme is 148bpm (405ms/beat)
@@ -317,13 +325,15 @@ music_bad = setInterval(()=>{
 var freedom_bucks = new Intl.NumberFormat("en-us",{style:"currency",currency:"USD",currencyDisplay:"narrowSymbol"});
 var money_bad;
 money_bad = setInterval(()=>{
-  if(typeof soundcard !== "undefined")
+  var soundcard = document.getElementById("soundcard");
+  if(typeof soundcard !== "undefined" && soundcard !== null && typeof soundcard.innerText !== "undefined")
     soundcard.innerText = freedom_bucks.format(absn?.detune?.value/100);
   else
     clearInterval(money_bad);
 }, 60000/37);
 setTimeout(()=>{
   if (auxcord.state === "suspended") {
+    var troubled_music = document.getElementById("troubled_music");
     document.addEventListener("click", ()=>{
       auxcord.resume();
       troubled_music.innerText = "There ya go.";
