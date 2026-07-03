@@ -63,10 +63,30 @@ export async function consume_II(url: string) {
     const htmlString = await response.text();
     const doc = dogParser.parseFromString(htmlString, 'text/html');
 
-    const newTitle = doc.querySelector('title')?.textContent;
-    if (newTitle) {
-      document.title = newTitle;
+    // remove a whole bunch of duplicates
+		const titleElement = doc.querySelector('title');
+    if (titleElement) {
+      if (titleElement.textContent) {
+        document.title = titleElement.textContent;
+      }
+      titleElement.remove();
     }
+    const greatScott = doc.querySelector('link[rel="stylesheet"][type="text/css"][href="/css/great-scott.css"]');
+		if (greatScott) {
+			greatScott.remove();
+    }
+    const metaComp = doc.querySelector('meta[name="viewport"][content="width=device-width, user-scalable=yes"');
+    if (metaComp) {
+      metaComp.remove();
+    }
+		const everythingJs = doc.querySelector('script[src="/js/everything.js"]');
+		if (everythingJs) {
+			everythingJs.remove();
+		}
+		const partyOgJs = doc.querySelector('script[src="/js/party-og.js"]');
+		if (partyOgJs) {
+			partyOgJs.remove();
+		}
 
     if (doc.documentElement) {
       mimog.innerHTML = doc.documentElement.innerHTML;
