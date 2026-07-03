@@ -1,6 +1,6 @@
 // --- Global State ---
 let highestZ = 1;
-let activeWindowId: string | null = 'chat-window';
+let activeWindowId: string | null = null;
 
 // --- Dragging Variables ---
 let isDragging = false;
@@ -34,115 +34,190 @@ function focusWindow(windowId: string) {
 }
 
 // --- Window Click Listeners (For Focus) ---
-document.querySelectorAll('.window').forEach(win => {
-  win.addEventListener('mousedown', () => {
-    if (activeWindowId !== win.id) {
-      focusWindow(win.id);
-    }
-  });
-});
+function focusWindowHandler(ev: MouseEvent) {
+	let win = ev.currentTarget as HTMLElement;
+  if (activeWindowId !== win.id) {
+    focusWindow(win.id);
+  }
+}
 
-document.addEventListener('mousedown', (e) => {
-	try{
-    let element = e.target as HTMLElement | null;
+document.addEventListener('mousedown', document_mousedownHandler);
+function document_mousedownHandler(ev: MouseEvent) {
+  try {
+    let element = ev.target as HTMLElement | null;
     if (element && element.closest('.window')) {
 
     } else {
-			// Clicked outside any window, remove focus from all
-			document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
-			document.querySelectorAll('.task-btn').forEach(b => b.classList.remove('active'));
-			activeWindowId = null;
+      // Clicked outside any window, remove focus from all
+      document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
+      document.querySelectorAll('.task-btn').forEach(b => b.classList.remove('active'));
+      activeWindowId = null;
     }
-	} catch (error) {
+  } catch (error) {
     if (error instanceof Error) {
       console.error('Error handling mousedown:', error.message);
     }
   }
-});
+}
 
 // --- Dragging Logic ---
-document.querySelectorAll('.title-bar').forEach(header => {
-  header.addEventListener('mousedown', (e) => {
 
-    if (!(e instanceof MouseEvent)) return;
-        // Don't trigger drag if they clicked a control button (like minimize)
-    if (e.target instanceof HTMLElement && e.target.closest('.title-bar-controls')) return;
+function titlebarMousedownHandler(ev: MouseEvent) {
+	let header = ev.currentTarget as HTMLElement;
 
-    isDragging = true;
-    dragTarget = header.closest('.window') as HTMLElement | null; // Get the parent window
+  if (!(ev instanceof MouseEvent)) return;
+  // Don't trigger drag if they clicked a control button (like minimize)
+  if (ev.target instanceof HTMLElement && ev.target.closest('.title-bar-controls')) return;
 
-    if (!dragTarget) return;
+  isDragging = true;
+  dragTarget = header.closest('.window') as HTMLElement | null; // Get the parent window
 
-    // Calculate where inside the title bar the user clicked
-    const rect = dragTarget.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-  });
-});
+  if (!dragTarget) return;
 
-document.addEventListener('mousemove', (e) => {
-  if (!(e instanceof MouseEvent)) return;
+  // Calculate where inside the title bar the user clicked
+  const rect = dragTarget.getBoundingClientRect();
+  offsetX = ev.clientX - rect.left;
+  offsetY = ev.clientY - rect.top;
+}
+
+function document_mousemoveHandler(ev: MouseEvent) {
+  if (!(ev instanceof MouseEvent)) return;
   if (!isDragging || !dragTarget) return;
 
-  e.preventDefault(); // Prevent accidental text highlighting
+  ev.preventDefault(); // Prevent accidental text highlighting
 
-  const newX = e.clientX - offsetX;
-  const newY = e.clientY - offsetY;
+  const newX = ev.clientX - offsetX;
+  const newY = ev.clientY - offsetY;
 
   dragTarget.style.left = `${newX}px`;
   dragTarget.style.top = `${newY}px`;
-});
+}
+document.addEventListener('mousemove', document_mousemoveHandler);
 
-document.addEventListener('mouseup', (e) => {
-  if (!(e instanceof MouseEvent)) return;
+function document_mouseupHandler(ev: MouseEvent) {
+  if (!(ev instanceof MouseEvent)) return;
   isDragging = false;
-  dragTarget = null;
-});
+  dragTarget = null;  
+}
+document.addEventListener('mouseup', document_mouseupHandler);
 
 // --- Taskbar Button Logic ---
-document.querySelectorAll('.task-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const targetId = btn.getAttribute('data-target');
-		if (!targetId) return;
+function taskButtonHandler(ev: MouseEvent) {
+  const btn = ev.currentTarget as HTMLElement;
+  const targetId = btn.getAttribute('data-target');
+  if (!targetId) return;
 
-    const win = document.getElementById(targetId) as HTMLElement | null;
+  const win = document.getElementById(targetId) as HTMLElement | null;
 
-    if (!win) return;
+  if (!win) return;
 
-    if (win.style.display === 'none') {
-      // Minimized -> Show & Focus
-      focusWindow(targetId);
-    } else if (activeWindowId !== targetId) {
-      // Visible but behind -> Focus
-      focusWindow(targetId);
-    } else {
-      // Visible & Active -> Minimize
-      win.style.display = 'none';
-      btn.classList.remove('active');
-      if (activeWindowId === targetId) {
-        activeWindowId = null;
-      }
-    }
-  });
-});
-
-// --- Minimize Button Logic ---
-document.querySelectorAll('.btn-minimize').forEach(minBtn => {
-  minBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Stop the mousedown from firing and focusing the window
-
-    const targetId = minBtn.getAttribute('data-target');
-    if (!targetId) return;
-    const win = document.getElementById(targetId) as HTMLElement | null;
-    const taskBtn = document.getElementById(`task-btn-${targetId}`) as HTMLElement | null;
-
-    if (!win) return;
-
+  if (win.style.display === 'none') {
+    // Minimized -> Show & Focus
+    focusWindow(targetId);
+  } else if (activeWindowId !== targetId) {
+    // Visible but behind -> Focus
+    focusWindow(targetId);
+  } else {
+    // Visible & Active -> Minimize
     win.style.display = 'none';
-    if (taskBtn) taskBtn.classList.remove('active');
-
+    btn.classList.remove('active');
     if (activeWindowId === targetId) {
       activeWindowId = null;
     }
-  });
-});
+  }
+}
+
+// --- Minimize Button Logic ---
+function minimizeWindow(windowId: string) {
+  const win = document.getElementById(windowId) as HTMLElement | null;
+  const taskBtn = document.getElementById(`task-btn-${windowId}`) as HTMLElement | null;
+
+  if (!win) return;
+  win.style.display = 'none';
+  if (taskBtn) taskBtn.classList.remove('active');
+
+  if (activeWindowId === windowId) {
+    activeWindowId = null;
+  }
+}
+function minimizeWindowHandler(ev: MouseEvent) {
+	ev.stopPropagation(); // Stop the mousedown from firing and focusing the window
+	const targetId = (ev.target as HTMLElement).getAttribute('data-target');
+	if (!targetId) return;
+	minimizeWindow(targetId);
+}
+
+// --- Close Button Logic ---
+function closeWindow(windowId: string) {
+  const win = document.getElementById(windowId) as HTMLElement | null;
+  if (!win) return;
+  win.remove();
+  const taskBtn = document.getElementById(`task-btn-${windowId}`) as HTMLElement | null;
+  if (taskBtn) taskBtn.remove();
+  if (activeWindowId === windowId) {
+    activeWindowId = null;
+  }
+}
+function closeWindowHandler(ev: MouseEvent) {
+	ev.stopPropagation(); // Stop the mousedown from firing and focusing the window
+	const targetId = (ev.target as HTMLElement).getAttribute('data-target');
+	if (!targetId) return;
+	closeWindow(targetId);
+}
+
+// gotta create a new window
+function createWindow(id: string, title: string, content: string) {
+	// create the window element
+	const win = document.createElement('div');
+  win.classList.add('window');
+  win.id = id;
+	win.addEventListener('mousedown', focusWindowHandler);
+
+	const titlebar = document.createElement('div');
+	titlebar.classList.add('title-bar');
+	titlebar.id = `header-${id}`;
+	titlebar.addEventListener('mousedown', titlebarMousedownHandler);
+
+
+	const titleText = document.createElement('div');
+	titleText.classList.add('title-bar-text');
+	titleText.innerText = title;
+	const controls = document.createElement('div');
+	controls.classList.add('title-bar-controls');
+	const btnMinimize = document.createElement('button');
+	btnMinimize.setAttribute('aria-label', 'Minimize');
+	btnMinimize.classList.add('btn-minimize');
+	btnMinimize.setAttribute('data-target', id);
+	btnMinimize.addEventListener('click', minimizeWindowHandler);
+
+	const btnClose = document.createElement('button');
+	btnClose.setAttribute('aria-label', 'Close');
+	btnClose.classList.add('btn-close');
+	btnClose.setAttribute('data-target', id);
+	btnClose.addEventListener('click', closeWindowHandler);
+
+  controls.appendChild(btnMinimize);
+	controls.appendChild(btnClose);
+	titlebar.appendChild(titleText);
+	titlebar.appendChild(controls);
+	win.appendChild(titlebar);
+	const winbody = document.createElement('div');
+	winbody.classList.add('window-body');
+  	winbody.innerHTML = content;
+	win.appendChild(winbody);
+  document.getElementById('user-desktop')?.appendChild(win);
+
+	// create the taskbar button
+	const taskBtn = document.createElement('button');
+	taskBtn.classList.add('task-btn');
+	taskBtn.id = `task-btn-${id}`;
+	taskBtn.setAttribute('data-target', id);
+	taskBtn.innerText = title;
+	taskBtn.addEventListener('click', taskButtonHandler);
+
+	document.getElementById('taskbar-tasks')?.appendChild(taskBtn);
+}
+
+
+// all of the document handlers
+
