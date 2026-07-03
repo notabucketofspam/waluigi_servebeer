@@ -84,6 +84,7 @@ function taskButtonHandler(ev: MouseEvent) {
     // Visible & Active -> Minimize
     win.style.display = 'none';
     btn.classList.remove('active');
+		minimizeWindow(targetId);
     if (activeWindowId === targetId) {
       activeWindowId = null;
     }
@@ -193,7 +194,7 @@ function createWindow(id: string, title: string, content: string) {
 function document_mousedownHandler(ev: MouseEvent) {
   try {
     let element = ev.target as HTMLElement | null;
-    if (element && element.closest('.window')) {
+    if (element && (element.closest('.window') || element.closest('.task-btn'))) {
 
     } else {
       // Clicked outside any window, remove focus from all
