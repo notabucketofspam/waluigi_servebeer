@@ -170,11 +170,16 @@ channel_id.value = whichStorage["soundboard_clockbot_channel_id"];
 
 // =========== put the actual soundboards on the page
 function generate_booba() {
-	var booba_real = document.getElementById('booba');
-  if (!booba_real.childElementCount) {
-    window?.board?.forEach(key => make_group(booba, key));
-		show_booba_size();
+	if (typeof make_group !== 'function' && typeof board !== 'object') {
+    // gotta wait for the other js files to load in
 		window.requestAnimationFrame(generate_booba);
+  } else {
+	  var booba_real = document.getElementById('booba');
+    if (!booba_real.childElementCount) {
+      window?.board?.forEach(key => make_group(booba, key));
+		  show_booba_size();
+		  window.requestAnimationFrame(generate_booba);
+    }
   }
 }
 
