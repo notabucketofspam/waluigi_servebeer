@@ -258,5 +258,8 @@ async function init_stylesheet() {
   }`;
 
   // 4. Inject the scoped styles into the document head
-  document.head.appendChild(scopedStyle);
+  const virtualDesktop = document.getElementById('virtual-desktop-real');
+  if (virtualDesktop) {
+    virtualDesktop.appendChild(scopedStyle);
+  }
 }

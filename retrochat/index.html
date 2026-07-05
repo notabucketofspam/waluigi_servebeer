@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
 <meta name="viewport" content="width=device-width, user-scalable=yes"/>
 <title>Windows 97 - waluigi-servebeer.com</title>
-    <!--<link rel="stylesheet" href="https://unpkg.com/98.css">-->
 <style>
 footer {
 	display:none;
@@ -19,7 +18,7 @@ footer {
   }
   .window:not(.active) .title-bar { background: #808080; }
   .taskbar {
-      position: fixed; bottom: 0; left: 0; width: 100%; height: 35px;
+      position: fixed; bottom: 0; left: 0; width: 100%; height: 30px;
       display: flex; align-items: center; padding: 2px 4px;
       background: #c0c0c0; border-top: 2px solid #dfdfdf;
       box-shadow: inset 0 1px 0 #fff; box-sizing: border-box; z-index: 99999;
@@ -42,6 +41,7 @@ footer {
 </style>
 </head>
 <body>
+<div id="virtual-desktop-real">
 	<div id="user-desktop" class="retro-os">
 		<!--<div class="window active" id="chat-window" style="position: absolute; left: 50px; top: 50px; width: 400px; z-index: 1;">
 			<div class="title-bar" id="header-chat-window">
@@ -93,6 +93,7 @@ footer {
 				</div>
 		</div>
 	</div>
+</div>
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/dwm.ts"></script>
 	<script src="/js/everything.js"></script>
