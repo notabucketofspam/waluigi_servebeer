@@ -248,16 +248,10 @@ Object.defineProperty(window, 'NowThatsWhatICallInitialization', {value: NowThat
 
 import win98css from '98.css?raw';
 async function init_stylesheet() {
-	 // Import the 98.css stylesheet as a string
-  // 2. Create a <style> element in TypeScript
   const scopedStyle = document.createElement('style');
-
-  // 3. Wrap the entire 98.css stylesheet inside a native @scope rule
-  scopedStyle.textContent = `.retro-os { 
+  scopedStyle.textContent = `div#user-desktop.retro-os { 
     ${win98css} 
   }`;
-
-  // 4. Inject the scoped styles into the document head
   const virtualDesktop = document.getElementById('virtual-desktop-real');
   if (virtualDesktop) {
     virtualDesktop.appendChild(scopedStyle);
