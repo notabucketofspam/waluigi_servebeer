@@ -242,6 +242,21 @@ function createWindowHandler(ev: MouseEvent) {
 /**This is the collection of junk that may be lost whenever we navigate away from this page*/
 function NowThatsWhatICallInitialization() {
   document.getElementById('start-btn')?.addEventListener('click', createWindowHandler);
+	init_stylesheet();
 }
 Object.defineProperty(window, 'NowThatsWhatICallInitialization', {value: NowThatsWhatICallInitialization});
 
+import win98css from '98.css?raw';
+async function init_stylesheet() {
+	 // Import the 98.css stylesheet as a string
+  // 2. Create a <style> element in TypeScript
+  const scopedStyle = document.createElement('style');
+
+  // 3. Wrap the entire 98.css stylesheet inside a native @scope rule
+  scopedStyle.textContent = `.retro-os { 
+    ${win98css} 
+  }`;
+
+  // 4. Inject the scoped styles into the document head
+  document.head.appendChild(scopedStyle);
+}
