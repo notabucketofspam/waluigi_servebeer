@@ -126,14 +126,7 @@ function goto_smart(url){
   }
 }
 
-function get_permaspam() {
-  const permaspam = localStorage.getItem('permaspam');
-  return permaspam === '1';
-}
-if (get_permaspam() && window.location.pathname !== '/chef.html') {
-  sessionStorage.setItem('chef_pathname', window.location.pathname);
-  window.location.assign('/chef.html');
-}
+// some stuff that interacts with online
 
 var some_json = response=>response.status<400&&response.json();
 
@@ -161,6 +154,8 @@ function get_storage(){
   .then(some_json)
   .catch(console.error);
 }
+
+// some stuff that has to run at page load
 
 async function mellonTime() {
   if (typeof EnglishLang === 'undefined') {
@@ -211,11 +206,14 @@ setTimeout(checkIfBargainBin, 0);
 
 async function chefinate() {
 	if (typeof consume_II === 'undefined') {
-		const {consume_II, universal_almonds, postconsume_II} = await import('/dist/cuisine.js');
+		const {consume_II, universal_almonds, postconsume_II,
+      chef_popstate} = await import('/dist/cuisine.js');
 		window.consume_II = consume_II;
     window.universal_almonds = universal_almonds;
     window.postconsume_II = postconsume_II;
+    window.chef_popstate = chef_popstate;
 
+    window.addEventListener('popstate', chef_popstate);
     document.addEventListener('click', universal_almonds);
 
 		let mimog  = document.getElementById('mimog');
@@ -224,9 +222,11 @@ async function chefinate() {
       mimog = document.createElement('div');
       mimog.id = 'mimog';
       document.body.appendChild(mimog);
+
       // insert some important metadata
       document.body.insertAdjacentHTML('beforeend', 
         `<meta id="this_is_outdex"/><meta id="actually_chef"/>`);
+
       // insert the gubbins
 			const style_maybe = document.head.querySelector('style');
       if (style_maybe) {

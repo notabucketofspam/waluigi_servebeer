@@ -1,5 +1,8 @@
 /** the next generation of outdex */
 
+/**a fool-proof way to put stuff on the window*/
+var windog = window as any;
+
 /** similar to dubiousLink */
 export async function universal_almonds(ev: PointerEvent) {
   const link = (ev.target as Element)?.closest('a');
@@ -10,34 +13,33 @@ export async function universal_almonds(ev: PointerEvent) {
     return;
   }
 
-  // console.log(ev);
   ev.preventDefault();
   const url = link.href;
   await consume_II(url);
 	postconsume_II(url);
 }
+windog.universal_almonds = universal_almonds;
+
 /** what we do after we consume_II */
 export function postconsume_II(url:string) {
   window.history.pushState(null, '', url);
   window.scroll(0, 0);
-  const windog = window as any;
   windog.checkIfBargainBin();
 }
-Object.defineProperty(window, 'postconsume_II', {value: postconsume_II});
+windog.postconsume_II = postconsume_II;
 
-window.addEventListener('popstate', async function(ev) {
-	// console.log(ev);
+/** how to handle the browser back button */
+export async function chef_popstate(ev:PopStateEvent) {
   await consume_II((ev.target as Window)?.location.pathname);
-  const windog = window as any;
   windog.checkIfBargainBin();
-});
+}
+windog.chef_popstate = chef_popstate;
 
 /** YOU KNOW I LOVE THE TUBA */
 export async function consume_II(url: string) {
   try {
     const mimog = document.getElementById('mimog') as HTMLDivElement;
     const dogParser = new DOMParser();
-    const windog = window as any;
     // stash the burgmenu if it exists
     const burgmenu = document.getElementById("burgmenu");
     if (burgmenu) {
@@ -125,7 +127,7 @@ export async function consume_II(url: string) {
     window.location.assign(url);
   }
 }
-Object.defineProperty(window, 'consume_II', {value: consume_II});
+windog.consume_II = consume_II;
 
 /** thanks gemini */
 async function executeScripts(container: HTMLElement) {
@@ -149,11 +151,5 @@ async function executeScripts(container: HTMLElement) {
     newScript.textContent = oldScript.textContent;
     oldScript.parentNode?.replaceChild(newScript, oldScript);
   }
-}
-
-// actually do the loading
-if (window.location.pathname === '/chef.html') {
-  let chef_pathname = sessionStorage.getItem('chef_pathname');
-  consume_II(chef_pathname ?? '/');
 }
 
