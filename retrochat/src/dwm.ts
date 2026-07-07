@@ -249,7 +249,7 @@ Object.defineProperty(window, 'NowThatsWhatICallInitialization', {value: NowThat
 import win98css from '98.css?raw';
 async function init_stylesheet() {
   const scopedStyle = document.createElement('style');
-  scopedStyle.textContent = `div#user-desktop.retro-os { 
+  scopedStyle.textContent = `.win97 { 
     ${win98css} 
   }`;
   const virtualDesktop = document.getElementById('virtual-desktop-real');
