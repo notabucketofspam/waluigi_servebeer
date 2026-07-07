@@ -176,11 +176,27 @@ function generate_booba() {
   } else {
 	  var booba_real = document.getElementById('booba');
     if (!booba_real.childElementCount) {
-      window?.board?.forEach(key => make_group(booba, key));
-		  show_booba_size();
+      try {
+        window?.board?.forEach(key => make_group(booba, key));
+        show_booba_size();
+			} catch (err) {
+				console.log('there was a slight error in generate_booba. give it a sec to load :^)');
+      }
 		  window.requestAnimationFrame(generate_booba);
     }
   }
+}
+
+// ================ this one's kinda important, so don't talk to him
+// ============== i need him to focus on what he's doing
+function make_group(dad, someboard) {
+  var somebuttons = someboard.sound.map(s => `<button id="${someboard.name}/${s}" onclick="beep('${someboard.name}/${s}')" oncontextmenu="event.preventDefault()||love('${someboard.name}/${s}')">${s}</button>`);
+  dad.insertAdjacentHTML('beforeend', `
+<details id="group_${someboard.name}" class="sb sef lard">
+  <summary><h2>${someboard.name}</h2></summary>
+  <div class="sounds">${somebuttons.join('')}</div>
+</details>
+`);
 }
 
 // --------- show the total number of sounds at the top of the page

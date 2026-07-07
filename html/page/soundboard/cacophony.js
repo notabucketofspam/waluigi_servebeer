@@ -249,18 +249,6 @@ function reset_love(){
   document.querySelectorAll('button.loved').forEach(kid=>kid.classList.remove('loved'));
 }
 
-// ================ this one's kinda important, so don't talk to him
-// ============== i need him to focus on what he's doing
-function make_group(dad, someboard){
-  var somebuttons = someboard.sound.map(s=>`<button id="${someboard.name}/${s}" onclick="beep('${someboard.name}/${s}')" oncontextmenu="event.preventDefault()||love('${someboard.name}/${s}')">${s}</button>`);
-  dad.insertAdjacentHTML('beforeend',`
-<details id="group_${someboard.name}" class="sb sef lard">
-  <summary><h2>${someboard.name}</h2></summary>
-  <div class="sounds">${somebuttons.join('')}</div>
-</details>
-`);
-}
-
 // ----------- what categories are open and not
 function setup_open(){  
   var all_details = document.querySelectorAll("details.sb");
