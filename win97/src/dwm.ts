@@ -1,3 +1,5 @@
+var windog = window as any;
+
 // --- Global State ---
 let highestZ = 1;
 let activeWindowId: string | null = null;
@@ -244,7 +246,7 @@ function NowThatsWhatICallInitialization() {
   document.getElementById('start-btn')?.addEventListener('click', createWindowHandler);
 	init_stylesheet();
 }
-Object.defineProperty(window, 'NowThatsWhatICallInitialization', {value: NowThatsWhatICallInitialization});
+windog.dwm_init = NowThatsWhatICallInitialization;
 
 import win98css from '98.css?raw';
 async function init_stylesheet() {
@@ -252,7 +254,7 @@ async function init_stylesheet() {
   scopedStyle.textContent = `.win97 { 
     ${win98css} 
   }`;
-  const virtualDesktop = document.getElementById('virtual-desktop-real');
+  const virtualDesktop = document.getElementById('win97-store');
   if (virtualDesktop) {
     virtualDesktop.appendChild(scopedStyle);
   }
