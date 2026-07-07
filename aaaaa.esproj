@@ -4,8 +4,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="basic\**" />
-    <None Remove="retrochat\**" />
+    <None Remove="win97\**" />
     <TypeScriptConfiguration Remove="basic\**" />
-    <TypeScriptConfiguration Remove="retrochat\**" />
+    <TypeScriptConfiguration Remove="win97\**" />
   </ItemGroup>
 </Project>

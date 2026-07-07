@@ -2,7 +2,7 @@
 CD basic
 CMD /C "npm run build&& EXIT"
 CD ..
-CD retrochat
+CD win97
 CALL build
 CD ..
 CALL mexec "./push.sh"

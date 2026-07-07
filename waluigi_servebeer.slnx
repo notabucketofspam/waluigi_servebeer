@@ -7,7 +7,7 @@
     <Build />
     <Deploy />
   </Project>
-  <Project Path="retrochat/retrochat.esproj">
+  <Project Path="win97/win97.esproj">
     <Build />
     <Deploy />
   </Project>
