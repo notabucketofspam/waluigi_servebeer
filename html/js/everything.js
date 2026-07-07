@@ -244,14 +244,63 @@ async function chefinate() {
 					mimog.appendChild(chonk);
 				}
 			}
-      if (!document.querySelector('script[src="/js/party-og.js"]')) {
+
+      // check if party is already here
+      let partyog = document.querySelector('script[src="/js/party-og.js"]');
+      if (!partyog) {
         // no party? we gotta fix that.
 				const newParty = document.createElement('script');
 				newParty.setAttribute('src', '/js/party-og.js');
         document.body.appendChild(newParty);
       } else {
         // party exists
+        document.body.insertBefore(partyog, null);
       }
+
+      // find the everything file
+			let everythingjs = document.querySelector('script[src="/js/everything.js"]');
+      if (everythingjs) {
+				// move everything.js to the end of the body
+				document.body.insertBefore(everythingjs, null);
+      } else {
+        // this shouldn't happen
+      }
+
+      // find any spare scripts in the head
+			let spareScriptParts = Array.from(document.head.querySelectorAll('script[src]'));
+			if (spareScriptParts.length) {
+				spareScriptParts.forEach(script => {
+					mimog.insertBefore(script, mimog.firstChild);
+				});
+      } else {
+        // no spare scripts in head
+      }
+
+      // do the same, but with stylesheets
+      let spoonsils = document.head.querySelectorAll('link[rel="stylesheet"]:not([href="/css/great-scott.css"])');
+			let spareStylesheets = Array.from(spoonsils);
+			if (spareStylesheets.length) {
+				spareStylesheets.forEach(link => {
+					mimog.insertBefore(link, mimog.firstChild);
+				});
+      } else {
+        // no spare stylesheets in head
+      }
+
+      // get rid of any spare comments in the document
+      try {
+			  let comments = [];
+			  let walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_COMMENT, null, false);
+			  while (walker.nextNode()) {
+				  comments.push(walker.currentNode);
+        }
+			  for (const comment of comments) {
+          comment.remove();
+        }
+      }catch (err){
+        // just ignore this
+      }
+
     } else {
       // mimog is real
     }
