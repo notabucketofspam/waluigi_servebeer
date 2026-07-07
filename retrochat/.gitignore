@@ -3,3 +3,4 @@ obj
 package-lock.json
 tsconfig.tsbuildinfo
 dist/***
+distsc/***

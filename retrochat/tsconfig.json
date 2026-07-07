@@ -2,8 +2,8 @@
   "include": [ "./src/**/*", "vite.config.ts" ],
   "files": [ "./src/declarations.d.ts" ],
   "compilerOptions": {
-    "outDir": "./dist",
-    "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo",
+    "outDir": "./distsc",
+    "tsBuildInfoFile": "./distsc/tsconfig.tsbuildinfo",
     "module": "esnext",
     "target": "esnext",
     "types": [ "vite/client" ],
