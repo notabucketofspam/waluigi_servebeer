@@ -99,10 +99,11 @@ function encodeToHtmlSafe(str) {
 	}).join('');
 }
 
-var nowtop = Number(sessionStorage.getItem(location.pathname+"::nowtop")??0);
-document.addEventListener('scroll', () => {
+var nowtop = Number(sessionStorage.getItem(location.pathname + "::nowtop") ?? 0);
+function storeScrollage() {
 	sessionStorage.setItem(location.pathname + "::nowtop", window.scrollY);
-});
+}
+// document.addEventListener('scroll', storeScrollage);
 
 </script>
 </body>
