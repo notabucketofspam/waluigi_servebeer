@@ -248,6 +248,7 @@ function NowThatsWhatICallInitialization() {
 }
 windog.dwm_init = NowThatsWhatICallInitialization;
 
+// @ts-ignore
 import win98css from '98.css?raw';
 async function init_stylesheet() {
   const scopedStyle = document.createElement('style');
