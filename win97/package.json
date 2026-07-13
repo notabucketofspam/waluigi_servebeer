@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/node": "^26.0.1",
     "eslint": "^10.6.0",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "98.css": "^0.1.21",
