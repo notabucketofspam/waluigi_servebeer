@@ -9,16 +9,21 @@ div#win97-desktop {
 	div.window {
 		position: absolute;
 		z-index: 1;
+		width: max-content;
+		height: max-content;
 	}
 
-	div:is(.title-bar,.window),button.task-btn {
+	div:is(.title-bar,.window), button.task-btn {
 		font-family: sans-serif;
-		font-size:12px;
+		font-size: 12px;
 	}
 
 	div.window-body {
 		padding: 2px;
 	}
+}
+html {
+	overflow: hidden;
 }
 
 img.window-icon, img.task-btn-icon {
