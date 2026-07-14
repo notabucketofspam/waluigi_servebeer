@@ -1,0 +1,30 @@
+#everyone-is-here *{
+  margin:0;
+}
+.logged-in-as {
+  border-style:double;
+  border-color:#000;
+  border-width:3px;
+  max-width:fit-content;
+  padding:2px;
+  float:right;
+}
+@media (max-width:400px) {
+  .logged-in-as {
+    float: none;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+}
+.isSpeaking {
+  text-shadow:
+     1px  0px 0px #00FF00,
+     1px  1px 0px #00FF00,
+     0px  1px 0px #00FF00,
+    -1px  1px 0px #00FF00,
+    -1px  0px 0px #00FF00,
+    -1px -1px 0px #00FF00,
+     0px -1px 0px #00FF00,
+     1px -1px 0px #00FF00;
+}
+
