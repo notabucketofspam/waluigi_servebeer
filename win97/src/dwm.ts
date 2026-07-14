@@ -132,7 +132,7 @@ function closeWindowHandler(ev: MouseEvent) {
 }
 
 // gotta create a new window
-function createWindow(id: string, title: string, content: string) {
+function createWindow(id: string, title: string, content: string, icon?: string) {
 	// create the window element
 	const win = document.createElement('div');
   win.classList.add('window');
@@ -151,7 +151,17 @@ function createWindow(id: string, title: string, content: string) {
 
 	const titleText = document.createElement('div');
 	titleText.classList.add('title-bar-text');
-	titleText.innerText = title;
+  const titleTextIcon = document.createElement('img');
+  titleTextIcon.classList.add('window-icon');
+  titleTextIcon.style.maxHeight = '16px';
+  titleTextIcon.style.marginRight = '4px';
+  titleTextIcon.src = icon || '';
+  titleTextIcon.alt = '';
+  titleText.appendChild(titleTextIcon);
+  const titleTextSpan = document.createElement('span');
+  titleTextSpan.innerText = title;
+  titleText.appendChild(titleTextSpan);
+
 	const controls = document.createElement('div');
 	controls.classList.add('title-bar-controls');
 	const btnMinimize = document.createElement('button');
@@ -182,8 +192,17 @@ function createWindow(id: string, title: string, content: string) {
 	taskBtn.classList.add('task-btn');
 	taskBtn.id = `task-btn-${id}`;
 	taskBtn.setAttribute('data-target', id);
-	taskBtn.innerText = title;
 	taskBtn.addEventListener('click', taskButtonHandler);
+  const taskBtnIcon = document.createElement('img');
+  taskBtnIcon.classList.add('task-btn-icon');
+  taskBtnIcon.style.maxHeight = '16px';
+  taskBtnIcon.style.marginRight = '4px';
+  taskBtnIcon.src = icon || '';
+  taskBtnIcon.alt = '';
+  taskBtn.appendChild(taskBtnIcon);
+  const taskBtnSpan = document.createElement('span');
+  taskBtnSpan.innerText = title;
+  taskBtn.appendChild(taskBtnSpan);
 
 	document.getElementById('taskbar-tasks')?.appendChild(taskBtn);
 

@@ -6,41 +6,60 @@ div#win97-desktop {
 		background: #808080;
 	}
 
-	.taskbar {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 30px;
-		display: flex;
-		align-items: center;
-		padding: 2px 4px;
-		background: #c0c0c0;
-		border-top: 1px solid #dfdfdf;
-		box-shadow: inset 0 1px 0 #fff;
-		box-sizing: border-box;
-		z-index: 99999;
-	}
-
-	.taskbar-tasks {
-		display: flex;
-		gap: 4px;
-		flex-grow: 1;
-	}
-		.taskbar-tasks button.active {
-			box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
-			background: #e4e4e4;
-		}
-
 	div.window {
 		position: absolute;
 		z-index: 1;
+	}
+
+	div:is(.title-bar,.window),button.task-btn {
+		font-family: sans-serif;
+		font-size:12px;
 	}
 
 	div.window-body {
 		padding: 2px;
 	}
 }
+
+img.window-icon, img.task-btn-icon {
+	height:16px;
+	content: url("/assets/window.png");
+}
+
+/*taskbar things*/
+
+.taskbar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	padding: 2px 4px;
+	background: #c0c0c0;
+	border-top: 1px solid #dfdfdf;
+	box-shadow: inset 0 1px 0 #fff;
+	box-sizing: border-box;
+	z-index: 99999;
+}
+
+.taskbar-tasks {
+	display: flex;
+	gap: 4px;
+	flex-grow: 1;
+}
+
+	.taskbar-tasks button.active {
+		box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+		background: #e4e4e4;
+	}
+
+	.taskbar-tasks .task-btn {
+		word-break: break-all;
+		padding-left: 4px;
+	}
+	
 
 /* this is a whole bunch of junk that styles the start menu */
 #start-menu {
