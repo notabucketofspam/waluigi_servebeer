@@ -175,7 +175,7 @@ function createWindow(id: string, title: string, content: string) {
 	winbody.classList.add('window-body');
   	winbody.innerHTML = content;
 	win.appendChild(winbody);
-  document.getElementById('user-desktop')?.appendChild(win);
+  document.getElementById('win97-desktop')?.appendChild(win);
 
 	// create the taskbar button
 	const taskBtn = document.createElement('button');
@@ -191,7 +191,49 @@ function createWindow(id: string, title: string, content: string) {
 }
 
 // =================================================================
+// things that deal with the start menu
+
+function handleStartButtonClick(ev: MouseEvent) {
+  try {
+    ev.stopPropagation();
+    const startMenu = document.getElementById('start-menu');
+    const startBtn = document.getElementById('start-btn');
+    if (startMenu && startBtn) {
+      if (startMenu.style.display === 'block') {
+        startMenu.style.display = 'none';
+        startMenu.classList.remove('active');
+        startBtn.classList.remove('active');
+      } else {
+        startMenu.style.display = 'block';
+        startMenu.classList.add('active');
+        startBtn.classList.add('active');
+        // startBtn.blur();
+      }
+    } else {
+      // no start button
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Error handling start button click:', error.message);
+    }
+  }
+}
+
+// =================================================================
 // all of the document handlers
+
+function document_clickHandler(ev: MouseEvent) {
+  const startMenu = document.getElementById('start-menu');
+  const startBtn = document.getElementById('start-btn');
+  if (startMenu && startBtn){
+    if (startMenu?.style.display === 'block' && !startMenu.contains(ev.target as Node)) {
+      startMenu.style.display = 'none';
+      startBtn?.classList.remove('active');
+    }
+  } else {
+    // elements are missing
+  }
+}
 
 function document_mousedownHandler(ev: MouseEvent) {
   try {
@@ -230,6 +272,7 @@ function document_mouseupHandler(ev: MouseEvent) {
   dragTarget = null;
 }
 
+document.addEventListener('mousedown', document_clickHandler);
 document.addEventListener('mousedown', document_mousedownHandler);
 document.addEventListener('mousemove', document_mousemoveHandler);
 document.addEventListener('mouseup', document_mouseupHandler);
@@ -243,7 +286,8 @@ function createWindowHandler(ev: MouseEvent) {
 }
 /**This is the collection of junk that may be lost whenever we navigate away from this page*/
 function NowThatsWhatICallInitialization() {
-  document.getElementById('start-btn')?.addEventListener('click', createWindowHandler);
+  document.getElementById('start-btn')?.addEventListener('click', handleStartButtonClick);
+  document.getElementById('smi-open-window')?.addEventListener('click', createWindowHandler);
 	init_stylesheet();
 }
 windog.dwm_init = NowThatsWhatICallInitialization;
@@ -255,8 +299,8 @@ async function init_stylesheet() {
   scopedStyle.textContent = `.win97 { 
     ${win98css} 
   }`;
-  const virtualDesktop = document.getElementById('win97-store');
+  const virtualDesktop = document.getElementById('win97-desktop');
   if (virtualDesktop) {
-    virtualDesktop.appendChild(scopedStyle);
+    virtualDesktop.insertBefore(scopedStyle, virtualDesktop.firstChild);
   }
 }
