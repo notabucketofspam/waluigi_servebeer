@@ -20,45 +20,42 @@ body {
 <body>
 <div id="win97-desktop" class="win97">
 	<link rel="stylesheet" type="text/css" href="/src/style/dwm.css"/>
-	<!--<div id="user-desktop" class="win97">-->
 
-	  <div id="start-menu" class="window">
-      <div class="start-menu-inner">        
-        <div class="start-menu-banner">
-          <span>Windows 97</span>
-        </div>
-        <div id="start-menu-body" class="window-body">
-
-          <!-- these are our apps -->
-          <ul class="start-menu-list" id="start-menu-apps">
-            <li id="smi-livekit-chat" class="start-menu-item">
-              <img src="/assets/realchat.png" alt="Chat" />
-              LiveKit Chat
-            </li>
-            <li class="start-menu-item" id="smi-open-window">
-              <img src="/assets/window.png" alt="Window" />
-              Open window
-            </li>
-          </ul>
-
-          <!-- these aren't our apps -->
-          <ul class="start-menu-list" id="start-menu-options">
-            <li><hr/></li>
-            <li id="smi-shutdown" class="start-menu-item">
-              <img src="/assets/killme.png" alt="Shutdown" />
-              Shutdown
-            </li>
-          </ul>
-
-        </div>
+	<div id="start-menu" class="window">
+    <div class="start-menu-inner">        
+      <div class="start-menu-banner">
+        <span>Windows 97</span>
+      </div>
+      <div id="start-menu-body" class="window-body">
+        <!-- these are our apps -->
+        <ul class="start-menu-list" id="start-menu-apps">
+          <li id="smi-livekit-chat" class="start-menu-item">
+            <img src="/assets/realchat.png" alt="Chat" />
+            LiveKit Chat
+          </li>
+          <li class="start-menu-item" id="smi-open-window">
+            <img src="/assets/window.png" alt="Window" />
+            Open window
+          </li>
+        </ul>
+        <!-- these aren't our apps -->
+        <ul class="start-menu-list" id="start-menu-options">
+          <li><hr/></li>
+          <li id="smi-shutdown" class="start-menu-item">
+            <img src="/assets/killme.png" alt="Shutdown" />
+            Shutdown
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 
-		<div class="taskbar">
-			<button id="start-btn">Start</button>
-			<div class="taskbar-tasks" id="taskbar-tasks"></div>
-		</div>
-	<!--</div>-->
+	<div class="taskbar">
+		<button id="start-btn">
+      <img src="/assets/media1.png" alt="Start"/>
+    </button>
+		<div class="taskbar-tasks" id="taskbar-tasks"></div>
+	</div>
 </div>
 
 <script type="module" src="/src/main.ts"></script>

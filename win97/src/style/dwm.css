@@ -106,23 +106,29 @@ div#start-menu-body {
 	}
 
 #start-btn {
-	font-weight: bold;
 	margin-right: 10px;
-	padding: 2px 6px;
-	font-family: sans-serif;
-	font-size:12px;
+	padding: 0px;
+	min-height: unset;
+	min-width: unset;
+	background: none;
+	box-shadow: unset;
+	margin-left:-10px;
+	border:none;
+	img {
+		content: url("/assets/media1.png");
+	}
 }
-#start-btn.active {
-	/*background: #bbb;*/
-	/*box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;*/
-  /*text-shadow: 1px 1px #222;*/
-}
-#start-btn:focus {
-	/*outline: none;*/
-}
-#start-btn:hover {
-	background: #dddddd;
-}
+	#start-btn:hover {
+		img {
+			content: url("/assets/media2.png");
+		}
+	}
+	#start-btn:focus {
+		outline: none;
+		img {
+			content: url("/assets/media3.png");
+		}
+	}
 
 .start-menu-inner {
 	display: flex;

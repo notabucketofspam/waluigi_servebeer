@@ -272,7 +272,7 @@ function document_mouseupHandler(ev: MouseEvent) {
   dragTarget = null;
 }
 
-document.addEventListener('mousedown', document_clickHandler);
+document.addEventListener('click', document_clickHandler);
 document.addEventListener('mousedown', document_mousedownHandler);
 document.addEventListener('mousemove', document_mousemoveHandler);
 document.addEventListener('mouseup', document_mouseupHandler);
