@@ -20,12 +20,12 @@ room.on(RoomEvent.ActiveSpeakersChanged, (speakers) => {
 
 function updateParticipantList() {
   try {
-    const participantList = document.getElementById('participant-list');
+    const participantList = document.getElementById('participant-list') as HTMLUListElement | null;
     if (participantList) {
       // we have list container
 
       // It's you.
-			let metallik = document.getElementById('livekit_roomcode');
+			let metallik = document.getElementById('livekit_roomcode') as HTMLMetaElement | null;
       if (metallik) {
         insertLocalParticipantDOM();
       } else {
@@ -34,7 +34,7 @@ function updateParticipantList() {
 
       // we gotta check in case someone has joined
       room.remoteParticipants.forEach((participant) => {
-			  let existingLi = document.getElementById(`user-${participant.identity}`);
+			  let existingLi = document.getElementById(`user-${participant.identity}`) as HTMLLIElement | null;
         if (existingLi) {
           // friend is already on the page
         } else {
@@ -45,7 +45,7 @@ function updateParticipantList() {
 	    }); // forEach
 
 		  // also check in case someone has left
-		  const participantIds = new Set();
+		  const participantIds = new Set<string>();
 		  room.remoteParticipants.forEach((participant) => {
         participantIds.add(participant.identity);
       });
@@ -68,7 +68,7 @@ function updateParticipantList() {
 
 function insertLocalParticipantDOM() {
   try {
-		let participantList = document.getElementById('participant-list');
+		let participantList = document.getElementById('participant-list') as HTMLUListElement | null;
     if (participantList && room.localParticipant) {
 			const useThisID = `user-${room.localParticipant.identity}`;
 			if (document.getElementById(useThisID)) {
@@ -137,7 +137,7 @@ function createParticipantDOM(participant: Participant) {
 }
 
 function clearParticipantList() {
-	let participantList = document.getElementById('participant-list');
+	let participantList = document.getElementById('participant-list') as HTMLUListElement | null;
 	if (participantList) {
 		participantList.innerHTML = '';
   }
@@ -146,7 +146,7 @@ function clearParticipantList() {
 function checkParticipantsSpeaking(){
 	try {
     // check yourself
-    const localParticipantElement = document.getElementById(`user-${room.localParticipant.identity}`);
+    const localParticipantElement = document.getElementById(`user-${room.localParticipant.identity}`) as HTMLLIElement | null;
     if (localParticipantElement) {
       if (room.localParticipant.isSpeaking) {
         localParticipantElement.classList.add('isSpeaking');
@@ -159,7 +159,7 @@ function checkParticipantsSpeaking(){
 
     // check the others
 		room.remoteParticipants.forEach((participant) => {
-      let participantElement = document.getElementById(`user-${participant.identity}`);
+      let participantElement = document.getElementById(`user-${participant.identity}`) as HTMLLIElement | null;
       if (participantElement) {
         if (participant.isSpeaking) {
           participantElement.classList.add('isSpeaking');
@@ -179,7 +179,7 @@ room.on(RoomEvent.TrackSubscribed, (track, publication, participant) => {
   if (track.kind === Track.Kind.Audio) {
     // audio track
     const audioElement = track.attach();
-    let audioContainer = document.getElementById('audio-container');
+    let audioContainer = document.getElementById('audio-container') as HTMLDivElement | null;
     if (audioContainer){
       audioContainer.appendChild(audioElement);
     }
@@ -188,7 +188,7 @@ room.on(RoomEvent.TrackSubscribed, (track, publication, participant) => {
     participantAudioElements.set(participant.identity, audioElement);
 
     // Set initial volume from slider
-    const slider = document.getElementById(`volume-${participant.identity}`) as HTMLInputElement;
+    const slider = document.getElementById(`volume-${participant.identity}`) as HTMLInputElement | null;
     if (slider) {
       audioElement.volume = Number.parseFloat(slider.value);
     }
@@ -266,18 +266,17 @@ function handleJoinBtnClick(ev: PointerEvent) {
 async function leaveVoiceChannel() {
   try {
     await room.disconnect();
-    let audiocontainer = document.getElementById('audio-container');
+    let audiocontainer = document.getElementById('audio-container') as HTMLDivElement | null;
     if (audiocontainer) {
       audiocontainer.innerHTML = '';
     }
     displayView(null);
 
-    var metallik = document.getElementById('livekit_roomcode');
+    var metallik = document.getElementById('livekit_roomcode') as HTMLMetaElement | null;
     if (metallik) {
       metallik.remove();
     }
 
-    // console.log('Disconnected from the room.');
     mediaPlayer.beep(livekitSound.disconnect);
 
     clearParticipantList();
@@ -299,29 +298,29 @@ function displayView(roomcode: string | null){
     if (typeof roomcode === 'string' && roomcode.length > 0) {
       // roomcode is ok
 
-      var lobbyview = document.getElementById('lobby-view');
+      var lobbyview = document.getElementById('lobby-view') as HTMLDivElement | null;
       if (lobbyview){
         lobbyview.style.display = 'none';
       }
 
-      var activecallview = document.getElementById('active-call-view');
+      var activecallview = document.getElementById('active-call-view') as HTMLDivElement | null;
       if (activecallview){
         activecallview.style.display = 'block';
       }
 
-      var currentroomtitle = document.getElementById('current-room-title');
+      var currentroomtitle = document.getElementById('current-room-title') as HTMLSpanElement | null;
       if (currentroomtitle) {
         currentroomtitle.innerText = `Connected to: ${roomcode}`;
       }
     } else {
       // null was passed, so we assume we're not in a room
 
-      var lobbyview = document.getElementById('lobby-view');
+      var lobbyview = document.getElementById('lobby-view') as HTMLDivElement | null;
       if (lobbyview){
         lobbyview.style.display = 'block';
       }
 
-      var activecallview = document.getElementById('active-call-view');
+      var activecallview = document.getElementById('active-call-view') as HTMLDivElement | null;
       if (activecallview){
         activecallview.style.display = 'none';
       }
@@ -339,7 +338,7 @@ async function loadActiveRooms() {
     });
     const activeRooms = await response.json();
 
-    const container = document.getElementById('room-list-container');
+    const container = document.getElementById('room-list-container') as HTMLDivElement | null;
     if (container) {
       // Clear the old list
       container.innerHTML = '';
@@ -381,13 +380,13 @@ async function loadActiveRooms() {
 function checkRoomIDs(){
   try {
     // try to figure out the room sid
-    let metallik = document.getElementById('livekit_roomcode');
+    let metallik = document.getElementById('livekit_roomcode') as HTMLMetaElement | null;
     if (metallik) {
       // we have metallik
       let currentRoomSid = metallik.getAttribute('data-roomsid');
       if (currentRoomSid) {
         // have room sid
-        let theRelevantButton = document.getElementById(currentRoomSid);
+        let theRelevantButton = document.getElementById(currentRoomSid) as HTMLButtonElement | null;
         if (theRelevantButton) {
           // has button
           theRelevantButton.setAttribute('disabled', 'true');
@@ -411,23 +410,23 @@ function init_livekitDOM() {
   }
 
 	// add event listeners for buttons
-	var loadactiveroomsbtn = document.getElementById('loadactiverooms');
+	var loadactiveroomsbtn = document.getElementById('loadactiverooms') as HTMLButtonElement | null;
 	if (loadactiveroomsbtn) {
 		loadactiveroomsbtn.addEventListener('click', loadActiveRooms);
   }
 
-	var leave_btn = document.getElementById('leave-btn');
+	var leave_btn = document.getElementById('leave-btn') as HTMLButtonElement | null;
 	if (leave_btn) {
 		leave_btn.addEventListener('click', leaveVoiceChannel);
   }
 
-	var join_btn = document.getElementById('join-btn');
+	var join_btn = document.getElementById('join-btn') as HTMLButtonElement | null;
 	if (join_btn) {
 		join_btn.addEventListener('click', handleJoinBtnClick);
 	}
 
 	// load the correct view, if we're already in a room
-	var metallik = document.getElementById('livekit_roomcode');
+	var metallik = document.getElementById('livekit_roomcode') as HTMLMetaElement | null;
 	if (metallik) {
 		var roomcode = metallik.getAttribute('data-roomcode');
 		if (roomcode) {
@@ -438,4 +437,29 @@ function init_livekitDOM() {
 	updateParticipantList();
 }
 (window as any).init_livekitDOM = init_livekitDOM;
+
+/**Here's a list of all of the DOM elements that are expected to exist on the page*/
+interface LivekitDOMElements {
+  "loadactiverooms": HTMLButtonElement;
+  "leave-btn": HTMLButtonElement;
+  "join-btn": HTMLButtonElement;
+  "room-list-container": HTMLDivElement;
+  "participant-list": HTMLUListElement;
+  "lobby-view": HTMLDivElement;
+  "active-call-view": HTMLDivElement;
+  "roomcode-input": HTMLInputElement;
+  "audio-container": HTMLDivElement;
+  "current-room-title": HTMLSpanElement;
+}
+
+/**some extraneous DOM elements*/
+interface ExtraneousDOMElements {
+  "livekit-platter": HTMLDivElement;
+  "everyone-is-here": HTMLDivElement;
+}
+
+/**and some stuff that is created by this module*/
+interface CreatedDOMElements {
+  "metallik": HTMLMetaElement;
+}
 
