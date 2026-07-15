@@ -14,7 +14,7 @@ export async function universal_almonds(ev: PointerEvent) {
   }
 
   ev.preventDefault();
-  const url = link.href;
+  const url = link.pathname;
   await consume_II(url);
 	postconsume_II(url);
 }
@@ -121,6 +121,9 @@ export async function consume_II(url: string) {
       windog.mellonTime();
 
     }
+
+    // apparently we're doing event bus now
+    document.dispatchEvent(new CustomEvent('spam', {detail: {url}}));
 
   } catch (error) {
     console.error('Routing failed:', error);

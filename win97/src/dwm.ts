@@ -394,30 +394,21 @@ function document_mouseupHandler(ev: MouseEvent) {
   dragTarget = null;
 }
 
+function document_spamHandler(ev: Event) {  
+  const url = (ev as CustomEvent).detail?.url;
+  if (url?.startsWith('/windows')){
+    initDWM();
+  }
+}
+
 document.addEventListener('click', document_clickHandler);
 document.addEventListener('mousedown', document_mousedownHandler);
 document.addEventListener('mousemove', document_mousemoveHandler);
 document.addEventListener('mouseup', document_mouseupHandler);
+document.addEventListener('spam', document_spamHandler);
 
 // =================================================================
 // some more junk
-
-function createWindowHandler(ev: MouseEvent) {
-	let thedate = Date.now();
-  const windowOptions: WindowOptions = {
-    id: `window-${thedate}`, 
-    title: `Window ${thedate}`, 
-    content: `<p>This is the content of the window: ${thedate}</p>` 
-  }
-	createWindow(windowOptions);
-}
-/**This is the collection of junk that may be lost whenever we navigate away from this page*/
-function NowThatsWhatICallInitialization() {
-  document.getElementById('start-btn')?.addEventListener('click', handleStartButtonClick);
-  document.getElementById('smi-open-window')?.addEventListener('click', createWindowHandler);
-	init_stylesheet();
-}
-// windog.dwm_init = NowThatsWhatICallInitialization;
 
 // @ts-ignore
 import win98css from '98.css?raw';
@@ -446,7 +437,7 @@ export function initDWM() {
   currentOffsetX = 100;
   currentOffsetY = 100;
 }
-(window as any).initDWM = initDWM;
+initDWM();
 
 // =================================================================
 // we need some way for external applications to interact with our fake os

@@ -21,7 +21,7 @@ body {
 <div id="win97-desktop" class="win97">
 	<link rel="stylesheet" type="text/css" href="/src/style/dwm.css"/>
 
-	<div id="start-menu" class="window">
+	<div id="start-menu" class="window" style="position:fixed;">
     <div class="start-menu-inner">        
       <div class="start-menu-banner">
         <span>Windows 97</span>
@@ -48,7 +48,7 @@ body {
 
 	<div class="taskbar">
 		<button id="start-btn">
-      <img src="/assets/media1.png" alt="Start"/>
+      <img src="/assets/media1.png" alt="Start" draggable="false"/>
     </button>
 		<div class="taskbar-tasks" id="taskbar-tasks"></div>
 	</div>
@@ -58,9 +58,6 @@ body {
 <script type="module" src="/src/dwm.ts"></script>
 <script type="module" src="/src/apps/create-window.ts"></script>
 <script src="/js/everything.js"></script>
-<script>
-(windogManager('initDWM'))();
-(windogManager('install_CreateWindow'))();
-</script>
+<script></script>
 </body>
 </html>

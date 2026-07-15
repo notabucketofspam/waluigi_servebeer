@@ -30,4 +30,13 @@ export function install_CreateWindow(){
   };
   installApp(appOptions);
 }
-(window as any).install_CreateWindow = install_CreateWindow;
+install_CreateWindow();
+
+function document_spamHandler(ev: Event) {  
+  const url = (ev as CustomEvent).detail?.url;
+  if (url?.startsWith('/windows')){
+    install_CreateWindow();
+  }
+}
+document.addEventListener('spam', document_spamHandler);
+
