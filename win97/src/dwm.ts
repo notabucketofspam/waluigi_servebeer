@@ -442,6 +442,9 @@ export function initDWM() {
   } else {
     // no start button found
   }
+  //reset the offsets for new windows
+  currentOffsetX = 100;
+  currentOffsetY = 100;
 }
 (window as any).initDWM = initDWM;
 
