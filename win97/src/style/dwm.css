@@ -23,7 +23,7 @@ div#win97-desktop {
 	}
 }
 html {
-	/*overflow: hidden;*/
+	overflow-x: hidden;
 }
 
 img.window-icon, img.task-btn-icon {
@@ -90,12 +90,15 @@ img.window-icon, img.task-btn-icon {
 /* this is a whole bunch of junk that styles the start menu */
 #start-menu {
 	display: none;
-	position: absolute;
+	position: fixed;
 	bottom: 30px;
 	left: 0;
 	max-width: 250px;
 	width: fit-content;
 	z-index: 99999;
+}
+div#start-menu.window {
+	position: fixed;
 }
 
 div#start-menu-body {
