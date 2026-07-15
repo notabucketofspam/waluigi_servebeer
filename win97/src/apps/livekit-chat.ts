@@ -67,6 +67,7 @@ function createLiveKitUI(): HTMLDivElement {
 
 	// Separator
 	const hr = document.createElement('hr');
+	hr.style.minWidth = '230px';
 	contentDiv.appendChild(hr);
 
 	// Room list section

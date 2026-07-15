@@ -248,7 +248,7 @@ async function joinVoiceChannel(roomcode: string) {
 		document.head.appendChild(metallik);
 
     updateParticipantList();
-    loadActiveRooms();
+    setTimeout(loadActiveRooms, 100);
 		mediaPlayer.beep(livekitSound.join);
   } catch (err) {
 		console.error('Error joining voice channel:', err);
@@ -369,7 +369,7 @@ async function loadActiveRooms() {
             rdStrong.textContent = room.name;
             roomDiv.appendChild(rdStrong);
             const span = document.createElement('span');
-            span.textContent = `(${room.participantCount} online)`;
+            span.textContent = ` (${room.participantCount} online) `;
             roomDiv.appendChild(span);
             const button = document.createElement('button');
             button.textContent = 'Join';
