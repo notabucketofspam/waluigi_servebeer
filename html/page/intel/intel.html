@@ -44,9 +44,35 @@ dd::before {
     max-width: 90vw;
   }
 }
+	#b60-images {
+		display: flex;
+		column-gap: 12px;
+		row-gap: 12px;
+		flex: 0;
+		flex-flow: row wrap;
+		margin-top: 5px;
+		margin-bottom: 6px;
+	}
+	#b60-images>div {
+		text-align: center;
+		max-width: fit-content;
+    border: 1px solid black;
+    background-color:black;
+    color:white;
+	}
+	#b60-images img {
+		height: 280px;
+	}
+	#worst-shopping {
+		transform: scaleX(1.5);
+		font-variant: small-caps;
+		position: relative;
+    font-family:monospace;
+	}
 </style>
 </head>
   <body>
+  <div class="lard lube">
     <div class="big_section lard lube" id="title_bar">
       <h1 id="intel-the">
         Intel: the future of computing
@@ -56,6 +82,65 @@ dd::before {
       </h4>
       <br>
     </div>
+    
+    <div>
+      <div class="f3">
+        <b style="font-variant:small-caps">Featured Product:</b>
+        <u>The Intel Arc Pro B60</u>
+      </div>
+      <div id="b60-images">
+        <div>
+          <div><img alt="Halo CE on the B60 with SR-IOV" src="/page/intel/halo-b60.jpg"/></div>
+          <div><small>Not shown to scale</small></div>
+        </div>
+        <div>
+          <div><img alt="Intel Arc Pro B60" src="/page/intel/intel-b60.jpg"/></div>
+          <div><small>Serving suggestion</small></div>
+        </div>
+      </div>
+      <div>
+        What makes this GPU so cool?
+        <ul style="margin:0">
+          <li>
+            Ever-changing <b>SR-IOV</b> support
+            <ul><li>            
+              Depending on <span>driver version</span>, You can run 
+              <u> up to <span id="howManyVFs">7 (seven)</span> virtual machines</u>
+              on one card!!
+            </li></ul>
+          </li>
+          <li>Rock-Solid aesthetics among all AIB partner cards:
+            <ul>
+              <li><i><q>We have every color you could want, so long as that color is black.</q> &mdash; Sparkle Computer Co., Ltd.</i></li>
+              <li><i><q>Same lmao</q> &mdash; ONIX Technology PTE. Ltd.</i></li>
+              <li><i><q>It's actually just a very dark gray</q> &mdash; ASRock Inc.</i></li>
+            </ul>
+          </li>
+          <li>
+            Affordability!! <strong>$600</strong><small>ish</small>
+            <ul><li>At this price point, your boss won't ask questions.</li></ul>
+          </li>
+          <li>Always In Stock <ul><li>You Don't Even Need To Check</li></ul></li>
+          <li>Hella VRAM: 24 GB, 48 GB, etc.
+            <ul><li>
+              That's enough to run over <strong>one hundred</strong> instances of Halo CE.
+            </li></ul>
+          </li>
+        </ul>
+        <br/>
+        <div class="lube" style="justify-items:center;">        
+          Buy one today
+          <div style="position:relative;">
+            <button id="worst-shopping"
+            onclick="goto_smart('/page/ancient-monuments/precisely-aligned-to-celestial-events.html')">
+              Shopping
+            </button>
+          </div>
+        </div>
+      </div>
+      <br/>
+    </div>
+    
     <div class="lard lube" id="somestuff">
       <div class="half_right cd-rom">
         <span id="news">News bulletin</span>
@@ -150,6 +235,20 @@ dd::before {
         </p>
       </div>
     </div>
+  </div>
   <script src="/js/everything.js"></script>
+  <script>
+  var howManyVFsTimer = setInterval(function(){
+    var howManyVFs = document.getElementById("howManyVFs");
+    if(howManyVFs){
+      if (window.EnglishLang) {
+        let someNumber = 7+rui(7);
+        howManyVFs.innerText = `${someNumber} (${window.EnglishLang.num(someNumber)})`;
+      }      
+    } else {
+      clearInterval(howManyVFsTimer);
+    }
+  }, 11280);
+  </script>
   </body>
 </html>
