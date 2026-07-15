@@ -93,6 +93,48 @@ function taskButtonHandler(ev: MouseEvent) {
   }
 }
 
+function taskButtonRightClickHandler(ev: MouseEvent) {
+  try {
+    ev.preventDefault();
+
+    const btn = ev.currentTarget as HTMLElement;
+    const targetId = btn.getAttribute('data-target');
+    if (targetId) {
+      const win = document.getElementById(targetId) as HTMLElement | null;
+      if (win) {
+        // Show a context menu for the task button
+        let contextMenu = document.getElementById('taskbar-context-menu') as HTMLDivElement | null;
+        if (!contextMenu) {
+          // context menu doesn't exist yet, create it
+          contextMenu = document.createElement('div');
+          contextMenu.id = 'taskbar-context-menu';
+          contextMenu.style.position = 'absolute';
+          contextMenu.style.left = `${ev.clientX}px`;
+          contextMenu.style.bottom = `30px`;
+          const closeOption = document.createElement('button');
+          const redCircle = document.createElement('span');
+          redCircle.style.color = 'red';
+          redCircle.innerText = '\u{1F534}';
+          closeOption.appendChild(redCircle);
+          closeOption.insertAdjacentText('beforeend', ' Close');
+          closeOption.addEventListener('click', () => {
+            closeWindow(targetId);
+            contextMenu?.remove();
+          });
+          contextMenu.appendChild(closeOption);
+          document.getElementById('win97-desktop')?.appendChild(contextMenu);
+        }
+      } else {
+        console.warn(`No window found for targetId: ${targetId}`);
+      }
+    } else {
+      // no target id
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // --- Minimize Button Logic ---
 function minimizeWindow(windowId: string) {
   const win = document.getElementById(windowId) as HTMLElement | null;
@@ -131,16 +173,45 @@ function closeWindowHandler(ev: MouseEvent) {
 	closeWindow(targetId);
 }
 
+function getAsset(fileName: string) {
+    return new URL(`../assets/${fileName}`, import.meta.url).href; 
+}
+
+interface WindowOptions {
+  id: string;
+  title?: string;
+  content: string;
+  icon?: string;
+}
+
+function incrementOffsets() {
+  // increment x offset
+  currentOffsetX +=  (30 + 10*Math.random());
+  currentOffsetY += (30 + 10*Math.random());
+  // if we go too far to the right, reset x
+  if (currentOffsetX > window.innerWidth - 200) {
+    currentOffsetX = 100 + 10*Math.random();
+  }
+  // if we go too far down, reset y
+  if (currentOffsetY > window.innerHeight - 100) {
+    currentOffsetY = 50 + 10*Math.random();
+  }
+}
+
 // gotta create a new window
-function createWindow(id: string, title: string, content: string, icon?: string) {
+function createWindow(options: WindowOptions) {
+  const { id, title, content, icon } = options;
+  // get the icon, or use generic if unavailable
+  let iconUrl = getAsset(icon || 'window.png');
+  let titleReal = title || id;
+
 	// create the window element
 	const win = document.createElement('div');
   win.classList.add('window');
   win.id = id;
 	win.style.left = `${currentOffsetX}px`;
 	win.style.top = `${currentOffsetY}px`;
-	currentOffsetX += 30; // Increment for next window
-	currentOffsetY += 30; // Increment for next window
+	incrementOffsets();
 	win.style.zIndex = highestZ.toString();
 	win.addEventListener('mousedown', focusWindowHandler);
 
@@ -155,11 +226,11 @@ function createWindow(id: string, title: string, content: string, icon?: string)
   titleTextIcon.classList.add('window-icon');
   titleTextIcon.style.maxHeight = '16px';
   titleTextIcon.style.marginRight = '4px';
-  titleTextIcon.src = icon || '';
+  titleTextIcon.src = iconUrl;
   titleTextIcon.alt = '';
   titleText.appendChild(titleTextIcon);
   const titleTextSpan = document.createElement('span');
-  titleTextSpan.innerText = title;
+  titleTextSpan.innerText = titleReal;
   titleText.appendChild(titleTextSpan);
 
 	const controls = document.createElement('div');
@@ -193,15 +264,16 @@ function createWindow(id: string, title: string, content: string, icon?: string)
 	taskBtn.id = `task-btn-${id}`;
 	taskBtn.setAttribute('data-target', id);
 	taskBtn.addEventListener('click', taskButtonHandler);
+  taskBtn.addEventListener('contextmenu', taskButtonRightClickHandler);
   const taskBtnIcon = document.createElement('img');
   taskBtnIcon.classList.add('task-btn-icon');
   taskBtnIcon.style.maxHeight = '16px';
   taskBtnIcon.style.marginRight = '4px';
-  taskBtnIcon.src = icon || '';
+  taskBtnIcon.src = iconUrl;
   taskBtnIcon.alt = '';
   taskBtn.appendChild(taskBtnIcon);
   const taskBtnSpan = document.createElement('span');
-  taskBtnSpan.innerText = title;
+  taskBtnSpan.innerText = titleReal;
   taskBtn.appendChild(taskBtnSpan);
 
 	document.getElementById('taskbar-tasks')?.appendChild(taskBtn);
@@ -242,6 +314,7 @@ function handleStartButtonClick(ev: MouseEvent) {
 // all of the document handlers
 
 function document_clickHandler(ev: MouseEvent) {
+  // close the start menu, if it's open
   const startMenu = document.getElementById('start-menu');
   const startBtn = document.getElementById('start-btn');
   if (startMenu && startBtn){
@@ -251,6 +324,13 @@ function document_clickHandler(ev: MouseEvent) {
     }
   } else {
     // elements are missing
+  }
+  // close the taskbar context menu, if it's open
+  const taskbarContextMenu = document.getElementById('taskbar-context-menu');
+  if (taskbarContextMenu && !taskbarContextMenu.contains(ev.target as Node)) {
+    taskbarContextMenu.remove();
+  } else {
+      // no context menu or clicked inside it
   }
 }
 
@@ -301,7 +381,12 @@ document.addEventListener('mouseup', document_mouseupHandler);
 
 function createWindowHandler(ev: MouseEvent) {
 	let thedate = Date.now();
-	createWindow(`window${thedate}`, `Window ${thedate}`, `<p>This is the content of the window: ${thedate}</p>`);
+  const windowOptions: WindowOptions = {
+    id: `window-${thedate}`, 
+    title: `Window ${thedate}`, 
+    content: `<p>This is the content of the window: ${thedate}</p>` 
+  }
+	createWindow(windowOptions);
 }
 /**This is the collection of junk that may be lost whenever we navigate away from this page*/
 function NowThatsWhatICallInitialization() {
