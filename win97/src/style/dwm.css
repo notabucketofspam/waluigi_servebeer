@@ -28,7 +28,6 @@ html {
 
 img.window-icon, img.task-btn-icon {
 	height:16px;
-	/*content: url("/assets/window.png");*/
 }
 
 /*taskbar things*/
@@ -64,7 +63,29 @@ img.window-icon, img.task-btn-icon {
 		word-break: break-all;
 		padding-left: 4px;
 	}
-	
+
+#taskbar-context-menu {
+	display: flex;
+	flex-direction: column;
+
+	button {
+		img {
+			height: 14px;
+		}
+
+		text-align: left;
+	}
+
+		button:hover {
+			img.red-circle {
+				content: url("/assets/osx-red2.png");
+			}
+
+			img.yellow-circle {
+				content: url("/assets/osx-yel2.png");
+			}
+		}
+}
 
 /* this is a whole bunch of junk that styles the start menu */
 #start-menu {

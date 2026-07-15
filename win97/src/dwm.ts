@@ -111,16 +111,32 @@ function taskButtonRightClickHandler(ev: MouseEvent) {
           contextMenu.style.position = 'absolute';
           contextMenu.style.left = `${ev.clientX}px`;
           contextMenu.style.bottom = `30px`;
+          const minimizeOption = document.createElement('button');
+          const yellowCircle = document.createElement('img');
+          yellowCircle.classList.add('yellow-circle');
+          yellowCircle.src = getAsset('osx-yel1.png');
+          minimizeOption.appendChild(yellowCircle);
+          minimizeOption.insertAdjacentText('beforeend',
+            win.style.display === 'none' ? ' Restore' : ' Minimize');
+          minimizeOption.addEventListener('click', () => {
+            if (win.style.display === 'none') {
+              focusWindow(targetId);
+            } else {
+              minimizeWindow(targetId);
+            }
+            contextMenu?.remove();
+          });
           const closeOption = document.createElement('button');
-          const redCircle = document.createElement('span');
-          redCircle.style.color = 'red';
-          redCircle.innerText = '\u{1F534}';
+          const redCircle = document.createElement('img');
+          redCircle.classList.add('red-circle');
+          redCircle.src = getAsset('osx-red1.png');
           closeOption.appendChild(redCircle);
           closeOption.insertAdjacentText('beforeend', ' Close');
           closeOption.addEventListener('click', () => {
             closeWindow(targetId);
             contextMenu?.remove();
           });
+          contextMenu.appendChild(minimizeOption);
           contextMenu.appendChild(closeOption);
           document.getElementById('win97-desktop')?.appendChild(contextMenu);
         }
