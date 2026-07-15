@@ -40,13 +40,16 @@ function createLiveKitUI(): HTMLDivElement {
 	activeCallView.style.display = 'none';
 	const callHeader = document.createElement('div');
 	callHeader.className = 'call-header';
+	const currentRoomHolder = document.createElement('span');
+	currentRoomHolder.textContent = 'Current Room: ';
 	const currentRoomTitle = document.createElement('span');
 	currentRoomTitle.id = 'current-room-title';
-	currentRoomTitle.textContent = 'Connected to: None';
+	currentRoomTitle.textContent = 'None';
+	currentRoomHolder.appendChild(currentRoomTitle);
 	const leaveBtn = document.createElement('button');
 	leaveBtn.id = 'leave-btn';
 	leaveBtn.textContent = 'Disconnect';
-	callHeader.appendChild(currentRoomTitle);
+	callHeader.appendChild(currentRoomHolder);
 	callHeader.appendChild(leaveBtn);
 	activeCallView.appendChild(callHeader);
 
@@ -54,6 +57,7 @@ function createLiveKitUI(): HTMLDivElement {
 	everyoneIsHere.id = 'everyone-is-here';
 	const peopleHeader = document.createElement('h4');
 	peopleHeader.textContent = 'People in Channel';
+	peopleHeader.style.fontSize = 'revert';
 	const participantList = document.createElement('ul');
 	participantList.id = 'participant-list';
 	everyoneIsHere.appendChild(peopleHeader);

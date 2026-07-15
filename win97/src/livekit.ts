@@ -73,7 +73,7 @@ function insertLocalParticipantDOM() {
 			const useThisID = `user-${room.localParticipant.identity}`;
 			if (document.getElementById(useThisID)) {
         // it's already in the DOM, so we can skip :^)
-        console.log("OK");
+        // console.log("OK");
       } else {
         // you're not real
         const meLi = document.createElement('li');
@@ -248,7 +248,7 @@ async function joinVoiceChannel(roomcode: string) {
 		document.head.appendChild(metallik);
 
     updateParticipantList();
-
+    loadActiveRooms();
 		mediaPlayer.beep(livekitSound.join);
   } catch (err) {
 		console.error('Error joining voice channel:', err);
@@ -310,7 +310,7 @@ function displayView(roomcode: string | null){
 
       var currentroomtitle = document.getElementById('current-room-title') as HTMLSpanElement | null;
       if (currentroomtitle) {
-        currentroomtitle.innerText = `Connected to: ${roomcode}`;
+        currentroomtitle.innerText = `${roomcode}`;
       }
     } else {
       // null was passed, so we assume we're not in a room

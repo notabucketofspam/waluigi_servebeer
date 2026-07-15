@@ -28,4 +28,8 @@
      0px -1px 0px #00FF00,
      1px -1px 0px #00FF00;
 }
+span#current-room-title {
+	text-decoration: underline;
+  margin-right:4px;
+}
 
