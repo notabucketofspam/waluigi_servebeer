@@ -1,4 +1,5 @@
-var windog = window as any;
+// have you ever heard of windog?
+// i thought not. 
 
 // --- Global State ---
 let highestZ = 1;
@@ -14,7 +15,7 @@ let currentOffsetX = 100;
 let currentOffsetY = 100;
 
 // --- Core Focus Function ---
-function focusWindow(windowId: string) {
+export function focusWindow(windowId: string) {
   const win = document.getElementById(windowId);
   const taskBtn = document.getElementById(`task-btn-${windowId}`);
 
@@ -152,7 +153,7 @@ function taskButtonRightClickHandler(ev: MouseEvent) {
 }
 
 // --- Minimize Button Logic ---
-function minimizeWindow(windowId: string) {
+export function minimizeWindow(windowId: string) {
   const win = document.getElementById(windowId) as HTMLElement | null;
   const taskBtn = document.getElementById(`task-btn-${windowId}`) as HTMLElement | null;
 
@@ -172,7 +173,7 @@ function minimizeWindowHandler(ev: MouseEvent) {
 }
 
 // --- Close Button Logic ---
-function closeWindow(windowId: string) {
+export function closeWindow(windowId: string) {
   const win = document.getElementById(windowId) as HTMLElement | null;
   if (!win) return;
   win.remove();
@@ -190,7 +191,7 @@ function closeWindowHandler(ev: MouseEvent) {
 }
 
 function getAsset(fileName?: string) {
-    return new URL(`../assets/${fileName||'window.png'}`, import.meta.url).href; 
+  return new URL(`../assets/${fileName||'window.png'}`, import.meta.url).href; 
 }
 
 export interface WindowOptions {

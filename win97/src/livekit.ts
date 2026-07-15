@@ -330,7 +330,23 @@ function displayView(roomcode: string | null){
   }
 }
 
+function joinVoiceChannelFromButton(ev: PointerEvent) {
+  try {
+    const button = ev.currentTarget as HTMLButtonElement;
+    const roomcode = button.getAttribute('data-roomcode');
+    if (roomcode) {
+      joinVoiceChannel(roomcode);
+    } else {
+      console.error('No room code found on button');
+    }
+  } catch(err) {
+    console.error('Error joining voice channel from button:', err);
+  }
+}
 async function loadActiveRooms() {
+  if (window.location.hostname === 'localhost') {
+    return;
+  }
   try {
     const response = await fetch('/api/active-rooms',{
 		  method: 'GET',
@@ -349,13 +365,18 @@ async function loadActiveRooms() {
           activeRooms.forEach(room => {
             const roomDiv = document.createElement('div');
             roomDiv.className = 'room-card';
-            roomDiv.innerHTML = `
-              <strong>${room.name}</strong> 
-              <span>(${room.participantCount} online)</span>
-              <button onclick="joinVoiceChannel('${room.name}')"
-              id="${room.sid}"
-              >Join</button>
-            `;
+            const rdStrong = document.createElement('strong');
+            rdStrong.textContent = room.name;
+            roomDiv.appendChild(rdStrong);
+            const span = document.createElement('span');
+            span.textContent = `(${room.participantCount} online)`;
+            roomDiv.appendChild(span);
+            const button = document.createElement('button');
+            button.textContent = 'Join';
+            button.setAttribute('data-roomcode', room.name);
+            button.addEventListener('click', joinVoiceChannelFromButton);
+            button.id = room.sid;
+            roomDiv.appendChild(button);
             container.appendChild(roomDiv);
           });
         } else {
@@ -404,7 +425,7 @@ function checkRoomIDs(){
   }
 }
 
-function init_livekitDOM() {
+export function init_livekitDOM() {
   if (window.location.hostname !== 'localhost') {
     loadActiveRooms();
   }
@@ -436,5 +457,4 @@ function init_livekitDOM() {
 
 	updateParticipantList();
 }
-(window as any).init_livekitDOM = init_livekitDOM;
 

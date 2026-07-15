@@ -21,7 +21,7 @@ function generateContent(sometime:string) {
   divis.appendChild(pipis);
   return divis;
 }
-export function install_CreateWindow(){
+function install_CreateWindow(){
   const appOptions: ExternalApp = {
     id: 'app-window',
     title: 'Open window',

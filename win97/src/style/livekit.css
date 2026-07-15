@@ -8,6 +8,7 @@
   max-width:fit-content;
   padding:2px;
   float:right;
+  background-color:#ffffffaa;
 }
 @media (max-width:400px) {
   .logged-in-as {

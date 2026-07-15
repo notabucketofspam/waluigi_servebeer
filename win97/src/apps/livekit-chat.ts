@@ -1,5 +1,5 @@
 // this is where we build the actual app
-
+import "../style/livekit.css";
 /**thanks claude*/
 function createLiveKitUI(): HTMLDivElement {
 	// Main container
@@ -9,7 +9,10 @@ function createLiveKitUI(): HTMLDivElement {
 
 	// Title
 	const title = document.createElement('h1');
+	title.style.fontSize = 'revert';
+	title.style.textAlign = 'center';
 	title.textContent = 'LiveKit Chat';
+	title.style.margin = "0px";
 	platter.appendChild(title);
 
 	// Main content div
@@ -134,4 +137,58 @@ async function insertLoggedInAs(platter: HTMLDivElement){
 	});
 	return platter;
 }
+
+import { type WindowOptions, createWindow, installApp, type ExternalApp, focusWindow } from "../dwm";
+import { init_livekitDOM} from "../livekit";
+
+function liveKitAppHandler() {
+	try {
+		const existingWindow = document.getElementById('window-livekit-chat');
+		if (existingWindow) {
+			// window exists, bring it to the front
+			focusWindow(existingWindow.id);
+		} else {
+			// no window, so we can create one
+			createWindowHandler();
+			init_livekitDOM();
+		}
+	} catch(err) {
+		console.error('Error in liveKitAppHandler:', err);
+	}
+}
+
+function createWindowHandler() {
+	// the main ui
+	let somecontent = createLiveKitUI();
+	// we dont have to wait for this bc it's async and we dont need
+	// the platter to be in the DOM for it to work
+	insertLoggedInAs(somecontent);
+	//actually make the window
+	const windowOptions: WindowOptions = {
+		id: `window-livekit-chat`,
+		title: `LiveKit Chat`,
+		content: somecontent,
+		icon: 'realchat.png'
+	};
+	createWindow(windowOptions);
+}
+
+function install_LiveKitChat() {
+	const appOptions: ExternalApp = {
+		id: 'app-livekit-chat',
+		title: 'LiveKit Chat',
+		icon: 'realchat.png',
+		execute: liveKitAppHandler
+	};
+	installApp(appOptions);
+}
+install_LiveKitChat();
+
+function document_spamHandler(ev: Event) {  
+  const url = (ev as CustomEvent).detail?.url;
+  if (url?.startsWith('/windows')){
+    install_LiveKitChat();
+  }
+}
+document.addEventListener('spam', document_spamHandler);
 
