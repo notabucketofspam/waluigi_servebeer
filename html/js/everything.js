@@ -309,6 +309,19 @@ async function chefinate() {
   }
 }
 setTimeout(chefinate, 0);
+/**
+ * @param {string} functionName 
+ */
+function windogManager(functionName) {
+  return function dogSpawn() {
+    var windog = window;
+    if (typeof windog[functionName] === 'function') {
+      windog[functionName]();
+    } else {
+      window.requestAnimationFrame(dogSpawn);
+    }
+  }
+}
 
 /*
     STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE    STORAGE

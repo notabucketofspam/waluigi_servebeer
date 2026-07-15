@@ -189,14 +189,14 @@ function closeWindowHandler(ev: MouseEvent) {
 	closeWindow(targetId);
 }
 
-function getAsset(fileName: string) {
-    return new URL(`../assets/${fileName}`, import.meta.url).href; 
+function getAsset(fileName?: string) {
+    return new URL(`../assets/${fileName||'window.png'}`, import.meta.url).href; 
 }
 
-interface WindowOptions {
+export interface WindowOptions {
   id: string;
   title?: string;
-  content: string;
+  content: string | HTMLElement;
   icon?: string;
 }
 
@@ -215,10 +215,10 @@ function incrementOffsets() {
 }
 
 // gotta create a new window
-function createWindow(options: WindowOptions) {
+export function createWindow(options: WindowOptions) {
   const { id, title, content, icon } = options;
   // get the icon, or use generic if unavailable
-  let iconUrl = getAsset(icon || 'window.png');
+  let iconUrl = getAsset(icon);
   let titleReal = title || id;
 
 	// create the window element
@@ -270,7 +270,14 @@ function createWindow(options: WindowOptions) {
 	win.appendChild(titlebar);
 	const winbody = document.createElement('div');
 	winbody.classList.add('window-body');
+  if (typeof content === 'undefined' || content === null) {
+    // handle undefined or null content
+    // ... which means we do nothing lol
+  } else if (typeof content === 'string'){
   	winbody.innerHTML = content;
+  } else {
+    winbody.appendChild(content);
+  }
 	win.appendChild(winbody);
   document.getElementById('win97-desktop')?.appendChild(win);
 
@@ -410,11 +417,11 @@ function NowThatsWhatICallInitialization() {
   document.getElementById('smi-open-window')?.addEventListener('click', createWindowHandler);
 	init_stylesheet();
 }
-windog.dwm_init = NowThatsWhatICallInitialization;
+// windog.dwm_init = NowThatsWhatICallInitialization;
 
 // @ts-ignore
 import win98css from '98.css?raw';
-async function init_stylesheet() {
+function init_stylesheet() {
   const scopedStyle = document.createElement('style');
   scopedStyle.textContent = `.win97 { 
     ${win98css} 
@@ -424,3 +431,46 @@ async function init_stylesheet() {
     virtualDesktop.insertBefore(scopedStyle, virtualDesktop.firstChild);
   }
 }
+
+export function initDWM() {
+  // the stylesheet
+  init_stylesheet();
+  // add start menu button click handler
+  const startBtn = document.getElementById('start-btn');
+  if (startBtn) {
+    startBtn.addEventListener('click', handleStartButtonClick);
+  } else {
+    // no start button found
+  }
+}
+(window as any).initDWM = initDWM;
+
+// =================================================================
+// we need some way for external applications to interact with our fake os
+
+export interface ExternalApp {
+  id: string;
+  title?: string;
+  icon?: string;
+  execute: () => void;
+}
+/** add stuff to the start menu*/
+export function installApp(exapp: ExternalApp){
+  const smi = document.createElement('li');
+  smi.id = `smi-${exapp.id}`;
+  smi.classList.add('start-menu-item');
+  const smiIcon = document.createElement('img');
+  const iconUrl = getAsset(exapp.icon);
+  const titleText = exapp.title || exapp.id;
+  smiIcon.src = iconUrl;
+  smi.appendChild(smiIcon);
+  const smiText = document.createElement('span');
+  smiText.textContent = titleText;
+  smi.appendChild(smiText);
+  smi.addEventListener('click', exapp.execute);
+  const startMenu = document.getElementById('start-menu-apps');
+  if (startMenu) {
+    startMenu.appendChild(smi);
+  }
+}
+

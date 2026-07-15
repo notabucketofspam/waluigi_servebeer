@@ -33,10 +33,6 @@ body {
             <img src="/assets/realchat.png" alt="Chat" />
             LiveKit Chat
           </li>
-          <li class="start-menu-item" id="smi-open-window">
-            <img src="/assets/window.png" alt="Window" />
-            Open window
-          </li>
         </ul>
         <!-- these aren't our apps -->
         <ul class="start-menu-list" id="start-menu-options">
@@ -60,17 +56,11 @@ body {
 
 <script type="module" src="/src/main.ts"></script>
 <script type="module" src="/src/dwm.ts"></script>
+<script type="module" src="/src/apps/create-window.ts"></script>
 <script src="/js/everything.js"></script>
 <script>
-function pleaseInitializeMeCapn() {
-	var windog = window;
-	if (typeof windog.dwm_init === 'function') {
-		windog.dwm_init();
-	} else {
-		requestAnimationFrame(pleaseInitializeMeCapn);
-	}
-}
-pleaseInitializeMeCapn();
+(windogManager('initDWM'))();
+(windogManager('install_CreateWindow'))();
 </script>
 </body>
 </html>
