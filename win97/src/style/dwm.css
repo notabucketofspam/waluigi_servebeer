@@ -23,7 +23,7 @@ div#win97-desktop {
 	}
 }
 html {
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 img.window-icon, img.task-btn-icon {
