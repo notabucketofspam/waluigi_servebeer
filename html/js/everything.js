@@ -23,7 +23,7 @@ Site maintained by not.a.bucket.of.spam, @ me if something's up
 Last-Modified: <span id="Last-Modified"></span>
 </div>
 </footer>`);
-document.getElementById("Last-Modified").innerText = document.lastModified;
+document.getElementById("Last-Modified").innerText = (new Date(document.lastModified)).toISOString();
 
 /*
     BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER

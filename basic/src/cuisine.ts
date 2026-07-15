@@ -115,7 +115,7 @@ export async function consume_II(url: string) {
 			const lastModified = document.getElementById('Last-Modified');
 			const lmHeader = response.headers.get('Last-Modified');
 			if (lastModified && lmHeader) {
-				lastModified.innerText = lmHeader;
+				lastModified.innerText = (new Date(lmHeader)).toISOString();
       }
 
       windog.mellonTime();
