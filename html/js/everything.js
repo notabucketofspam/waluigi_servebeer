@@ -3,9 +3,9 @@
 */
 // if (!document.getElementById('welcome_steak'))
 document.body.insertAdjacentHTML("afterbegin",
-`<a href="/" id="return_steak" class="steak_corner">
+`<a href="/" id="return_steak" class="steak_corner" draggable="false">
 Return to the 
-<img src="/resource/steak8.gif" alt="STEAK" class="steak_gif">
+<img src="/resource/steak8.gif" alt="STEAK" class="steak_gif" draggable="false"/>
 zone
 </a>`);
 if (document.getElementById('welcome_steak')) {
@@ -30,7 +30,7 @@ document.getElementById("Last-Modified").innerText = document.lastModified;
 */
 document.body.insertAdjacentHTML('beforeend',
 `<button popovertarget="burgmenu" id="burger">
-  <img alt="BURGER" src="/resource/retro_burger.png" />
+  <img alt="BURGER" src="/resource/retro_burger.png" draggable="false"/>
 </button>
 <div id="burgmenu" popover>
   <meta class="meta_party" id="burgmenu_mp" />
