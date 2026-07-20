@@ -35,7 +35,7 @@ export default class MediaPlayer {
   }
   setGain(value: number) {
     try {
-      this.gainode.gain.value = value;
+      this.gainode.gain.setValueAtTime(value, this.auxcord.currentTime);
     } catch(err) {}
   }
 }
