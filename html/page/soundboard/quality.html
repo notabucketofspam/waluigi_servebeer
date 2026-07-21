@@ -115,10 +115,10 @@
       </h2>
     </summary>
     <div>
-      <button onclick="window.nuke_control.arm('L')"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
-      <button onclick="kill_shelf()"><b>&#x2796;&#xFE0F;</b> kill shelf</button>
-      <button onclick="add_shelf()"><b>&#x2795;&#xFE0F;</b> add shelf</button>
-      <button onclick="window.nuke_control.arm('R')" style="float:right"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
+      <button id="nukeControlArm_L" onclick="window.nuke_control.arm('L')"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
+      <button id="killShelf" onclick="kill_shelf()"><b>&#x2796;&#xFE0F;</b> kill shelf</button>
+      <button id="addShelf" onclick="add_shelf()"><b>&#x2795;&#xFE0F;</b> add shelf</button>
+      <button id="nukeControlArm_R" onclick="window.nuke_control.arm('R')" style="float:right"><b>&#x1F5D1;&#xFE0F;</b> nuke</button>
     </div>
     <div id="love_children" class="sounds"></div>
   </details>  
