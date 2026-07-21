@@ -1,7 +1,7 @@
 //@ts-ignore
 import "/page/soundboard/opodes/boards.js";
 
-import { post_storage, get_storage, check_online } from "../NEO.js";
+import { post_storage, get_storage, check_online, rui } from "../NEO.js";
 
 import MediaPlayer from "../extern/MediaPlayer.js";
 const mediaPlayer = new MediaPlayer();
@@ -271,19 +271,87 @@ function love(fname: string){
 }
 
 /** this is done once on initialization,
- *  but it might be called a second time, if the user is logged in
- */
+ *  but it might be called a second time, if the user is logged in*/
 function write_lovelist(){
-  var somelove = lovelist.map(fname=>{
+  const somelove = lovelist.map(fname=>{
     document.getElementById(fname)?.classList.add("loved");
     return insert_love(fname);
   });
-  let love_children = document.getElementById("love_children");
-  if (love_children) {
-    love_children.append(...somelove);
-  } else {
-    // no love_children. sad.
+  document.getElementById("love_children")?.append(...somelove);
+}
+
+// ------------------ lovezone drag-and-drop buttons ---------------------------
+function love_dragstart(ev: DragEvent){
+  if (ev.dataTransfer && ev.target){
+    ev.dataTransfer.clearData();
+    ev.dataTransfer.setData('text/plain', (ev.target as HTMLElement).id);
+    ev.dataTransfer.effectAllowed = 'move';
+    // cog(ev);
   }
+}
+function lovelist_drop(ev: DragEvent){
+  ev.preventDefault();
+  if (!ev.dataTransfer)
+    return;
+  var transit_id = ev.dataTransfer.getData('text/plain');
+  
+  var cox = ev.x;
+  var ref_el: HTMLElement | null = null;
+  do {
+    if (cox < 0)
+      break;
+    ref_el = document.elementFromPoint(cox, ev.y) as HTMLElement;
+    cox -=10;
+  } while (ref_el.tagName !== 'BUTTON' && ref_el.tagName !== 'TEXTAREA');
+
+  var real_id = (x: string)=> x.startsWith("love_")?x.slice(5):x;
+  try{
+    ref_el = ref_el as HTMLElement;
+    // they're the same picture
+    if (ref_el.id === transit_id)
+      return;
+    
+    // that isn't a valid drop point
+    // (sometimes it shows up as 'HTML' or 'BODY')
+    if (ref_el.tagName !== 'BUTTON' && ref_el.tagName !== 'TEXTAREA')
+      return;
+    
+    let lx_ref = lovelist.findIndex(el=>el.startsWith(real_id(ref_el?.id ?? '')));
+    //cog("ref:", ref_el.id, lx_ref);
+    let lx_transit = lovelist.findIndex(el=>el.startsWith(real_id(transit_id)));
+    //cog("transit:",transit_id, lx_transit);
+    
+    let where_to_put: 'beforebegin' | 'afterend' = 'afterend';
+    if (lx_ref < lx_transit){
+      let who_is_this = document.elementFromPoint(ev.x, ev.y);
+      if (who_is_this?.tagName === 'BUTTON'){
+        where_to_put = 'beforebegin';
+      }
+    }
+    
+    let el_tid = document.getElementById(transit_id);
+    if (el_tid){
+      ref_el.insertAdjacentElement(where_to_put, el_tid);
+    }
+
+    lovelist.splice(lx_transit,1);
+
+    let insert_place = lx_ref;
+    if (where_to_put === 'afterend'){
+      insert_place++;
+    }
+
+    lovelist.splice(insert_place,0,real_id(transit_id));
+
+    save_lovelist();
+  }catch(eee){
+    console.log(eee);
+  }
+}
+
+function reset_love(){
+  document.getElementById('love_children')?.replaceChildren();
+  document.querySelectorAll('button.loved').forEach(kid=>kid.classList.remove('loved'));
 }
 
 // -------------------------- GENERATING THE BUTTONS -----------------------------
@@ -336,6 +404,14 @@ function makegroup_III(someboard: Board) {
   sonDetails.appendChild(divSounds);
   sonDetails.addEventListener('toggle', record_closed);
   return sonDetails;
+}
+
+function record_closed(ev: Event){
+  try {
+    localStorage.setItem('soundboard::shouldnt_open',
+      JSON.stringify(Array.from(document.querySelectorAll("details.sb:not([open])"), el => el.id))
+    );
+  } catch(err) {}
 }
 
 // --------- show the total number of sounds at the top of the page
@@ -442,7 +518,6 @@ function kill_shelf(){
     save_lovelist();
   }
 }
-import {rui } from "../NEO.js";
 
 function add_shelf(){
   let freshelf = `<${String(rui(0xffff)).padStart(5,'0')}sample_text`;
@@ -457,114 +532,7 @@ function add_shelf(){
   });
 }
 
-// ------------------ lovezone drag-and-drop buttons ---------------------------
-function love_dragstart(ev: DragEvent){
-  if (ev.dataTransfer && ev.target){
-    ev.dataTransfer.clearData();
-    ev.dataTransfer.setData('text/plain', (ev.target as HTMLElement).id);
-    ev.dataTransfer.effectAllowed = 'move';
-    // cog(ev);
-  }
-}
-function lovelist_drop(ev: DragEvent){
-  ev.preventDefault();
-  if (!ev.dataTransfer)
-    return;
-  var transit_id = ev.dataTransfer.getData('text/plain');
-  
-  var cox = ev.x;
-  var ref_el: HTMLElement | null = null;
-  do {
-    if (cox < 0)
-      break;
-    ref_el = document.elementFromPoint(cox, ev.y) as HTMLElement;
-    cox -=10;
-  } while (ref_el.tagName !== 'BUTTON' && ref_el.tagName !== 'TEXTAREA');
-
-  var real_id = (x: string)=> x.startsWith("love_")?x.slice(5):x;
-  try{
-    ref_el = ref_el as HTMLElement;
-    // they're the same picture
-    if (ref_el.id === transit_id)
-      return;
-    
-    // that isn't a valid drop point
-    // (sometimes it shows up as 'HTML' or 'BODY')
-    if (ref_el.tagName !== 'BUTTON' && ref_el.tagName !== 'TEXTAREA')
-      return;
-    
-    let lx_ref = lovelist.findIndex(el=>el.startsWith(real_id(ref_el?.id ?? '')));
-    //cog("ref:", ref_el.id, lx_ref);
-    let lx_transit = lovelist.findIndex(el=>el.startsWith(real_id(transit_id)));
-    //cog("transit:",transit_id, lx_transit);
-    
-    let where_to_put: 'beforebegin' | 'afterend' = 'afterend';
-    if (lx_ref < lx_transit){
-      let who_is_this = document.elementFromPoint(ev.x, ev.y);
-      if (who_is_this?.tagName === 'BUTTON'){
-        where_to_put = 'beforebegin';
-      }
-    }
-    
-    let el_tid = document.getElementById(transit_id);
-    if (el_tid){
-      ref_el.insertAdjacentElement(where_to_put, el_tid);
-    }
-
-    lovelist.splice(lx_transit,1);
-
-    let insert_place = lx_ref;
-    if (where_to_put === 'afterend'){
-      insert_place++;
-    }
-
-    lovelist.splice(insert_place,0,real_id(transit_id));
-
-    save_lovelist();
-  }catch(eee){
-    console.log(eee);
-  }
-}
-
-function reset_love(){
-  document.getElementById('love_children')?.replaceChildren();
-  document.querySelectorAll('button.loved').forEach(kid=>kid.classList.remove('loved'));
-}
-
-// ----------- what categories are open and not
-export function init_shouldntOpen(){
-  try {
-    const booba = document.getElementById('booba');
-    if (window.board && booba?.childElementCount) {
-      // set them open or not
-      var shouldnt_open = localStorage.getItem('soundboard::shouldnt_open');
-      if (shouldnt_open) {
-        // has it in localstorage
-        const sto_shouldntOpen = JSON.parse(shouldnt_open) as string[];
-        sto_shouldntOpen.forEach(man=>document.getElementById(man)?.removeAttribute("open"));
-      } else {
-        // missing from localstorage, so make it blank
-        localStorage.setItem('soundboard::shouldnt_open', '[]');
-      }
-    } else {
-      // booba is missing
-    }
-  }catch(err){
-    console.error("Error setting up open categories:", err);
-  }
-}
-function record_closed(ev: Event){
-  try {
-    localStorage.setItem('soundboard::shouldnt_open',
-      JSON.stringify(Array.from(document.querySelectorAll("details.sb:not([open])"), el => el.id))
-    );
-  } catch(err) {}
-}
-
 // ----- network functions
-function post_love(){
-  post_storage({lovelist});
-}
 
 function get_love(){
   get_storage()
@@ -591,6 +559,4 @@ export function init_networkality() {
     }
   });
 }
-
-
 

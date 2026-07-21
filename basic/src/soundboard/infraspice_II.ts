@@ -210,6 +210,7 @@ export function init_miscUI() {
   init_width_control();
   init_whereHelp();
   dudeWheresMyBoat();
+  init_shouldntOpen();
 }
 
 // --------- where is the boat?
@@ -260,8 +261,27 @@ function hidemyboat() {
   localStorage.setItem('soundboard_navboat_captains_style_display', captains.style.display);
 }
 
-// ======================= this section deals with love ========================
-// =========================== and its repurcussions ===========================
-
+// ----------- what categories are open and not
+function init_shouldntOpen(){
+  try {
+    const booba = document.getElementById('booba');
+    if (window.board && booba?.childElementCount) {
+      // set them open or not
+      var shouldnt_open = localStorage.getItem('soundboard::shouldnt_open');
+      if (shouldnt_open) {
+        // has it in localstorage
+        const sto_shouldntOpen = JSON.parse(shouldnt_open) as string[];
+        sto_shouldntOpen.forEach(man=>document.getElementById(man)?.removeAttribute("open"));
+      } else {
+        // missing from localstorage, so make it blank
+        localStorage.setItem('soundboard::shouldnt_open', '[]');
+      }
+    } else {
+      // booba is missing
+    }
+  }catch(err){
+    console.error("Error setting up open categories:", err);
+  }
+}
 
 
