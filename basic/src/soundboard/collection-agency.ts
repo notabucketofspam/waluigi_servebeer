@@ -30,4 +30,5 @@ document.addEventListener('spam', ev => {
 		init_soundboard_HYPER();
 	}
 });
+init_soundboard_HYPER();
 

@@ -24,7 +24,7 @@ export function init_localVolume() {
     }
     // set the gain on the media player
     setgain(gainReal);
-    let somevolume = document.getElementById("soundboard_volume") as HTMLInputElement | null;
+    let somevolume = document.getElementById("somevolume") as HTMLInputElement | null;
     if (somevolume) {
       somevolume.value = vol_perchance;
       somevolume.addEventListener('input', ev => {
@@ -163,7 +163,7 @@ export async function beep(fname: string){
       postfetch(fname);
     } else {
       // either we couldnt find clockbot_enable or it is not checked
-      await mediaPlayer.beep(fname);
+      await mediaPlayer.beep(`/page/soundboard/opodes/${fname}.opus`);
     }
   } catch(err){}
 }
@@ -187,6 +187,9 @@ export function init_love(){
     kiddos?.addEventListener("drop", lovelist_drop);
     kiddos?.addEventListener("dragover", ev=>ev.preventDefault());
     write_lovelist();
+    const love_zone = document.getElementById('love_zone');
+    love_zone?.addEventListener("toggle", record_closed);
+    love_zone?.setAttribute('open', '');
   } catch(err){
     console.error("Error initializing love:", err);
   }
@@ -402,6 +405,7 @@ function makegroup_III(someboard: Board) {
   sonDetails.classList.add('sb', 'sef', 'lard');
   sonDetails.appendChild(summary);
   sonDetails.appendChild(divSounds);
+  sonDetails.setAttribute('open', '');
   sonDetails.addEventListener('toggle', record_closed);
   return sonDetails;
 }

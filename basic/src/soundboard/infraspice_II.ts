@@ -210,28 +210,36 @@ export function init_miscUI() {
   init_width_control();
   init_whereHelp();
   dudeWheresMyBoat();
+  const boat_hider = document.getElementById('boat_hider');
+  boat_hider?.addEventListener('click', hidemyboat);
   init_shouldntOpen();
 }
 
 // --------- where is the boat?
 function dudeWheresMyBoat() {
-  var navboat = document.getElementById('navboat');
   let multiple_boats = window.board.map(boa => {
-    const navbutton = document.createElement('button');
-    navbutton.classList.add('choking_hazard');
-    navbutton.innerText = boa.name;
-    navbutton.dataset['scrollto'] = `group_${boa.name}`;
-    navbutton.addEventListener('click', navbutton_click);
-    return navbutton;
+    return promote(boa.name, `group_${boa.name}`);
   });
-  navboat?.append(...multiple_boats);
   var navboat_shown = localStorage.getItem("soundboard_navboat_captains_style_display");
   navboat_shown ??= 'none';
   var captains = document.getElementById("captains");
   if (captains) {
+    captains.append(promote('Controls', 'clockbot_zone'));
+    captains.append(promote('The Sounds You Love', 'love_zone'));
+    captains.append(...multiple_boats);
     captains.style.display = navboat_shown === 'none' ? 'contents' : 'none';
   }
   hidemyboat();
+}
+
+/** this is how a man ascends to captainhood :^) */
+function promote(innerText:string, targetId:string){
+  const navbutton = document.createElement('button');
+  navbutton.classList.add('choking_hazard');
+  navbutton.innerText = innerText;
+  navbutton.dataset['scrollto'] = targetId;
+  navbutton.addEventListener('click', navbutton_click);
+  return navbutton;
 }
 
 function navbutton_click(ev: MouseEvent) {
@@ -278,6 +286,7 @@ function init_shouldntOpen(){
       }
     } else {
       // booba is missing
+      console.log("PLEASE HELP");
     }
   }catch(err){
     console.error("Error setting up open categories:", err);
