@@ -33,3 +33,8 @@ export async function get_storage(){
   }
 }
 
+/** Random Unsigned Integer*/
+export function rui(k: number): number{
+  return Math.trunc(Math.random() * k);
+}
+

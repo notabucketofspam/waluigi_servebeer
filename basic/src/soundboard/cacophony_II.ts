@@ -1,3 +1,6 @@
+//@ts-ignore
+import "/page/soundboard/opodes/boards.js";
+
 import { post_storage, get_storage, check_online } from "../NEO.js";
 
 import MediaPlayer from "../extern/MediaPlayer.js";
@@ -8,7 +11,7 @@ const mediaPlayer = new MediaPlayer();
 
 // ------- some stuff for controlling the local volume
 
-export function init_volume() {
+export function init_localVolume() {
   try {
     let gainReal = 0.20;
     // check localStorage for a saved volume setting
@@ -149,35 +152,41 @@ function postfetch(abode: string){
     } else {
       // couldnt find channel_id
     }
-  } catch (err){
-    // just let it do nothing
-  }
+  } catch (err){ }
 }
 
 /**when you click the button to play a sound*/
-async function beep(ev: Event){
+export async function beep(fname: string){
+  try {
+    const clockbot_enable = document.getElementById("clockbot_enable") as HTMLInputElement | null;
+    if (clockbot_enable?.checked){
+      postfetch(fname);
+    } else {
+      // either we couldnt find clockbot_enable or it is not checked
+      await mediaPlayer.beep(fname);
+    }
+  } catch(err){}
+}
+
+function Bev_click(ev: Event){
   try {
     let evto = ev.target as HTMLElement;
     let fname =  evto.dataset['fname'];
     if (fname) {
-      const clockbot_enable = document.getElementById("clockbot_enable") as HTMLInputElement | null;
-      if (clockbot_enable?.checked){
-        postfetch(fname);
-      } else {
-        // either we couldnt find clockbot_enable or it is not checked
-        await mediaPlayer.beep(fname);
-      }
-    } else {
-      // fname is missing for some reason.
-    }
+      beep(fname);
+    } 
   } catch(err) {}
 }
 
-// ====================== The Sounds You Love ==================================
+// ======================= this section deals with love ========================
+// =========================== and its repurcussions ===========================
 
 export function init_love(){
-  try {    
-    document.getElementById('love_children')?.addEventListener("drop", lovelist_drop);
+  try {
+    const kiddos = document.getElementById('love_children');
+    kiddos?.addEventListener("drop", lovelist_drop);
+    kiddos?.addEventListener("dragover", ev=>ev.preventDefault());
+    write_lovelist();
   } catch(err){
     console.error("Error initializing love:", err);
   }
@@ -185,7 +194,6 @@ export function init_love(){
 
 var has_username = false;
 
-// var love_children = document.getElementById("love_children");
 function save_lovelist(){
   localStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
   if (has_username){
@@ -222,16 +230,7 @@ function insert_love(fname:string){
     textarea.addEventListener("change", TAev_change);
     return textarea;
   } else {
-    const button = document.createElement('button');
-    button.id = `love_${fname}`;
-    button.dataset['fname'] = fname;
-    let fname_perchance = fname.split('/')[1];
-    button.textContent = fname_perchance??fname;
-    button.setAttribute('draggable', 'true');
-    button.addEventListener('click', beep);
-    button.addEventListener('contextmenu', Bev_contextmenu);
-    button.addEventListener('dragstart', love_dragstart);
-    return button;
+    return createButton(fname, true);
   }
 }
 
@@ -270,8 +269,11 @@ function love(fname: string){
     }
   } catch(err) {  }
 }
-// this is done once on initialization
-export function write_lovelist(){
+
+/** this is done once on initialization,
+ *  but it might be called a second time, if the user is logged in
+ */
+function write_lovelist(){
   var somelove = lovelist.map(fname=>{
     document.getElementById(fname)?.classList.add("loved");
     return insert_love(fname);
@@ -284,17 +286,90 @@ export function write_lovelist(){
   }
 }
 
+// -------------------------- GENERATING THE BUTTONS -----------------------------
+
+/**how to make the button*/
+function createButton(fname: string, isLove: boolean){
+  const button = document.createElement('button');
+  button.dataset['fname'] = fname;
+  let fname_perchance = fname.split('/')[1];
+  button.textContent = fname_perchance??fname;
+  button.addEventListener('click', Bev_click);
+  button.addEventListener('contextmenu', Bev_contextmenu);
+  if (isLove) {
+    button.id = `love_${fname}`;
+    button.setAttribute('draggable', 'true');
+    button.addEventListener('dragstart', love_dragstart);
+  } else {
+    button.id = `${fname}`;
+  }
+  return button;
+}
+
+/**this is used for making each board*/
+function makegroup_III(someboard: Board) {
+  // all thos buttons
+  const somebuttons = someboard.sound.map(s => {
+    const button = document.createElement('button');
+    button.id = `${someboard.name}/${s}`;
+    button.dataset['fname'] = `${someboard.name}/${s}`;
+    button.addEventListener('click', Bev_click);
+    button.addEventListener('contextmenu', Bev_contextmenu);
+    button.textContent = s;
+    return button;
+  });
+  // the thing to have sounds in it
+  const divSounds = document.createElement('div');
+  divSounds.classList.add('sounds');
+  divSounds.append(...somebuttons);
+  // the summary et al
+  const anotherH2 = document.createElement('h2');
+  anotherH2.textContent = someboard.name;
+  anotherH2.id = `group_${someboard.name}_h2`;
+  const summary = document.createElement('summary');
+  summary.appendChild(anotherH2);
+  // the actual details holding it all together
+  const sonDetails = document.createElement('details');
+  sonDetails.id = `group_${someboard.name}`;
+  sonDetails.classList.add('sb', 'sef', 'lard');
+  sonDetails.appendChild(summary);
+  sonDetails.appendChild(divSounds);
+  sonDetails.addEventListener('toggle', record_closed);
+  return sonDetails;
+}
+
+// --------- show the total number of sounds at the top of the page
+function show_booba_size() {
+  var pisces = document.querySelectorAll('div#booba button').length;
+  var toppo = document.querySelector('div#topstuff>h2') as HTMLElement | null;
+  if (toppo) {
+    toppo.innerText = pisces + 'pcs set';
+  }
+}
+
+/** put the actual soundboards on the page */
+export function init_booba(){
+  try {
+    const booba = document.getElementById('booba') as HTMLDivElement | null;
+    if (booba) {
+      const allgroups = window.board.map(makegroup_III);
+      booba.append(...allgroups);
+      show_booba_size();
+    } else {
+      // booba missing
+    }
+  } catch(err){}
+}
+
 // -------------------------------- shelf controls -----------------------------
 
 class NukeControl {
   starttime = 0;
   L = false;
   R = false;
-
   constructor() {
     this.anim_cb = this.anim_cb.bind(this);
   }
-
   get display() {
     return document.getElementById('arm_nuke_display') as HTMLDivElement | null;
   }
@@ -304,35 +379,28 @@ class NukeControl {
   get meter() {
     return document.getElementById('arm_nuke_meter') as HTMLMeterElement | null;
   }
-
   detonate() {
     lovelist.length = 0;
     save_lovelist();
     reset_love();
   }
-
   setnt() {
     this.display?.setAttribute('hidden', '');
     this.L = false;
     this.R = false;
   }
-
   arm(which_side: 'L' | 'R') {
     if (this[which_side]) return;
-
     this[which_side] = true;
-
     if (this.L && this.R) {
       this.detonate();
       this.setnt();
       return;
     }
-
     this.display?.removeAttribute('hidden');
     this.starttime = Number(window.document.timeline.currentTime??0);
     window.requestAnimationFrame(this.anim_cb);
   }
-
   anim_cb(timestamp: number) {
     const display_time = (this.starttime - timestamp) + 5000;
     if (display_time < 0) {
@@ -349,22 +417,18 @@ class NukeControl {
 var nukeControl = new NukeControl();
 
 export function init_shelf_controls() {
+  // arm left
   let nukeControlArm_L = document.getElementById('nukeControlArm_L') as HTMLButtonElement | null;
-  if (nukeControlArm_L) {
-    nukeControlArm_L.addEventListener('click', () => nukeControl.arm('L'));
-  }
+  nukeControlArm_L?.addEventListener('click', () => nukeControl.arm('L'));
+  // arm right
   let nukeControlArm_R = document.getElementById('nukeControlArm_R') as HTMLButtonElement | null;
-  if (nukeControlArm_R) {
-    nukeControlArm_R.addEventListener('click', () => nukeControl.arm('R'));
-  }
+  nukeControlArm_R?.addEventListener('click', () => nukeControl.arm('R'));
+  // kill a shelf
   let killShelf = document.getElementById('killShelf') as HTMLButtonElement | null;
-  if (killShelf) {
-    killShelf.addEventListener('click', kill_shelf);
-  }
+  killShelf?.addEventListener('click', kill_shelf);
+  // add a shelf
   let addShelf = document.getElementById('addShelf') as HTMLButtonElement | null;
-  if (addShelf) {
-    addShelf.addEventListener('click', add_shelf);
-  }
+  addShelf?.addEventListener('click', add_shelf);
 }
  
 function kill_shelf(){
@@ -378,9 +442,7 @@ function kill_shelf(){
     save_lovelist();
   }
 }
-function rui(k: number): number{
-  return Math.trunc(Math.random() * k);
-}
+import {rui } from "../NEO.js";
 
 function add_shelf(){
   let freshelf = `<${String(rui(0xffff)).padStart(5,'0')}sample_text`;
@@ -484,10 +546,6 @@ export function init_shouldntOpen(){
         // missing from localstorage, so make it blank
         localStorage.setItem('soundboard::shouldnt_open', '[]');
       }
-
-      // add event listeners for all of the details
-      var all_details = document.querySelectorAll("details.sb");
-      all_details.forEach(node=>node.addEventListener('toggle',record_closed));
     } else {
       // booba is missing
     }
