@@ -1,3 +1,5 @@
+import { post_storage, get_storage, check_online } from "../NEO.js";
+
 import MediaPlayer from "../extern/MediaPlayer.js";
 const mediaPlayer = new MediaPlayer();
 
@@ -6,7 +8,7 @@ const mediaPlayer = new MediaPlayer();
 
 // ------- some stuff for controlling the local volume
 
-function init_volume() {
+export function init_volume() {
   try {
     let gainReal = 0.20;
     // check localStorage for a saved volume setting
@@ -44,7 +46,7 @@ function setgain(g: number) {
 
 // -------- clockbot things
 
-function init_clockbot_things() {
+export function init_clockbot_things() {
   try {
     // add event listeners for clockbot_enable
     let clockbot_enable = document.getElementById("clockbot_enable") as HTMLInputElement | null;
@@ -103,7 +105,7 @@ function init_clockbot_things() {
         // no Bleave_chat?
       }
     } else {
-      // didnt have clockbot_enable
+      // didnt have clockbot_enable on the page
     }
 
     // similar for channel_id
@@ -133,6 +135,7 @@ function init_clockbot_things() {
 
 // -------------------------- how to actually play the sounds ------------------
 
+/**make clockbot play the sound*/
 function postfetch(abode: string){
   try {
     const channel_id = document.getElementById("channel_id") as HTMLInputElement | null;
@@ -151,26 +154,19 @@ function postfetch(abode: string){
   }
 }
 
-async function beep(fname: string){
-  try {
-    const clockbot_enable = document.getElementById("clockbot_enable") as HTMLInputElement | null;
-    if (clockbot_enable?.checked){
-      postfetch(fname);
-    } else {
-      // either we couldnt find clockbot_enable or it is not checked
-      await mediaPlayer.beep(fname);
-    }
-  } catch(err){
-    // yelling
-  }
-}
-
-function Bev_click(ev: Event){
+/**when you click the button to play a sound*/
+async function beep(ev: Event){
   try {
     let evto = ev.target as HTMLElement;
     let fname =  evto.dataset['fname'];
     if (fname) {
-      beep(fname);
+      const clockbot_enable = document.getElementById("clockbot_enable") as HTMLInputElement | null;
+      if (clockbot_enable?.checked){
+        postfetch(fname);
+      } else {
+        // either we couldnt find clockbot_enable or it is not checked
+        await mediaPlayer.beep(fname);
+      }
     } else {
       // fname is missing for some reason.
     }
@@ -179,7 +175,7 @@ function Bev_click(ev: Event){
 
 // ====================== The Sounds You Love ==================================
 
-function init_love(){
+export function init_love(){
   try {    
     document.getElementById('love_children')?.addEventListener("drop", lovelist_drop);
   } catch(err){
@@ -193,7 +189,7 @@ var has_username = false;
 function save_lovelist(){
   localStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
   if (has_username){
-    post_love();
+    post_storage({lovelist});
   }
 }
 
@@ -232,7 +228,7 @@ function insert_love(fname:string){
     let fname_perchance = fname.split('/')[1];
     button.textContent = fname_perchance??fname;
     button.setAttribute('draggable', 'true');
-    button.addEventListener('click', Bev_click);
+    button.addEventListener('click', beep);
     button.addEventListener('contextmenu', Bev_contextmenu);
     button.addEventListener('dragstart', love_dragstart);
     return button;
@@ -242,22 +238,13 @@ function insert_love(fname:string){
 function Bev_contextmenu(ev: Event){
   try {
     let evto = ev.target as HTMLElement;
-    if (evto) {
-      // button is ok
-      let fname =  evto.dataset['fname'];
-      if (fname) {
-        // only prevent default if we're not gonna fail
-        ev.preventDefault();
-        love(fname);
-      } else {
-        // WHY ARE YOU GONE?
-      }
-    } else {
-      // wya
+    let fname =  evto.dataset['fname'];
+    if (fname) {
+      // only prevent default if we're not gonna fail
+      ev.preventDefault();
+      love(fname);
     }
-  }catch(err){
-
-  }
+  }catch(err){}
 }
 
 function love(fname: string){
@@ -273,12 +260,7 @@ function love(fname: string){
       } else {
         // new love
         const newLove = insert_love(fname);
-        if (newLove instanceof HTMLElement) {
-          love_children.appendChild(newLove);
-        } else {
-          love_children.insertAdjacentHTML('beforeend', newLove);
-        }
-        document.getElementById(`love_${fname}`)?.addEventListener('dragstart', love_dragstart);
+        love_children.appendChild(newLove);
         lovelist.push(fname);
       }
       document.getElementById(fname)?.classList.toggle("loved");
@@ -286,12 +268,10 @@ function love(fname: string){
     } else {
       // love children is missing
     }
-  } catch(err) {
-
-  }
+  } catch(err) {  }
 }
 // this is done once on initialization
-function write_lovelist(){
+export function write_lovelist(){
   var somelove = lovelist.map(fname=>{
     document.getElementById(fname)?.classList.add("loved");
     return insert_love(fname);
@@ -368,7 +348,7 @@ class NukeControl {
 }
 var nukeControl = new NukeControl();
 
-function init_shelf_controls() {
+export function init_shelf_controls() {
   let nukeControlArm_L = document.getElementById('nukeControlArm_L') as HTMLButtonElement | null;
   if (nukeControlArm_L) {
     nukeControlArm_L.addEventListener('click', () => nukeControl.arm('L'));
@@ -490,22 +470,27 @@ function reset_love(){
 }
 
 // ----------- what categories are open and not
-function setup_open(){
+export function init_shouldntOpen(){
   try {
-    // set them open or not
-    var shouldnt_open = localStorage.getItem('soundboard::shouldnt_open');
-    if (shouldnt_open) {
-      // has it in localstorage
-      const sto_shouldntOpen = JSON.parse(shouldnt_open) as string[];
-      sto_shouldntOpen.forEach(man=>document.getElementById(man)?.removeAttribute("open"));
-    } else {
-      // missing from localstorage, so make it blank
-      localStorage.setItem('soundboard::shouldnt_open', '[]');
-    }
+    const booba = document.getElementById('booba');
+    if (window.board && booba?.childElementCount) {
+      // set them open or not
+      var shouldnt_open = localStorage.getItem('soundboard::shouldnt_open');
+      if (shouldnt_open) {
+        // has it in localstorage
+        const sto_shouldntOpen = JSON.parse(shouldnt_open) as string[];
+        sto_shouldntOpen.forEach(man=>document.getElementById(man)?.removeAttribute("open"));
+      } else {
+        // missing from localstorage, so make it blank
+        localStorage.setItem('soundboard::shouldnt_open', '[]');
+      }
 
-    // add event listeners for all of the details
-    var all_details = document.querySelectorAll("details.sb");
-    all_details.forEach(node=>node.addEventListener('toggle',record_closed));
+      // add event listeners for all of the details
+      var all_details = document.querySelectorAll("details.sb");
+      all_details.forEach(node=>node.addEventListener('toggle',record_closed));
+    } else {
+      // booba is missing
+    }
   }catch(err){
     console.error("Error setting up open categories:", err);
   }
@@ -515,29 +500,7 @@ function record_closed(ev: Event){
     localStorage.setItem('soundboard::shouldnt_open',
       JSON.stringify(Array.from(document.querySelectorAll("details.sb:not([open])"), el => el.id))
     );
-  } catch(err) {
-  }
-}
-
-function actual_init_open(){
-  var booba_real = document.getElementById('booba');
-  if (window.board && booba_real && booba_real.childElementCount) {
-    setup_open();
-  } else {
-		window.requestAnimationFrame(actual_init_open);
-  }
-}
-// setTimeout(actual_init_open);
-
-function init_full() {
-  try {
-    var booba_real = document.getElementById('booba');
-    if (window.board && booba_real?.childElementCount) {
-    
-    }
-  } catch(err){
-
-  }
+  } catch(err) {}
 }
 
 // ----- network functions
@@ -549,10 +512,24 @@ function get_love(){
   get_storage()
   .then(the_store=>{
     if (the_store?.storage?.lovelist){
-      window.lovelist = the_store.storage.lovelist;
-      whichStorage.setItem("soundboard_lovelist", JSON.stringify(window.lovelist));
+      lovelist = the_store.storage.lovelist;
+      localStorage.setItem("soundboard_lovelist", JSON.stringify(lovelist));
       reset_love();
       write_lovelist();
+    }
+  });
+}
+
+export function init_networkality() {
+  has_username = false;
+  check_online(dat => {
+    if (dat.username) {
+      var username_perchance = document.getElementById("username_perchance");
+      if (username_perchance) {
+        username_perchance.innerHTML = "Logged in as <div><b>" + dat.username + "</b></div>";
+      }
+      has_username = true;
+      get_love();
     }
   });
 }
