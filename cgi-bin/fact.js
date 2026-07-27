@@ -9,6 +9,7 @@ import * as path from "node:path";
 
 // try to read the fact file
 const factpath = path.join(os.tmpdir(),"wsbc_fact");
+const max_fresh = 1.2e6;
 fs.open(factpath, "r+", (err, fd)=>{
   if (err){
     // looks like there's no fact file
@@ -21,7 +22,7 @@ fs.open(factpath, "r+", (err, fd)=>{
         paint(err.code);
       } else {
         const lastdate = buffer.readDoubleLE();
-        if (Date.now() - lastdate > 1.2e6){
+        if (Date.now() - lastdate > max_fresh){
           // ... it's kinda old
           getfact(fd);
         } else {
@@ -41,17 +42,14 @@ fs.open(factpath, "r+", (err, fd)=>{
 function getfact(fd){
   // get the gemini request ready
   const GEMINI_API_KEY = fs.readFileSync("../keys/GEMINI_API_KEY", {encoding:"utf8"});
-  const MODEL_ID = "gemini-flash-latest";
+  const MODEL_ID = "gemini-flash-lite-latest";
   const GENERATE_CONTENT_API = "generateContent";
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:${GENERATE_CONTENT_API}?key=${GEMINI_API_KEY}`;
   const postload = {
     "generationConfig":{
-      "temperature":2,
       "thinkingConfig":{
-        "thinkingBudget":0
+        "thinkingLevel":"MINIMAL"
       },
-      "topP":0.95,
-      "topK":64,
       "maxOutputTokens":65536,
       "responseMimeType":"text/plain"
     },
@@ -62,11 +60,10 @@ function getfact(fd){
       {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "OFF"}
     ],
     "system_instruction":{
-      "parts":[{"text":"the user wants a fun fact. the fact must be 100% true. absurd, useless, or irrelevant output is ideal. output must include double entendre, suggestive phrasing, or innuendo. please limit output only one or two sentences. please do not include markdown in the output. thank you!!!"}]
     },
     "contents":[{
       "role":"user",
-      "parts":[{"text":"fact"}]
+      "parts":[{"text":"the user wants a fun fact. the fact must be 100% true. absurd, useless, or irrelevant output is ideal. output must include double entendre, suggestive phrasing, or innuendo. please limit output only one or two sentences. please do not include markdown in the output. thank you!!!"}]
     }]
   };
   const postring = JSON.stringify(postload);
@@ -81,6 +78,7 @@ function getfact(fd){
     res.on("end", ()=>{
       // parse the data
       var fulldata = JSON.parse(fulltext);
+      // console.log(fulltext);
       var truesauce = fulldata["candidates"][0]["content"]["parts"][0]["text"].trim();
       // write down the data using pen-and-paper
       const buffer = Buffer.alloc(8 + Buffer.byteLength(truesauce));
