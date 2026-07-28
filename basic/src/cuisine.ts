@@ -123,7 +123,9 @@ export async function consume_II(url: string) {
     }
 
     // apparently we're doing event bus now
-    document.dispatchEvent(new CustomEvent('spam', {detail: {url}}));
+    setTimeout(function(){
+      document.dispatchEvent(new CustomEvent('spam', {detail: {url}}));
+    });
 
   } catch (error) {
     console.error('Routing failed:', error);
