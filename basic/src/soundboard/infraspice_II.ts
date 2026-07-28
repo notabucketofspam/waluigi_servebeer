@@ -7,7 +7,18 @@ import "/page/soundboard/opodes/boards.js";
 var flatbread: string[] = [];
 
 function init_flatbread() {
-  flatbread = window?.board?.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou)) || [];
+  // flatbread = window?.board?.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou)) || [];
+  flatbread = window?.board?.flatMap(function(boardish) {
+    if ('sound' in boardish) {
+      // a normal board
+      let boa = boardish as Board;
+      return boa.sound.map(sou => boa.name + '/' + sou);
+    } else {
+      // a board group
+      let boaGroup = boardish as BoardGroup;
+      return boaGroup.boards.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou));
+    }
+  }) || [];
 }
 
 import { beep } from './cacophony_II.js';
@@ -238,6 +249,7 @@ function promote(innerText:string, targetId:string){
   navbutton.classList.add('choking_hazard');
   navbutton.innerText = innerText;
   navbutton.dataset['scrollto'] = targetId;
+  navbutton.id = `navbutton_${targetId}`;
   navbutton.addEventListener('click', navbutton_click);
   return navbutton;
 }
@@ -293,4 +305,205 @@ function init_shouldntOpen(){
   }
 }
 
+/* hide-n-seek 
+ * the goals of this section:
+ * hide groups from the navboat on the left
+ * hide groups from booba
+ * hide files from search menu  
+ */
+
+export function init_hideNSeek() {
+  const hnsMenu = createHideNSeekMenu();
+  const hnsContainer = document.getElementById('hide-n-seek');
+  if (hnsContainer) {
+    hnsContainer.append(hnsMenu);
+    document.getElementById('toggle-hns')?.addEventListener('click', () => {
+      hnsMenu.showPopover();
+    });
+    HNS_iterate_localStorage();
+    // hnsMenu.showPopover();
+  }
+}
+/**Another init-lite function*/
+function HNS_iterate_localStorage(){
+  // hide individual sounds
+  let hideSounds: string[] = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i)?.startsWith('soundboard::hide::')) {
+      hideSounds.push(localStorage.key(i)!.replace('soundboard::hide::', ''));
+    }
+  }
+  for (const guy of hideSounds) {
+    hnsOneSound(guy, true);
+  }
+  // same thing, but for groups
+  let hideGroups: string[] = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i)?.startsWith('soundboard::hideGroup::')) {
+      hideGroups.push(localStorage.key(i)!.replace('soundboard::hideGroup::', ''));
+    }
+  }
+  for (const group of hideGroups) {
+    hnsOneGroup(group, true);
+  }
+}
+
+/**this deals with flatbread and buttons*/
+function hnsOneSound(fname: string, hide: boolean) {
+  if (hide) {
+    localStorage.setItem('soundboard::hide::' + fname, 'true');
+    document.getElementById(fname)?.setAttribute('hidden', 'true');
+    if (flatbread.includes(fname)) {
+      flatbread.splice(flatbread.indexOf(fname), 1);      
+    }
+  } else {
+    localStorage.removeItem('soundboard::hide::' + fname);
+    document.getElementById(fname)?.removeAttribute('hidden');
+    // just put it in the back, which is sloppy but whatevs
+    flatbread.push(fname);
+  }
+}
+/**this deals with navboat and booba */
+function hnsOneGroup(gname: string, hide: boolean) {
+  if (hide) {
+    localStorage.setItem('soundboard::hideGroup::' + gname, 'true');
+    document.getElementById(`group_${gname}`)?.setAttribute('hidden', 'true');
+    document.getElementById(`navbutton_group_${gname}`)?.setAttribute('hidden', 'true');
+  } else {
+    localStorage.removeItem('soundboard::hideGroup::' + gname);
+    document.getElementById(`group_${gname}`)?.removeAttribute('hidden');
+    document.getElementById(`navbutton_group_${gname}`)?.removeAttribute('hidden');
+  }
+}
+
+/**The actual, official hide-n-seek menu*/
+function createHideNSeekMenu(){
+  const hnsMenu = document.createElement('div');
+  hnsMenu.id = 'hnsMenu';
+  hnsMenu.setAttribute('popover', '');
+  const closeButton = document.createElement('button');
+  closeButton.id = "hnsClose";
+  closeButton.innerText = 'Close';
+  closeButton.addEventListener('click', () => {
+    hnsMenu.hidePopover();
+  });
+  hnsMenu.append(closeButton);
+  window.board.forEach(board => {
+    if ('sound' in board) {
+      // a normal board
+      const listItems = createHNSList(board as Board);
+      hnsMenu.append(listItems);
+    } else {
+      // a board group
+      const boardGroup = board as BoardGroup;
+
+      const div = document.createElement('div');
+      div.classList.add('hnsb_SUPER');
+      hnsMenu.append(div);
+
+      const details = document.createElement('details');
+      details.classList.add('hnsb');
+      div.append(details);
+
+      const summary = document.createElement('summary');
+      details.append(summary);
+
+      const h2 = document.createElement('h2');
+      h2.innerText = boardGroup.title;
+      h2.classList.add('hnsHeading');
+      summary.append(h2);
+
+      boardGroup.boards.forEach(board => {
+        const listItems = createHNSList(board, 'h3');
+        listItems.style.marginLeft = '1em';
+        details.append(listItems);
+      });
+    }
+  });
+  return hnsMenu;
+}
+
+/**this is used once per group*/
+function createHNSList(board: Board, hSize = 'h2') {  
+  const theWholeThing = document.createElement('div');
+  theWholeThing.classList.add('hnsb_MEGA');
+  
+// the heading container
+  const headman = document.createElement('div');
+  theWholeThing.append(headman);
+  
+  const MrPresident = document.createElement('input');
+  MrPresident.type = 'checkbox';
+  MrPresident.checked = !localStorage.getItem('soundboard::hideGroup::' + board.name);
+  MrPresident.style.display = 'inline-block';
+  MrPresident.style.position = 'relative';
+  if (hSize === 'h2') {
+    MrPresident.style.top = '11px';
+  }
+  MrPresident.addEventListener('change', getDownMisterPresident);
+  headman.append(MrPresident);
+
+  // the details container
+  const detailsCapsule = document.createElement('div');
+  theWholeThing.append(detailsCapsule);
+  
+  const details = document.createElement('details');
+  details.classList.add('hnsb');
+  details.style.display = 'inline-block';
+  detailsCapsule.append(details);
+
+  const summary = document.createElement('summary');
+  details.append(summary);
+  
+  const heading = document.createElement(hSize);
+  heading.innerText = board.title ?? board.name;
+  heading.classList.add('hnsHeading');
+  summary.append(heading);
+  
+  const ul = document.createElement('ul');
+  ul.classList.add('hnsListMan');
+  const lis = board.sound.map(sound => {
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    input.value = board.name + '/' + sound;
+    input.type = 'checkbox';
+    input.checked = !localStorage.getItem('soundboard::hide::' + input.value);
+    input.addEventListener('change', handleHNSInputChange);
+    label.append(input);
+    label.insertAdjacentText('beforeend', sound);
+    const li = document.createElement('li');
+    li.append(label);
+    return li;
+  });
+  ul.append(...lis);
+  details.append(ul);
+
+  return theWholeThing;
+}
+/**handle change event for individual sound checkboxes */
+function handleHNSInputChange(ev: Event) {
+  const input = ev.target as HTMLInputElement;
+  const fname = input.value;
+  const isChecked = input.checked;
+  hnsOneSound(fname, !isChecked);
+}
+
+/**hide the whole group*/
+function getDownMisterPresident(ev: Event) {
+  const el = ev.target as HTMLInputElement;
+  const details = el?.parentElement?.nextElementSibling?.firstElementChild as HTMLDetailsElement | null;
+  if (details) {
+    const checkboxes = details.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+    const checkBoxesArray = Array.from(checkboxes);
+    checkBoxesArray.forEach(checkbox => {
+      checkbox.checked = el.checked;
+      //console.log(checkbox.value, checkbox.checked);
+      hnsOneSound(checkbox.value, !el.checked);
+    });
+    const groupHeading = details.querySelector('h2, h3');
+    if (groupHeading) {
+      hnsOneGroup((groupHeading as HTMLElement).innerText, !el.checked);
+    }
+  }
+}
 

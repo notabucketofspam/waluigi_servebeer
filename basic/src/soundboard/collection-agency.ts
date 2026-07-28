@@ -12,7 +12,8 @@ import {
 
 import {
 	init_searchFeature, 
-	init_miscUI
+	init_miscUI,
+	init_hideNSeek
 } from './infraspice_II.js';
 
 function init_soundboard_HYPER() {
@@ -24,9 +25,10 @@ function init_soundboard_HYPER() {
 	init_searchFeature();
 	init_miscUI();
 	init_networkality();
+	init_hideNSeek();
 }
 document.addEventListener('spam', ev => {
-	if (window.location.pathname === '/page/soundboard/quality_II.html') {
+	if (window.location.pathname === '/page/soundboard/quality.html') {
 		init_soundboard_HYPER();
 	}
 });

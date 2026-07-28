@@ -377,18 +377,35 @@ function createButton(fname: string, isLove: boolean){
   return button;
 }
 
+function createButtonsFromBoard(someboard: Board){
+  return someboard.sound.map(s => {
+      const button = document.createElement('button');
+      button.id = `${someboard.name}/${s}`;
+      button.dataset['fname'] = `${someboard.name}/${s}`;
+      button.addEventListener('click', Bev_click);
+      button.addEventListener('contextmenu', Bev_contextmenu);
+      button.textContent = s;
+      return button;
+    });
+}
+
 /**this is used for making each board*/
-function makegroup_III(someboard: Board) {
+function makegroup_III(someboard: Boardish) {
   // all thos buttons
-  const somebuttons = someboard.sound.map(s => {
-    const button = document.createElement('button');
-    button.id = `${someboard.name}/${s}`;
-    button.dataset['fname'] = `${someboard.name}/${s}`;
-    button.addEventListener('click', Bev_click);
-    button.addEventListener('contextmenu', Bev_contextmenu);
-    button.textContent = s;
-    return button;
-  });
+  let somebuttons: HTMLButtonElement[] = [];
+
+  if ('sound' in someboard) {
+    // a normal board
+    const theseButtons = createButtonsFromBoard(someboard);
+    somebuttons.push(...theseButtons);
+  } else {
+    // a group of boards
+    someboard.boards.forEach(b => {
+      const theseButtons = createButtonsFromBoard(b);
+      somebuttons.push(...theseButtons);
+    });
+  }
+
   // the thing to have sounds in it
   const divSounds = document.createElement('div');
   divSounds.classList.add('sounds');

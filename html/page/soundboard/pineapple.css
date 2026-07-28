@@ -104,28 +104,28 @@ textarea.lovesec {
 :where(details).sb[open] {
 	padding-bottom: 10px;
 }
-details.sb{
+details:where(.sb, .hnsb){
 	background-color:#fffa;
 }
 
-:where(details,div).sb > :where(summary,div) > h2 {
+:where(details,div):where(.sb, .hnsb) > :where(summary,div) > h2 {
 	display: inline-block;
 	margin: 4px 0px;
 	font-size: 2rem;
 	/*overflow-x:clip;*/
 }
 
-:where(details,div).sb > summary {
+:where(details,div):where(.sb, .hnsb) > summary {
 	--max-width: fit-content;
 }
 
-details.sb summary:hover {
+details:where(.sb, .hnsb) summary:hover {
 	h2 {
 		text-decoration: wavy underline 1px;
 	}
 }
 
-.sb h3 {
+:where(.sb, .hnsb) h3 {
 	margin: 0;
 	max-width: fit-content;
 }
@@ -282,6 +282,7 @@ input#soundsearch {
 	user-select: none;
 	max-height: 30lh;
 	min-height: 1lh;
+	overscroll-behavior: none;
 }
 
 div#all-sounds>span {
@@ -295,3 +296,51 @@ div#all-sounds>span {
 	overflow-x:clip;
 }
 
+details.hnsb summary {
+	list-style-position:outside;
+	list-style-type:none;
+}
+details.hnsb summary::marker {
+	display:none;
+}
+details.hnsb>summary::after {
+	content: '\25B6';
+}
+details[open].hnsb>summary::after {
+	content: '\25BC';
+}
+.hnsb_MEGA {
+	display: flex;
+}
+div.hnsb_SUPER {
+	margin-left:20px;
+}
+
+div#hnsMenu {
+	width:90vw;
+	height:60vh;
+	overflow-y:scroll;
+	overflow-x: hidden;
+	padding-top:0;
+	overscroll-behavior: none;
+}
+button#hnsClose {
+	width: 100%;
+	font-size: 1.5rem;
+	position: sticky;
+	top: 0px;
+	z-index: 4000;
+	display: block;
+}
+.hnsHeading {
+	display: inline-block;
+	margin:0;
+}
+ul.hnsListMan {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+ul.hnsListMan li {
+	line-height:0;
+}
