@@ -11,6 +11,23 @@ h3 {
 img#back-to-the-rooms {
 	max-width:2.5in;
 }
+	#clark-finds-a-store {
+		margin-top: 1em;
+		border: 1px solid black;
+		background-color: black;
+		max-width: fit-content;
+	}
+	#clark-finds-a-store-title {
+		color:white;
+		text-align: center;
+		font-weight:bold;
+		font-family:sans-serif;
+		font-size:1.2em;
+	}
+	#clark-finds-a-store-mp4{
+		max-width:100%;
+		vertical-align:top;
+	}
 </style>
 </head>
 <body>
@@ -74,8 +91,21 @@ img#back-to-the-rooms {
 		<img alt="Back To The Rooms" id="back-to-the-rooms"
 		src="https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o/image/the_newest_stuff/back%20to%20the%20rooms.jpg"/>
 	</p>
+	<div id="clark-finds-a-store">
+		<div id="clark-finds-a-store-title">Clark Finds A Store</div>
+		<div>
+			<video id="clark-finds-a-store-mp4" controls>
+				<source src="https://o.waluigi-servebeer.com/page/reviews/Clark-finds-a-store-cropped.mp4" type="video/mp4"/>
+			</video>
+		</div>
+	</div>
 </div>
 <script src="/js/everything.js"></script>
-<script></script>
+<script>
+var clarkFindsAStoreMp4 = document.getElementById("clark-finds-a-store-mp4");
+if (clarkFindsAStoreMp4){
+	clarkFindsAStoreMp4.volume = 0.7;
+}
+</script>
 </body>
 </html>
