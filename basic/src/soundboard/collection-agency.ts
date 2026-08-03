@@ -7,7 +7,8 @@ import {
 	init_love,
 	init_booba,
 	init_shelf_controls,
-	init_networkality
+	init_networkality,
+	init_clocksock
 } from './cacophony_II.js';
 
 import {
@@ -26,6 +27,7 @@ function init_soundboard_HYPER() {
 	init_miscUI();
 	init_networkality();
 	init_hideNSeek();
+	init_clocksock();
 }
 document.addEventListener('spam', ev => {
 	if (window.location.pathname === '/page/soundboard/quality.html') {

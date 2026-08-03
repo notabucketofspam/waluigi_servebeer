@@ -136,6 +136,52 @@ export function init_clockbot_things() {
   }
 }
 
+// --------------------------- websockets and et cetera ----------------------------
+
+const clocksock_url = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/msnbc`;
+let clocksock: WebSocket;
+let wsPingTimer: number | null = null;
+const wsPingFrame = new Uint8Array([0x9]);
+
+export function init_clocksock(){
+  clocksock = new WebSocket(clocksock_url);
+  clocksock.addEventListener('close', ws_onClose);
+  clocksock.addEventListener('error', ws_onError);
+  wsPingTimer = setInterval(ws_sendPing, 30000);
+}
+
+function ws_sendPing(){
+  try {
+    const sock = clocksock;
+    if (sock.readyState === WebSocket.OPEN){
+      sock.send(wsPingFrame);
+    }
+  } catch(err) { 
+    console.error("Error sending clocksock ping:", err);
+  }
+}
+function ws_onError(ev: Event){
+  try {
+    const sock = clocksock;
+    sock.close();
+  } catch(err) {
+    console.error("Error handling clocksock error event:", err);
+  }
+}
+function ws_onClose(ev: CloseEvent){
+  try {
+    const sock = clocksock;
+    sock.removeEventListener('close', ws_onClose);
+    sock.removeEventListener('error', ws_onError);
+    if (wsPingTimer) {
+      clearInterval(wsPingTimer);
+    }
+    setTimeout(init_clocksock, 5000);
+  } catch(err) {
+    console.error("Error handling clocksock close event:", err);
+  }
+}
+
 // -------------------------- how to actually play the sounds ------------------
 
 /**make clockbot play the sound*/
@@ -160,7 +206,6 @@ function postfetch(abode: string){
   } catch (err){ }
 }
 
-const clocksock = new WebSocket(`${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/msnbc`);
 
 /**when you click the button to play a sound*/
 export async function beep(fname: string){
