@@ -143,17 +143,24 @@ function postfetch(abode: string){
   try {
     const channel_id = document.getElementById("channel_id") as HTMLInputElement | null;
     if (channel_id) {
-      window.fetch(`${window.origin}/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`,{
-        headers: {
-          "Content-Type": "text/plain"
-        },
-        cache:"no-store"
-      });
+      const cmd_real = `/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`;
+      if (clocksock.readyState === WebSocket.OPEN){
+        clocksock.send(cmd_real);
+      } else {
+        window.fetch(`${window.origin}${cmd_real}`,{
+          headers: {
+            "Content-Type": "text/plain"
+          },
+          cache:"no-store"
+        });
+      }
     } else {
       // couldnt find channel_id
     }
   } catch (err){ }
 }
+
+const clocksock = new WebSocket(`${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/msnbc`);
 
 /**when you click the button to play a sound*/
 export async function beep(fname: string){
