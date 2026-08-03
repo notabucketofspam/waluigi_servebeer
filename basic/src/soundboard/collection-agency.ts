@@ -8,7 +8,8 @@ import {
 	init_booba,
 	init_shelf_controls,
 	init_networkality,
-	init_clocksock
+	init_clocksock,
+	deinit_clocksock
 } from './cacophony_II.js';
 
 import {
@@ -32,6 +33,8 @@ function init_soundboard_HYPER() {
 document.addEventListener('spam', ev => {
 	if (window.location.pathname === '/page/soundboard/quality.html') {
 		init_soundboard_HYPER();
+	} else {
+		deinit_clocksock();
 	}
 });
 init_soundboard_HYPER();

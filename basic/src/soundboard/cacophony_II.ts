@@ -138,15 +138,17 @@ export function init_clockbot_things() {
 
 // --------------------------- websockets and et cetera ----------------------------
 
-const USE_CLOCKSOCK = true;
+const USE_CLOCKSOCK = window.location.hostname !== 'localhost';
 
 const clocksock_url = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/msnbc`;
 let clocksock: WebSocket;
 let wsPingTimer: number | null = null;
+let clocksock_shouldReconnect = false;
 const wsPingFrame = new Uint8Array([0x9]);
 
 export function init_clocksock(){
   if (USE_CLOCKSOCK) {
+    clocksock_shouldReconnect = true;
     clocksock = new WebSocket(clocksock_url);
     clocksock.addEventListener('close', ws_onClose);
     clocksock.addEventListener('error', ws_onError);
@@ -180,9 +182,19 @@ function ws_onClose(ev: CloseEvent){
     if (wsPingTimer) {
       clearInterval(wsPingTimer);
     }
-    setTimeout(init_clocksock, 5000);
+    if (clocksock_shouldReconnect) {
+      setTimeout(init_clocksock, 5000);
+    }
   } catch(err) {
     console.error("Error handling clocksock close event:", err);
+  }
+}
+export function deinit_clocksock(){
+  try {
+    clocksock_shouldReconnect = false;
+    clocksock.close();
+  } catch(err) {
+    console.error("Error deinitializing clocksock:", err);
   }
 }
 
