@@ -251,7 +251,56 @@ function promote(innerText:string, targetId:string){
   navbutton.dataset['scrollto'] = targetId;
   navbutton.id = `navbutton_${targetId}`;
   navbutton.addEventListener('click', navbutton_click);
-  return navbutton;
+
+  const div = document.createElement('div');
+  div.classList.add('capHodl');
+  div.append(navbutton);
+
+  const subboards = document.getElementById(targetId)?.querySelector('div.subboards');
+  if (subboards) {
+    const innerDiv = document.createElement('div');
+    const burbs = Array.from(subboards.children).map(subboard => {
+      return promote((subboard.getAttribute('data-title') ?? subboard.querySelector('h3')?.innerText ?? '???'), subboard.id);
+    });
+    innerDiv.append(...burbs);
+    innerDiv.id = `subnav_${targetId}`;
+    innerDiv.classList.add('subnav');
+    innerDiv.style.display = 'none';
+    
+    div.dataset['subnav'] = innerDiv.id;
+    div.addEventListener('pointerenter', navSubmarine);
+    div.addEventListener('pointerleave', navSubmarine_hide);
+    div.append(innerDiv);
+  }
+  return div;
+}
+
+function navSubmarine(ev:Event) {
+  try {
+    console.log(ev);
+    const div = ev.currentTarget as HTMLDivElement;
+    const subnav_id = div.dataset['subnav'];
+    if (subnav_id){
+      const subnav = document.getElementById(subnav_id!);
+      if (subnav) {
+        subnav.style.left = div.getBoundingClientRect().right + 'px';
+        subnav.style.top = (-60 + div.getBoundingClientRect().top) + 'px';
+        subnav.style.display = 'block';
+      }
+    }
+  } catch(err) {
+    console.error("Error in navSubmarine:", err);
+  }
+}
+function navSubmarine_hide(ev:Event) {
+  const div = ev.currentTarget as HTMLDivElement;
+  const subnav_id = div.dataset['subnav'];
+  if (subnav_id){
+    const subnav = document.getElementById(subnav_id!);
+    if (subnav) {
+      subnav.style.display = 'none';
+    }
+  }
 }
 
 function navbutton_click(ev: MouseEvent) {

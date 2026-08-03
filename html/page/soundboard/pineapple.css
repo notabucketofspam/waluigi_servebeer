@@ -200,13 +200,26 @@ div#navboat {
 		display: contents;
 	}
 
-	div#navboat button {
+	div#navboat :where(button) {
 		flex: 1;
 		font-family: cursive;
 		font-style: italic;
 		border: 2px outset #ddd;
 	}
 
+div.capHodl {
+	display: flex;
+	flex:1;
+}
+div.subnav {
+	position: absolute;
+	z-index: 3;
+	box-shadow: #000A 3px 3px 5px 2px;
+}
+
+#navboat button:where(:hover, :focus, :active) {
+	box-shadow: #000A 3px 3px 3px 0px;
+}
 #navboat button:hover, #navboat button:focus {
 	transform: matrix(1.1,0,0,1.1,0,0);
 }

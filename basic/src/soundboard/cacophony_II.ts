@@ -501,6 +501,7 @@ function makegroup_III(someboard: Boardish, parents: string[] = []) {
   // the actual details holding it all together
   sonDetails.id = `group_${fullTitle}`;
   sonDetails.classList.add('sb', 'sef', 'lard');
+  sonDetails.setAttribute('data-title', someboard.title ?? someboard.name);
   sonDetails.appendChild(summary);
   sonDetails.setAttribute('open', '');
   sonDetails.addEventListener('toggle', record_closed);
