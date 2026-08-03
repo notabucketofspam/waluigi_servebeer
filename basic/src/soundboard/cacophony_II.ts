@@ -183,14 +183,14 @@ function ws_onClose(ev: CloseEvent){
 }
 
 // -------------------------- how to actually play the sounds ------------------
-
+const USE_CLOCKSOCK = false;
 /**make clockbot play the sound*/
 function postfetch(abode: string){
   try {
     const channel_id = document.getElementById("channel_id") as HTMLInputElement | null;
     if (channel_id) {
       const cmd_real = `/cmd?q=${channel_id.value}&f=${window.encodeURIComponent(abode)}`;
-      if (clocksock.readyState === WebSocket.OPEN){
+      if ( USE_CLOCKSOCK && clocksock.readyState === WebSocket.OPEN){
         clocksock.send(cmd_real);
       } else {
         window.fetch(`${window.origin}${cmd_real}`,{
