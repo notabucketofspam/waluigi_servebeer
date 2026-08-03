@@ -229,7 +229,7 @@ export function init_miscUI() {
 // --------- where is the boat?
 function dudeWheresMyBoat() {
   let multiple_boats = window.board.map(boa => {
-    return promote(boa.name, `group_${boa.name}`);
+    return promote(boa.title ?? boa.name, `group_${boa.name}`);
   });
   var navboat_shown = localStorage.getItem("soundboard_navboat_captains_style_display");
   navboat_shown ??= 'none';
@@ -500,7 +500,7 @@ function getDownMisterPresident(ev: Event) {
       //console.log(checkbox.value, checkbox.checked);
       hnsOneSound(checkbox.value, !el.checked);
     });
-    const groupHeading = details.querySelector('h2, h3');
+    const groupHeading = details.querySelector('h2, h3, div.sb_head');
     if (groupHeading) {
       hnsOneGroup((groupHeading as HTMLElement).innerText, !el.checked);
     }

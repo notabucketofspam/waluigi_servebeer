@@ -457,39 +457,51 @@ function createButtonsFromBoard(someboard: Board){
     });
 }
 
+function toPathSafe(s: string){
+  return s.replace(/[^a-zA-Z0-9]/g, '');
+}
+
 /**this is used for making each board*/
-function makegroup_III(someboard: Boardish) {
+function makegroup_III(someboard: Boardish, parents: string[] = []) {
   // all thos buttons
   let somebuttons: HTMLButtonElement[] = [];
+  
+  const hSize = parents.length + 2;
+  const safeTitle = toPathSafe(someboard.title ?? someboard.name);
+  const lineage = parents.concat(safeTitle);
+  const fullTitle = lineage.join('/');
 
+  const sonDetails = document.createElement('details');
   if ('sound' in someboard) {
     // a normal board
     const theseButtons = createButtonsFromBoard(someboard);
     somebuttons.push(...theseButtons);
+    const divSounds = document.createElement('div');
+    divSounds.classList.add('sounds');
+    divSounds.append(...somebuttons);
+    sonDetails.appendChild(divSounds);
   } else {
     // a group of boards
-    someboard.boards.forEach(b => {
-      const theseButtons = createButtonsFromBoard(b);
-      somebuttons.push(...theseButtons);
+    const subBoards = someboard.boards.map(b => {
+      return makegroup_III(b, lineage);
     });
+    const divContain = document.createElement('div');
+    divContain.classList.add('subboards');
+    divContain.append(...subBoards);
+    sonDetails.append(divContain);
   }
 
   // the thing to have sounds in it
-  const divSounds = document.createElement('div');
-  divSounds.classList.add('sounds');
-  divSounds.append(...somebuttons);
   // the summary et al
-  const anotherH2 = document.createElement('h2');
-  anotherH2.textContent = someboard.name;
-  anotherH2.id = `group_${someboard.name}_h2`;
+  const anotherH = document.createElement(`h${hSize}`);
+  anotherH.textContent = someboard.title ?? someboard.name;
+  anotherH.id = `group_${fullTitle}_h${hSize}`;
   const summary = document.createElement('summary');
-  summary.appendChild(anotherH2);
+  summary.appendChild(anotherH);
   // the actual details holding it all together
-  const sonDetails = document.createElement('details');
-  sonDetails.id = `group_${someboard.name}`;
+  sonDetails.id = `group_${fullTitle}`;
   sonDetails.classList.add('sb', 'sef', 'lard');
   sonDetails.appendChild(summary);
-  sonDetails.appendChild(divSounds);
   sonDetails.setAttribute('open', '');
   sonDetails.addEventListener('toggle', record_closed);
   return sonDetails;
@@ -517,7 +529,7 @@ export function init_booba(){
   try {
     const booba = document.getElementById('booba') as HTMLDivElement | null;
     if (booba) {
-      const allgroups = window.board.map(makegroup_III);
+      const allgroups = window.board.map(b => makegroup_III(b));
       booba.append(...allgroups);
       show_booba_size();
     } else {

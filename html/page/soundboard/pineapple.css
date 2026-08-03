@@ -108,7 +108,12 @@ details:where(.sb, .hnsb){
 	background-color:#fffa;
 }
 
-:where(details,div):where(.sb, .hnsb) > :where(summary,div) > h2 {
+:where(div.sb_head.size3) {
+	display: inline-block;
+	margin: 4px 0px;
+	font-size: 1.17rem;
+}
+:where(details,div):where(.sb, .hnsb) > :where(summary,div) > :where(h2, div.sb_head.size2) {
 	display: inline-block;
 	margin: 4px 0px;
 	font-size: 2rem;
@@ -119,15 +124,14 @@ details:where(.sb, .hnsb){
 	--max-width: fit-content;
 }
 
-details:where(.sb, .hnsb) summary:hover {
-	h2 {
-		text-decoration: wavy underline 1px;
-	}
+details:where(.sb, .hnsb) summary:hover :where(h2, h3, div.sb_head) {
+	text-decoration: wavy underline 1px;
 }
 
 :where(.sb, .hnsb) h3 {
 	margin: 0;
 	max-width: fit-content;
+	display: inline-block;
 }
 
 @media (max-width:400px) {
