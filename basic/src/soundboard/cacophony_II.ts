@@ -138,16 +138,20 @@ export function init_clockbot_things() {
 
 // --------------------------- websockets and et cetera ----------------------------
 
+const USE_CLOCKSOCK = true;
+
 const clocksock_url = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/msnbc`;
 let clocksock: WebSocket;
 let wsPingTimer: number | null = null;
 const wsPingFrame = new Uint8Array([0x9]);
 
 export function init_clocksock(){
-  clocksock = new WebSocket(clocksock_url);
-  clocksock.addEventListener('close', ws_onClose);
-  clocksock.addEventListener('error', ws_onError);
-  wsPingTimer = setInterval(ws_sendPing, 30000);
+  if (USE_CLOCKSOCK) {
+    clocksock = new WebSocket(clocksock_url);
+    clocksock.addEventListener('close', ws_onClose);
+    clocksock.addEventListener('error', ws_onError);
+    wsPingTimer = setInterval(ws_sendPing, 30000);    
+  }
 }
 
 function ws_sendPing(){
@@ -183,7 +187,7 @@ function ws_onClose(ev: CloseEvent){
 }
 
 // -------------------------- how to actually play the sounds ------------------
-const USE_CLOCKSOCK = false;
+
 /**make clockbot play the sound*/
 function postfetch(abode: string){
   try {
