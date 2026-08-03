@@ -211,8 +211,8 @@ function init_whereHelp() {
   where_help?.addEventListener('click', ev => {
     var greatanswer = document.getElementById('greatanswer');
     if (greatanswer) {
-      greatanswer.style.left = ev.x + 'px';
-      greatanswer.style.top = ev.y + 'px';
+      greatanswer.style.left = ev.pageX + 'px';
+      greatanswer.style.top = ev.pageY + 'px';
     }
   });
 }
@@ -245,14 +245,15 @@ function dudeWheresMyBoat() {
 
 /** this is how a man ascends to captainhood :^) */
 function promote(innerText:string, targetId:string){
+  const div = document.createElement('div');
+
   const navbutton = document.createElement('button');
   navbutton.classList.add('choking_hazard');
   navbutton.innerText = innerText;
   navbutton.dataset['scrollto'] = targetId;
-  navbutton.id = `navbutton_${targetId}`;
+  div.id = `navbutton_${targetId}`;
   navbutton.addEventListener('click', navbutton_click);
 
-  const div = document.createElement('div');
   div.classList.add('capHodl');
   div.append(navbutton);
 
@@ -277,7 +278,6 @@ function promote(innerText:string, targetId:string){
 
 function navSubmarine(ev:Event) {
   try {
-    console.log(ev);
     const div = ev.currentTarget as HTMLDivElement;
     const subnav_id = div.dataset['subnav'];
     if (subnav_id){
@@ -417,11 +417,11 @@ function hnsOneGroup(gname: string, hide: boolean) {
   if (hide) {
     localStorage.setItem('soundboard::hideGroup::' + gname, 'true');
     document.getElementById(`group_${gname}`)?.setAttribute('hidden', 'true');
-    document.getElementById(`navbutton_group_${gname}`)?.setAttribute('hidden', 'true');
+    document.getElementById(`navbutton_group_${gname}`)?.classList.add('hidden');
   } else {
     localStorage.removeItem('soundboard::hideGroup::' + gname);
     document.getElementById(`group_${gname}`)?.removeAttribute('hidden');
-    document.getElementById(`navbutton_group_${gname}`)?.removeAttribute('hidden');
+    document.getElementById(`navbutton_group_${gname}`)?.classList.remove('hidden');
   }
 }
 
@@ -437,56 +437,27 @@ function createHideNSeekMenu(){
     hnsMenu.hidePopover();
   });
   hnsMenu.append(closeButton);
-  window.board.forEach(board => {
-    if ('sound' in board) {
-      // a normal board
-      const listItems = createHNSList(board as Board);
-      hnsMenu.append(listItems);
-    } else {
-      // a board group
-      const boardGroup = board as BoardGroup;
-
-      const div = document.createElement('div');
-      div.classList.add('hnsb_SUPER');
-      hnsMenu.append(div);
-
-      const details = document.createElement('details');
-      details.classList.add('hnsb');
-      div.append(details);
-
-      const summary = document.createElement('summary');
-      details.append(summary);
-
-      const h2 = document.createElement('h2');
-      h2.innerText = boardGroup.title;
-      h2.classList.add('hnsHeading');
-      summary.append(h2);
-
-      boardGroup.boards.forEach(board => {
-        const listItems = createHNSList(board, 'h3');
-        listItems.style.marginLeft = '1em';
-        details.append(listItems);
-      });
-    }
-  });
+  const allgroups = window.board.map(b => createHNSList(b));
+  hnsMenu.append(...allgroups);
   return hnsMenu;
 }
 
+import { familyTree } from './cacophony_II.js';
 /**this is used once per group*/
-function createHNSList(board: Board, hSize = 'h2') {  
+function createHNSList(board: Boardish, parents: string[] = []) {
+  const {hSize, fullPath, lineage} = familyTree(board, parents);
   const theWholeThing = document.createElement('div');
   theWholeThing.classList.add('hnsb_MEGA');
-  
-// the heading container
+
+  // the heading container
   const headman = document.createElement('div');
   theWholeThing.append(headman);
   
   const MrPresident = document.createElement('input');
   MrPresident.type = 'checkbox';
-  MrPresident.checked = !localStorage.getItem('soundboard::hideGroup::' + board.name);
-  MrPresident.style.display = 'inline-block';
-  MrPresident.style.position = 'relative';
-  if (hSize === 'h2') {
+  MrPresident.checked = !localStorage.getItem('soundboard::hideGroup::' + fullPath);
+  MrPresident.classList.add('hnsb_POTUS');
+  if (hSize === 2) {
     MrPresident.style.top = '11px';
   }
   MrPresident.addEventListener('change', getDownMisterPresident);
@@ -498,37 +469,47 @@ function createHNSList(board: Board, hSize = 'h2') {
   
   const details = document.createElement('details');
   details.classList.add('hnsb');
-  details.style.display = 'inline-block';
   detailsCapsule.append(details);
 
   const summary = document.createElement('summary');
   details.append(summary);
   
-  const heading = document.createElement(hSize);
+  const heading = document.createElement(`h${hSize}`);
   heading.innerText = board.title ?? board.name;
   heading.classList.add('hnsHeading');
+  heading.setAttribute('data-group-name', fullPath);
   summary.append(heading);
-  
-  const ul = document.createElement('ul');
-  ul.classList.add('hnsListMan');
-  const lis = board.sound.map(sound => {
-    const label = document.createElement('label');
-    const input = document.createElement('input');
-    input.value = board.name + '/' + sound;
-    input.type = 'checkbox';
-    input.checked = !localStorage.getItem('soundboard::hide::' + input.value);
-    input.addEventListener('change', handleHNSInputChange);
-    label.append(input);
-    label.insertAdjacentText('beforeend', sound);
-    const li = document.createElement('li');
-    li.append(label);
-    return li;
-  });
-  ul.append(...lis);
-  details.append(ul);
+
+  if ('sound' in board) {
+    // we are dealing with a normal board  
+    const ul = document.createElement('ul');
+    ul.classList.add('hnsListMan');
+    const lis = board.sound.map(sound => {
+      const label = document.createElement('label');
+      const input = document.createElement('input');
+      input.value = board.name + '/' + sound;
+      input.type = 'checkbox';
+      input.checked = !localStorage.getItem('soundboard::hide::' + input.value);
+      input.addEventListener('change', handleHNSInputChange);
+      label.append(input);
+      label.insertAdjacentText('beforeend', sound);
+      const li = document.createElement('li');
+      li.append(label);
+      return li;
+    });
+    ul.append(...lis);
+    details.append(ul);  
+  } else {
+    // this is a board group
+    const allLists = board.boards.map(board => {
+      return createHNSList(board, lineage);
+    });
+    details.append(...allLists);
+  }
 
   return theWholeThing;
 }
+
 /**handle change event for individual sound checkboxes */
 function handleHNSInputChange(ev: Event) {
   const input = ev.target as HTMLInputElement;
@@ -551,7 +532,8 @@ function getDownMisterPresident(ev: Event) {
     });
     const groupHeading = details.querySelector('h2, h3, div.sb_head');
     if (groupHeading) {
-      hnsOneGroup((groupHeading as HTMLElement).innerText, !el.checked);
+      const ghElement = groupHeading as HTMLElement;
+      hnsOneGroup(ghElement.getAttribute('data-group-name') ?? ghElement.innerText, !el.checked);
     }
   }
 }

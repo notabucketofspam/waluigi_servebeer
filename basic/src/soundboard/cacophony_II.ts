@@ -192,7 +192,9 @@ function ws_onClose(ev: CloseEvent){
 export function deinit_clocksock(){
   try {
     clocksock_shouldReconnect = false;
-    clocksock.close();
+    if (clocksock instanceof WebSocket) {
+      clocksock.close();
+    }    
   } catch(err) {
     console.error("Error deinitializing clocksock:", err);
   }
@@ -460,16 +462,20 @@ function createButtonsFromBoard(someboard: Board){
 function toPathSafe(s: string){
   return s.replace(/[^a-zA-Z0-9]/g, '');
 }
+export function familyTree(board: Boardish, parents: string[] = []){
+  const hSize = parents.length + 2;
+  const safeTitle = parents.length ? toPathSafe(board.title ?? board.name) : board.name;
+  const lineage = parents.concat(safeTitle);
+  const fullPath = lineage.join('/');
+  return { hSize, lineage, fullPath };
+}
 
 /**this is used for making each board*/
 function makegroup_III(someboard: Boardish, parents: string[] = []) {
   // all thos buttons
   let somebuttons: HTMLButtonElement[] = [];
   
-  const hSize = parents.length + 2;
-  const safeTitle = toPathSafe(someboard.title ?? someboard.name);
-  const lineage = parents.concat(safeTitle);
-  const fullTitle = lineage.join('/');
+  const { hSize, lineage, fullPath } = familyTree(someboard, parents);
 
   const sonDetails = document.createElement('details');
   if ('sound' in someboard) {
@@ -495,11 +501,12 @@ function makegroup_III(someboard: Boardish, parents: string[] = []) {
   // the summary et al
   const anotherH = document.createElement(`h${hSize}`);
   anotherH.textContent = someboard.title ?? someboard.name;
-  anotherH.id = `group_${fullTitle}_h${hSize}`;
+  anotherH.id = `group_${fullPath}_h${hSize}`;
+  anotherH.setAttribute('data-group-name', fullPath);
   const summary = document.createElement('summary');
   summary.appendChild(anotherH);
   // the actual details holding it all together
-  sonDetails.id = `group_${fullTitle}`;
+  sonDetails.id = `group_${fullPath}`;
   sonDetails.classList.add('sb', 'sef', 'lard');
   sonDetails.setAttribute('data-title', someboard.title ?? someboard.name);
   sonDetails.appendChild(summary);
