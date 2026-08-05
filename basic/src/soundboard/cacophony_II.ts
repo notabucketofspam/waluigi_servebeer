@@ -138,7 +138,8 @@ export function init_clockbot_things() {
 
 // --------------------------- websockets and et cetera ----------------------------
 
-const USE_CLOCKSOCK = window.location.hostname !== 'localhost';
+const ENABLE_CLOCKSOCK = false;
+const USE_CLOCKSOCK = ENABLE_CLOCKSOCK && window.location.hostname !== 'localhost';
 
 const clocksock_url = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/msnbc`;
 let clocksock: WebSocket;
@@ -190,13 +191,15 @@ function ws_onClose(ev: CloseEvent){
   }
 }
 export function deinit_clocksock(){
-  try {
-    clocksock_shouldReconnect = false;
-    if (clocksock instanceof WebSocket) {
-      clocksock.close();
-    }    
-  } catch(err) {
-    console.error("Error deinitializing clocksock:", err);
+  if (USE_CLOCKSOCK) {
+    try {
+      clocksock_shouldReconnect = false;
+      if (clocksock instanceof WebSocket) {
+        clocksock.close();
+      }    
+    } catch(err) {
+      console.error("Error deinitializing clocksock:", err);
+    }
   }
 }
 
