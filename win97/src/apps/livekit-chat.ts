@@ -65,6 +65,13 @@ function createLiveKitUI(): HTMLDivElement {
 	activeCallView.appendChild(everyoneIsHere);
 	contentDiv.appendChild(activeCallView);
 
+	// settings button
+	const settingsBtn = document.createElement('button');
+	settingsBtn.id = 'livekit-settings-btn';
+	settingsBtn.textContent = 'Settings';
+	contentDiv.appendChild(settingsBtn);
+	settingsBtn.addEventListener('click', handleSettingsButton);
+
 	// Separator
 	const hr = document.createElement('hr');
 	hr.style.minWidth = '230px';
@@ -144,7 +151,7 @@ async function insertLoggedInAs(platter: HTMLDivElement){
 }
 
 import { type WindowOptions, createWindow, installApp, type ExternalApp, focusWindow } from "../dwm";
-import { init_livekitDOM} from "../livekit";
+import { init_livekitDOM, populateAudioInputDropdown, populateAudioOutputDropdown } from "../livekit";
 
 function liveKitAppHandler() {
 	try {
@@ -196,4 +203,57 @@ function document_spamHandler(ev: Event) {
   }
 }
 document.addEventListener('spam', document_spamHandler);
+
+function handleSettingsButton() {
+	try {
+		const settingsWindow = document.getElementById('window-livekit-settings');
+		if (settingsWindow) {
+			focusWindow(settingsWindow.id);
+		} else {
+			createSettingsWindow();
+		}
+	} catch(err) {
+		console.error('Error handling settings button:', err);
+	}
+}
+function createSettingsWindow() {
+	const settingsContent = createSettingsUI();
+	const windowOptions: WindowOptions = {
+		id: `window-livekit-settings`,
+		title: `LiveKit Settings`,
+		content: settingsContent,
+		icon: 'realchat.png'
+	};
+	createWindow(windowOptions);
+}
+
+function createSettingsUI() {
+	// a settings section for the app
+	const settingsSection = document.createElement('div');
+	// a select for the audio output device
+	const audioOutputLabel = document.createElement('label');
+	audioOutputLabel.htmlFor = 'audio-output-device';
+	audioOutputLabel.textContent = 'Audio Output Device: ';
+	settingsSection.appendChild(audioOutputLabel);
+	const audioOutputSelect = document.createElement('select');
+	audioOutputSelect.id = 'audio-output-device';
+	settingsSection.appendChild(audioOutputSelect);
+	populateAudioOutputDropdown(audioOutputSelect);
+
+	// a horizontal line
+	const hr = document.createElement('hr');
+	settingsSection.appendChild(hr);
+
+	// a select for the audio input device
+	const audioInputLabel = document.createElement('label');
+	audioInputLabel.htmlFor = 'audio-input-device';
+	audioInputLabel.textContent = 'Audio Input Device: ';
+	settingsSection.appendChild(audioInputLabel);
+	const audioInputSelect = document.createElement('select');
+	audioInputSelect.id = 'audio-input-device';
+	settingsSection.appendChild(audioInputSelect);
+	populateAudioInputDropdown(audioInputSelect);
+
+	return settingsSection;
+}
 

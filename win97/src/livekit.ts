@@ -458,3 +458,95 @@ export function init_livekitDOM() {
 	updateParticipantList();
 }
 
+const AUDIO_OUTPUT_DEVICE_KEY = 'livekit_audio_output_device';
+const AUDIO_INPUT_DEVICE_KEY = 'livekit_audio_input_device';
+
+async function getAudioDevices(kind: MediaDeviceKind): Promise<MediaDeviceInfo[]> {
+  try {
+    return await Room.getLocalDevices(kind);
+  } catch (err) {
+    console.error(`Error getting devices (${kind}):`, err);
+    return [];
+  }
+}
+
+async function populateAudioDeviceDropdown(
+  selectElement: HTMLSelectElement,
+  kind: MediaDeviceKind,
+  storageKey: string,
+  onDeviceChange: (deviceId: string) => Promise<void>
+): Promise<void> {
+  const devices = await getAudioDevices(kind);
+
+  selectElement.innerHTML = '';
+
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Default';
+  selectElement.appendChild(defaultOption);
+
+  for (const device of devices) {
+    const option = document.createElement('option');
+    option.value = device.deviceId;
+    option.textContent = device.label || `Device ${selectElement.options.length}`;
+    selectElement.appendChild(option);
+  }
+
+  // Restore saved choice if it's still a valid device
+  const savedDeviceId = localStorage.getItem(storageKey);
+  if (savedDeviceId && Array.from(selectElement.options).some(o => o.value === savedDeviceId)) {
+    const anOption = Array.from(selectElement.options).find(o => o.value === savedDeviceId);
+    anOption?.setAttribute('selected', 'true');
+    selectElement.value = savedDeviceId;
+    await onDeviceChange(savedDeviceId);
+  }
+
+  // Replace listener cleanly by cloning the element
+  const newSelect = selectElement.cloneNode(true) as HTMLSelectElement;
+  selectElement.replaceWith(newSelect);
+
+  newSelect.addEventListener('change', async () => {
+    const deviceId = newSelect.value;
+    localStorage.setItem(storageKey, deviceId);
+    await onDeviceChange(deviceId);
+  });
+}
+
+async function applyAudioOutputDevice(deviceId: string): Promise<void> {
+  for (const audioElement of participantAudioElements.values()) {
+    if (typeof (audioElement as any).setSinkId === 'function') {
+      await (audioElement as any).setSinkId(deviceId);
+    }
+  }
+}
+
+async function applyAudioInputDevice(deviceId: string): Promise<void> {
+  try {
+    await room.switchActiveDevice('audioinput', deviceId);
+  } catch (err) {
+    console.error('Error switching audio input device:', err);
+  }
+}
+
+// Convenience wrappers to call at setup and on RoomEvent.MediaDevicesChanged
+export async function populateAudioOutputDropdown(selectElement: HTMLSelectElement): Promise<void> {
+  await populateAudioDeviceDropdown(selectElement, 'audiooutput', AUDIO_OUTPUT_DEVICE_KEY, applyAudioOutputDevice);
+}
+
+export async function populateAudioInputDropdown(selectElement: HTMLSelectElement): Promise<void> {
+  await populateAudioDeviceDropdown(selectElement, 'audioinput', AUDIO_INPUT_DEVICE_KEY, applyAudioInputDevice);
+}
+
+room.on(RoomEvent.MediaDevicesChanged, async () => {
+  const dropdown = document.getElementById('audio-output-device') as HTMLSelectElement | null;
+  if (dropdown) {
+    await populateAudioOutputDropdown(dropdown);
+  }
+  const otherDropdown = document.getElementById('audio-input-device') as HTMLSelectElement | null;
+  if (otherDropdown) {
+    await populateAudioInputDropdown(otherDropdown);
+  }
+});
+
+
+
