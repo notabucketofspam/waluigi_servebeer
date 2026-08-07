@@ -204,6 +204,12 @@ function init_width_control() {
     });  
   }
 }
+window.addEventListener('resize', function soundboard_handle_resize() {
+  const width_control = document.getElementById('width_control') as HTMLInputElement | null;
+  if (width_control) {
+    setHowManyButtons(width_control);
+  }
+});
 
 /** that lil button that says "where?" next to clockbot*/
 function init_whereHelp() {
@@ -225,6 +231,9 @@ export function init_miscUI() {
   boat_hider?.addEventListener('click', hidemyboat);
   init_shouldntOpen();
 }
+
+// =================================================================================================
+// ============================================ NAVBOAT ============================================
 
 // --------- where is the boat?
 function dudeWheresMyBoat() {
@@ -257,8 +266,10 @@ function promote(innerText:string, targetId:string){
   div.classList.add('capHodl');
   div.append(navbutton);
 
+  // handle subboards if they exist
   const subboards = document.getElementById(targetId)?.querySelector('div.subboards');
   if (subboards) {
+    // the actual drop-down menu
     const innerDiv = document.createElement('div');
     const burbs = Array.from(subboards.children).map(subboard => {
       return promote((subboard.getAttribute('data-title') ?? subboard.querySelector('h3')?.innerText ?? '???'), subboard.id);
@@ -269,22 +280,53 @@ function promote(innerText:string, targetId:string){
     innerDiv.style.display = 'none';
     
     div.dataset['subnav'] = innerDiv.id;
-    div.addEventListener('pointerenter', navSubmarine);
-    div.addEventListener('pointerleave', navSubmarine_hide);
+    // div.addEventListener('pointerenter', navSubmarine);
+    // div.addEventListener('pointerleave', navSubmarine_hide);
     div.append(innerDiv);
+
+    // a small arrow to open said drop-down menu
+    const smallArrow = document.createElement('div');
+    smallArrow.classList.add('navboat_smallArrow');
+    const saButton = document.createElement('button');    
+    saButton.textContent = String.fromCharCode(0x25B6);
+    smallArrow.append(saButton);
+    saButton.setAttribute('data-subnav', innerDiv.id);
+    saButton.addEventListener('click', navSub_toggle);
+    // saButton.addEventListener('blur', navSubmarine_hide);
+    div.append(smallArrow);
   }
+
   return div;
 }
 
-function navSubmarine(ev:Event) {
+function navSub_toggle(ev:Event) {
   try {
-    const div = ev.currentTarget as HTMLDivElement;
-    const subnav_id = div.dataset['subnav'];
+    const el = ev.target as HTMLElement;
+    if (el.dataset['subnav']) {
+      if (el.classList.contains('navSub_open')) {
+        // closing time
+        navSubmarine_hide(el);
+        el.classList.remove('navSub_open');
+        el.textContent = String.fromCharCode(0x25B6);
+      } else {
+        // gotta open it
+        navSubmarine(el);
+        el.classList.add('navSub_open');
+        el.textContent = String.fromCharCode(0x25BC);
+      }
+    }
+  } catch(err) {
+    console.error("Error in navSub_toggle:", err);
+  }
+}
+function navSubmarine(el:HTMLElement) {
+  try {
+    const subnav_id = el.dataset['subnav'];
     if (subnav_id){
       const subnav = document.getElementById(subnav_id!);
       if (subnav) {
-        subnav.style.left = div.getBoundingClientRect().right + 'px';
-        subnav.style.top = (-60 + div.getBoundingClientRect().top) + 'px';
+        subnav.style.left = el.getBoundingClientRect().right + 'px';
+        subnav.style.top = (-60 + el.getBoundingClientRect().top) + 'px';
         subnav.style.display = 'block';
       }
     }
@@ -292,14 +334,17 @@ function navSubmarine(ev:Event) {
     console.error("Error in navSubmarine:", err);
   }
 }
-function navSubmarine_hide(ev:Event) {
-  const div = ev.currentTarget as HTMLDivElement;
-  const subnav_id = div.dataset['subnav'];
-  if (subnav_id){
-    const subnav = document.getElementById(subnav_id!);
-    if (subnav) {
-      subnav.style.display = 'none';
+function navSubmarine_hide(el:HTMLElement) {
+  try {
+    const subnav_id = el.dataset['subnav'];
+    if (subnav_id){
+      const subnav = document.getElementById(subnav_id!);
+      if (subnav) {
+        subnav.style.display = 'none';
+      }
     }
+  } catch (err) {
+    console.error("Error in navSubmarine_hide:", err);
   }
 }
 

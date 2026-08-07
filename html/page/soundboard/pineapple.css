@@ -231,6 +231,13 @@ div.subnav {
 	transform: matrix(0.85,0,0,1.4,15,0);
 }
 
+#navboat :where(.navboat_smallArrow) button:hover {
+	transform: matrix(1.1,0,0,1.1,-2,0);
+}
+#navboat :where(.navboat_smallArrow) button:active {
+	transform: matrix(2,0,0,1,-15,0);
+}
+
 div#navboat #captains buttons {
 	min-width: 100%;
 }
@@ -378,4 +385,14 @@ ul.hnsListMan li {
 	background-color: #fff;
 	border:solid;
 }
+
+.navboat_smallArrow {
+	vertical-align: middle;
+	display: flex;
+	min-width:30px;
+}
+	div.navboat_smallArrow button {
+		font-style: normal;
+		font-family: monospace;
+	}
 
