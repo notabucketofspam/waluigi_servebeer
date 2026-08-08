@@ -351,7 +351,26 @@ function navSubmarine_hide(el:HTMLElement) {
 function navbutton_click(ev: MouseEvent) {
   let navbutton = ev.target as HTMLButtonElement;
   if (navbutton?.dataset?.scrollto) {
-    document.getElementById(navbutton.dataset.scrollto)?.scrollIntoView();
+    const scrollto = navbutton.dataset.scrollto;
+    const scrollTarget = document.getElementById(scrollto);
+    if (scrollTarget) {
+      if (scrollto === 'clockbot_zone') {
+        // just scroll to the top of the page
+        document.documentElement.scroll(0,0);
+      } else {
+        scrollTarget.scrollIntoView();
+        const blef = document.getElementById('booba')?.lastElementChild;
+        if (blef && window.innerHeight > blef.clientHeight && blef.id === scrollto) {
+          // do nothing
+        } else {
+          document.documentElement.scrollBy(0,-60);
+        }
+      }
+    } else {
+      // there was no scroll target
+    }
+  } else {
+    // dataset attribute was missing this time
   }
 }
 
