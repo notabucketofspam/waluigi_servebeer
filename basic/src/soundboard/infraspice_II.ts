@@ -7,18 +7,21 @@ import "/page/soundboard/opodes/boards.js";
 var flatbread: string[] = [];
 
 function init_flatbread() {
-  // flatbread = window?.board?.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou)) || [];
-  flatbread = window?.board?.flatMap(function(boardish) {
-    if ('sound' in boardish) {
-      // a normal board
-      let boa = boardish as Board;
-      return boa.sound.map(sou => boa.name + '/' + sou);
-    } else {
-      // a board group
-      let boaGroup = boardish as BoardGroup;
-      return boaGroup.boards.flatMap(boa => boa.sound.map(sou => boa.name + '/' + sou));
-    }
-  }) || [];
+  flatbread = window?.board?.flatMap(hyperflatten) || [];
+}
+function hyperflatten(boardish: Boardish): string[] {
+  if ('sound' in boardish) {
+    // a normal board
+    let boa = boardish as Board;
+    return boa.sound.map(sou => boa.name + '/' + sou);
+  } else if ('boards' in boardish) {
+    // gotta recursively call hyperflatten on each sub-board
+    let boaGroup = boardish as BoardGroup;
+    return boaGroup.boards.flatMap(hyperflatten);
+  } else {
+    // unknown board type
+    return [];
+  }
 }
 
 import { beep } from './cacophony_II.js';
@@ -248,6 +251,19 @@ function dudeWheresMyBoat() {
     captains.append(promote('The Sounds You Love', 'love_zone'));
     captains.append(...multiple_boats);
     captains.style.display = navboat_shown === 'none' ? 'contents' : 'none';
+
+    if (navboat_shown !== 'none') {
+      // load the subnav showing-ness from storage
+      setTimeout(function(){        
+        const openSubnavs = JSON.parse(localStorage.getItem(`soundboard::navsub::open`) ?? '[]');
+        for (const subnavId of openSubnavs) {
+          const meatface = document.querySelector(`button[data-subnav="${subnavId}"]`) as HTMLElement | null;
+          if (meatface) {
+            navSubmarine(meatface, true);
+          }
+        }
+      });
+    } else {/*nothing happens bc the navboat is not shown*/}
   }
   hidemyboat();
 }
@@ -280,8 +296,6 @@ function promote(innerText:string, targetId:string){
     innerDiv.style.display = 'none';
     
     div.dataset['subnav'] = innerDiv.id;
-    // div.addEventListener('pointerenter', navSubmarine);
-    // div.addEventListener('pointerleave', navSubmarine_hide);
     div.append(innerDiv);
 
     // a small arrow to open said drop-down menu
@@ -291,60 +305,50 @@ function promote(innerText:string, targetId:string){
     saButton.textContent = String.fromCharCode(0x25B6);
     smallArrow.append(saButton);
     saButton.setAttribute('data-subnav', innerDiv.id);
-    saButton.addEventListener('click', navSub_toggle);
-    // saButton.addEventListener('blur', navSubmarine_hide);
+    saButton.addEventListener('click', handle_navsub_click);
     div.append(smallArrow);
   }
 
   return div;
 }
-
-function navSub_toggle(ev:Event) {
+function handle_navsub_click(ev: Event) {
   try {
-    const el = ev.target as HTMLElement;
-    if (el.dataset['subnav']) {
-      if (el.classList.contains('navSub_open')) {
-        // closing time
-        navSubmarine_hide(el);
-        el.classList.remove('navSub_open');
-        el.textContent = String.fromCharCode(0x25B6);
-      } else {
-        // gotta open it
-        navSubmarine(el);
-        el.classList.add('navSub_open');
-        el.textContent = String.fromCharCode(0x25BC);
-      }
-    }
+    const target = ev.target as HTMLElement;
+    const isOpen = target.classList.contains('subnav-open');
+    navSubmarine(target, !isOpen);
   } catch(err) {
-    console.error("Error in navSub_toggle:", err);
+    console.error("Error in handle_navsub_click:", err);
   }
 }
-function navSubmarine(el:HTMLElement) {
+
+function navSubmarine(el: HTMLElement, show:boolean) {
   try {
     const subnav_id = el.dataset['subnav'];
     if (subnav_id){
-      const subnav = document.getElementById(subnav_id!);
+      const subnav = document.getElementById(subnav_id);
       if (subnav) {
-        subnav.style.left = el.getBoundingClientRect().right + 'px';
-        subnav.style.top = (-60 + el.getBoundingClientRect().top) + 'px';
-        subnav.style.display = 'block';
-      }
-    }
+        if (show) {
+          // displaying the subnav
+          subnav.style.left = el.getBoundingClientRect().right + 'px';
+          subnav.style.top = (-60 + el.getBoundingClientRect().top) + 'px';
+          subnav.style.display = 'block';
+          subnav.classList.add('open');
+          el.classList.add('subnav-open');
+          el.textContent = String.fromCharCode(0x25BC);
+        } else {
+          // the opposite of displaying the subnav
+          subnav.style.display = 'none';
+          subnav.classList.remove('open');
+          el.classList.remove('subnav-open');
+          el.textContent = String.fromCharCode(0x25B6);
+        }
+        // record which subnavs are open
+        const openSubnavs = Array.from(document.querySelectorAll('.subnav.open')).map(sn => sn.id);
+        localStorage.setItem(`soundboard::navsub::open`, JSON.stringify(openSubnavs));
+      } else {/*couldnt find the actual subnav element*/}
+    } else {/*subnav_id is missing*/}
   } catch(err) {
     console.error("Error in navSubmarine:", err);
-  }
-}
-function navSubmarine_hide(el:HTMLElement) {
-  try {
-    const subnav_id = el.dataset['subnav'];
-    if (subnav_id){
-      const subnav = document.getElementById(subnav_id!);
-      if (subnav) {
-        subnav.style.display = 'none';
-      }
-    }
-  } catch (err) {
-    console.error("Error in navSubmarine_hide:", err);
   }
 }
 
@@ -563,12 +567,14 @@ function createHNSList(board: Boardish, parents: string[] = []) {
     });
     ul.append(...lis);
     details.append(ul);  
-  } else {
+  } else if ('boards' in board) {
     // this is a board group
     const allLists = board.boards.map(board => {
       return createHNSList(board, lineage);
     });
     details.append(...allLists);
+  } else {
+    // havent implemented the rest of it yet
   }
 
   return theWholeThing;

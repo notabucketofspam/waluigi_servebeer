@@ -467,8 +467,13 @@ function toPathSafe(s: string){
 }
 export function familyTree(board: Boardish, parents: string[] = []){
   const hSize = parents.length + 2;
-  const safeTitle = parents.length ? toPathSafe(board.title ?? board.name) : board.name;
-  const lineage = parents.concat(safeTitle);
+  let safePath = '';
+  if (board.vpath) {
+    safePath = board.vpath;
+  } else {
+    safePath = parents.length ? toPathSafe(board.title ?? board.name) : board.name;
+  }
+  const lineage = parents.concat(safePath);
   const fullPath = lineage.join('/');
   return { hSize, lineage, fullPath };
 }
@@ -489,7 +494,7 @@ function makegroup_III(someboard: Boardish, parents: string[] = []) {
     divSounds.classList.add('sounds');
     divSounds.append(...somebuttons);
     sonDetails.appendChild(divSounds);
-  } else {
+  } else if ('boards' in someboard) {
     // a group of boards
     const subBoards = someboard.boards.map(b => {
       return makegroup_III(b, lineage);
@@ -498,6 +503,8 @@ function makegroup_III(someboard: Boardish, parents: string[] = []) {
     divContain.classList.add('subboards');
     divContain.append(...subBoards);
     sonDetails.append(divContain);
+  } else {
+    // handle this eventually
   }
 
   // the thing to have sounds in it
