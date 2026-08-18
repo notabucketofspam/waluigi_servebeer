@@ -28,8 +28,16 @@ declare interface BoardAppend extends BoardBase {
 	appends: string[];
 }
 
+/**When the bucket has the sounds*/
+declare interface BucketBoard extends BoardBase {
+	/**the base URL for the bucket*/
+	bucket: string;
+	/**the query parameters to use when listing all of the sounds*/
+	query: string;
+}
+
 /**The Union */
-declare type Boardish = Board | BoardGroup | BoardAppend;
+declare type Boardish = Board | BoardGroup | BoardAppend | BucketBoard;
 
 /**The actual board object on the page*/
 declare var board: Boardish[];

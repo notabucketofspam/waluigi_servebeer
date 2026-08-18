@@ -236,7 +236,14 @@ export async function beep(fname: string){
       postfetch(fname);
     } else {
       // either we couldnt find clockbot_enable or it is not checked
-      await mediaPlayer.beep(`/page/soundboard/opodes/${fname}.opus`);
+      if (fname.startsWith('[extern]')){
+        // this is hosted somewhere that isn't this server,
+        // ... devious little dickens
+        await mediaPlayer.beep(fname.slice(8));
+      } else {
+        // it's a resource being hosted on this here server
+        await mediaPlayer.beep(`/page/soundboard/opodes/${fname}.opus`);
+      }
     }
   } catch(err){}
 }
@@ -432,11 +439,21 @@ function reset_love(){
 
 // -------------------------- GENERATING THE BUTTONS -----------------------------
 
+import {
+  ListObjects2fnames
+} from "./three-forks.js";
+
 /**how to make the button*/
 function createButton(fname: string, isLove: boolean){
   const button = document.createElement('button');
   button.dataset['fname'] = fname;
   let fname_perchance = fname.split('/')[1];
+  if (fname.startsWith('[extern]')){
+    // have to handle it differently for a bucket-shaped board
+    const lastSlash = fname.lastIndexOf('/');
+    const lastDot = fname.lastIndexOf('.');
+    fname_perchance = fname.slice(1 + lastSlash, lastDot);
+  }
   button.textContent = fname_perchance??fname;
   button.addEventListener('click', Bev_click);
   button.addEventListener('contextmenu', Bev_contextmenu);
@@ -448,18 +465,6 @@ function createButton(fname: string, isLove: boolean){
     button.id = `${fname}`;
   }
   return button;
-}
-
-function createButtonsFromBoard(someboard: Board){
-  return someboard.sound.map(s => {
-      const button = document.createElement('button');
-      button.id = `${someboard.name}/${s}`;
-      button.dataset['fname'] = `${someboard.name}/${s}`;
-      button.addEventListener('click', Bev_click);
-      button.addEventListener('contextmenu', Bev_contextmenu);
-      button.textContent = s;
-      return button;
-    });
 }
 
 function toPathSafe(s: string){
@@ -488,7 +493,7 @@ function makegroup_III(someboard: Boardish, parents: string[] = []) {
   const sonDetails = document.createElement('details');
   if ('sound' in someboard) {
     // a normal board
-    const theseButtons = createButtonsFromBoard(someboard);
+    const theseButtons = someboard.sound.map(s => createButton(`${someboard.name}/${s}`, false));
     somebuttons.push(...theseButtons);
     const divSounds = document.createElement('div');
     divSounds.classList.add('sounds');
@@ -503,6 +508,17 @@ function makegroup_III(someboard: Boardish, parents: string[] = []) {
     divContain.classList.add('subboards');
     divContain.append(...subBoards);
     sonDetails.append(divContain);
+  } else if ('bucket' in someboard) {
+    // this is a bucket, and thus we have to use three-forks
+    const bucketBoard = someboard as BucketBoard;
+    const buckminsterfullerene = document.createElement('div');
+    buckminsterfullerene.classList.add('extern-sounds', 'sounds');
+    setTimeout(async function(){
+      const fnames = await ListObjects2fnames(bucketBoard);
+      const xButtons = fnames.map(fname => createButton(fname, false));
+      buckminsterfullerene.append(...xButtons);
+    });
+    sonDetails.appendChild(buckminsterfullerene);
   } else {
     // handle this eventually
   }
