@@ -18,7 +18,7 @@ export async function ListObjects2fnames(bucketBoard:BucketBoard) {
 			nextStartWith = jason.nextStartWith;
 		} while (nextStartWith);
 
-		fnames = allNames.sort().map(n=> `[extern]${bucket}${n}`);
+		fnames = allNames.sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'})).map(n=>`[extern]${bucket}${n}`);
 	} catch(er){
 		console.error(er);
 	}
