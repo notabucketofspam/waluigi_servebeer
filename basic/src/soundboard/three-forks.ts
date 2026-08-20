@@ -6,12 +6,14 @@ interface JasonPrime {
 /**convert stuff from an Oracle Object Storage bucket into some beep-able strings */
 export async function ListObjects2fnames(bucketBoard:BucketBoard) {
 	const {bucket, query} = bucketBoard;
+	const queryline = `?prefix=${encodeURIComponent(bucketBoard.query.prefix)}&fields=${encodeURIComponent(bucketBoard.query.fields)}`;
 	let fnames:string[] = [];
 
 	// try to get the list from the server before asking the bucket
 	try {
 		const ListObjects_maybe = await fetch(`/page/soundboard/opodes/${bucketBoard.name}/ListObjects.json`);
 		fnames = await ListObjects_maybe.json() as string[];
+		fnames = fnames.map(f=>`${bucketBoard.query.prefix}/${f}.opus`);
 	} catch(e){
 		// looks like the server doesnt have the json we want
 	}
@@ -21,7 +23,7 @@ export async function ListObjects2fnames(bucketBoard:BucketBoard) {
 		const allNames: string[] = [];
 		let nextStartWith:string | undefined;
 		do {
-			const qaram = `${query}${nextStartWith ? `&start=${encodeURIComponent(nextStartWith)}` : ''}`;
+			const qaram = `${queryline}${nextStartWith ? `&start=${encodeURIComponent(nextStartWith)}` : ''}`;
 			const res = await fetch(bucket + qaram);
 			const jason = await res.json() as JasonPrime;
 			allNames.push(...(jason.objects.map((obj) => obj.name).filter(n=>n.endsWith('.opus'))));

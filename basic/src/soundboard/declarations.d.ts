@@ -33,7 +33,12 @@ declare interface BucketBoard extends BoardBase {
 	/**the base URL for the bucket*/
 	bucket: string;
 	/**the query parameters to use when listing all of the sounds*/
-	query: string;
+	query: {
+		/**the prefix in the bucket folder hierarchy*/
+		prefix: string;
+		/**what fields to include when querying*/
+		fields: string;
+	}
 }
 
 /**The Union */
