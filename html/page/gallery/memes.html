@@ -76,19 +76,19 @@ fetch(bucket+req_query)
   var lines = json.objects
   .filter(obj=>obj.name.startsWith('image')&&obj.name.includes('.'))
   .sort((a,b)=>b['timeModified'].localeCompare(a['timeModified']))
-  .map(obj=>`<img src="${bucket+obj.name}" loading="lazy"/>`);
+  .map(obj=>{
+    var img = document.createElement('img');
+    img.setAttribute('loading', 'lazy');
+    img.setAttribute('src', bucket+obj.name);
+    img.addEventListener('click', set_realimage);
+    return img;
+  });
   
   var memes = document.getElementById("memes");
   var meme_count = document.getElementById("meme_count");
-  memes.insertAdjacentHTML("beforeend", lines.join(''));
+  memes.append(...lines);
   meme_count.innerText = lines.length;
-  
-  setTimeout(function(){
-    document.querySelectorAll('#memes img').forEach(img=>{
-      img.addEventListener('click', set_realimage);
-    });
-  });
-  
+    
   var memes_topkek = document.getElementById('memes_topkek');
   memes_topkek.removeAttribute('style');
   
