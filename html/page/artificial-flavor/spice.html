@@ -64,7 +64,7 @@
 
   <div class="fr">
     <h2 id="sponsor">Today's Sponsor</h2>
-    <img id="banquet" style="" alt="this was supposed to be banquet"/>
+    <img id="banquet" style="" src="/api/cdi/banquet" alt="this was supposed to be banquet"/>
   </div>
   
   <div id="spicestuff" class="fl">
@@ -97,9 +97,6 @@ function apache(road, callman){
 }
 var funfact = document.getElementById("funfact");
 apache('/cgi-bin/fact.js', t=>funfact?.insertAdjacentHTML('beforeend',t));
-
-var banquet = document.getElementById("banquet");
-apache('/cgi-bin/banquet.js',b=>banquet?.setAttribute("src",("data:image/png;base64,"+b)));
 </script>
 </body>
 </html>
