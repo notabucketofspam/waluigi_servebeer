@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>What's Garbage Island? - waluigi-servebeer.com</title>
+<style>
+
+</style>
+</head>
+<body>
+
+<div class="sef lard">	
+	<h1>What's Garbage Island?</h1>
+	<div id="whats"></div>
+</div>
+
+<script src="/js/everything.js"></script>
+<script type="module">
+	import {darthPlagueis} from "./whats.js";
+	var quote = darthPlagueis();
+	document.getElementById('whats')?.appendChild(quote);
+</script>
+</body>
+</html>
