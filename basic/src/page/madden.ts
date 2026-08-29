@@ -67,13 +67,14 @@ const wifeSubjects: Noun[] = [
 	["The USA","is","Poyoarya"],
 	["Tap jump","is","Poyoarya"],
 	["Jigglypuff","is","Poyoarya"],
-	["I","is","Poyoarya"],
+	["I","am","Poyoarya"],
 	["PAC-MAN","is","Poyoarya"],
 	["Alex Strife","is","Poyoarya"],
 	["My scarf","is","Poyoarya"],
 	["The T.O.","is","Poyoarya"],
 	["EVO","is","Poyoarya"],
 	["Leffen","is","Poyoarya"],
+	["My wife","is"],
 ]
 /*
 	0 - don't use but add a space
@@ -152,6 +153,7 @@ const wifeProblems:John[] = [
 	[2,"my b.","Poyoarya"],
 	[1,"really hard to remember.","Poyoarya"],
 	[3,"not going to the doctor.","Poyoarya"],
+	[3,"threatening me."],
 ]
 
 const noun: NounSalad = {
@@ -194,6 +196,7 @@ const noun: NounSalad = {
 		["Smash 4", "is"],
 		["Netplay", "is"],
 		["My drink", "is"],
+		["My Uber driver", "is"],
 		["Your amiibo", "is", "/u/Meester_Tweester"],
 		["My fedora", "is", "/u/PhoenixBurning"],
 		["Mango", "is", "/u/DeadLineClock"],
@@ -227,7 +230,7 @@ const noun: NounSalad = {
 		["The matchup", "is", "/u/DeadLineClock"],
 		["The stock market", "is", "/u/DeadLineClock"],
 		["GRSMash", "is", "/u/DeadLineClock"],
-		["My panties", "is", "/u/DeadLineClock"],
+		["My panties", "are", "/u/DeadLineClock"],
 		["The left joycon", "is", "/u/supaPILLOT"],
 	],
 	wife:wifeSubjects
