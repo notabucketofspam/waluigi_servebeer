@@ -8,14 +8,18 @@ interface NounSalad {
 	wife: Noun[];
 }
 
-enum UseAdj {
-	NoneAddSpace = 0,
-	Use = 1,
-	NoneNoSpace = 2,
-	PastTense = 3
-};
+/**bit: effect
+ * 0: use the adjective
+ * 1: add a space
+ * 2: conjugate to past tense
+ */
+const VERB = {
+	USE: 1<<0,
+	NOSPACE: 1<<1,
+	PAST: 1<<2,
+} as const;
 
-type John = [use_adjective: UseAdj, subject: string, credit?: string];
+type John = [verbit: number, reason: string, credit?: string];
 interface JohnSalad {
 	water: John[];
 	ramen: John[];
@@ -75,12 +79,14 @@ const wifeSubjects: Noun[] = [
 	["EVO","is","Poyoarya"],
 	["Leffen","is","Poyoarya"],
 	["My wife","is"],
+	["My dick","is"],
+	["My tummy","is"],
 ]
 /*
-	0 - don't use but add a space
+	0 - don't use subject's verb, but add a space
 	1 - use
 	2 - don't use and don't add a space
-	3 - past tense
+	5 - use the subject's verb in the past tense
 */
 const wifeProblems:John[] = [
 	[1,"in my eyes.","Poyoarya"],
@@ -99,12 +105,12 @@ const wifeProblems:John[] = [
 	[1,"unnecessarily rude.","Poyoarya"],
 	[1,"making funny faces at me.","Poyoarya"],
 	[1,"trash-talking mid-match.","Poyoarya"],
-	[3,"running a company for 16 hours a day.","Poyoarya"],
+	[5,"running a company for 16 hours a day.","Poyoarya"],
 	[1,"making excuses.","Poyoarya"],
 	[1,"spamming projectiles.","Poyoarya"],
 	[1,"not fair.","Poyoarya"],
 	[1,"way better than my character.","Poyoarya"],
-	[3,"speaking Japanese.","Poyoarya"],
+	[5,"speaking Japanese.","Poyoarya"],
 	[1,"too bright.","Poyoarya"],
 	[1,"nerfed.","Poyoarya"],
 	[1,"garbage.","Poyoarya"],
@@ -120,8 +126,8 @@ const wifeProblems:John[] = [
 	[1,"cheating.","Poyoarya"],
 	[1,"using glitches.","Poyoarya"],
 	[1,"too hard to reach.","Poyoarya"],
-	[3,"using better moves than me.","Poyoarya"],
-	[3,"using motion controls.","Poyoarya"],
+	[5,"using better moves than me.","Poyoarya"],
+	[5,"using motion controls.","Poyoarya"],
 	[1,"sitting slightly closer to the screen.","Poyoarya"],
 	[1,"not wearing his glasses.","Poyoarya"],
 	[1,"sober.","Poyoarya"],
@@ -148,12 +154,15 @@ const wifeProblems:John[] = [
 	[1,"too attractive.","Poyoarya"],
 	[1,"too fast.","Poyoarya"],
 	[1,"using an ugly alternative costume.","Poyoarya"],
-	[1,"using counters too much.","Poyoarya"],
-	[3,"spamming PK Fire.","Poyoarya"],
-	[2,"my b.","Poyoarya"],
+	[5,"using counters too much.","Poyoarya"],
+	[5,"spamming PK Fire.","Poyoarya"],
+	[0,"my b.","Poyoarya"],
 	[1,"really hard to remember.","Poyoarya"],
-	[3,"not going to the doctor.","Poyoarya"],
-	[3,"threatening me."],
+	[5,"not going to the doctor.","Poyoarya"],
+	[5,"threatening me."],
+	[1, "poor."],
+	[1, "hurts :-("],
+	[0, "posted my nudes on twitter.com"],
 ]
 
 const noun: NounSalad = {
@@ -236,13 +245,6 @@ const noun: NounSalad = {
 	wife:wifeSubjects
 };
 		
-/*
-	* [
-	*   use_adjective, (0 - don't use but add a space, 1 - use, 2 - don't use and don't add a space, 3 - past-tense)
-	* 	 subject,
-	*   credit
-	* ]
-	*/
 const john: JohnSalad = {
 	water:[
 		[1, "too sweaty.", "niffyjiffy"],
@@ -275,8 +277,8 @@ const john: JohnSalad = {
 		[0, "ran out of jumps.", "/u/Meester_Tweester"],
 		[1, "really feeling it!", "/u/PhoenixBurning"],
 		[1, "stealing my main.", "/u/404House"],
-		[3, "counter-picking the stage."],
-		[3, "counter-picking the character."],
+		[5, "counter-picking the stage."],
+		[5, "counter-picking the character."],
 		[0, "should have teched that.", "/u/DeadLineClock"]
 	],
 	ramen:[
@@ -304,18 +306,18 @@ const john: JohnSalad = {
 		[1, "using illegal tactics.", "/u/DrankeyKrang"],
 		[1, "using banned characters.", "/u/DrankeyKrang"],
 		[1, "using glitches.", "/u/DrankeyKrang"],
-		[3, "nerfed again.", "/u/Gandesa"],
+		[5, "nerfed again.", "/u/Gandesa"],
 		[0, "wasn't paying attention.", "/u/PyrokidSosa"],
 		[1, "not HD.", "/u/Mitsjol"],
 		[1, "killing me.", "/u/Mitsjol"],
-		[3, "staring at me.", "/u/2m2m_NoClown"],
-		[3, "staring at you.", "/u/2m2m_NoClown"],
+		[5, "staring at me.", "/u/2m2m_NoClown"],
+		[5, "staring at you.", "/u/2m2m_NoClown"],
 		[0, "told me it would work.", "/u/NormalNavi"],
 		[1, "being so loud.", "/u/GSRaposo"],
 		[1, "scratched up.", "/u/DeadLineClock"],
 		[0, "share-stocked me.", "/u/DeadLineClock"],
 		[0, "threw something at me.", "/u/DeadLineClock"],
-		[3, "calling me names.", "/u/DeadLineClock"]
+		[5, "calling me names.", "/u/DeadLineClock"]
 	],
 	ocean:[
 		[1, "on fire."],
@@ -331,7 +333,7 @@ const john: JohnSalad = {
 		[1, "too Johnny", "/u/DrankeyKrang"],
 		[1, "using gimmicky custom moves.", "/u/DrankeyKrang"],
 		[0, "got too much sleep.", "/u/Her0_0f_time"],
-		[3, "distracted by that girl.", "/u/Her0_0f_time"],
+		[5, "distracted by that girl.", "/u/Her0_0f_time"],
 		[0, "didn't get D1 and Prog to commentate.", "/u/Her0_0f_time"],
 		[0, "broke the John generator.", "/u/Her0_0f_time"],
 		[0, "exploded.", "/u/Her0_0f_time"],
@@ -356,34 +358,49 @@ const john: JohnSalad = {
 // "I won [...]"
 const win: JohnSalad = {
 	water:[ 
-		[1, "through pure skill.", "niffyjiffy"],
-		[1, "by getting lucky."],
-		[1, "and there's no stopping me."],
-		[1, "by spamming."],
-		[1, "through the power of hard work."],
-		[1, "by out-camping you."],
-		[1, "by dominating the neutral game."],
-		[1, "because I know all the good combos.", "/u/KindaFunnyUsername"]
+		[5, "through pure skill.", "niffyjiffy"],
+		[5, "by getting lucky."],
+		[5, "and there's no stopping me."],
+		[5, "by spamming."],
+		[5, "through the power of hard work."],
+		[5, "by out-camping you."],
+		[5, "by dominating the neutral game."],
+		[5, "because I know all the good combos.", "/u/KindaFunnyUsername"]
 	],
 	ramen:[
-		[1, "because my region is better."],
-		[1, "by cheating."],
-		[1, "by using a broken character."],
-		[1, "and I don't even play this game."],
-		[1, "because my tech skill is off.", 'Graphitezepp'],
-		[1, "because your main is garbage.", "/u/KindaFunnyUsername"],
-		[1, "by wavecheating.", "/u/p0rtugalvii"],
-		[1, "and now it's time to save the replay.", "/u/p0rtugalvii"]
+		[5, "because my region is better."],
+		[5, "by cheating."],
+		[5, "by using a broken character."],
+		[5, "and I don't even play this game."],
+		[5, "because my tech skill is off.", 'Graphitezepp'],
+		[5, "because your main is garbage.", "/u/KindaFunnyUsername"],
+		[5, "by wavecheating.", "/u/p0rtugalvii"],
+		[5, "and now it's time to save the replay.", "/u/p0rtugalvii"]
 	],
 	ocean:[
-		[1, "through the power of friendship."],
-		[1, "through sheer willpower."],
-		[1, "using my bloodline technique."],
-		[1, "because you're bad."],
-		[1, "because my controller is blessed", "/u/DamenCF"],
-		[1, "because your friends don't dance, and if they don't dance, then they're no friends of mine.", "/u/Meester_Tweester"]
+		[5, "through the power of friendship."],
+		[5, "through sheer willpower."],
+		[5, "using my bloodline technique."],
+		[5, "because you're bad."],
+		[5, "because my controller is blessed", "/u/DamenCF"],
+		[5, "because your friends don't dance, and if they don't dance, then they're no friends of mine.", "/u/Meester_Tweester"]
 	],
-	wife:wifeProblems
+	wife:[]
+};
+
+const champ: NounSalad = {
+	water:[
+		["I", "win"]
+	],
+	ramen: [
+		["I", "win"]
+	],
+	ocean: [
+		["I", "win"]
+	],
+	wife: [
+		["I", "win"]
+	]
 };
 
 const taunt: TauntSalad = {
@@ -396,7 +413,7 @@ const taunt: TauntSalad = {
 		["Get bodied!"],
 		["lol", "/u/p0rtugalvii"],
 		["lmao", "/u/p0rtugalvii"],
-		["(And cheating)"],
+		["(And cheating.)"],
 		["Give me my money!"],
 		["Get shreked!"],
 		["<i>Okay!</i>", "/u/KindaFunnyUsername"],
@@ -413,7 +430,8 @@ const taunt: TauntSalad = {
 		["Omae wa mou shindeiru!", "Hokuto no Ken!"]
 	],
 	wife: [
-		["Are you done playing video games yet, sweetie?"]
+		["Are you done playing video games yet, sweetie?"],
+		["Get fucked up, dawg."],
 	]
 };
 
@@ -447,84 +465,76 @@ interface CreditCard {
 	credit: string;
 }
 
+function pastTensify(verb: string): string {
+	let ferb = verb;
+	if (verb === 'is') {
+		// 3p singular
+		ferb = 'was';
+	} else if (verb === 'are') {
+		// 2p singular / plural
+		ferb = 'were';
+	} else if (verb === 'am'){
+		// 1p singular
+		ferb = 'was';
+	} else if (verb === 'win'){
+		// this is in case we need to do something in the winner's bracket
+		ferb = 'won';
+	}
+	return ferb;
+}
+
 function johnerate(): Johner {		
 	let credit: CreditCard[] = [];
 	let structure = "";
-				
-	if (is_win) {
-		// Win johns
-		let winch: JohnSalad = win;
-		if (wife_mode){
-			// winch = [win, john][rui(2)]!;
-		}
-		const [useadj, subject, winCred] = rember(winch[randomCat()]);
-		const [tauntext, tauntCred] = rember(taunt[randomCat()]);
-						
-		// Push win credit
-		if (typeof winCred !== 'undefined') {
-			credit.push({series: 'win', credit: winCred});
-		}
-		// Push taunt credit
-		if (typeof tauntCred !== 'undefined') {
-			credit.push({series: 'taunt', credit: tauntCred});
-		}
-		
-		// foot lettuce
-		structure = "I ";
-		if (useadj === UseAdj.Use) {
-			structure += "won ";
-		}
-		structure += subject;
-		structure += "\n";
-		structure += tauntext;
-				
-		// my b
-		if (rui(200) === 0) {
-			structure = "my b";
-		}
-				
-	} else {
-		// Lose johns
-		const [nounSubject, nounVerb, nounCred] = rember(noun[randomCat()]);
-		let johnch: JohnSalad = john;
-		if (wife_mode){
-			// johnch = [john, win][rui(2)]!;
-		}
-		const [useadj, johnSubject, johnCred] = rember(johnch[randomCat()]);
-								
-		// Push noun credit
-		if (typeof nounCred !== 'undefined') {
-			credit.push({series: 'subject', credit: nounCred});
-		}
-		// Push john credit
-		if (typeof johnCred !== 'undefined') {
-			credit.push({series: 'john', credit: johnCred});
-		}
-		
-		// assemble the salad
-		structure = nounSubject;
-
-		let pastTense = rui(4);
-		if (useadj === UseAdj.Use && pastTense !== 0) {
-			// is/are
-			structure += " "+nounVerb;
-		} else if (useadj === UseAdj.PastTense || (useadj === UseAdj.Use && pastTense === 0)) {
-			// was/were
-			if (nounVerb === "is") {
-				structure += " was";
-			} else if (nounVerb === "are") {
-				structure += " were";
-			}
-		}
-				
-		// white-space
-		if (useadj !== UseAdj.NoneNoSpace) {
-			structure += " ";
-		}
-				
-		structure += johnSubject;		
-	}
 	
+	// choose which johns to use
+	let nounPool = is_win? champ : noun;
+	let johnPool = is_win? win : john;
+
+	const [subject, verb, nounCred] = rember(nounPool[randomCat()]);
+	const [verbit, johnReason, johnCred] = rember(johnPool[randomCat()]);
+			
+	// Push credits
+	if (nounCred)
+		credit.push({series: 'subject', credit: nounCred});
+	if (johnCred)
+		credit.push({series: is_win? 'win' : 'john', credit: johnCred});
+
+	// assemble the salad
+	structure = subject;
+
+	if (verbit & VERB.NOSPACE) {
+		// dont need to do anything
+	} else if (verbit & VERB.USE) {
+		// we are using some form of verb
+		let verbToUse = verb;
+		if (verbit & VERB.PAST){
+			// gotta conjugate it to the past tense
+			verbToUse = pastTensify(verbToUse);
+		}			
+		structure += ` ${verbToUse} `;
+	} else {
+		// in this case, we just add a space
+		structure += ' ';
+	}
+		
+	// finally, append the john
+	structure += johnReason;
+
+	if (is_win){
+		// and then we taunt for style points.
+		const [tauntext, tauntCred] = rember(taunt[randomCat()]);
+		if (tauntCred)
+			credit.push({series: 'taunt', credit: tauntCred});
+		structure += `<br/>${tauntext}`;
+	}
+
+	// my b
+	if (!rui(200)) {
+		structure = "my b";
+		credit.length = 0;
+	}
+		
 	// grammar fix
 	structure = structure.replace("s's", "s'").replace("I's", "My").replace("You's", "Your");
 	
