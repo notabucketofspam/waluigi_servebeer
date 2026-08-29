@@ -38,3 +38,8 @@ export function rui(k: number): number{
   return Math.trunc(Math.random() * k);
 }
 
+/** Random Member*/
+export function rember<T>(arr: T[]): T {
+  return arr[rui(arr.length)]!;
+}
+

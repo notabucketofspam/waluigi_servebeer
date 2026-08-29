@@ -1,0 +1,374 @@
+div#john-chamber{
+	user-select:none;
+}
+div#john-chamber {
+	/* Shared */
+	#the_form,
+	#auto_interval,
+	#salt_level {
+		text-align: center;
+	}
+	div#output{
+		user-select:all;
+	}
+
+	#back,
+	#auto {
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-color: #505;
+		text-align:center;
+		color:white;
+	}
+
+	.status-button.active {
+		color: white;
+	}
+	#submit{color:white;}
+
+	#status_lose.active { background-color: #900; }
+	#status_win.active { background-color: #090; }
+	#auto.active { background-color: #590; }
+	#count { padding-left: 5px;color:white; }
+
+	/* Desktop */
+	@media (min-width: 501px) {
+		h1, h2, h3 { margin: 3px; padding: 0; }
+
+		a { color: #09F; text-decoration: none; }
+		a:hover { color: #5DF; }
+
+		.add_btn { color: gray; cursor: pointer; }
+		.add_btn:hover { color: black; }
+
+		option.off { background-color: #FFCCCC; }
+
+		.button {
+			display: inline-block;
+			width: 120px;
+			cursor: pointer;
+			border-radius: 3px;
+			user-select: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+		}
+
+		#submit {
+			width: 200px;
+			margin: 5px;
+			padding: 6px 20px;
+			font-size: 18pt;
+			font-weight: bold;
+			background-color: #909;
+		}
+		#submit:hover { background-color: #c4c; }
+
+		#back,
+		#auto {
+			width: 50px;
+			padding: 0;
+			height: 40px;
+			font-size: 14pt;
+			font-weight: bold;
+		}
+		#back:hover,
+		#auto:hover { background-color: #737; }
+
+		#back {
+			position: relative;
+			top: -10px;
+		}
+
+		#autojohn {
+			display: inline-block;
+			position: relative;
+			top: 8px;
+			width: 50px;
+			line-height: 0;
+			text-align: center;
+		}
+
+		#autojohn input {
+			width: 100%;
+			height: 16px;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
+		}
+
+		#auto {
+			height: 25px;
+			margin: 0;
+			background-size: auto 80%;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		.status-button {
+			display: inline-block;
+			width: 80px;
+			margin: 3px;
+			padding: 2px 5px;
+			border-radius: 3px;
+			cursor: pointer;
+			font-size: 20px;
+			font-weight: bold;
+			font-family: calibri, tahoma;
+			color: #555;
+			background-color: #DDD;
+		}
+
+		#buttons .button {
+			margin: 3px 2px;
+			padding: 3px;
+			color: #555;
+			background-color: #ddd;
+		}
+
+		#buttons .button.active {
+			border: 0;
+			border-radius: 2px;
+			font-weight: bold;
+			color: white;
+			background-color: #09F;
+		}
+
+		#credit {
+			margin-top: 3px;
+			margin-bottom: -3px;
+			font-size: 8pt;
+			font-family: monospace;
+			color: #777;
+			text-align: center;
+		}
+		#credit span { color: #977; }
+
+		.rip,
+		.nopad {
+			margin: 0;
+			padding: 0;
+		}
+		.rip { color: #333; }
+
+		hr {
+			width: 420px;
+			height: 1px;
+			border: 0;
+			background-color: #777;
+		}
+
+		.header {
+			margin-top: 20px;
+			font-family: monospace;
+		}
+
+		.title {
+			font-size: 20pt;
+			font-weight: bold;
+			font-family: monospace;
+			border-radius: 5px;
+		}
+
+		.stat-buttons { margin-top: 5px; }
+
+		#outbox {
+			display: table;
+			width: 350px;
+			height: 80px;
+			margin: auto;
+			margin-top: 10px;
+			text-align: center;
+			background-color: white;
+		}
+
+		#output {
+			display: table-cell;
+			width: inherit;
+			height: inherit;
+			margin: auto;
+			padding: 10px;
+			vertical-align: middle;
+			text-align: center;
+			font-size: 18pt;
+			font-weight: bold;
+			color: black;
+			background-color: #F0F0F0;
+		}
+
+		#count-box {
+			display: table-row;
+			text-align: left;
+			font-size: 10pt;
+			font-family: monospace;
+			color: #666;
+			background-color: #222;
+		}
+
+		#outbox:hover #count-box {
+			font-weight: bold;
+			color: white;
+			background-color: #444;
+		}
+	}
+
+	/* Mobile */
+	@media (max-width: 500px) {
+		html,
+		body {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.title {
+			margin: 0;
+			margin-top: 5px;
+			padding: 0;
+			font-size: 20pt;
+		}
+
+		.rip,
+		.credits {
+			display: none;
+		}
+
+		h3 {
+			margin: 0;
+			padding: 0;
+			font-size: 24pt;
+		}
+
+		hr {
+			margin: 3px 0;
+			padding: 0;
+			height: 1px;
+			border: 0;
+			background-color: #999;
+		}
+
+		.button {
+			display: inline-block;
+			margin: 0;
+			padding: 8px 0;
+			cursor: pointer;
+			user-select: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+		}
+
+		.credits a {
+			color: #09F;
+			text-decoration: none;
+		}
+		.credits a:hover,
+		.credits a:active {
+			color: #5DF;
+			text-decoration: none;
+		}
+
+		.status-button {
+			display: inline-block;
+			width: 50%;
+			padding: 2px 0;
+			font-size: 20pt;
+			color: #bbb;
+			background-color: #555;
+		}
+
+		#buttons .button {
+			display: inline-block;
+			width: 33.333%;
+			font-size: 16pt;
+			background-color: #555;
+		}
+		#buttons .button.active { background-color: #09F; }
+
+		#outbox {
+			display: table;
+			width: 100%;
+			height: 150px;
+			text-align: center;
+			background-color: white;
+		}
+
+		#output {
+			display: table-cell;
+			width: inherit;
+			height: 150px;
+			margin: auto;
+			padding: 10px;
+			padding-top: 0;
+			vertical-align: middle;
+			text-align: center;
+			font-size: 24pt;
+			font-weight: bold;
+			color: black;
+			background-color: #F0F0F0;
+		}
+
+		#end_buttons {
+			height: 65px;
+			overflow: hidden;
+		}
+
+		#back,
+		#autojohn {
+			width: 15%;
+			font-size: 30pt;
+		}
+
+		#autojohn {
+			display: inline-block;
+			height: 65px;
+			line-height: 0;
+		}
+
+		#auto {
+			height: 49px;
+			background-size: auto 80%;
+		}
+
+		#auto,
+		#autojohn input {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+
+		#autojohn input {
+			height: 16px;
+			text-align: center;
+		}
+
+		#back:active,
+		#auto:active {
+			background-color: #737;
+		}
+
+		#submit {
+			width: 70%;
+			font-size: 30pt;
+			background-color: #909;
+		}
+
+		#submit:active { background-color: #C4C; }
+
+		#back,
+		#submit {
+			position: relative;
+			top: -17px;
+		}
+
+		#count-box {
+			display: table-row;
+			text-align: left;
+			font-size: 14pt;
+			font-weight: bold;
+			color: #bbb;
+			background-color: #F0F0F0;
+		}
+	}
+}

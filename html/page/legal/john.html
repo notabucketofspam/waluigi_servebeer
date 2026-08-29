@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/great-scott.css"/>
+<link rel="stylesheet" type="text/css" href="/css/papa-johns.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=yes"/>
+<title>Johnomatic - waluigi-servebeer.com</title>
+<style>
+#the-title-zone{
+	text-align:center;
+	h1{margin-bottom:0;font-size:2.2em;}
+}
+</style>
+</head>
+<body>
+<div class="sef lard">
+	<div id="the-title-zone">	
+		<h1>Johnomatic</h1>
+		<div>
+			<span>based on previous works by:</span><br/>
+			<span>Taerk, niffyjiffy, Poyoarya</span>
+		</div>
+	</div>
+	<div id="john-chamber">
+		<div id="the_form">
+			<hr/>
+			<!-- win status -->
+			<div>
+				<h3>Did you win?</h3>
+				<div class="stat-buttons">
+					<div class="button status-button active" id="status_lose" data-win-status="lose">No</div>
+					<div class="button status-button" id="status_win" data-win-status="win">Yes</div>
+				</div>
+			</div>
+
+			<!-- salt level -->
+			<div>
+				<h3>How salty are <span id="subject">you</span>?</h3>
+				<div id="buttons">
+					<div class="button salt-button" data-salt-level="0">Water</div>
+					<div class="button salt-button" data-salt-level="1">Ramen</div>
+					<div class="button salt-button" data-salt-level="2">Ocean</div>
+					<div class="button salt-button active" data-salt-level="3">Wife</div>
+				</div>
+			</div>
+
+			<!-- this is where the output goes -->
+			<div id="outbox">
+				<div id="count-box"><span id="count">-</span></div>
+				<div id="output"></div>
+			</div>
+
+			<!-- these are the notorious buttons -->
+			<div id="end_buttons">
+				<div id="back" class="button">&#x25C0;</div>
+				<div id="submit" class="button">John</div>			
+			</div>
+
+			<!-- and here's the bibliography -->
+			<div id="credit">&nbsp;</div>
+		</div>
+	</div>
+</div>
+
+<script src="/js/everything.js"></script>
+<script type="module" src="/dist/page/madden.js"></script>
+</body>
+</html>
