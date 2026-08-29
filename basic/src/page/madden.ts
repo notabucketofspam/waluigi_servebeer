@@ -348,7 +348,7 @@ const john: JohnSalad = {
 		[5,"not going to the doctor.","Poyoarya"],
 		[5,"threatening me."],
 		[1, "poor."],
-		[1, "hurts :-("],
+		[0, "hurts :-("],
 		[0, "posted my nudes on twitter.com"],
 		[1, "my wife."],
 		[1, "racist."],
