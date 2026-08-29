@@ -71,7 +71,7 @@ const noun: NounSalad = {
 		["Smash 64", "is"],
 		["Melee", "is"],
 		["Brawl", "is"],
-		["Project: M", "is"],
+		["Smash Ultimate", "is"],
 		["Smash 4", "is"],
 		["Netplay", "is"],
 		["My drink", "is"],
@@ -158,6 +158,7 @@ const noun: NounSalad = {
 		["My wife","is"],
 		["My dick","is"],
 		["My tummy","is"],
+		["Hungrybox","is"],
 	]
 };
 
@@ -218,7 +219,7 @@ const john: JohnSalad = {
 		[0, "nudged me.", "/u/Erotaku12943"],
 		[0, "messed up my Z-cancels.", "/u/Erotaku12943"],
 		[1, "butthurt.", "/u/shadowpikachu"],
-		[0, "has no characters.", "/u/KiJoBu"],
+		[0, "got no goddamn characters.", "/u/KiJoBu"],
 		[1, "making me sleepy.", "/u/RoflPost"],
 		[1, "too advanced.", "/u/DrankeyKrang"],
 		[1, "oudated.", "/u/DrankeyKrang"],
@@ -250,7 +251,7 @@ const john: JohnSalad = {
 		[1, "using the wrong tag."],
 		[0, "nudged my R-cancelling knee.", "/u/Erotaku12943"],
 		[1, "having a heart attack.", "/u/KiJoBu"],
-		[1, "too glitch.", "/u/DrankeyKrang"],
+		[1, "too glitchy.", "/u/DrankeyKrang"],
 		[1, "too unstable.", "/u/DrankeyKrang"],
 		[1, "too Johnny", "/u/DrankeyKrang"],
 		[1, "using gimmicky custom moves.", "/u/DrankeyKrang"],
@@ -322,8 +323,8 @@ const john: JohnSalad = {
 		[1,"shielding too much.","Poyoarya"],
 		[1,"air dodging.","Poyoarya"],
 		[1,"rolling.","Poyoarya"],
-		[1,"pausing mid-match.","Poyoarya"],
-		[1,"saving replays.","Poyoarya"],
+		[5,"pausing mid-match.","Poyoarya"],
+		[5,"saving replays.","Poyoarya"],
 		[1,"ethically superior to me.","Poyoarya"],
 		[1,"only using the A button.","Poyoarya"],
 		[1,"only using the B button.","Poyoarya"],
@@ -349,6 +350,9 @@ const john: JohnSalad = {
 		[1, "poor."],
 		[1, "hurts :-("],
 		[0, "posted my nudes on twitter.com"],
+		[1, "my wife."],
+		[1, "racist."],
+		[0, "killed my father."],
 	]
 };
 
@@ -505,16 +509,23 @@ function johnerate(): Johner {
 	} else if (verbit & VERB.USE) {
 		// we are using some form of verb
 		let verbToUse = verb;
-		if (verbit & VERB.PAST){
+		// possibly force it to be past-tense, just to keep it interesting
+		const forcePast = !rui(4);
+		if (forcePast || verbit & VERB.PAST){
 			// gotta conjugate it to the past tense
 			verbToUse = pastTensify(verbToUse);
-		}			
+		}
 		structure += ` ${verbToUse} `;
+
+		// add a one-in-five chance to negate it
+		if (!is_win && !rui(5)){
+			structure += "not ";
+		}
 	} else {
 		// in this case, we just add a space
 		structure += ' ';
 	}
-		
+	
 	// finally, append the john
 	structure += johnReason;
 
@@ -523,7 +534,7 @@ function johnerate(): Johner {
 		const [tauntext, tauntCred] = rember(taunt[randomCat()]);
 		if (tauntCred)
 			credit.push({series: 'taunt', credit: tauntCred});
-		structure += `<br/>${tauntext}`;
+		structure += ` ${tauntext}`;
 	}
 
 	// my b
@@ -536,25 +547,8 @@ function johnerate(): Johner {
 	structure = structure.replace("s's", "s'").replace("I's", "My").replace("You's", "Your");
 	
 	// generate the credit text
-	let credit_text = "";
-	if (credit[0] && credit[1]) {
-		// we have two credits
-		if (credit[0].credit === credit[1].credit) {
-			// theyre the same credit
-			const metacredit:CreditCard = {credit: credit[0].credit, series: 'both'};
-			credit_text = `Credit: <span> ${formatCredit(metacredit)} </span>`;
-		} else {
-			// two different people
-			credit_text = `Credit: ${formatCredit(credit[0])} and ${formatCredit(credit[1])}`;
-		}
-	} else if (credit[0]) {
-		// we have one (1) credit
-		credit_text = `Credit: ${formatCredit(credit[0])}`;	
-	} else {
-		// you dont got no credits, bitch
-		credit_text = "&nbsp;";
-	}
-
+	let credit_text = credit.length ? `Credit: ${credit.map(cred=>formatCredit(cred)).join(', ')}` : '';
+	
 	return {structure, credit_text};
 }
 
