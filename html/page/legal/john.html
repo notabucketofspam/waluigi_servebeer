@@ -28,8 +28,8 @@
 			<div>
 				<h3>Did you win?</h3>
 				<div class="stat-buttons">
-					<div class="button status-button active" id="status_lose" data-win-status="lose">No</div>
-					<div class="button status-button" id="status_win" data-win-status="win">Yes</div>
+					<button class="button status-button active" id="status_lose" data-win-status="lose">No</button>
+					<button class="button status-button" id="status_win" data-win-status="win">Yes</button>
 				</div>
 			</div>
 
@@ -37,23 +37,23 @@
 			<div>
 				<h3>How salty are <span id="subject">you</span>?</h3>
 				<div id="buttons">
-					<div class="button salt-button" data-salt-level="0">Water</div>
-					<div class="button salt-button" data-salt-level="1">Ramen</div>
-					<div class="button salt-button" data-salt-level="2">Ocean</div>
-					<div class="button salt-button active" data-salt-level="3">Wife</div>
+					<button class="button salt-button" data-salt-level="0">Water</button>
+					<button class="button salt-button" data-salt-level="1">Ramen</button>
+					<button class="button salt-button" data-salt-level="2">Ocean</button>
+					<button class="button salt-button active" data-salt-level="3">Wife</button>
 				</div>
+			</div>
+
+			<!-- these are the notorious buttons -->
+			<div id="end_buttons">
+				<button id="back" class="button">&#x25C0;</button>
+				<button id="submit" class="button">John</button>			
 			</div>
 
 			<!-- this is where the output goes -->
 			<div id="outbox">
 				<div id="count-box"><span id="count">-</span></div>
 				<div id="output"></div>
-			</div>
-
-			<!-- these are the notorious buttons -->
-			<div id="end_buttons">
-				<div id="back" class="button">&#x25C0;</div>
-				<div id="submit" class="button">John</div>			
 			</div>
 
 			<!-- and here's the bibliography -->
