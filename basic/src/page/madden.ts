@@ -57,7 +57,7 @@ const noun: NounSalad = {
 	],
 	ramen:[
 		["You", "are","Taerk"],
-		["The Sun", "is", "niffyjiffy"],
+		["My son", "is", "niffyjiffy"],
 		["This game", "is","Taerk"],
 		["My hands", "are", "niffyjiffy"],
 		["My fingers", "are", "niffyjiffy"],
@@ -317,7 +317,7 @@ const john: JohnSalad = {
 		[5,"using better moves than me.","Poyoarya"],
 		[5,"using motion controls.","Poyoarya"],
 		[1,"sitting slightly closer to the screen.","Poyoarya"],
-		[1,"not wearing his glasses.","Poyoarya"],
+		[1,"not wearing glasses.","Poyoarya"],
 		[1,"sober.","Poyoarya"],
 		[1,"using items.","Poyoarya"],
 		[1,"not letting me grab him.","Poyoarya"],
