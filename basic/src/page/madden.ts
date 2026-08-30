@@ -160,6 +160,11 @@ const noun: NounSalad = {
 		["My tummy","is","wsbc"],
 		["Hungrybox","is","wsbc"],
 		["Miiverse","is","wsbc"],
+		["This Man","is","wsbc"],
+		["The Wii U","is","wsbc"],
+		["Donkey Kong","is","wsbc"],
+		["Captain Falcon","is","wsbc"],
+		["My game","is","notamacuser"],
 	]
 };
 
@@ -254,7 +259,7 @@ const john: JohnSalad = {
 		[1, "having a heart attack.", "/u/KiJoBu"],
 		[1, "too glitchy.", "/u/DrankeyKrang"],
 		[1, "too unstable.", "/u/DrankeyKrang"],
-		[1, "too Johnny.", "/u/DrankeyKrang"],
+		[1, "too johnny.", "/u/DrankeyKrang"],
 		[1, "using gimmicky custom moves.", "/u/DrankeyKrang"],
 		[0, "got too much sleep.", "/u/Her0_0f_time"],
 		[5, "distracted by that girl.", "/u/Her0_0f_time"],
@@ -263,12 +268,12 @@ const john: JohnSalad = {
 		[0, "exploded.", "/u/Her0_0f_time"],
 		[0, "started watching Shrek.", "/u/Her0_0f_time"],
 		[0, "wanted to make a gfycat.", "/u/Her0_0f_time"],
-		[0, "tells ridiculous Johns.", "/u/Her0_0f_time"],
+		[0, "tells ridiculous johns.", "/u/Her0_0f_time"],
 		[1, "not subscribed.","Taerk"],
 		[0, "doesn't understand their privilege.", "/u/GSRaposo"],
 		[0, "did 9/11.", "/u/DeadLineClock"],
 		[0, "murdered the commentator.", "/u/DeadLineClock"],
-		[0, "generated my Johns.", "/u/DeadLineClock"],
+		[0, "generated my johns.", "/u/DeadLineClock"],
 		[0, "didn't give me my money back.", "/u/DeadLineClock"],
 		[1, "THE TOURNAMENT!", "/u/DeadLineClock"],
 		[1, "not a real person.", "GitHub"],
@@ -354,6 +359,13 @@ const john: JohnSalad = {
 		[1, "my wife.","wsbc"],
 		[1, "racist.","wsbc"],
 		[0, "killed my father.",'InigoMontoya'],
+		[0, "ate my son.",'TedCruz'],
+		[1, "pure, unadulterated jank.",'Google'],
+		[1, "a fucking architect.",'Clark'],
+		[0, "crashed.",'notamacuser'],
+		[5, "not old enough.",'wsbc'],
+		[1, "the Senate.",'Palpatine'],
+		[1, "a shill.",'wsbc'],
 	]
 };
 
@@ -441,6 +453,12 @@ const taunt: TauntSalad = {
 		["Get fucked up, dawg.","HMW"],
 		["I'm gonna go fuck your wife now.","Shadow"],
 		["That's unlucky, pal.","wsbc"],
+		["Stop it. Get some help.","MichaelJordan"],
+		["It's your fault, by the way.","wsbc"],
+		["It's my house, by the way. I'm the one paying for it.","Clark"],
+		["Just like me fr","notamacuser"],
+		["Couldn't be me.","notamacuser"],
+		["jk lol.","wsbc"],
 	]
 };
 
