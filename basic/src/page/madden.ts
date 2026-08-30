@@ -39,8 +39,8 @@ const noun: NounSalad = {
 	water:[
 		["My eyes", "are", "niffyjiffy"],
 		["The TV", "is", "niffyjiffy"],
-		["This setup", "is"],
-		["My controller", "is"],
+		["This setup", "is","Taerk"],
+		["My controller", "is","Taerk"],
 		["I", "am", "niffyjiffy"],
 		["The camera", "is", "Dr Deletus"],
 		["Your character", "is", "/u/KindaFunnyUsername"],
@@ -56,9 +56,9 @@ const noun: NounSalad = {
 		["The matchup", "is", "/u/DeadLineClock"]
 	],
 	ramen:[
-		["You", "are"],
+		["You", "are","Taerk"],
 		["The Sun", "is", "niffyjiffy"],
-		["This game", "is"],
+		["This game", "is","Taerk"],
 		["My hands", "are", "niffyjiffy"],
 		["My fingers", "are", "niffyjiffy"],
 		["Your main", "is", "/u/KindaFunnyUsername"],
@@ -68,14 +68,14 @@ const noun: NounSalad = {
 		["Randall", "is", "/u/NormalNavi"],
 		["My 3DS", "is", "/u/NormalNavi"],
 		["Your 3DS", "is", "/u/NormalNavi"],
-		["Smash 64", "is"],
-		["Melee", "is"],
-		["Brawl", "is"],
-		["Smash Ultimate", "is"],
-		["Smash 4", "is"],
-		["Netplay", "is"],
-		["My drink", "is"],
-		["My Uber driver", "is"],
+		["Smash 64", "is","Taerk"],
+		["Melee", "is","Taerk"],
+		["Brawl", "is","Taerk"],
+		["Smash Ultimate", "is","wsbc"],
+		["Smash 4", "is","Taerk"],
+		["Netplay", "is","Taerk"],
+		["My drink", "is","Taerk"],
+		["My Uber driver", "is","wsbc"],
 		["Your amiibo", "is", "/u/Meester_Tweester"],
 		["My fedora", "is", "/u/PhoenixBurning"],
 		["Mango", "is", "/u/DeadLineClock"],
@@ -83,12 +83,12 @@ const noun: NounSalad = {
 		["My dog", "is", "/u/DeadLineClock"]
 	],
 	ocean:[
-		["Your mom", "is"],
-		["The spectators", "are"],
-		["The commentators", "are"],
-		["Everyone", "is"],
-		["The desire sensor", "is"],
-		["Sakurai", "is"],
+		["Your mom", "is","Taerk"],
+		["The spectators", "are","Taerk"],
+		["The commentators", "are","Taerk"],
+		["Everyone", "is","Taerk"],
+		["The desire sensor", "is","Taerk"],
+		["Sakurai", "is","Taerk"],
 		["The Vernal Equinox", "is", "/u/RoflPost"],
 		["/r/smashbros", "is", "/u/NormalNavi"],
 		["SmashBoards", "is", "/u/NormalNavi"],
@@ -108,7 +108,7 @@ const noun: NounSalad = {
 		["The salt shaker", "is", "/u/DeadLineClock"],
 		["The matchup", "is", "/u/DeadLineClock"],
 		["The stock market", "is", "/u/DeadLineClock"],
-		["GRSMash", "is", "/u/DeadLineClock"],
+		["GRsmash", "is", "/u/DeadLineClock"],
 		["My panties", "are", "/u/DeadLineClock"],
 		["The left joycon", "is", "/u/supaPILLOT"],
 	],
@@ -155,10 +155,11 @@ const noun: NounSalad = {
 		["The T.O.","is","Poyoarya"],
 		["EVO","is","Poyoarya"],
 		["Leffen","is","Poyoarya"],
-		["My wife","is"],
-		["My dick","is"],
-		["My tummy","is"],
-		["Hungrybox","is"],
+		["My wife","is","wsbc"],
+		["My dick","is","wsbc"],
+		["My tummy","is","wsbc"],
+		["Hungrybox","is","wsbc"],
+		["Miiverse","is","wsbc"],
 	]
 };
 
@@ -176,12 +177,12 @@ const john: JohnSalad = {
 		[1, "tired.", "niffyjiffy"],
 		[1, "too bright.", "niffyjiffy"],
 		[1, "in pain.", "niffyjiffy"],
-		[1, "too big."],
-		[1, "too loud."],
-		[1, "too annoying."],
-		[1, "self-destructing."],
-		[1, "broken."],
-		[1, "overpowered."],
+		[1, "too big.","Taerk"],
+		[1, "too loud.","Taerk"],
+		[1, "too annoying.","Taerk"],
+		[1, "self-destructing.","Taerk"],
+		[1, "broken.","Taerk"],
+		[1, "overpowered.","Taerk"],
 		[1, "messing up my L-cancels.", "/u/Erotaku12943"],
 		[0, "slipped.", "/u/ProjectMFeeningNigga"],
 		[1, "spamming.", "/u/KindaFunnyUsername"],
@@ -200,22 +201,22 @@ const john: JohnSalad = {
 		[0, "ran out of jumps.", "/u/Meester_Tweester"],
 		[1, "really feeling it!", "/u/PhoenixBurning"],
 		[1, "stealing my main.", "/u/404House"],
-		[5, "counter-picking the stage."],
-		[5, "counter-picking the character."],
+		[5, "counter-picking the stage.","Taerk"],
+		[5, "counter-picking the character.","Taerk"],
 		[0, "should have teched that.", "/u/DeadLineClock"]
 	],
 	ramen:[
 		[2, "'s tech skill is off.", "Graphitezepp"],
-		[1, "losing on purpose."],
-		[0, "just switched games."],
-		[1, "biased."],
-		[1, "modded."],
-		[1, "hacking."],
-		[1, "cheating."],
-		[1, "using rumble."],
-		[1, "against me."],
-		[1, "teaming up on me."],
-		[1, "too old."],
+		[1, "losing on purpose.","Taerk"],
+		[0, "just switched games.","Taerk"],
+		[1, "biased.","Taerk"],
+		[1, "modded.","Taerk"],
+		[1, "hacking.","Taerk"],
+		[1, "cheating.","Taerk"],
+		[1, "using rumble.","Taerk"],
+		[1, "against me.","Taerk"],
+		[1, "teaming up on me.","Taerk"],
+		[1, "too old.","Taerk"],
 		[0, "nudged me.", "/u/Erotaku12943"],
 		[0, "messed up my Z-cancels.", "/u/Erotaku12943"],
 		[1, "butthurt.", "/u/shadowpikachu"],
@@ -243,12 +244,12 @@ const john: JohnSalad = {
 		[5, "calling me names.", "/u/DeadLineClock"]
 	],
 	ocean:[
-		[1, "on fire."],
-		[1, "ugly."],
-		[1, "listening to the wrong song."],
-		[1, "messing with the setup."],
-		[1, "too salty."],
-		[1, "using the wrong tag."],
+		[1, "on fire.","Taerk"],
+		[1, "ugly.","Taerk"],
+		[1, "listening to the wrong song.","Taerk"],
+		[1, "messing with the setup.","Taerk"],
+		[1, "too salty.","Taerk"],
+		[1, "using the wrong tag.","Taerk"],
 		[0, "nudged my R-cancelling knee.", "/u/Erotaku12943"],
 		[1, "having a heart attack.", "/u/KiJoBu"],
 		[1, "too glitchy.", "/u/DrankeyKrang"],
@@ -263,16 +264,16 @@ const john: JohnSalad = {
 		[0, "started watching Shrek.", "/u/Her0_0f_time"],
 		[0, "wanted to make a gfycat.", "/u/Her0_0f_time"],
 		[0, "tells ridiculous Johns.", "/u/Her0_0f_time"],
-		[1, "not subscribed."],
+		[1, "not subscribed.","Taerk"],
 		[0, "doesn't understand their privilege.", "/u/GSRaposo"],
 		[0, "did 9/11.", "/u/DeadLineClock"],
 		[0, "murdered the commentator.", "/u/DeadLineClock"],
 		[0, "generated my Johns.", "/u/DeadLineClock"],
 		[0, "didn't give me my money back.", "/u/DeadLineClock"],
 		[1, "THE TOURNAMENT!", "/u/DeadLineClock"],
-		[0, "isn't a real person.", "GitHub"],
-		[0, "mangled my hand."],
-		[1, "horny."],
+		[1, "not a real person.", "GitHub"],
+		[0, "mangled my hand.",'wsbc'],
+		[1, "horny.",'wsbc'],
 		[0, "TURNED HER AGAINST ME.", "anakin_skywalker"],
 	],
 	wife: [
@@ -346,13 +347,13 @@ const john: JohnSalad = {
 		[2,"... my b.","Poyoarya"],
 		[1,"really hard to remember.","Poyoarya"],
 		[5,"not going to the doctor.","Poyoarya"],
-		[5,"threatening me."],
-		[1, "poor."],
-		[0, "hurts :-("],
-		[0, "posted my nudes on twitter.com"],
-		[1, "my wife."],
-		[1, "racist."],
-		[0, "killed my father."],
+		[5,"threatening me.",'wsbc'],
+		[1, "poor.","wsbc"],
+		[0, "hurts :-(","wsbc"],
+		[0, "posted my nudes on twitter.com","Eggman"],
+		[1, "my wife.","wsbc"],
+		[1, "racist.","wsbc"],
+		[0, "killed my father.",'InigoMontoya'],
 	]
 };
 
@@ -360,33 +361,38 @@ const john: JohnSalad = {
 const win: JohnSalad = {
 	water:[ 
 		[5, "through pure skill.", "niffyjiffy"],
-		[5, "by getting lucky."],
-		[5, "and there's no stopping me."],
-		[5, "by spamming."],
-		[5, "through the power of hard work."],
-		[5, "by out-camping you."],
-		[5, "by dominating the neutral game."],
+		[5, "by getting lucky.","Taerk"],
+		[5, "and there's no stopping me.","Taerk"],
+		[5, "by spamming.","Taerk"],
+		[5, "through the power of hard work.","Taerk"],
+		[5, "by out-camping you.","Taerk"],
+		[5, "by dominating the neutral game.","Taerk"],
 		[5, "because I know all the good combos.", "/u/KindaFunnyUsername"]
 	],
 	ramen:[
-		[5, "because my region is better."],
-		[5, "by cheating."],
-		[5, "by using a broken character."],
-		[5, "and I don't even play this game."],
+		[5, "because my region is better.","Taerk"],
+		[5, "by cheating.","Taerk"],
+		[5, "by using a broken character.","Taerk"],
+		[5, "and I don't even play this game.","Taerk"],
 		[5, "because my tech skill is off.", 'Graphitezepp'],
 		[5, "because your main is garbage.", "/u/KindaFunnyUsername"],
 		[5, "by wavecheating.", "/u/p0rtugalvii"],
 		[5, "and now it's time to save the replay.", "/u/p0rtugalvii"]
 	],
 	ocean:[
-		[5, "through the power of friendship."],
-		[5, "through sheer willpower."],
-		[5, "using my bloodline technique."],
-		[5, "because you're bad."],
-		[5, "because my controller is blessed", "/u/DamenCF"],
+		[5, "through the power of friendship.","Taerk"],
+		[5, "through sheer willpower.","Taerk"],
+		[5, "using my bloodline technique.","Taerk"],
+		[5, "because you're bad.","Taerk"],
+		[5, "because my controller is blessed.", "/u/DamenCF"],
 		[5, "because your friends don't dance, and if they don't dance, then they're no friends of mine.", "/u/Meester_Tweester"]
 	],
-	wife:[]
+	wife:[
+		[5, "because my wife is better than your wife.","GithubCopilot"],
+		[6, ", fair and square.","wsbc"],
+		[5, 'because I have plot armor.',"wsbc"],
+		[6, '. You know what that means?', "wsbc"],
+	]
 };
 
 const champ: NounSalad = {
@@ -409,30 +415,32 @@ const taunt: TauntSalad = {
 		[""]
 	],
 	ramen:[
-		["Wrecked!"],
-		["Haha!"],
-		["Get bodied!"],
+		["Wrecked!","Taerk"],
+		["Haha!","Taerk"],
+		["Get bodied!","Taerk"],
 		["lol", "/u/p0rtugalvii"],
 		["lmao", "/u/p0rtugalvii"],
-		["(And cheating.)"],
-		["Give me my money!"],
-		["Get shreked!"],
+		["(And cheating.)","Taerk"],
+		["Give me my money!","Taerk"],
+		["Get scammed, kid.","Taerk"],
 		["<i>Okay!</i>", "/u/KindaFunnyUsername"],
-		["And on stream too!"],
-		["The aura is with me!"]
+		["And on stream too!","Taerk"],
+		["The aura is with me!","Taerk"]
 	],
 	ocean:[
-		["Pika-pika!"],
-		["HYES!"],
-		["FALCON WIN!"],
+		["Pika-pika!","Taerk"],
+		["HYES!","Taerk"],
+		["FALCON WIN!","Taerk"],
 		["Hoo-hah!", "/u/KindaFunnyUsername"],
 		["GFYCAT!!", "BizarroFlame"],
-		["Minna, miteite kure!"],
+		["Minna, miteite kure!","Marth"],
 		["Omae wa mou shindeiru!", "Hokuto no Ken!"]
 	],
 	wife: [
-		["Are you done playing video games yet, sweetie?"],
-		["Get fucked up, dawg."],
+		["Are you done playing video games yet, sweetie?","my_wife"],
+		["Get fucked up, dawg.","HMW"],
+		["I'm gonna go fuck your wife now.","Shadow"],
+		["That's unlucky, pal.","wsbc"],
 	]
 };
 
@@ -505,7 +513,13 @@ function johnerate(): Johner {
 	structure = subject;
 
 	if (verbit & VERB.NOSPACE) {
-		// dont need to do anything
+		// dont need to do anything (usually)
+
+		if (is_win && verbit&VERB.PAST){
+			//this is the one case where we need to do something
+			structure += ` ${pastTensify(verb)}`;
+		}
+
 	} else if (verbit & VERB.USE) {
 		// we are using some form of verb
 		let verbToUse = verb;
@@ -545,6 +559,7 @@ function johnerate(): Johner {
 		
 	// grammar fix
 	structure = structure.replace("s's", "s'").replace("I's", "My").replace("You's", "Your");
+	structure = structure.replace("not not ","");
 	
 	// generate the credit text
 	let credit_text = credit.length ? `Credit: ${credit.map(cred=>formatCredit(cred)).join(', ')}` : '';
