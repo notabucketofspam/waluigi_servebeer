@@ -223,7 +223,7 @@ const john: JohnSalad = {
 		[0, "got no goddamn characters.", "/u/KiJoBu"],
 		[1, "making me sleepy.", "/u/RoflPost"],
 		[1, "too advanced.", "/u/DrankeyKrang"],
-		[1, "oudated.", "/u/DrankeyKrang"],
+		[1, "outdated.", "/u/DrankeyKrang"],
 		[1, "too casual.", "/u/DrankeyKrang"],
 		[1, "not casual enough.", "/u/DrankeyKrang"],
 		[1, "only playing to win.", "/u/DrankeyKrang"],
