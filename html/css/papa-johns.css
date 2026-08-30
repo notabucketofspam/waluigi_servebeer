@@ -160,9 +160,22 @@ div#john-chamber {
 			background-color: gold;
 		}
 
+		.stat-buttons .status-button:active {
+			background-color: goldenrod;
+			color:white;
+		}
+
 		.stat-buttons .status-button.active {
 			color: white;
 		}
+
+	div#end_buttons button#submit.button:active {
+		background-color: rebeccapurple;
+	}
+
+	div#end_buttons button#back.button:active {
+		background-color: #404;
+	}
 
 	#buttons .salt-button {
 		margin: 3px 2px;
@@ -174,6 +187,11 @@ div#john-chamber {
 
 		#buttons .salt-button:hover {
 			background-color: aquamarine;
+		}
+
+		#buttons .salt-button:active {
+			background-color: mediumaquamarine;
+			color:#fff;
 		}
 
 		#buttons .salt-button.active {
@@ -212,6 +230,12 @@ div#john-chamber {
 		height: 1px;
 		border: 0;
 		background-color: #777;
+	}
+
+	@media (max-width:380px) {
+		div#outbox {
+			width: 100%;
+		}
 	}
 
 	.header {
