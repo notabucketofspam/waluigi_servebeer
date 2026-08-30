@@ -254,7 +254,7 @@ const john: JohnSalad = {
 		[1, "having a heart attack.", "/u/KiJoBu"],
 		[1, "too glitchy.", "/u/DrankeyKrang"],
 		[1, "too unstable.", "/u/DrankeyKrang"],
-		[1, "too Johnny", "/u/DrankeyKrang"],
+		[1, "too Johnny.", "/u/DrankeyKrang"],
 		[1, "using gimmicky custom moves.", "/u/DrankeyKrang"],
 		[0, "got too much sleep.", "/u/Her0_0f_time"],
 		[5, "distracted by that girl.", "/u/Her0_0f_time"],
