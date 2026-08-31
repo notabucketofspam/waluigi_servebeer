@@ -152,6 +152,9 @@ const noun: Salad<Noun> = {
 		["My sponsor","3s","wsbc"],
 		// ["We","1p","wsbc"],
 		["Chat","3s","wsbc"],
+		["Alpharad","3s","notamacuser"],
+		["For Glory","3s","notamacuser"],
+		["The wifi here","3s","wsbc"],
 	]
 };
 
@@ -355,6 +358,8 @@ const john: Salad<John> = {
 		[1, "a shill.",'wsbc'],
 		[1, "streaming.",'wsbc'],
 		[2, "<small>... n-nevermind.</small>",'wsbc'],
+		[5, "going vertical.",'Vert Wheeler'],
+		[0, "farted on the bike.",'notamacuser'],
 	]
 };
 
@@ -415,6 +420,8 @@ const win: Salad<John> = {
 		[13,"they hit the second tower.", "wsbc"],
 		[13,"I'm a streamer.", "wsbc"],
 		[13,"I read the roll (obviously).", "wsbc"],
+		[5,"with heavy mental gaming in the game.", "notamacuser"],
+		[13,"I was unc.", "Clark"],
 	]
 };
 
@@ -459,6 +466,10 @@ const taunt: Salad<Taunt> = {
 		["jk lol.","wsbc"],
 		["How embarrassing.","wsbc"],
 		["Poggers!","Twitch"],
+		["Cringe, mate.","wsbc"],
+		[", bruh.","wsbc"],
+		[", dumbass.","wsbc"],
+		["DEEP FRIED!","Brimmy"],
 	]
 };
 
@@ -654,8 +665,8 @@ function johnerate(): Johner {
 	}
 		
 	// grammar fix
-	structure = structure.replace("s's", "s'").replace("I's", "My").replace("You's", "Your");
-	structure = structure.replace("not not ","").replace(',,',',');
+	structure = structure.replace("s's", "s'").replace("I's", "My").replace("You's", "Your")
+		.replace("not not ","").replace(/[,.]\s?,/,',');
 	
 	// generate the credit text
 	let credit_text = credit.length ? `Credit: ${credit.map(cred=>formatCredit(cred)).join(' ')}` : '';
