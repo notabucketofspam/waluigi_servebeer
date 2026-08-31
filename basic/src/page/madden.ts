@@ -638,9 +638,9 @@ function johnerate(): Johner {
 	
 	// finally, append the john
 	structure += johnReason;
-
-	if (is_win && gamble(2)) {
-		// and then we taunt for style points.
+	
+	// and then we taunt for style points.
+	if (is_win) {
 		const [tauntext, tauntCred] = rember(taunt[randomCat()]);
 		if (tauntCred)
 			credit.push({series: 'taunt', credit: tauntCred});
