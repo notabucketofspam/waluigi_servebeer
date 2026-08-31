@@ -360,6 +360,9 @@ const john: Salad<John> = {
 		[2, "<small>... n-nevermind.</small>",'wsbc'],
 		[5, "going vertical.",'Vert Wheeler'],
 		[0, "farted on the bike.",'notamacuser'],
+		[1, "smelly.","wsbc"],
+		[1, "not a natural formation.","notamacuser"],
+		[5, "mad because I broke the glass.","Clark"],
 	]
 };
 
@@ -388,7 +391,7 @@ const win: Salad<John> = {
 		[5, "and there's no stopping me.","Taerk"],
 		[5, "by spamming.","Taerk"],
 		[5, "through the power of hard work.","Taerk"],
-		[13, "I out-camped you.","Taerk"],
+		[13,"I out-camped you.","Taerk"],
 		[5, "by dominating the neutral game.","Taerk"],
 		[13,"I know all the good combos.", "/u/KindaFunnyUsername"]
 	],
@@ -434,8 +437,8 @@ const taunt: Salad<Taunt> = {
 		["Wrecked!","Taerk"],
 		["Haha!","Taerk"],
 		["Get bodied!","Taerk"],
-		["lol", "/u/p0rtugalvii"],
-		["lmao", "/u/p0rtugalvii"],
+		["lol.", "/u/p0rtugalvii"],
+		["lmao.", "/u/p0rtugalvii"],
 		["(And cheating.)","Taerk"],
 		["Give me my money!","Taerk"],
 		["Get scammed, kid.","Taerk"],
@@ -461,7 +464,7 @@ const taunt: Salad<Taunt> = {
 		["Stop it. Get some help.","Michael Jordan"],
 		["It's your fault, by the way.","wsbc"],
 		["OHHH YEAH!!!","Kool-Aid Man"],
-		["Just like me fr","notamacuser"],
+		["Just like me fr.","notamacuser"],
 		["Couldn't be me.","notamacuser"],
 		["jk lol.","wsbc"],
 		["How embarrassing.","wsbc"],
