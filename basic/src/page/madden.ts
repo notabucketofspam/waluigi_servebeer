@@ -351,7 +351,7 @@ const john: Salad<John> = {
 		[1, "a fucking architect.",'Clark'],
 		[0, "crashed.",'notamacuser'],
 		[5, "not old enough.",'wsbc'],
-		[1, "the Senate.",'Senator Palpatine'],
+		[1, "the Senate.",'Palpatine'],
 		[1, "a shill.",'wsbc'],
 		[1, "streaming.",'wsbc'],
 		[2, "<small>... n-nevermind.</small>",'wsbc'],
@@ -663,6 +663,15 @@ function johnerate(): Johner {
 	return {structure, credit_text};
 }
 
+function formatCredit(credit: CreditCard): string {
+	return `[${credit.series}:${credit.credit}]`;
+}
+
+// ====================================================================================================================
+// ========================================== DOM AND DOM ACCESSORIES =================================================
+
+const wilopa = window.location.pathname;
+
 function insert_john(johner: Johner){
 	const {structure, credit_text} = johner;
 
@@ -679,8 +688,8 @@ function insert_john(johner: Johner){
 	}
 	
 	// something with the logs
-	if (logs.length > 10) {
-		logs.splice(0,1);
+	if (logs.length > 100) {
+		logs.shift();
 	}
 	logs.push({structure, credit_text});
 	
@@ -692,10 +701,6 @@ function insert_john(johner: Johner){
 	}
 }
 
-function formatCredit(credit: CreditCard): string {
-	return `[${credit.series}:${credit.credit}]`;
-}
-
 function Bev_StartJohns(ev:PointerEvent){
 	try {
 		const johnest = johnerate();
@@ -704,7 +709,7 @@ function Bev_StartJohns(ev:PointerEvent){
 }
 
 function backJohn() {
-	if (logs.length > 1) {
+	if (logs.length) {
 		logs.pop();
 		const output = document.querySelector('div#john-chamber #output');
 		const credit = document.querySelector('div#john-chamber #credit');
@@ -731,11 +736,9 @@ function Bev_BackJohn(ev:PointerEvent){
 function Bev_WinStatus(ev:PointerEvent){
 	try{
 		const target = ev.target as HTMLElement;
-		if (target.getAttribute('data-win-status') === 'win'){
-			setWinStatus(true);
-		} else {
-			setWinStatus(false);
-		}
+		const didYouWin = target.getAttribute('data-win-status') === 'win';
+		setWinStatus(didYouWin);
+		saveWinStatus();
 	}catch(e){}
 }
 
@@ -763,27 +766,57 @@ function setWinStatus(didYouWin:boolean){
 
 function Bev_SaltLevel(ev:PointerEvent){
 	try{
+		let target = ev.target as HTMLElement;
+		let slevel = Number(target.getAttribute('data-salt-level'));
+		setSaltLevel(slevel);
+		saveSaltLevel();
+	}catch(er){}
+}
+function setSaltLevel(slevel:number){
+	try{
 		// clear the salt buttons
 		const saltButtons = Array.from(document.querySelectorAll('div#john-chamber .salt-button'));
 		saltButtons.forEach((button) => {
 			button.classList.remove('active');
 		});
-
-		// set this salt button to "salt"
-		let target = ev.target as HTMLElement;
-		target.classList.add('active');
-
-		// set the salt_level
-		let saltLevel = Number.parseInt(target.getAttribute('data-salt-level') || '0', 10);
-		if (Number.isInteger(saltLevel) && saltLevel >= 0 && saltLevel <= 2) {
-			salt_level = saltLevel;
-			wife_mode = false;
-		} else {
-			// she's gone from suck to blow
-			salt_level = 3;
-			wife_mode = true;
+		let target = document.querySelector(`div#john-chamber .salt-button[data-salt-level="${slevel}"]`);
+		if (target instanceof HTMLElement) {
+			// set this salt button to "salt"
+			target.classList.add('active');
 		}
-	}catch(er){}
+		// set the salt_level
+		salt_level = slevel;
+		if (slevel > 2){
+			// she's gone from suck to blow
+			wife_mode = true;
+		} else {
+			// she hath calmed
+			wife_mode = false;
+		}
+	}catch(eros){}
+}
+
+// a whole bunch of stuff that handles saving/loading
+function saveWinStatus(){
+	sessionStorage.setItem(`${wilopa}::win-status`, is_win ? 'win' : 'lose');
+}
+function loadWinStatus(){
+	const status = sessionStorage.getItem(`${wilopa}::win-status`);
+	const didYouWin = status === 'win';
+	setWinStatus(didYouWin);
+}
+
+function saveSaltLevel(){
+	sessionStorage.setItem(`${wilopa}::salt-level`, String(salt_level));
+}
+function loadSaltLevel(){
+	const slevel = sessionStorage.getItem(`${wilopa}::salt-level`);
+	if (slevel === null) {
+		salt_level = 3;
+	} else {
+		salt_level = Number(slevel);
+	}
+	setSaltLevel(salt_level);
 }
 
 /**basically an init function*/
@@ -821,6 +854,10 @@ function bracketReset(){
 	if (generateButton instanceof HTMLElement) {
 		generateButton.addEventListener('click', Bev_StartJohns);
 	}
+
+	// load statii from the store
+	loadWinStatus();
+	loadSaltLevel();
 }
 
 document.addEventListener('spam', ev => {
