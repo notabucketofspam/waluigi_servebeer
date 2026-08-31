@@ -102,7 +102,7 @@ const noun: Salad<Noun> = {
 		["My hands","3p","Poyoarya"],
 		["Everyone","3s","Poyoarya"],
 		["The TV","3s","Poyoarya"],
-		["The crowd","3p","Poyoarya"],
+		["The crowd","3s","Poyoarya"],
 		["My opponent","3s","Poyoarya"],
 		["My chair","3s","Poyoarya"],
 		["His controller","3s","Poyoarya"],
