@@ -1,180 +1,167 @@
+/**how upset someone is*/
 type Saltiness = 'water' | 'ramen' | 'ocean' | 'wife';
 
-type Noun = [subject: string, verb: string, credit?: string];
-interface NounSalad {
-	water: Noun[];
-	ramen: Noun[];
-	ocean: Noun[];
-	wife: Noun[];
+/**organized salt*/
+type Salad<T> = {
+	[key in Saltiness]: T[];
 }
 
-/**bit: effect
- * 0: use the adjective
- * 1: add a space
- * 2: conjugate to past tense
- */
-const VERB = {
-	USE: 1<<0,
-	NOSPACE: 1<<1,
-	PAST: 1<<2,
-} as const;
+/**Usually the subject of our sentence*/
+type Noun = [subject: string, verbReq: VerbReq, credit?: string];
 
+/**Some kind of excuse*/
 type John = [verbit: number, reason: string, credit?: string];
-interface JohnSalad {
-	water: John[];
-	ramen: John[];
-	ocean: John[];
-	wife: John[];
-}
 
+/**Bullying */
 type Taunt = [taunt: string, credit?: string];
-interface TauntSalad {
-	water: Taunt[];
-	ramen: Taunt[];
-	ocean: Taunt[];
-	wife: Taunt[];
-}
 
-const noun: NounSalad = {
+// ====================================================================================================================
+// ======================================== a nice lineup of spices ========================================
+
+/**people that we make fun of*/
+const noun: Salad<Noun> = {
 	water:[
-		["My eyes", "are", "niffyjiffy"],
-		["The TV", "is", "niffyjiffy"],
-		["This setup", "is","Taerk"],
-		["My controller", "is","Taerk"],
-		["I", "am", "niffyjiffy"],
-		["The camera", "is", "Dr Deletus"],
-		["Your character", "is", "/u/KindaFunnyUsername"],
-		["My chair", "is", "/u/shadowpikachu"],
-		["The lag", "is", "/u/DrankeyKrang"],
-		["My skills", "are", "/u/DrankeyKrang"],
-		["My phone", "is", "/u/DrankeyKrang"],
-		["My nose", "is", "/u/DrankeyKrang"],
-		["The control stick", "is", "/u/p0rtugalvii"],
-		["The venue", "is", "/u/p0rtugalvii"],
-		["The stage", "is", "/u/DeadLineClock"],
-		["The bracket", "is", "/u/DeadLineClock"],
-		["The matchup", "is", "/u/DeadLineClock"]
+		["My eyes", "3p", "niffyjiffy"],
+		["The TV", "3s", "niffyjiffy"],
+		["This setup", "3s","Taerk"],
+		["My controller", "3s","Taerk"],
+		["I", "1s", "niffyjiffy"],
+		["The camera", "3s", "Dr Deletus"],
+		["Your character", "3s", "/u/KindaFunnyUsername"],
+		["My chair", "3s", "/u/shadowpikachu"],
+		["The lag", "3s", "/u/DrankeyKrang"],
+		["My skills", "3p", "/u/DrankeyKrang"],
+		["My phone", "3s", "/u/DrankeyKrang"],
+		["My nose", "3s", "/u/DrankeyKrang"],
+		["The control stick", "3s", "/u/p0rtugalvii"],
+		["The venue", "3s", "/u/p0rtugalvii"],
+		["The stage", "3s", "/u/DeadLineClock"],
+		["The bracket", "3s", "/u/DeadLineClock"],
+		["The matchup", "3s", "/u/DeadLineClock"]
 	],
 	ramen:[
-		["You", "are","Taerk"],
-		["My son", "is", "niffyjiffy"],
-		["This game", "is","Taerk"],
-		["My hands", "are", "niffyjiffy"],
-		["My fingers", "are", "niffyjiffy"],
-		["Your main", "is", "/u/KindaFunnyUsername"],
-		["My butt", "is", "/u/shadowpikachu"],
-		["My fingernails", "are", "/u/DrankeyKrang"],
-		["My breakfast", "is", "/u/deluxejoe"],
-		["Randall", "is", "/u/NormalNavi"],
-		["My 3DS", "is", "/u/NormalNavi"],
-		["Your 3DS", "is", "/u/NormalNavi"],
-		["Smash 64", "is","Taerk"],
-		["Melee", "is","Taerk"],
-		["Brawl", "is","Taerk"],
-		["Smash Ultimate", "is","wsbc"],
-		["Smash 4", "is","Taerk"],
-		["Netplay", "is","Taerk"],
-		["My drink", "is","Taerk"],
-		["My Uber driver", "is","wsbc"],
-		["Your amiibo", "is", "/u/Meester_Tweester"],
-		["My fedora", "is", "/u/PhoenixBurning"],
-		["Mango", "is", "/u/DeadLineClock"],
-		["My ride home", "is", "/u/DeadLineClock"],
-		["My dog", "is", "/u/DeadLineClock"]
+		["You", "2s","Taerk"],
+		["My son", "3s", "niffyjiffy"],
+		["This game", "3s","Taerk"],
+		["My hands", "3p", "niffyjiffy"],
+		["My fingers", "3p", "niffyjiffy"],
+		["Your main", "3s", "/u/KindaFunnyUsername"],
+		["My butt", "3s", "/u/shadowpikachu"],
+		["My fingernails", "3p", "/u/DrankeyKrang"],
+		["My breakfast", "3s", "/u/deluxejoe"],
+		["Randall", "3s", "/u/NormalNavi"],
+		["My 3DS", "3s", "/u/NormalNavi"],
+		["Your 3DS", "3s", "/u/NormalNavi"],
+		["Smash 64", "3s","Taerk"],
+		["Melee", "3s","Taerk"],
+		["Brawl", "3s","Taerk"],
+		["Smash Ultimate", "3s","wsbc"],
+		["Smash 4", "3s","Taerk"],
+		["Netplay", "3s","Taerk"],
+		["My drink", "3s","Taerk"],
+		["My Uber driver", "3s","wsbc"],
+		["Your amiibo", "3s", "/u/Meester_Tweester"],
+		["My fedora", "3s", "/u/PhoenixBurning"],
+		["Mango", "3s", "/u/DeadLineClock"],
+		["My ride home", "3s", "/u/DeadLineClock"],
+		["My dog", "3s", "/u/DeadLineClock"]
 	],
 	ocean:[
-		["Your mom", "is","Taerk"],
-		["The spectators", "are","Taerk"],
-		["The commentators", "are","Taerk"],
-		["Everyone", "is","Taerk"],
-		["The desire sensor", "is","Taerk"],
-		["Sakurai", "is","Taerk"],
-		["The Vernal Equinox", "is", "/u/RoflPost"],
-		["/r/smashbros", "is", "/u/NormalNavi"],
-		["SmashBoards", "is", "/u/NormalNavi"],
-		["RNGesus", "is", "/u/NormalNavi"],
-		["My Zapper", "is", "/u/NormalNavi"],
-		["The John generator", "is", "/u/NormalNavi"],
-		["My waifu", "is", "/u/radicalhighway_"],
-		["The sponsors", "are", "/u/radicalhighway_"],
-		["Nintendo", "is", "/u/radicalhighway_"],
-		["Twitch", "is", "/u/radicalhighway_"],
-		["Gimr", "is", "/u/radicalhighway_"],
-		["D1", "is", "/u/radicalhighway_"],
-		["Prog", "is", "/u/radicalhighway_"],
-		["Doritos", "are", "/u/radicalhighway_"],
-		["Le toucan", "is", "/u/PhoenixBurning"],
-		["My ride home", "is", "/u/DeadLineClock"],
-		["The salt shaker", "is", "/u/DeadLineClock"],
-		["The matchup", "is", "/u/DeadLineClock"],
-		["The stock market", "is", "/u/DeadLineClock"],
-		["GRsmash", "is", "/u/DeadLineClock"],
-		["My panties", "are", "/u/DeadLineClock"],
-		["The left joycon", "is", "/u/supaPILLOT"],
+		["Your mom", "3s","Taerk"],
+		["The spectators", "3p","Taerk"],
+		["The commentators", "3p","Taerk"],
+		["Everyone", "3s","Taerk"],
+		["The desire sensor", "3s","Taerk"],
+		["Sakurai", "3s","Taerk"],
+		["The Vernal Equinox", "3s", "/u/RoflPost"],
+		["/r/smashbros", "3s", "/u/NormalNavi"],
+		["SmashBoards", "3s", "/u/NormalNavi"],
+		["RNGesus", "3s", "/u/NormalNavi"],
+		["My Zapper", "3s", "/u/NormalNavi"],
+		["The John generator", "3s", "/u/NormalNavi"],
+		["My waifu", "3s", "/u/radicalhighway_"],
+		["The sponsors", "3p", "/u/radicalhighway_"],
+		["Nintendo", "3s", "/u/radicalhighway_"],
+		["Twitch", "3s", "/u/radicalhighway_"],
+		["Gimr", "3s", "/u/radicalhighway_"],
+		["D1", "3s", "/u/radicalhighway_"],
+		["Prog", "3s", "/u/radicalhighway_"],
+		["Doritos", "3p", "/u/radicalhighway_"],
+		["Le toucan", "3s", "/u/PhoenixBurning"],
+		["My ride home", "3s", "/u/DeadLineClock"],
+		["The salt shaker", "3s", "/u/DeadLineClock"],
+		["The matchup", "3s", "/u/DeadLineClock"],
+		["The stock market", "3s", "/u/DeadLineClock"],
+		["GRsmash", "3s", "/u/DeadLineClock"],
+		["My panties", "3p", "/u/DeadLineClock"],
+		["The left joycon", "3s", "/u/supaPILLOT"],
 	],
 	wife: [
-		["My controller","is","Poyoarya"],
-		["The sun","is","Poyoarya"],
-		["My hands","are","Poyoarya"],
-		["Everyone","is","Poyoarya"],
-		["The TV","is","Poyoarya"],
-		["The crowd","is","Poyoarya"],
-		["My opponent","is","Poyoarya"],
-		["My chair","is","Poyoarya"],
-		["His controller","is","Poyoarya"],
-		["Meta Knight","is","Poyoarya"],
-		["Roy's wavedash","is","Poyoarya"],
-		["My mother","is","Poyoarya"],
-		["My brain","is","Poyoarya"],
-		["My 3DS","is","Poyoarya"],
-		["Nintendo","is","Poyoarya"],
-		["My Twitter followers","are","Poyoarya"],
-		["My eyes","are","Poyoarya"],
-		["The DLC","is","Poyoarya"],
-		["The commentators","are","Poyoarya"],
-		["The music","is","Poyoarya"],
-		["Final Destination","is","Poyoarya"],
-		["Reggie Fils-Aim&eacute;","is","Poyoarya"],
-		["The venue","is","Poyoarya"],
-		["My skills","are","Poyoarya"],
-		["The stream","is","Poyoarya"],
-		["Sakurai","is","Poyoarya"],
-		["The ledge","is","Poyoarya"],
-		["My foot","is","Poyoarya"],
-		["The C-stick","is","Poyoarya"],
-		["Project M","is","Poyoarya"],
-		["Your shoes","are","Poyoarya"],
-		["My mother's basement","is","Poyoarya"],
-		["The USA","is","Poyoarya"],
-		["Tap jump","is","Poyoarya"],
-		["Jigglypuff","is","Poyoarya"],
-		["I","am","Poyoarya"],
-		["PAC-MAN","is","Poyoarya"],
-		["Alex Strife","is","Poyoarya"],
-		["My scarf","is","Poyoarya"],
-		["The T.O.","is","Poyoarya"],
-		["EVO","is","Poyoarya"],
-		["Leffen","is","Poyoarya"],
-		["My wife","is","wsbc"],
-		["My dick","is","wsbc"],
-		["My tummy","is","wsbc"],
-		["Hungrybox","is","wsbc"],
-		["Miiverse","is","wsbc"],
-		["This Man","is","wsbc"],
-		["The Wii U","is","wsbc"],
-		["Donkey Kong","is","wsbc"],
-		["Captain Falcon","is","wsbc"],
-		["My game","is","notamacuser"],
+		["My controller","3s","Poyoarya"],
+		["The sun","3s","Poyoarya"],
+		["My hands","3p","Poyoarya"],
+		["Everyone","3s","Poyoarya"],
+		["The TV","3s","Poyoarya"],
+		["The crowd","3p","Poyoarya"],
+		["My opponent","3s","Poyoarya"],
+		["My chair","3s","Poyoarya"],
+		["His controller","3s","Poyoarya"],
+		["Meta Knight","3s","Poyoarya"],
+		["Roy's wavedash","3s","Poyoarya"],
+		["My mother","3s","Poyoarya"],
+		["My brain","3s","Poyoarya"],
+		["My 3DS","3s","Poyoarya"],
+		["Nintendo","3s","Poyoarya"],
+		["My Twitter followers","3p","Poyoarya"],
+		["My eyes","3p","Poyoarya"],
+		["The DLC","3s","Poyoarya"],
+		["The commentators","3p","Poyoarya"],
+		["The music","3s","Poyoarya"],
+		["Final Destination","3s","Poyoarya"],
+		["Reggie Fils-Aim&eacute;","3s","Poyoarya"],
+		["The venue","3s","Poyoarya"],
+		["My skills","3p","Poyoarya"],
+		["The stream","3s","Poyoarya"],
+		["Sakurai","3s","Poyoarya"],
+		["The ledge","3s","Poyoarya"],
+		["My foot","3s","Poyoarya"],
+		["The C-stick","3s","Poyoarya"],
+		["Project M","3s","Poyoarya"],
+		["Your shoes","3p","Poyoarya"],
+		["My mother's basement","3s","Poyoarya"],
+		["The USA","3s","Poyoarya"],
+		["Tap jump","3s","Poyoarya"],
+		["Jigglypuff","3s","Poyoarya"],
+		["I","1s","Poyoarya"],
+		["PAC-MAN","3s","Poyoarya"],
+		["Alex Strife","3s","Poyoarya"],
+		["My scarf","3s","Poyoarya"],
+		["The T.O.","3s","Poyoarya"],
+		["EVO","3s","Poyoarya"],
+		["Leffen","3s","Poyoarya"],
+		["My wife","3s","wsbc"],
+		["My dick","3s","wsbc"],
+		["My tummy","3s","wsbc"],
+		["Hungrybox","3s","wsbc"],
+		["Miiverse","3s","wsbc"],
+		["This Man","3s","notamacuser"],
+		["The Wii U","3s","wsbc"],
+		["Donkey Kong","3s","wsbc"],
+		["Captain Falcon","3s","wsbc"],
+		["My game","3s","notamacuser"],
+		["My sponsor","3s","wsbc"],
+		// ["We","1p","wsbc"],
+		["Chat","3s","wsbc"],
 	]
 };
 
-/*
+/**here's a cheatsheet for the bitmask: 
 	0 - don't use subject's verb, but add a space
 	1 - use
-	2 - don't use and don't add a space
+	2 - don't use verb and don't add a space
 	5 - use the subject's verb in the past tense
 */
-const john: JohnSalad = {
+const john: Salad<John> = {
 	water: [
 		[1, "too sweaty.", "niffyjiffy"],
 		[1, "too small.", "niffyjiffy"],
@@ -276,10 +263,10 @@ const john: JohnSalad = {
 		[0, "generated my johns.", "/u/DeadLineClock"],
 		[0, "didn't give me my money back.", "/u/DeadLineClock"],
 		[1, "THE TOURNAMENT!", "/u/DeadLineClock"],
-		[1, "not a real person.", "GitHub"],
+		[1, "not a real person.", "Copilot"],
 		[0, "mangled my hand.",'wsbc'],
 		[1, "horny.",'wsbc'],
-		[0, "TURNED HER AGAINST ME.", "anakin_skywalker"],
+		[0, "TURNED HER AGAINST ME.", "Anakin Skywalker"],
 	],
 	wife: [
 		[1,"in my eyes.","Poyoarya"],
@@ -358,36 +345,55 @@ const john: JohnSalad = {
 		[0, "posted my nudes on twitter.com","Eggman"],
 		[1, "my wife.","wsbc"],
 		[1, "racist.","wsbc"],
-		[0, "killed my father.",'InigoMontoya'],
-		[0, "ate my son.",'TedCruz'],
+		[0, "killed my father.",'Inigo Montoya'],
+		[0, "ate my son.",'Ted Cruz'],
 		[1, "pure, unadulterated jank.",'Google'],
 		[1, "a fucking architect.",'Clark'],
 		[0, "crashed.",'notamacuser'],
 		[5, "not old enough.",'wsbc'],
-		[1, "the Senate.",'Palpatine'],
+		[1, "the Senate.",'Senator Palpatine'],
 		[1, "a shill.",'wsbc'],
+		[1, "streaming.",'wsbc'],
+		[2, "<small>... n-nevermind.</small>",'wsbc'],
 	]
 };
 
-// "I won [...]"
-const win: JohnSalad = {
+/**YOU'RE WINNER*/
+const champ: Salad<Noun> = {
+	water:[
+		["I", "1s"]
+	],
+	ramen: [
+		["I", "1s"]
+	],
+	ocean: [
+		["I", "1s"]
+	],
+	wife: [
+		["You", "2s"],
+		// ["He", "3s"]
+	]
+};
+
+/**excuses for winners*/
+const win: Salad<John> = {
 	water:[ 
 		[5, "through pure skill.", "niffyjiffy"],
 		[5, "by getting lucky.","Taerk"],
 		[5, "and there's no stopping me.","Taerk"],
 		[5, "by spamming.","Taerk"],
 		[5, "through the power of hard work.","Taerk"],
-		[5, "by out-camping you.","Taerk"],
+		[13, "I out-camped you.","Taerk"],
 		[5, "by dominating the neutral game.","Taerk"],
-		[5, "because I know all the good combos.", "/u/KindaFunnyUsername"]
+		[13,"I know all the good combos.", "/u/KindaFunnyUsername"]
 	],
 	ramen:[
-		[5, "because my region is better.","Taerk"],
+		[13,"my region is better.","Taerk"],
 		[5, "by cheating.","Taerk"],
 		[5, "by using a broken character.","Taerk"],
 		[5, "and I don't even play this game.","Taerk"],
-		[5, "because my tech skill is off.", 'Graphitezepp'],
-		[5, "because your main is garbage.", "/u/KindaFunnyUsername"],
+		[13,"my tech skill is off.", 'Graphitezepp'],
+		[13,"your main is garbage.", "/u/KindaFunnyUsername"],
 		[5, "by wavecheating.", "/u/p0rtugalvii"],
 		[5, "and now it's time to save the replay.", "/u/p0rtugalvii"]
 	],
@@ -395,34 +401,25 @@ const win: JohnSalad = {
 		[5, "through the power of friendship.","Taerk"],
 		[5, "through sheer willpower.","Taerk"],
 		[5, "using my bloodline technique.","Taerk"],
-		[5, "because you're bad.","Taerk"],
-		[5, "because my controller is blessed.", "/u/DamenCF"],
-		[5, "because your friends don't dance, and if they don't dance, then they're no friends of mine.", "/u/Meester_Tweester"]
+		[13,"you're bad.","Taerk"],
+		[13,"my controller is blessed.", "/u/DamenCF"],
+		[13,"your friends don't dance, and if they don't dance, then they're no friends of mine.", "/u/Meester_Tweester"]
 	],
 	wife:[
-		[5, "because my wife is better than your wife.","GithubCopilot"],
+		[13,"my wife is better than your wife.","Copilot"],
 		[6, ", fair and square.","wsbc"],
-		[5, 'because I have plot armor.',"wsbc"],
+		[13,'I have plot armor.',"wsbc"],
 		[6, '. You know what that means?', "wsbc"],
+		[6, ", but I still love you.", "Copilot"],
+		[6, ", I guess.", "wsbc"],
+		[13,"they hit the second tower.", "wsbc"],
+		[13,"I'm a streamer.", "wsbc"],
+		[13,"I read the roll (obviously).", "wsbc"],
 	]
 };
 
-const champ: NounSalad = {
-	water:[
-		["I", "win"]
-	],
-	ramen: [
-		["I", "win"]
-	],
-	ocean: [
-		["I", "win"]
-	],
-	wife: [
-		["I", "win"]
-	]
-};
-
-const taunt: TauntSalad = {
+/**make your opponent feel really bad about himself*/
+const taunt: Salad<Taunt> = {
 	water:[ 
 		[""]
 	],
@@ -437,7 +434,7 @@ const taunt: TauntSalad = {
 		["Get scammed, kid.","Taerk"],
 		["<i>Okay!</i>", "/u/KindaFunnyUsername"],
 		["And on stream too!","Taerk"],
-		["The aura is with me!","Taerk"]
+		["The aura is with me!","Taerk"],
 	],
 	ocean:[
 		["Pika-pika!","Taerk"],
@@ -446,21 +443,103 @@ const taunt: TauntSalad = {
 		["Hoo-hah!", "/u/KindaFunnyUsername"],
 		["GFYCAT!!", "BizarroFlame"],
 		["Minna, miteite kure!","Marth"],
-		["Omae wa mou shindeiru!", "Hokuto no Ken!"]
+		["Omae wa mou shindeiru!", "Hokuto no Ken!"],
 	],
 	wife: [
-		["Are you done playing video games yet, sweetie?","my_wife"],
-		["Get fucked up, dawg.","HMW"],
+		["Are you done playing video games yet, sweetie?","my wife"],
+		["Get fucked up, dawg.","HomeMadeWaffles"],
+		["Unplug your controller, dawg.","HomeMadeWaffles"],
 		["I'm gonna go fuck your wife now.","Shadow"],
 		["That's unlucky, pal.","wsbc"],
-		["Stop it. Get some help.","MichaelJordan"],
+		["Stop it. Get some help.","Michael Jordan"],
 		["It's your fault, by the way.","wsbc"],
-		["It's my house, by the way. I'm the one paying for it.","Clark"],
+		["OHHH YEAH!!!","Kool-Aid Man"],
 		["Just like me fr","notamacuser"],
 		["Couldn't be me.","notamacuser"],
 		["jk lol.","wsbc"],
+		["How embarrassing.","wsbc"],
+		["Poggers!","Twitch"],
 	]
 };
+
+// ====================================================================================================================
+// ==================================== The English Language ==========================================================
+// ========================== "I got a five on the AP English Lang exam, btw" =========================================
+
+const _ = undefined;
+
+/**a bitmask saying what to do with a verb */
+const VERB = {
+	/**use the verb (default is present tense)*/
+	USE: 1<<0,
+	/**don't add a space before the john (overwrites USE) */
+	NOSPACE: 1<<1,
+	/**conjugate the verb to past tense */
+	PAST: 1<<2,
+	/**needs to have the word "because" added to it*/
+	BECAUSE: 1<<3,
+} as const;
+
+/**what kind of verb conjugation we will need for this subject*/
+type VerbReq = "1s" | "2s" | "3s" | "1p" | "2p" | "3p";
+
+// -----------------------------------------------
+/**what time is it?*/
+type VerbTense = Record<"past"|"pres", VerbNumber>;
+
+/**how many men do you have?*/
+type VerbNumber = Record<string, VerbPerson>;
+
+/**who is the target of your aggression?*/
+type VerbPerson = [nonth:undefined,first:string,second:string,third:string];
+// ------------------------------------------------
+
+const verdict: Record<string,VerbTense> = {
+	//@ts-ignore
+	__proto__:null,
+	"be":{
+		past:{
+			s:[_,"was","was","was"],
+			p:[_,"were","were","were"]
+		},
+		pres:{
+			s:[_,"am","are","is"],
+			p:[_,"are","are","are"]
+		}
+	},
+	"win":{
+		past:{
+			s:[_,"won","won","won"],
+			p:[_,"won","won","won"]
+		},
+		pres:{
+			s:[_,"win","win","win"],
+			p:[_,"win","win","win"]
+		}
+	},
+	"lose":{
+		past:{
+			s:[_,"lost","lost","lost"],
+			p:[_,"lost","lost","lost"]
+		},
+		pres:{
+			s:[_,"lose","lose","loses"],
+			p:[_,"lose","lose","lose"]
+		}
+	}
+};
+
+/**Take Control Of Your Language! Subscribe Today!*/
+function conjugate(verb:string, verbReq:VerbReq,tense:keyof VerbTense){
+	const [vper,vnum] = verbReq.split("");
+	let value: string | undefined;
+	value = verdict?.[verb]?.[tense]?.[String(vnum)]?.[Number(vper)];
+	// return the original verb in case something went wrong
+	return value??verb;
+}
+
+// ====================================================================================================================
+// ==================================== the rest of the johnomatic ====================================================
 
 type Johner = {structure: string, credit_text: string};
 let logs: Johner[] = [];
@@ -492,22 +571,8 @@ interface CreditCard {
 	credit: string;
 }
 
-function pastTensify(verb: string): string {
-	let ferb = verb;
-	if (verb === 'is') {
-		// 3p singular
-		ferb = 'was';
-	} else if (verb === 'are') {
-		// 2p singular / plural
-		ferb = 'were';
-	} else if (verb === 'am'){
-		// 1p singular
-		ferb = 'was';
-	} else if (verb === 'win'){
-		// this is in case we need to do something in the winner's bracket
-		ferb = 'won';
-	}
-	return ferb;
+function gamble(x:number): boolean {
+	return rui(x) === 0;
 }
 
 function johnerate(): Johner {		
@@ -518,9 +583,14 @@ function johnerate(): Johner {
 	let nounPool = is_win? champ : noun;
 	let johnPool = is_win? win : john;
 
-	const [subject, verb, nounCred] = rember(nounPool[randomCat()]);
+	let verb = "be";
+	const [subject, verbReq, nounCred] = rember(nounPool[randomCat()]);
 	const [verbit, johnReason, johnCred] = rember(johnPool[randomCat()]);
-			
+	
+	if (is_win){
+		verb = verbReq.includes('1') ? "win" : "lose";
+	}
+
 	// Push credits
 	if (nounCred)
 		credit.push({series: 'subject', credit: nounCred});
@@ -532,25 +602,33 @@ function johnerate(): Johner {
 
 	if (verbit & VERB.NOSPACE) {
 		// dont need to do anything (usually)
-
+		
+		// this is the one case where we need to do something
 		if (is_win && verbit&VERB.PAST){
-			//this is the one case where we need to do something
-			structure += ` ${pastTensify(verb)}`;
+			structure += ` ${conjugate(verb, verbReq, "past")}`;
 		}
-
 	} else if (verbit & VERB.USE) {
 		// we are using some form of verb
-		let verbToUse = verb;
-		// possibly force it to be past-tense, just to keep it interesting
-		const forcePast = !rui(4);
-		if (forcePast || verbit & VERB.PAST){
-			// gotta conjugate it to the past tense
-			verbToUse = pastTensify(verbToUse);
+		let verbToUse = conjugate(verb, verbReq, "pres");
+
+		// conjugate to past-tense, perchance
+		if (verbit & VERB.PAST || gamble(4)) {
+			verbToUse = conjugate(verb, verbReq, "past");
 		}
 		structure += ` ${verbToUse} `;
 
+		// add the "because"
+		if (verbit&VERB.BECAUSE) {
+			structure += "because ";
+		}
+
+		// add a one-in-ten chance for this to be a canon event
+		if (gamble(10)){
+			structure = `${structure.trim()}, canonically, `;
+		}
+
 		// add a one-in-five chance to negate it
-		if (!is_win && !rui(5)){
+		if (!is_win && gamble(5)){
 			structure += "not ";
 		}
 	} else {
@@ -561,7 +639,7 @@ function johnerate(): Johner {
 	// finally, append the john
 	structure += johnReason;
 
-	if (is_win){
+	if (is_win && gamble(2)) {
 		// and then we taunt for style points.
 		const [tauntext, tauntCred] = rember(taunt[randomCat()]);
 		if (tauntCred)
@@ -570,17 +648,17 @@ function johnerate(): Johner {
 	}
 
 	// my b
-	if (!rui(200)) {
+	if (gamble(0xff)) {
 		structure = "my b";
 		credit.length = 0;
 	}
 		
 	// grammar fix
 	structure = structure.replace("s's", "s'").replace("I's", "My").replace("You's", "Your");
-	structure = structure.replace("not not ","");
+	structure = structure.replace("not not ","").replace(',,',',');
 	
 	// generate the credit text
-	let credit_text = credit.length ? `Credit: ${credit.map(cred=>formatCredit(cred)).join(', ')}` : '';
+	let credit_text = credit.length ? `Credit: ${credit.map(cred=>formatCredit(cred)).join(' ')}` : '';
 	
 	return {structure, credit_text};
 }
