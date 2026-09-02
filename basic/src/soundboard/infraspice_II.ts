@@ -169,7 +169,7 @@ function setHowManyButtons(target: HTMLInputElement) {
   div_sounds.forEach(dale => {
     dale.style.setProperty('grid-template-columns', `repeat(${wideness_real}, 1fr)`);
   });
-  var sounds_havers = Array.from(document.querySelectorAll(':has(>div.sounds)')) as Array<HTMLElement>;
+  var sounds_havers = Array.from(document.querySelectorAll(':has(>div:is(.sounds,.subboards))')) as Array<HTMLElement>;
   sounds_havers.forEach(haver => {
     haver.style.setProperty('max-width', `calc(8.5in + ${(wideness_real - 5) * 160}px)`);
   });
