@@ -564,6 +564,7 @@ let count = 0;
 let salt_level = 3;
 let is_win = false;
 let wife_mode = true;
+const MAX_LOG_SIZE = 1e3;
 
 import {rui, rember} from '../NEO.js';
 
@@ -705,10 +706,10 @@ function insert_john(johner: Johner){
 	}
 	
 	// something with the logs
-	if (logs.length > 1000) {
-		logs.shift();
-	}
 	logs.push({structure, credit_text});
+	if (logs.length > MAX_LOG_SIZE) {
+		logs.shift;
+	}
 	
 	// add something to the counter? idk man.
 	count++;
@@ -886,3 +887,15 @@ document.addEventListener('spam', ev => {
 	}
 });
 bracketReset();
+
+function john_purity(n:number = 1e3){
+	const plogs: Set<string> = new Set();
+
+	for (let i=0;i<n;i++){
+		plogs.add(johnerate().structure);
+	}
+		
+	const purity = plogs.size/n;
+	return purity;
+}
+(window as any).john_purity = john_purity;
