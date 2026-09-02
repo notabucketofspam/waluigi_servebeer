@@ -671,7 +671,7 @@ function johnerate(): Johner {
 		
 	// grammar fix
 	structure = structure.replace("s's", "s'").replace("I's", "My").replace("You's", "Your")
-		.replace("not not ","").replace(/[,.]\s?,/,',');
+		.replace("not not ","").replace(/[?,.]\s?,/,',');
 	
 	// generate the credit text
 	let credit_text = credit.length ? `Credit: ${credit.map(cred=>formatCredit(cred)).join(' ')}` : '';
