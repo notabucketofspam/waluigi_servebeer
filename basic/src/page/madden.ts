@@ -425,6 +425,8 @@ const win: Salad<John> = {
 		[13,"I read the roll (obviously).", "wsbc"],
 		[5,"with heavy mental gaming in the game.", "notamacuser"],
 		[13,"I was unc.", "Clark"],
+		[13,"I said so.", "wsbc"],
+		[13,"I'm just better.", "wsbc"],
 	]
 };
 
