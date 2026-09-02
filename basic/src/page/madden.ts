@@ -363,6 +363,7 @@ const john: Salad<John> = {
 		[1, "smelly.","wsbc"],
 		[1, "not a natural formation.","notamacuser"],
 		[5, "mad because I broke the glass.","Clark"],
+		[1, "in The Files.","wsbc"],
 	]
 };
 
@@ -704,7 +705,7 @@ function insert_john(johner: Johner){
 	}
 	
 	// something with the logs
-	if (logs.length > 100) {
+	if (logs.length > 1000) {
 		logs.shift();
 	}
 	logs.push({structure, credit_text});
