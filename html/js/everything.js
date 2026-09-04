@@ -25,6 +25,11 @@ Last-Modified: <span id="Last-Modified"></span>
 </footer>`);
 document.getElementById("Last-Modified").innerText = (new Date(document.lastModified)).toISOString();
 
+document.documentElement.removeAttribute("xmlns");
+document.documentElement.setAttribute("lang", "en");
+if (!document.head.querySelector("meta[charset]"))
+  document.head.insertAdjacentHTML('afterbegin',`<meta charset="utf-8" />`);
+
 /*
     BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER    BURGER
 */
