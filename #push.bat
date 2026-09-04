@@ -1,6 +1,6 @@
 @ECHO off
 CD basic
-CMD /C "npm run build&& EXIT"
+CALL tsc --build
 CD ..
 CD win97
 CALL build
