@@ -1020,8 +1020,8 @@ body>hr,body>main hr {
   animation-direction: alternate;
 }
 @keyframes marqueme {
-  0% { top: 0px }
-  100% { top: 3px }
+  0% { transform: translateY(0px) }
+  100% { transform: translateY(3px) }
 }
 #wpc {
   text-decoration: underline;
