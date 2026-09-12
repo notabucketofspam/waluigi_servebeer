@@ -103,7 +103,7 @@ details#cheat-codes{
   </fieldset>
   <br/>
   <input type="submit" value="Plug it in, coach"/>
-  <button form="nope" onclick="fill_randomly()">I don't have time for this</button>
+  <button form="nope" onclick="xf_fill_randomly()">I don't have time for this</button>
   <details id="cheat-codes">
     <summary>Cheat codes</summary>
     I want result #<input type="number" min="1" max="16" style="max-width:4ch" oninput="cheat(this.valueAsNumber-1)"/>
@@ -112,18 +112,13 @@ details#cheat-codes{
 </div>
 <script src="/js/everything.js"></script>
 <script>
-var xf = document.getElementById("xf");
-function fill_randomly(){
-  for (const i in xf.elements)
-    if (xf[i] instanceof RadioNodeList)
-        xf[i].value = rui(4);
-}
 function cheat(n) {
-  for (const i in xf.elements)
-    if (xf[i] instanceof RadioNodeList)
-        xf[i].value = 0;
-  xf.walk.value = n&3;
-  xf.music.value = (n>>2)&3;
+  var xf = document.getElementById("xf");
+  if (xf){
+    xf_fill_randomly(0);
+    xf.walk.value = n&3;
+    xf.music.value = (n>>2)&3;
+  }
 }
 </script>
 </body>

@@ -116,7 +116,6 @@
 </div>
 <script src="/js/everything.js"></script>
 <script>
-var xf = document.getElementById("xf");
 var how_gay = document.getElementById("how_gay");
 function this_gay(n) {
   var w;
@@ -132,9 +131,8 @@ function this_gay(n) {
 }
 this_gay(how_gay.valueAsNumber);
 function fill_randomly(){
-  for (const i in xf.elements)
-    if (xf[i] instanceof RadioNodeList)
-        xf[i].value = rui(4);
+  var xf = document.getElementById("xf");
+  xf_fill_randomly();
   xf.how.value = this_gay(rui(4));
 }
 </script>

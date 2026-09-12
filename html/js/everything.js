@@ -118,7 +118,7 @@ function xfsub() {
     alert_II('no popup window. sad.');
   }
 }
-function xf_fill_randomly(){
+function xf_fill_randomly(sval){
   var xf = document.getElementById("xf");
   if (xf){
     const names = new Set();
@@ -128,8 +128,8 @@ function xf_fill_randomly(){
       }
     }
     for (const i of names){
-      xf[i].value = rui(4);
-    }    
+      xf[i].value = sval??rui(4);
+    }
   }
 }
 function goto_smart(url){

@@ -116,7 +116,6 @@
 </div>
 <script src="/js/everything.js"></script>
 <script>
-var xf = document.getElementById("xf");
 var how_crab = document.getElementById("how_crab");
 function this_crab(n) {
   var w;
@@ -132,9 +131,8 @@ function this_crab(n) {
 }
 this_crab(how_crab.valueAsNumber);
 function fill_randomly(){
-  for (const i in xf.elements)
-    if (xf[i] instanceof RadioNodeList)
-        xf[i].value = Math.floor(rui(4));
+  var xf = document.getElementById("xf");
+  xf_fill_randomly();
   xf.how.value = this_crab(rui(4));
 }
 </script>
