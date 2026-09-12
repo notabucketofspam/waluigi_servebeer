@@ -118,6 +118,20 @@ function xfsub() {
     alert_II('no popup window. sad.');
   }
 }
+function xf_fill_randomly(){
+  var xf = document.getElementById("xf");
+  if (xf){
+    const names = new Set();
+    for (const i in xf.elements){
+      if (xf[i]?.name){
+        names.add(xf[i].name);
+      }
+    }
+    for (const i of names){
+      xf[i].value = rui(4);
+    }    
+  }
+}
 function goto_smart(url){
   if (at_chef) {
     window.consume_II(url);

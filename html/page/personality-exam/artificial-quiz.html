@@ -96,7 +96,7 @@
 
   <br/>
   <input type="submit" value="Plug it in, coach"/>
-  <button form="nope" onclick="fill_randomly()">I don't have time for this</button>
+  <button form="nope" onclick="xf_fill_randomly()">I don't have time for this</button>
 
 </form>
 </div>
@@ -111,13 +111,5 @@
 <!-- - Unified MEMES Jurisprudence (1/1): You mastered hyper-temporal compliance by retroactively accepting that the hardware glitch already happened yesterday and proceeding directly with the paperwork. -->
 
 <script src="/js/everything.js"></script>
-<script>
-function fill_randomly(){
-  var xf = document.getElementById("xf");
-  for (const i in xf.elements)
-    if (xf[i] instanceof RadioNodeList)
-        xf[i].value = Math.floor(rui(4));
-}
-</script>
 </body>
 </html>
