@@ -114,7 +114,7 @@ async function getTokenFromServer(roomcode?:string): Promise<string> {
   if (!roomcode) {
     roomcode = 'general-chat';
   }
-  const response = await fetch('https://waluigi-servebeer.com/api/join-voice', {
+  const response = await fetch('https://waluigi-servebeer.com/api/livekit/join-voice', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({roomcode})
