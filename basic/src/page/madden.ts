@@ -153,6 +153,11 @@ const noun: Noun[] = [
 	["The wifi here","3s","wsbc"],
 	["Wii Fit Trainer","3s","notamacuser"],
 	["Falco","3s","wsbc"],
+	["Someone","3s","Walter White"],
+	["That","3s","wsbc"],
+	["This","3s","wsbc"],
+	["Those","3p","wsbc"],
+	["Mr. President","3s","wsbc"],
 ];
 
 /**here's a cheatsheet for the bitmask: 
@@ -361,7 +366,7 @@ const john: John[] = [
 	[1, "illegal, you know.", "wsbc"],
 	[1, "naked.", "wsbc"],
 	[1, "fat.", "wsbc"],
-	[1, "only going for footstools.", "notamacuser"],
+	[1, "only going for footstools.", "Alpharad"],
 	[0, "ain't Falco.", "wsbc"],
 	[1, "high.", "wsbc"],
 	[1, "so fucked.", "wsbc"],
