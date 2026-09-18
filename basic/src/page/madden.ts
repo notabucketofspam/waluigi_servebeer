@@ -362,7 +362,7 @@ const john: John[] = [
 	[1, "not a natural formation.", "notamacuser"],
 	[5, "mad because I broke the glass.", "Clark"],
 	[1, "in The Files.", "wsbc"],
-	[1, "<i>quite</i> gay.", "wsbc"],
+	[1, '<span style="font-variant:smallcaps">ludicrously</span> gay.', "wsbc"],
 	[1, "illegal, you know.", "wsbc"],
 	[1, "naked.", "wsbc"],
 	[1, "fat.", "wsbc"],
@@ -466,6 +466,10 @@ const taunt: Taunt[] = [
 	[", bruh.", "wsbc"],
 	[", dumbass.", "wsbc"],
 	["DEEP FRIED!", "Brimmy"],
+	["Skill issue.", "wsbc"],
+	["WE ARE SO BACK!", "wsbc"],
+	[', <span style="font-variant:small-caps">meow.</span>', "Disco"],
+	[', <i>nyaa~</i>', "Disco"],
 ];
 
 // ====================================================================================================================
