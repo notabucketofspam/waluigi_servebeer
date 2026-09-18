@@ -16,8 +16,6 @@ my $total_sum = 0;
 foreach my $item (@okeys) {
     $total_sum += int($data{$item});
 }
-# WILL IT BLEND?
-my $xind = (($total_sum * 7) + 13) % 6;
 
 %xname = (
   x0 => {
@@ -49,8 +47,17 @@ my $xind = (($total_sum * 7) + 13) % 6;
     img => "exam/not-xeon/super-talent-ram.jpg",
     name => "Super Talent 512MB DDR-400 PC3200",
     desc => "I'm you from the future.",
+  },
+  x6 => {
+    img => "exam/kanade/says_here_youre_gay.png",
+    name => "Hmmm...",
+    desc => "Yeah, that sounds about right.",
   }
 );
+
+# WILL IT BLEND?
+my $keycount = keys %xname;
+my $xind = (($total_sum * 101) + 17) % $keycount;
 
 my $endpoint = "https://idazntksvlmn.objectstorage.us-ashburn-1.oci.customer-oci.com/n/idazntksvlmn/b/waluigi_servebeer/o";
 
@@ -69,7 +76,7 @@ my $con = <<"END_OF_TEXT";
 </div>
 <div>
   <img src="$img_src" onclick="openimg(this.src)"/>
-  <small>This is result #$result_num of 6</small>
+  <small>This is result #$result_num of $keycount</small>
 </div>
 END_OF_TEXT
 
