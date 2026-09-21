@@ -1,21 +1,4 @@
-import type { VerbReq } from "./madden.js";
 
-/**how upset someone is*/
-type Saltiness = 'water' | 'ramen' | 'ocean' | 'wife';
-
-/**organized salt*/
-type Salad<T> = {
-	[key in Saltiness]: T[];
-}
-
-/**Usually the subject of our sentence*/
-type Noun = [subject: string, verbReq: VerbReq, credit?: string];
-
-/**Some kind of excuse*/
-type John = [verbit: number, reason: string, credit?: string];
-
-/**Bullying */
-type Taunt = [taunt: string, credit?: string];
 
 // ====================================================================================================================
 // ======================================== a nice lineup of spices ========================================

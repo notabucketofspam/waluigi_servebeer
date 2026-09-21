@@ -19,18 +19,6 @@ const VERB = {
 	BECAUSE: 1<<3,
 } as const;
 
-/**what kind of verb conjugation we will need for this subject*/
-export type VerbReq = "1s" | "2s" | "3s" | "1p" | "2p" | "3p";
-
-// -----------------------------------------------
-/**what time is it?*/
-type VerbTense = Record<"past"|"pres", VerbNumber>;
-
-/**how many men do you have?*/
-type VerbNumber = Record<string, VerbPerson>;
-
-/**who is the target of your aggression?*/
-type VerbPerson = [nonth:undefined,first:string,second:string,third:string];
 // ------------------------------------------------
 
 const verdict: Record<string,VerbTense> = {
@@ -80,7 +68,6 @@ function conjugate(verb:string, verbReq:VerbReq,tense:keyof VerbTense){
 // ====================================================================================================================
 // ==================================== the rest of the johnomatic ====================================================
 
-type Johner = {structure: string, credit_text: string};
 let logs: Johner[] = [];
 let count = 0;
 let salt_level = 3;
@@ -89,11 +76,6 @@ let wife_mode = true;
 const MAX_LOG_SIZE = 1e3;
 
 import {rui, rember} from '../../NEO.js';
-
-interface CreditCard {
-	series: 'subject' | 'john' | 'win' | 'taunt' | 'both';
-	credit: string;
-}
 
 function gamble(x:number): boolean {
 	return rui(x) === 0;
@@ -234,7 +216,7 @@ function insert_john(johner: Johner){
 
 function Bev_StartJohns(ev:PointerEvent){
 	try {
-		const johnest = johnerate_II();
+		const johnest = johnerate();
 		insert_john(johnest);
 	}catch(errata){}
 }
