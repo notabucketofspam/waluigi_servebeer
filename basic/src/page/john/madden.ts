@@ -1,6 +1,8 @@
 import {
 	noun, champ, john, win, taunt
 } from "./public-library.js";
+import { johnerate as johnerate_III } from "./thanks-gemini.js";
+
 // ====================================================================================================================
 // ==================================== The English Language ==========================================================
 // ========================== "I got a five on the AP English Lang exam, btw" =========================================
@@ -21,7 +23,7 @@ const VERB = {
 
 // ------------------------------------------------
 
-const verdict: Record<string,VerbTense> = {
+const verdict: Record<string,Partial<VerbTense>> = {
 	//@ts-ignore
 	__proto__:null,
 	"be":{
@@ -176,9 +178,9 @@ function formatCredit(credit: CreditCard): string {
 	return `[${credit.series}:${credit.credit}]`;
 }
 
-// ====================================================================================================================
-// ============================================== thanks gemini =======================================================
-
+function johnerate_II(): Johner {
+	return is_win ? johnerate() : johnerate_III();
+}
 
 // ====================================================================================================================
 // ========================================== DOM AND DOM ACCESSORIES =================================================
@@ -216,9 +218,11 @@ function insert_john(johner: Johner){
 
 function Bev_StartJohns(ev:PointerEvent){
 	try {
-		const johnest = johnerate();
+		const johnest = johnerate_II();
 		insert_john(johnest);
-	}catch(errata){}
+	}catch(errata){
+		console.error(errata);
+	}
 }
 
 function backJohn() {
@@ -394,3 +398,5 @@ function john_purity(n:number = 1e3){
 	return purity;
 }
 (window as any).john_purity = john_purity;
+
+export { conjugate, gamble, formatCredit };
