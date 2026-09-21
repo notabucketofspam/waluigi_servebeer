@@ -88,7 +88,7 @@ let is_win = false;
 let wife_mode = true;
 const MAX_LOG_SIZE = 1e3;
 
-import {rui, rember} from '../NEO.js';
+import {rui, rember} from '../../NEO.js';
 
 interface CreditCard {
 	series: 'subject' | 'john' | 'win' | 'taunt' | 'both';
