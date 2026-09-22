@@ -1,7 +1,7 @@
 import {
 	noun, champ, john, win, taunt
 } from "./public-library.js";
-import { johnerate as johnerate_III } from "./thanks-gemini.js";
+// import { johnerate as johnerate_III } from "./thanks-gemini.js";
 import { johnerate_IV } from "./johnerate-ultra.js";
 // ====================================================================================================================
 // ==================================== The English Language ==========================================================
