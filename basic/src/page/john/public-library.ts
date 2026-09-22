@@ -12,20 +12,16 @@ import { noun } from "./noun.js";
 	5 - use the subject's verb in the past tense
 */
 const john: John[] = [
-	[2, "'s tech skill is off.", "Graphitezepp"],
-	[0, "tells ridiculous johns.", "/u/Her0_0f_time"],
 	[0, "doesn't understand their privilege.", "/u/GSRaposo"],
 	[0, "generated my johns.", "/u/DeadLineClock"],
-	[2, "... my b.", "Poyoarya"],
-	[2, "<small>... n-nevermind.</small>", 'wsbc'],
 ];
 
 /**YOU'RE WINNER*/
 const champ: Noun[] = [
-	["I", "1s"],
-	["I", "1s"],
-	["I", "1s"],
-	["You", "2s"],
+	["I", "1s", ''],
+	["I", "1s", ''],
+	["I", "1s", ''],
+	["You", "2s", ''],
 ];
 
 /**excuses for winners*/

@@ -3,7 +3,7 @@ type Johner = { structure: string, credit_text: string };
 /**what kind of verb conjugation we will need for this subject*/
 type VerbReq = "1s" | "2s" | "3s" | "1p" | "2p" | "3p";
 
-type TenseLike = "past" | "pres" | "ing" | "future";
+type TenseLike = "past" | "pres" | "ing";
 /**what time is it?*/
 type VerbTense = Record<TenseLike, VerbNumber>;
 
@@ -14,7 +14,7 @@ type VerbNumber = Record<string, VerbPerson>;
 type VerbPerson = [nonth: undefined, first: string, second: string, third: string];
 
 /**Usually the subject of our sentence*/
-type Noun = [subject: string, verbReq: VerbReq, credit?: string];
+type Noun = [subject: string, verbReq: VerbReq, credit: string];
 
 /**Some kind of excuse*/
 type John = [verbit: number, reason: string, credit?: string];
@@ -27,9 +27,9 @@ interface CreditCard {
 	credit: string;
 }
 
-type Adjective = [adj: string, credit?: string];
-type VerbInt = [verb: string, credit?: string];
-type VerbTrans = [verb: string, credit?: string];
+type Adjective = [adj: string, credit: string];
+type VerbInt = [verb: string, credit: string];
+type VerbTrans = [verb: string, credit: string];
 
 interface GenState {
 	verbreq: VerbReq;
@@ -38,3 +38,14 @@ interface GenState {
 }
 type GrammarTag = string;
 type Grammar = Array<Adjective | VerbInt | VerbTrans | Noun | string | GrammarTag[]>;
+
+//=================================================================================
+//                       and now things are actually not garbage
+
+type VerbForTense = [_1s: string, _2s: string, _3s: string, _1p: string, _2p: string, _3p: string];
+type VerbItem = {
+	past: VerbForTense;
+	pres: VerbForTense;
+	ing: VerbForTense;
+};
+type ConnableVerb = [verb: string, rest: string, credit: string];

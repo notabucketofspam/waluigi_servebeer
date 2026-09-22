@@ -2,7 +2,7 @@ import {
 	noun, champ, john, win, taunt
 } from "./public-library.js";
 import { johnerate as johnerate_III } from "./thanks-gemini.js";
-
+import { johnerate_IV } from "./johnerate-ultra.js";
 // ====================================================================================================================
 // ==================================== The English Language ==========================================================
 // ========================== "I got a five on the AP English Lang exam, btw" =========================================
@@ -179,7 +179,7 @@ function formatCredit(credit: CreditCard): string {
 }
 
 function johnerate_II(): Johner {
-	return is_win ? johnerate() : johnerate_III();
+	return is_win ? johnerate() : johnerate_IV();
 }
 
 // ====================================================================================================================
