@@ -15,6 +15,7 @@ export const verbInt: VerbInt[] = [
 	["broke the John generator", "/u/Her0_0f_time"],
 	["started watching Shrek", "/u/Her0_0f_time"],
 	["was trash-talking mid-match", "Poyoarya"],
+	["had a heart attack", "/u/KiJoBu"],
 
 	["TURNED HER AGAINST ME", "Anakin Skywalker"],
 	["ain't Falco", "wsbc"],

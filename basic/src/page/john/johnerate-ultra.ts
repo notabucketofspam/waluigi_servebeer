@@ -55,16 +55,27 @@ export function johnerate_IV(): Johner {
 		const [verb, rest, cred] = rember(amalgam[amy]);
 		credit.push({ series: 'john', credit: cred });
 
+		if (tensor === 'pres') {
+			// it looks weird if we keep johning in the present tense for most verbs
+			const tensilica = tenseless('pres');
+			tensor = tensilica;
+		}
 		let conjugated = conjugate_III(verb, vreq, tensor);
 		let hamlet = '';
 		if (tensor === "ing") {
-			const tensomniac = ingless();
+			const tensomniac = tenseless('ing');
 			const hverb = 'be';
 			hamlet = conjugate_III(hverb, vreq, tensomniac);
 		}
 		if (perchance) {
 			const pverb = 'do not';
-			conjugated = conjugate_III(pverb, vreq, tensor) + verb;
+			const pverb_con = conjugate_III(pverb, vreq, tensor);
+			if (tensor === 'past') {
+				conjugated = `${pverb_con} ${verb}`;
+			} else {
+				const verb_con2 = conjugate_III(verb, vreq, 'ing');
+				conjugated = `${pverb_con} ${verb_con2}`;
+			}
 		}
 		structlike = [subject, hamlet, THE_POKER_TABLE, conjugated, rest];
 
@@ -77,7 +88,7 @@ export function johnerate_IV(): Johner {
 			// what "is" is
 			const verb = "be";
 			// we cant use "ing" here
-			tensor = ingless();
+			tensor = tenseless("ing");
 			const conjugated = conjugate_III(verb, vreq, tensor);
 			structlike = [subject, conjugated, THE_POKER_TABLE, perchance, term];
 
@@ -124,11 +135,11 @@ export function johnerate_IV(): Johner {
 function mapCredit(credit: CreditCard[]) {
 	return credit.length ? `Credit: ${credit.map(cred => formatCredit(cred)).join(' ')}` : '';
 }
-function ingless():TenseLike {
-	let tensomniac: TenseLike = 'ing';
+function tenseless(ten: TenseLike):TenseLike {
+	let tensomniac: TenseLike = ten;
 	do {
 		tensomniac = rember(tensile);
-	} while (tensomniac === "ing");
+	} while (tensomniac === ten);
 	return tensomniac;
 }
 

@@ -22,7 +22,6 @@ export const johns_connable: ConnableVerb[] = [
 	["stare", "at me", "/u/2m2m_NoClown"],
 	["stare", "at you", "/u/2m2m_NoClown"],
 	["nudge", "my R-cancelling knee", "/u/Erotaku12943"],
-	["have", "a heart attack", "/u/KiJoBu"],
 	["use", "gimmicky custom moves", "/u/DrankeyKrang"],
 	["throw", "something at me", "/u/DeadLineClock"],
 	["call", "me names", "/u/DeadLineClock"],
@@ -82,4 +81,5 @@ export const johns_connable: ConnableVerb[] = [
 	["make", "me cry", 'Copilot'],
 	["fuck", "my mom", 'Copilot'],
 	["fuck", "my wife", 'Eggman'],
+	["misfire", "all the goddamn time", 'Luigi'],
 ];
