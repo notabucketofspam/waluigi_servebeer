@@ -64,7 +64,7 @@ export function johnerate_IV(): Johner {
 		}
 		if (perchance) {
 			const pverb = 'do not';
-			conjugated = conjugate_III(pverb, vreq, tensor);
+			conjugated = conjugate_III(pverb, vreq, tensor) + verb;
 		}
 		structlike = [subject, hamlet, THE_POKER_TABLE, conjugated, rest];
 
