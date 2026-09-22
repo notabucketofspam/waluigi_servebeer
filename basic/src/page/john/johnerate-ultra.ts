@@ -54,14 +54,19 @@ export function johnerate_IV(): Johner {
 		// this requires some conjugation work
 		const [verb, rest, cred] = rember(amalgam[amy]);
 		credit.push({ series: 'john', credit: cred });
-		const conjugated = conjugate_III(verb, vreq, tensor);
+
+		let conjugated = conjugate_III(verb, vreq, tensor);
 		let hamlet = '';
 		if (tensor === "ing") {
 			const tensomniac = ingless();
 			const hverb = 'be';
 			hamlet = conjugate_III(hverb, vreq, tensomniac);
 		}
-		structlike = [subject, hamlet, THE_POKER_TABLE, perchance, conjugated, rest];
+		if (perchance) {
+			const pverb = 'do not';
+			conjugated = conjugate_III(pverb, vreq, tensor);
+		}
+		structlike = [subject, hamlet, THE_POKER_TABLE, conjugated, rest];
 
 	} else {
 		// we dont have to use the conjugation lookup function

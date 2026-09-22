@@ -134,9 +134,7 @@ export const noun: Noun[] = [
 	["Wii Fit Trainer", "3s", "notamacuser"],
 	["Falco", "3s", "wsbc"],
 	["Someone", "3s", "Walter White"],
-	["That", "3s", "wsbc"],
-	["This", "3s", "wsbc"],
-	["Those", "3p", "wsbc"],
+	["This place", "3s", "wsbc"],
 	["Mr. President", "3s", "wsbc"],
 	["The Voices", "3p", "wsbc"],
 ];

@@ -78,5 +78,8 @@ export const johns_connable: ConnableVerb[] = [
 	["crash", "", 'notamacuser'],
 	["fart", "on the bike", 'notamacuser'],
 	["betray", "me", 'Tommy Wiseau'],
-	["hurt",":-(", "wsbc"],
+	["hurt", ":-(", "wsbc"],
+	["make", "me cry", 'Copilot'],
+	["fuck", "my mom", 'Copilot'],
+	["fuck", "my wife", 'Eggman'],
 ];

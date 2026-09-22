@@ -20,7 +20,89 @@ export function conjugate_III(verb: string, req: VerbReq, tense: TenseLike): str
 				vout = verb;
 			}
 		}
+	} else {
+		// word isnt in the dictionary, so we guess
+		vout = guessConjugation(verb, req, tense);
 	}
+	return vout;
+}
+function guessConjugation(verb: string, req: VerbReq, tense: TenseLike): string {
+	let vout = verb;
+	let vtense: VerbForTense = [verb, verb, verb, verb, verb, verb];
+	if (verb.match(/ee$/i)) {
+		// has two ees at the end
+		if (tense === 'past') {
+			let subv = verb + 'd';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		} else if (tense === 'pres') {
+			vtense = [verb, verb, verb + 's', verb, verb, verb];
+		} else if (tense === 'ing') {
+			let subv = verb + 'ing';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		}
+	} else if (verb.match(/e$/i)) {
+		// has an e at the end
+		if (tense === 'past') {
+			let subv = verb + 'd';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		} else if (tense === 'pres') {
+			vtense = [verb, verb, verb + 's', verb, verb, verb];
+		} else if (tense === 'ing') {
+			let subv = verb.slice(0, -1) + 'ing';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		}
+	} else if (verb.match(/(s|z|x|ch|sh)$/i)) {
+		// need special handling for present tense
+		if (tense === 'past') {
+			let subv = verb + 'ed';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		} else if (tense === 'pres') {
+			vtense = [verb, verb, verb + 'es', verb, verb, verb];
+		} else if (tense === 'ing') {
+			let subv = verb + 'ing';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		}
+	} else if (verb.match(/[^aeiou][aeiou][^aeiou]$/i)) {
+		// CVC, or something like that
+		const lastChar = verb.slice(-1);
+		if (tense === 'past') {
+			let subv = verb + lastChar + 'ed';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		} else if (tense === 'pres') {
+			vtense = [verb, verb, verb + 's', verb, verb, verb];
+		} else if (tense === 'ing') {
+			let subv = verb + lastChar + 'ing';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		}
+	} else {
+		// everything else
+		if (tense === 'past') {
+			let subv = verb + 'ed';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		} else if (tense === 'pres') {
+			vtense = [verb, verb, verb + 's', verb, verb, verb];
+		} else if (tense === 'ing') {
+			let subv = verb + 'ing';
+			vtense = [subv, subv, subv, subv, subv, subv];
+		}
+	}
+
+	if (req === '1s') {
+		vout = vtense[0];
+	} else if (req === '2s') {
+		vout = vtense[1];
+	} else if (req === '3s') {
+		vout = vtense[2];
+	} else if (req === '1p') {
+		vout = vtense[3];
+	} else if (req === '2p') {
+		vout = vtense[4];
+	} else if (req === '3p') {
+		vout = vtense[5];
+	} else {
+		vout = verb;
+	}
+
 	return vout;
 }
 const verblist: Record<string, VerbItem> = {
@@ -308,6 +390,11 @@ const verblist: Record<string, VerbItem> = {
 		past: ["hurt", "hurt", "hurt", "hurt", "hurt", "hurt"],
 		pres: ["hurt", "hurt", "hurts", "hurt", "hurt", "hurt"],
 		ing: ["hurting", "hurting", "hurting", "hurting", "hurting", "hurting"]
+	},
+	fuck: {
+		past: ["fucked", "fucked", "fucked", "fucked", "fucked", "fucked"],
+		pres: ["fuck", "fuck", "fucks", "fuck", "fuck", "fuck"],
+		ing: ["fucking", "fucking", "fucking", "fucking", "fucking", "fucking"]
 	}
 
 };
