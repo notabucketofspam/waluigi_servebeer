@@ -42,7 +42,7 @@ export function johnerate_IV(): Johner {
 	}
 
 	let perchance = '';
-	if (gamble(8)) {
+	if (gamble(6)) {
 		perchance = `not`;
 	}
 
