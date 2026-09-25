@@ -162,7 +162,7 @@ div#john-chamber {
 
 		.stat-buttons .status-button:active {
 			background-color: goldenrod;
-			color:white;
+			color: white;
 		}
 
 		.stat-buttons .status-button.active {
@@ -191,7 +191,7 @@ div#john-chamber {
 
 		#buttons .salt-button:active {
 			background-color: mediumaquamarine;
-			color:#fff;
+			color: #fff;
 		}
 
 		#buttons .salt-button.active {
@@ -286,10 +286,54 @@ div#john-chamber {
 		color: #666;
 		background-color: #222;
 	}
-
-	#outbox:hover #count-box {
+	/*
+		#outbox:hover #count-box {
 		font-weight: bold;
 		color: white;
 		background-color: #444;
 	}
-}	
+	*/
+}
+div.copiedbox {
+	position: absolute;
+	width: min-content;
+	height: min-content;
+	background-color: white;
+	border-width: 3px;
+	border-style: outset;
+	padding: 3px;
+	bottom: 0;
+	user-select: none;
+	animation: dead-drop 2.2s forwards;
+}
+@property --move-distance {
+	syntax: '<length>';
+	inherits: false;
+	initial-value: -100vh;
+}
+
+@keyframes dead-drop {
+	0% {
+		transform: translateY(var(--move-distance));
+		animation-timing-function: cubic-bezier(0.333, 0, 0.667, 0.333);
+	}
+	60% {
+		transform: translateY(0);
+		animation-timing-function: cubic-bezier(0.333, 0.667, 0.667, 1);
+	}
+	75% {
+		transform: translateY(-30px);
+		animation-timing-function: cubic-bezier(0.333, 0, 0.667, 0.333);
+	}
+	88% {
+		transform: translateY(0);
+		animation-timing-function: cubic-bezier(0.333, 0.667, 0.667, 1);
+	}
+	95% {
+		transform: translateY(-8px);
+		animation-timing-function: cubic-bezier(0.333, 0, 0.667, 0.333);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}

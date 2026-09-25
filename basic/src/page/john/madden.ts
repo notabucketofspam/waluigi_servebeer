@@ -375,6 +375,12 @@ function bracketReset(){
 	// load statii from the store
 	loadWinStatus();
 	loadSaltLevel();
+
+	// copy text to clipboard when clicked
+	const output_div = document.querySelector('div#john-chamber #output');
+	if (output_div instanceof HTMLElement) {
+		output_div.addEventListener('click', Mev_clickjohn);
+	}
 }
 
 document.addEventListener('spam', ev => {
@@ -386,6 +392,33 @@ document.addEventListener('spam', ev => {
 	}
 });
 bracketReset();
+
+function Mev_clickjohn(ev: PointerEvent) {
+	try {
+		const target = ev.currentTarget;
+		if (target instanceof HTMLElement) {
+			const ttext = target.innerText;
+			navigator.clipboard.writeText(ttext);
+			const cdiv = document.createElement('div');
+			cdiv.innerText = "Copied";
+			cdiv.style.left = `${ev.clientX}px`;
+			cdiv.style.setProperty('--move-distance', `calc(${ev.clientY}px - 100vh)`);
+			cdiv.classList.add('copiedbox');
+			cdiv.classList.add('brick');
+			const john_chamber = document.querySelector('div#john-chamber');
+			if (john_chamber) {
+				john_chamber.appendChild(cdiv);
+				setTimeout(function () {
+					if (cdiv) {
+						cdiv.remove();
+					}
+				},1e4);
+			}
+		}
+	} catch (er) {
+		console.error(er);
+	}
+}
 
 function john_purity(n:number = 1e3){
 	const plogs: Set<string> = new Set();
