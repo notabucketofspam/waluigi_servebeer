@@ -14,10 +14,10 @@ async function handleCopyCenter(target_id: string) {
 		clone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
 		clone.style =`
 			display: table-cell;
-			width: inherit;
-			height: inherit;
+			width: ${rect.width}px;
+			height: ${rect.height}px;
 			margin: auto;
-			padding: 10px;
+			padding: 0px 10px 10px 10px;
 			vertical-align: middle;
 			text-align: center;
 			font-size: 18pt;
