@@ -9,11 +9,6 @@ div#john-chamber {
 		text-align: center;
 	}
 
-
-	div#output {
-		user-select: all;
-	}
-
 	#back,
 	#auto {
 		background-repeat: no-repeat;
@@ -276,6 +271,7 @@ div#john-chamber {
 		font-weight: bold;
 		color: black;
 		background-color: #F0F0F0;
+		user-select: none;
 	}
 
 	#count-box {
