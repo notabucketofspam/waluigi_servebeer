@@ -3,6 +3,7 @@ import {
 } from "./public-library.js";
 // import { johnerate as johnerate_III } from "./thanks-gemini.js";
 import { johnerate_IV } from "./johnerate-ultra.js";
+import { handleCopyCenter } from "./copy-center.js";
 // ====================================================================================================================
 // ==================================== The English Language ==========================================================
 // ========================== "I got a five on the AP English Lang exam, btw" =========================================
@@ -379,7 +380,7 @@ function bracketReset(){
 	// copy text to clipboard when clicked
 	const output_div = document.querySelector('div#john-chamber #output');
 	if (output_div instanceof HTMLElement) {
-		output_div.addEventListener('click', Mev_clickjohn);
+		output_div.addEventListener('click', Mev_copyImage);
 	}
 }
 
@@ -393,27 +394,45 @@ document.addEventListener('spam', ev => {
 });
 bracketReset();
 
+function Mev_copyImage(ev: PointerEvent) {
+	try {
+		const target = ev.currentTarget;
+		if (target instanceof HTMLElement) {
+			handleCopyCenter(target.id);
+			spawnCopiedBox(ev.clientX, ev.clientY);
+		}
+	} catch (er) {
+		console.error(er);
+	}
+}
+
+function genCopiedBox(x: number, y: number) {
+	const cdiv = document.createElement('div');
+	cdiv.innerText = "Copied";
+	cdiv.style.left = `${x}px`;
+	cdiv.style.setProperty('--move-distance', `calc(${y}px - 100vh)`);
+	cdiv.classList.add('copiedbox');
+	cdiv.classList.add('brick');
+	setTimeout(function () {
+		if (cdiv) cdiv.remove();
+	}, 1e4);
+	return cdiv;
+}
+function spawnCopiedBox(x: number, y: number) {
+	const cdiv = genCopiedBox(x, y);
+	const john_chamber = document.querySelector('div#john-chamber');
+	if (john_chamber) {
+		john_chamber.appendChild(cdiv);
+	}
+}
+
 function Mev_clickjohn(ev: PointerEvent) {
 	try {
 		const target = ev.currentTarget;
 		if (target instanceof HTMLElement) {
 			const ttext = target.innerText;
 			navigator.clipboard.writeText(ttext);
-			const cdiv = document.createElement('div');
-			cdiv.innerText = "Copied";
-			cdiv.style.left = `${ev.clientX}px`;
-			cdiv.style.setProperty('--move-distance', `calc(${ev.clientY}px - 100vh)`);
-			cdiv.classList.add('copiedbox');
-			cdiv.classList.add('brick');
-			const john_chamber = document.querySelector('div#john-chamber');
-			if (john_chamber) {
-				john_chamber.appendChild(cdiv);
-				setTimeout(function () {
-					if (cdiv) {
-						cdiv.remove();
-					}
-				},1e4);
-			}
+			spawnCopiedBox(ev.clientX, ev.clientY);
 		}
 	} catch (er) {
 		console.error(er);
