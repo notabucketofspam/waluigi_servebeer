@@ -128,7 +128,7 @@ export function johnerate_IV(): Johner {
 		structure = structlike.filter(Boolean).join(' ');
 	}
 
-	if (pronoun && pre !== '-' && gamble(23)) {
+	if (pronoun && pre !== '-' && gamble(25)) {
 		if (structure.match(/[^.!?]$/)) {
 			structure += '.';
 		}
