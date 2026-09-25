@@ -1,83 +1,85 @@
-function inlineComputedStyles(source:HTMLElement, target:HTMLElement) {
-  const computed = window.getComputedStyle(source);
-  for (let i = 0; i < computed.length; i++) {
-    const prop = computed[i];
-    if (prop) {
-      target.style[prop as any] = computed.getPropertyValue(prop);
-    }
-  }
-  // Repeat for all children
-  Array.from(source.children).forEach((child, index) => {
-    if (child instanceof HTMLElement && target.children[index] instanceof HTMLElement) {
-      inlineComputedStyles(child, target.children[index]);
-    }
-  });
-}
 /**good ol' gemini. always writing things that somehow sometimes do things correctly.*/
-async function handleCopyCenter(target_id:string) {
-  try {
-    const sourceNode = document.getElementById(target_id);
-    if (!sourceNode) return;
-    const rect = sourceNode.getBoundingClientRect();
+async function handleCopyCenter(target_id: string) {
+	try {
+		const sourceNode = document.getElementById(target_id) as HTMLElement | null;
 
-    // 1. Clone the node and inline its computed styles
-    const clone = sourceNode.cloneNode(true) as HTMLElement;
-    inlineComputedStyles(sourceNode, clone);
+		if (!sourceNode) {
+			throw new Error('Target node not found in the DOM.');
+		}
 
-    // Ensure the clone has no margins that might push it out of the SVG box
-    clone.style.margin = '0';
+		const rect: DOMRect = sourceNode.getBoundingClientRect();
 
-    // 2. Wrap the HTML inside an SVG <foreignObject>
-    // We must explicitly declare the xhtml namespace for the HTML content
-    const svgString = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="${rect.width}" height="${rect.height}">
-          <foreignObject width="100%" height="100%">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-              ${clone.outerHTML}
-            </div>
-          </foreignObject>
-        </svg>
-      `;
+		// 1. clone that node
+		const clone = sourceNode.cloneNode(true) as HTMLElement;
+		clone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+		clone.style =`
+			display: table-cell;
+			width: inherit;
+			height: inherit;
+			margin: auto;
+			padding: 10px;
+			vertical-align: middle;
+			text-align: center;
+			font-size: 18pt;
+			font-weight: bold;
+			color: black;
+			background-color: #F0F0F0;
+			user-select: none;
+		`;
 
-    // 3. Convert SVG string to a Blob URL instead of a Data URI
-    const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
-    const svgUrl = URL.createObjectURL(svgBlob);
+		// 2. Serialize safely to XML
+		const serializedHtml: string = new XMLSerializer().serializeToString(clone);
 
-    // 4. Load the SVG into an Image object
-    const img = new Image();
-    await new Promise<void>((resolve, reject) => {
-      img.onload = () => {
-        // Crucial: Release the memory once the image is loaded
-        URL.revokeObjectURL(svgUrl);
-        resolve();
-      };
-      img.onerror = (err) => {
-        URL.revokeObjectURL(svgUrl);
-        reject(new Error('Failed to load SVG Blob into Image'));
-      };
-      img.src = svgUrl;
-    });
+		// 3. Wrap directly in an SVG
+		const svgString: string = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="${rect.width}" height="${rect.height}">
+        <foreignObject width="100%" height="100%" x="0" y="0">
+          ${serializedHtml}
+        </foreignObject>
+      </svg>
+    `;
 
-    // 5. Draw the Image onto a Canvas
-    const canvas = document.createElement('canvas');
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) throw new Error('Failed to get 2D context');
-    ctx.drawImage(img, 0, 0);
+		// 4. Blob him into a URL
+		const svgUrl: string = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
 
-    // 6. Extract the Blob and copy to clipboard
-    const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
-    if (!blob) throw new Error('Failed to create blob');
+		// 5. Draw to Image, then Canvas
+		const img = new Image();
+		// Crucial: Tell the browser we are requesting this image anonymously 
+		// to prevent cross-origin taint flags on Data URIs in some browsers.
+		img.crossOrigin = 'anonymous';
 
-    await navigator.clipboard.write([
-      new ClipboardItem({ 'image/png': blob })
-    ]);
+		await new Promise<void>((resolve, reject) => {
+			img.onload = () => resolve();
+			img.onerror = () => reject(new Error('SVG failed to load'));
+			img.src = svgUrl;
+		});
 
-    // console.log('DOM node successfully copied to clipboard!');
+		const canvas = document.createElement('canvas');
+		canvas.width = rect.width;
+		canvas.height = rect.height;
 
-  } catch (err) {
-    console.error('Failed to copy node:', err);
-  }
+		const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
+		if (!ctx) {
+			throw new Error('Failed to get 2D canvas context.');
+		}
+
+		// Fill a white background
+		ctx.fillStyle = '#ffffff';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.drawImage(img, 0, 0);
+
+		// 6. Export safely to clipboard
+		const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
+		if (!blob) {
+			throw new Error('Canvas export failed to generate a Blob.');
+		}
+
+		await navigator.clipboard.write([
+			new ClipboardItem({ 'image/png': blob })
+		]);
+
+	} catch (err) {
+		console.error(err);
+	}
 }
-export { handleCopyCenter }; 
+export { handleCopyCenter };
