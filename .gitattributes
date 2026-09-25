@@ -3,3 +3,4 @@
 /cgi-bin/*** text eol=lf
 /rsync-*.txt text eol=lf
 *.sh text eol=lf
+vhost/*.conf text eol=lf
