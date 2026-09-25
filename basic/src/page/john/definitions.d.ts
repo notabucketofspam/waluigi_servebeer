@@ -49,3 +49,5 @@ type VerbItem = {
 	ing: VerbForTense;
 };
 type ConnableVerb = [verb: string, rest: string, credit: string];
+
+type LickableItem = [pre: string, item: string, verbReq: VerbReq, pronoun: string, credit: string];

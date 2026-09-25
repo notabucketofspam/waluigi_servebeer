@@ -5,6 +5,7 @@ import { noun } from "./noun.js";
 import { adjective } from "./adjective.js";
 import { johns_connable } from "./johns-connable.js";
 import { verbInt, stickyHands } from "./verb-int.js";
+import { items, pronounify } from "./lickable-items.js";
 const chillindude: VerbInt[] = [
 	["my b", "chillindude"],
 ];
@@ -24,13 +25,25 @@ const distribution = {
 	chillindude: 0,
 };
 const tensile: TenseLike[] = ["past", "pres", "ing"];
-
+function ProperNounify(s: string): string {
+	return s.charAt(0).toUpperCase() + s.slice(1);
+}
 export function johnerate_IV(): Johner {
 	const credit: CreditCard[] = [];
 	let structure = '';
 
-	let [subject, vreq, scred] = rember(noun);
+	// let [subject, vreq, scred] = rember(noun);
+	let [pre, item, vreq, pronoun, scred] = rember(items);
 	credit.push({ series: 'subject', credit: scred });
+
+	let subject = item;
+	if (pre && pre !== '-') {
+		let pree = ProperNounify(pre);
+		subject = `${pree} ${subject}`;
+	} else {
+		let itemm = ProperNounify(item);
+		subject = itemm;
+	}
 
 	let THE_POKER_TABLE = '';
 	if (gamble(20)) {
@@ -113,6 +126,22 @@ export function johnerate_IV(): Johner {
 	// join it if we need to
 	if (structlike.length) {
 		structure = structlike.filter(Boolean).join(' ');
+	}
+
+	if (pronoun && pre !== '-' && gamble(21)) {
+		if (structure.match(/[^.!?]$/)) {
+			structure += '.';
+		}
+		let subItemPn = pronounify(pronoun, vreq, "subject");
+		subItemPn = ProperNounify(subItemPn);
+		const subItemToBe = conjugate_III('be', vreq, 'pres');
+		/**It is my house, by the way. I'm the one paying for it.*/
+		const myhouse = [
+			`<br/>`,
+			`${subItemPn} ${subItemToBe} my ${item}, by the way.`,
+			`I'm the one paying for ${pronoun}.`
+		];
+		structure = [structure, ...myhouse].join(' ');
 	}
 
 	// grammar fix, copy-pasted from the original johnerate function
