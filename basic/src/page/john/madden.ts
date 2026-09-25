@@ -424,12 +424,38 @@ function john_purity(n:number = 1e3){
 	const plogs: Set<string> = new Set();
 
 	for (let i=0;i<n;i++){
-		plogs.add(johnerate().structure);
+		plogs.add(johnerate_II().structure);
 	}
 		
 	const purity = plogs.size/n;
 	return purity;
 }
 (window as any).john_purity = john_purity;
+
+function getMostOfThem() {
+	const seen: Set<string> = new Set();
+	let count = 0;
+	for (; ;) {
+		if (count > 1e3) {
+			break;
+		}
+		const j = johnerate_II().structure;
+		if (seen.has(j)) {
+			count++;
+		} else {
+			count = 0;
+		}
+		seen.add(j);
+	}
+	return seen;
+}
+(window as any).getMostOfThem = getMostOfThem;
+
+/**runs johnerate_II a bunch until it gets identicals*/
+function aboutHowMany() {
+	const seen = getMostOfThem();
+	return seen.size;
+}
+(window as any).aboutHowMany = aboutHowMany;
 
 export { conjugate, gamble, formatCredit };
