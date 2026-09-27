@@ -37,7 +37,7 @@
       <tbody>
         <tr>
           <td valign="top" width="120"><b>NAME:</b></td>
-          <td><code>test, [ &mdash; check file types, compare values, evaluate masculinity and hardware doodads</code></td>
+          <td><code>test, [ &mdash; evaluate boolean expressions, structural integrity, masculinity, and hardware doodads</code></td>
         </tr>
         <tr>
           <td valign="top"><b>SYNOPSIS:</b></td>
@@ -50,13 +50,11 @@
         <tr>
           <td valign="top"><b>DESCRIPTION:</b></td>
           <td>
-            The <b>test</b> utility evaluates the expression <i>EXPRESSION</i> and examines whether the
-            specimen conforms to IEEE Std 1003.1 (POSIX) and traditional masculine fortitude.
-            This document contains zero client-side scripts and zero stylesheets; it is pure, static HTML
+            The <b>test</b> utility evaluates <i>EXPRESSION</i> and examines whether the specimen conforms to
+            IEEE Std 1003.1 (POSIX) and authentic masculine fortitude while
             conforming to HTML 3.2 / 4.01 and Internet Explorer 11 specifications.
-            Upon submission, parameters are dispatched via HTTP POST to the backend CGI handler
-            (<code>/cgi-bin/man-test.cgi</code>) where Perl and CGI-Lite perform the INTERCAL mingle
-            operator (<code>&cent;</code>) bitwise interleaving before outputting the diagnostic exit status ($?).
+            Parameters are transmitted via HTTP POST to the backend CGI handler (<code>/cgi-bin/man-test.cgi</code>)
+            where Perl and CGI-Lite calculate the diagnostic exit status ($?).
           </td>
         </tr>
       </tbody>
@@ -67,8 +65,8 @@
     <!-- Main Examination Form dispatched to CGI backend -->
     <h2>EXAMINATION OF SPECIMEN: INPUT PARAMETERS</h2>
     <p>
-      Fill out all interrogation fields. No client-side JavaScript or CSS is present or required.
-      All diagnostic evaluations occur exclusively on the remote server via <code>/cgi-bin/man-test.cgi</code>.
+      Please answer each interrogation vector with candor. Each option reflects an internally consistent
+      philosophy of life, tooling, and systems administration. All processing occurs on the server via <code>/cgi-bin/man-test.cgi</code>.
     </p>
 
     <form action="/cgi-bin/man-test.cgi" method="POST">
@@ -78,7 +76,7 @@
         <p>
           <label for="specimen_id"><b>Specimen Name or UID:</b>&nbsp;</label>
           <input type="text" id="specimen_id" name="specimen_id" value="USER_SPECIMEN_01" size="35" maxlength="40" />
-          &nbsp;<small><i>(e.g., USER_SPECIMEN_01, root, /dev/null, Ken_Thompson)</i></small>
+          &nbsp;<small><i>(e.g., USER_SPECIMEN_01, root, Foreman_Bob, /dev/null, Ken_Thompson)</i></small>
         </p>
       </fieldset>
 
@@ -86,7 +84,7 @@
 
       <!-- 1. Square brackets vs test -->
       <fieldset>
-        <legend><b>[UNIX] 1. Does the man use square brackets instead of test?</b></legend>
+        <legend><b>[SYNTAX &amp; DISCIPLINES] 1. Does the man use square brackets instead of test?</b></legend>
         <p><small><i>Subtext: Refer to POSIX.1-2017 Vol. 3, test(1) vs [ utility. Note: [ requires closing ] argument.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -95,7 +93,7 @@
                 <input type="radio" id="brackets_strict" name="brackets" value="brackets_strict" checked />
               </td>
               <td valign="top">
-                <label for="brackets_strict"><b>Yes, always [ $EXPR ]. I never forget the trailing ] because a true man finishes what he opens.</b></label>
+                <label for="brackets_strict"><b>[ $MAN = &quot;TRUE&quot; ] &mdash; Always square brackets. I never omit the closing &quot;]&quot; bracket because a real man finishes every job he opens.</b></label>
               </td>
             </tr>
             <tr>
@@ -139,7 +137,7 @@
                 <input type="radio" id="lead_head" name="leadership" value="head" checked />
               </td>
               <td valign="top">
-                <label for="lead_head"><b>I lead (head -n 1). I truncate all discourse after the first ten lines of authority.</b></label>
+                <label for="lead_head"><b>I lead (head -n 1). I issue the directive once, truncate all debate after the first ten lines of authority, and sign the invoice.</b></label>
               </td>
             </tr>
             <tr>
@@ -174,7 +172,7 @@
 
       <!-- 3. Favourite ice cream flavour -->
       <fieldset>
-        <legend><b>[CONFECTIONERY &amp; MATERIALS] 3. What is his favourite ice cream flavour?</b></legend>
+        <legend><b>[CONFECTIONERY &amp; FLAVOUR] 3. What is his favourite ice cream flavour?</b></legend>
         <p><small><i>Subtext: Thermodynamics of dairy under direct 95&deg;F direct asphalt paving conditions.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -199,7 +197,7 @@
                 <input type="radio" id="ice_mint" name="icecream" value="mint_pointers" />
               </td>
               <td valign="top">
-                <label for="ice_mint"><b>Mint Chocolate Chip with acute bilateral meniscus tears (Doctor ordered an MRI; I told him I have 600 sq ft of tongue-and-groove subfloor to lay by 5:00 PM).</b></label>
+                <label for="ice_mint"><b>Mint Chocolate Chip eaten out of a paper cup in the cab of the truck during a ten-minute break.</b></label>
               </td>
             </tr>
             <tr>
@@ -215,7 +213,7 @@
                 <input type="radio" id="ice_pistachio" name="icecream" value="pistachio_circular" />
               </td>
               <td valign="top">
-                <label for="ice_pistachio"><b>Q3 Synergistic Pistachio Crunch (Downsized 20% by McKinsey consultants to protect EBITDA margins).</b></label>
+                <label for="ice_pistachio"><b>Pistachio Crunch (extra spicy).</b></label>
               </td>
             </tr>
           </tbody>
@@ -243,7 +241,7 @@
                 <input type="radio" id="pipe_tobacco" name="pipe" value="tobacco_shag" />
               </td>
               <td valign="top">
-                <label for="pipe_tobacco"><b>Unfiltered Kentucky Latakia tobacco, ignited by the spark of a failing CRT flyback transformer.</b></label>
+                <label for="pipe_tobacco"><b>Kentucky Latakia pipe tobacco, tamped down with an empty brass shell casing and lit with a wooden strike-anywhere match.</b></label>
               </td>
             </tr>
             <tr>
@@ -251,15 +249,15 @@
                 <input type="radio" id="pipe_fifo" name="pipe" value="mkfifo_entropy" />
               </td>
               <td valign="top">
-                <label for="pipe_fifo"><b>Schedule 80 CPVC chemical drain line carrying 3-phase 480V copper conductors and unbuffered hydraulic fluid.</b></label>
+                <label for="pipe_fifo"><b>Schedule 80 CPVC chemical drain line carrying unbuffered hydraulic fluid.</b></label>
               </td>
             </tr>
             <tr>
-              <td valign="top">
-                <input type="radio" id="pipe_stderr" name="pipe" value="stderr_tee" />
+              <td valign="top" width="25">
+                <input type="radio" id="pipe_pvc_cement" name="pipe" value="pvc_cement" />
               </td>
               <td valign="top">
-                <label for="pipe_stderr"><b>2&gt;&amp;1 | tee /dev/boardroom. All lumbar vertebrae compression and chronic fatigue redirected to the Q4 quarterly investor briefing.</b></label>
+                <label for="pipe_pvc_cement"><b>Purple PVC primer and heavy-duty solvent cement. If the pipe joint doesn't weld tight in ten seconds, you cut it out and re-pipe.</b></label>
               </td>
             </tr>
             <tr>
@@ -278,7 +276,7 @@
 
       <!-- 5. Wife's code page -->
       <fieldset>
-        <legend><b>[DOMESTIC STANDARDS] 5. What code page or ASTM standard is his wife in?</b></legend>
+        <legend><b>[DOMESTIC ENCODINGS] 5. What code page or standard is his wife in?</b></legend>
         <p><small><i>Subtext: Marital compatibility under iconv(3) and International Residential Code (IRC) Section R301.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -303,7 +301,7 @@
                 <input type="radio" id="cp_astm" name="codepage" value="astm_a36" />
               </td>
               <td valign="top">
-                <label for="cp_astm"><b>ASTM A36 Structural Mild Carbon Steel (Tensile strength 58,000–80,000 PSI; certified weldable by the American Welding Society).</b></label>
+                <label for="cp_astm"><b>Standard ASTM A36 Structural Mild Steel (Tensile yield 36,000 PSI; certified weldable, dependable in all weather).</b></label>
               </td>
             </tr>
             <tr>
@@ -338,10 +336,11 @@
 
       <!-- 6. Dongle size -->
       <fieldset>
-        <legend><b>[HARDWARE] 6. How big is his dongle?</b></legend>
+        <legend><b>[PERIPHERAL HARDWARE] 6. How big is his dongle?</b></legend>
         <p><small><i>Subtext: Measured in foot-pounds of torque, volumetric displacement, and bus interface width.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
+
             <tr>
               <td valign="top" width="25">
                 <input type="radio" id="dongle_rs232" name="dongle_size" value="rs232_thumb" checked />
@@ -382,6 +381,14 @@
                 <label for="dongle_n"><b>Grade 8 zinc-chromate carriage bolt (8 inches long, 3/4-10 UNC thread, hardened to Rockwell C33).</b></label>
               </td>
             </tr>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="dongle_impact" name="dongle_size" value="impact_wrench" />
+              </td>
+              <td valign="top">
+              <label for="dongle_impact"><b>1-inch drive pneumatic impact wrench (Delivers 1,400 ft-lbs of breakaway torque; loosens rusted truck lug nuts effortlessly).</b></label>
+              </td>
+            </tr>
           </tbody>
         </table>
       </fieldset>
@@ -412,15 +419,15 @@
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="dd_scsi" name="double_dongle" value="scsi_terminator" />
+                <input type="radio" id="dd_exhausted" name="double_dongle" value="it_reality" />
               </td>
               <td valign="top">
-                <label for="dd_scsi"><b>Only when bridging an EBITDA working-capital deficit via mezzanine debt during a hostile leveraged buyout.</b></label>
+                <label for="dd_exhausted"><b>Double-dongling is simply my natural state of existence.</b></label>
               </td>
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="dd_srp" name="double_dongle" value="violates_srp" />
+                <input type="radio" id="dd_policy" name="double_dongle" value="corporate_policy" />
               </td>
               <td valign="top">
                 <label for="dd_srp"><b>Double-dongle introduces severe rotational lash and wrist tendonitis, triggering a mandatory OSHA Form 300 log entry.</b></label>
@@ -459,7 +466,7 @@
                 <input type="radio" id="pat_epoxy" name="dongle_patent" value="black_epoxy" />
               </td>
               <td valign="top">
-                <label for="pat_epoxy"><b>Protected by trade secret: encapsulated within 400 grams of opaque black epoxy resin.</b></label>
+                <label for="pat_epoxy"><b>Trade secret: encapsulated within 400 grams of opaque black epoxy resin.</b></label>
               </td>
             </tr>
             <tr>
@@ -469,8 +476,15 @@
               <td valign="top">
                 <label for="pat_sears"><b>Rejected by patent examiner due to prior art discovered in a 1968 Sears Roebuck Craftsman tool catalogue.</b></label>
               </td>
+            </tr>            
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pat_expired" name="dongle_patent" value="expired_generic" />
+              </td>
+              <td valign="top">
+                <label for="pat_expired"><b>Expired in 1996: Now mass-manufactured overseas out of stamped pot metal for $0.40 a unit.</b></label>
+              </td>
             </tr>
-            
             <tr>
               <td valign="top">
                 <input type="radio" id="pat_clean" name="dongle_patent" value="cleanroom_dec" />
@@ -488,15 +502,15 @@
       <!-- 9. Circular dependencies & perchance -->
       <fieldset>
         <legend><b>[SUBCONTRACTING &amp; MASOCHISM] 9. Does he purposefully introduce circular dependencies because he is a masochistic fool? Perchance.</b></legend>
-        <p><small><i>Subtext: General Contractor scheduling logjams, make(1) loops, and existential grammar.</i></small></p>
+        <p><small><i>Subtext: General Contractor scheduling logjams, Graph theory scheduling detection, and existential grammar.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
             <tr>
               <td valign="top" width="25">
-                <input type="radio" id="circ_dlopen" name="circular_deps" value="dlopen_loop" checked />
+                <input type="radio" id="circ_subcontractor" name="circular_deps" value="subcontractor_lock" checked />
               </td>
               <td valign="top">
-                <label for="circ_dlopen"><b>Yes: The concrete crew refuses to pour the slab until the sparky roughs-in conduit, but the sparky needs the slab poured to stand his scissor lift.</b></label>
+                <label for="circ_subcontractor"><b>Yes: The drywaller won't hang board until the plumber tests, the plumber won't test until the subfloor is glued, and the framer is in Cabo.</b></label>
               </td>
             </tr>
             <tr>
@@ -549,6 +563,14 @@
               </td>
               <td valign="top">
                 <label for="man_castle"><b>A miserable little pile of secrets! (Throws wine glass onto the stone dungeon floor).</b></label>
+              </td>
+            </tr>            
+            <tr>
+              <td valign="top">
+                <input type="radio" id="man_bluecollar" name="what_is_a_man" value="back_pain_mortgage" />
+              </td>
+              <td valign="top">
+                <label for="man_bluecollar"><b>A sore lower back, three unsharpened pencils in his shirt pocket, and a 30-year fixed mortgage at 6.8% APR.</b></label>
               </td>
             </tr>
             <tr>
@@ -627,7 +649,7 @@
 
       <!-- 12. Broken pipe -->
       <fieldset>
-        <legend><b>[PLUMBING CATASTROPHE] 12. When the man encounters a broken pipe, what does he do?</b></legend>
+        <legend><b>[PIPELINE FAILURE] 12. When the man encounters a broken pipe, what does he do?</b></legend>
         <p><small><i>Subtext: 2-inch copper main rupture under slab vs standard POSIX default action.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -654,7 +676,7 @@
               <td valign="top">
                 <label for="pipe_custom"><b>Convene an emergency cross-functional post-mortem with the plumbing subcontractor to allocate financial liability.</b></label>
               </td>
-            </tr>            
+            </tr>
             <tr>
               <td valign="top">
                 <input type="radio" id="pipe_dtf" name="sigpipe" value="give_up" />
@@ -671,7 +693,7 @@
 
       <!-- 13. Knuth's Man or Boy Test -->
       <fieldset>
-        <legend><b>[ALGORITHMIC &amp; CARPENTRY] 13. Knuth's &quot;Man or Boy&quot; Test (Algol 60 Recursion vs Floor Framing)</b></legend>
+        <legend><b>[ALGORITHMIC &amp; CARPENTRY] 13. Knuth's &quot;Man or Boy&quot; Test (Recursion vs Structural Load)</b></legend>
         <p><small><i>Subtext: Donald Knuth (1964) compiler benchmark correlated with 2x10 Douglas Fir floor joist deflection.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -680,15 +702,15 @@
                 <input type="radio" id="knuth_man" name="knuth_test" value="knuth_man" checked />
               </td>
               <td valign="top">
-                <label for="knuth_man"><b>A(10, 1, -1, -1, 1, 0) evaluates to -67.</b></label>
+                <label for="knuth_man"><b>A(10, 1, -1, -1, 1, 0) evaluates to -67. My compiler maintains non-local environment displays like a true Algol patriarch.</b></label>
               </td>
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="knuth_boy" name="knuth_test" value="knuth_boy" />
+                <input type="radio" id="knuth_joists" name="knuth_test" value="joists_doug_fir" />
               </td>
               <td valign="top">
-                <label for="knuth_boy"><b>Floor joists using wet green spruce from the big-box discount bin.</b></label>
+                <label for="knuth_joists"><b>I frame floor joists using 2x10 Douglas Fir on 16-inch centers with solid mid-span blocking. It will not sag.</b></label>
               </td>
             </tr>
             <tr>
@@ -704,7 +726,7 @@
                 <input type="radio" id="knuth_tex" name="knuth_test" value="knuth_tex" />
               </td>
               <td valign="top">
-                <label for="knuth_tex"><b>All Algol thunks have been fully depreciated under Section 179.</b></label>
+                <label for="knuth_tex"><b>All structured thinking have been fully deprecated under Section 179.</b></label>
               </td>
             </tr>
           </tbody>
@@ -713,42 +735,42 @@
 
       <br />
 
-      <!-- 14. Testosterone / Vcore / Hydraulic PSI -->
+      <!-- 14. Testosterone / Operating Pressure -->
       <fieldset>
-        <legend><b>[PHYSIOLOGY &amp; HYDRAULICS] 14. Hydraulic Testosterone PSI</b></legend>
-        <p><small><i>Subtext: Heavy excavator hydraulic relief valve pressure correlated with endocrine blood serum panels.</i></small></p>
+        <legend><b>[HORMONES &amp; HYDRAULICS] 14. Hydraulic Testosterone PSI</b></legend>
+        <p><small><i>Subtext: Heavy equipment hydraulic relief pressure correlated with endocrine blood serum panels.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
             <tr>
               <td valign="top" width="25">
-                <input type="radio" id="vcore_overvolted" name="testosterone_vcore" value="vcore_overvolted" checked />
+                <input type="radio" id="vcore_overvolted" name="testosterone_vcore" value="high_pressure" checked />
               </td>
               <td valign="top">
-                <label for="vcore_overvolted"><b>3,800 PSI hydraulic relief pressure</b></label>
-              </td>
-            </tr>
-            <tr>
-              <td valign="top">
-                <input type="radio" id="vcore_nominal" name="testosterone_vcore" value="vcore_nominal" />
-              </td>
-              <td valign="top">
-                <label for="vcore_nominal"><b>Nominal 2,200 PSI operating pressure</b></label>
+                <label for="vcore_overvolted"><b>3,500 PSI hydraulic relief pressure (Total serum T: 1,200 ng/dL; operates at maximum torque under heavy commercial load).</b></label>
               </td>
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="vcore_undervolted" name="testosterone_vcore" value="vcore_undervolted" />
+                <input type="radio" id="vcore_nominal" name="testosterone_vcore" value="workhorse_nominal" />
               </td>
               <td valign="top">
-                <label for="vcore_undervolted"><b>Low hydraulic fluid warning buzzer sounding continuously</b></label>
+                <label for="vcore_nominal"><b>2,000 PSI nominal workhorse; reliable for 300,000 miles.</b></label>
               </td>
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="vcore_cmos_dead" name="testosterone_vcore" value="vcore_cmos_dead" />
+                <input type="radio" id="vcore_undervolted" name="testosterone_vcore" value="low_fluid_alarm" />
               </td>
               <td valign="top">
-                <label for="vcore_cmos_dead"><b>Zero hydraulic pressure</b></label>
+                <label for="vcore_undervolted"><b>Low hydraulic fluid warning buzzer sounding continuously.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="vcore_silicon_valley" name="testosterone_vcore" value="silicon_undervolt" />
+              </td>
+              <td valign="top">
+                <label for="vcore_silicon_valley"><b>Undervolted to 0.75V for power efficiency.</b></label>
               </td>
             </tr>
           </tbody>
@@ -759,16 +781,16 @@
 
       <!-- 15. Romantic Vector -->
       <fieldset>
-        <legend><b>[INTERPERSONAL &amp; SYNERGY] 15. Romantic Vector &amp; Courtship Protocol</b></legend>
+        <legend><b>[COURTSHIP &amp; SYNERGY] 15. Romantic Vector &amp; Courtship Protocol</b></legend>
         <p><small><i>Subtext: Romance protocols under commercial lease covenants and domestic alignment workshops.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
             <tr>
               <td valign="top" width="25">
-                <input type="radio" id="romance_hetero" name="romantic_vector" value="romance_hetero" checked />
+                <input type="radio" id="romance_home_depot" name="romantic_vector" value="home_depot_partner" checked />
               </td>
               <td valign="top">
-                <label for="romance_hetero"><b>I take my wife to Home Depot at 6:45 AM on Saturday to compare exterior semi-gloss latex paint and 3-inch drywall screws.</b></label>
+                <label for="romance_home_depot"><b>I take my wife to Home Depot at 6:45 AM on Saturday to compare exterior semi-gloss latex paint and 3-inch drywall screws.</b></label>
               </td>
             </tr>
             <tr>
@@ -828,7 +850,7 @@
                 <input type="radio" id="gender_posix_portable" name="gender_arch" value="gender_posix_portable" />
               </td>
               <td valign="top">
-                <label for="gender_posix_portable"><b>Fully certified for both residential rough-in 200A electrical service and corporate balance sheet underwriting.</b></label>
+                <label for="gender_posix_portable"><b>High-Impedance Tri-State Bus: Fully certified for both residential rough-in electrical work and corporate balance sheet audits.</b></label>
               </td>
             </tr>
             <tr>
@@ -943,21 +965,21 @@
 
       <!-- 19. Specimen's Primary Transport Vector -->
       <fieldset>
-        <legend><b>[LOGISTICS &amp; FLEET] 19. Specimen's Primary Transport Vector</b></legend>
-        <p><small><i>Subtext: Gross Vehicle Weight Rating (GVWR) vs fuel delivery infrastructure.</i></small></p>
+        <legend><b>[KINEMATICS &amp; FLEET] 19. Specimen's Primary Transport Vector</b></legend>
+        <p><small><i>Subtext: Gross Vehicle Weight Rating (GVWR) vs remote network pathways.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
             <tr>
               <td valign="top" width="25">
-                <input type="radio" id="trans_f250" name="vehicle_transport" value="trans_f250" checked />
+                <input type="radio" id="trans_f250" name="vehicle_transport" value="silverado_f250" checked />
               </td>
               <td valign="top">
-                <label for="trans_f250"><b>1999 Chevy Silverado 2500 with a cracked dashboard, half a sheet of warped exterior plywood in the bed, and a squealing alternator belt.</b></label>
+                <label for="trans_f250"><b>1999 Chevy Silverado 2500 with a cracked dashboard, a Class IV receiver hitch, and half a roll of duct tape in the glove box.</b></label>
               </td>
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="trans_fixie" name="vehicle_transport" value="trans_fixie" />
+                <input type="radio" id="trans_fixie" name="vehicle_transport" value="mower_guy" />
               </td>
               <td valign="top">
                 <label for="trans_fixie"><b>Riding a commercial zero-turn lawnmower down the shoulder of a two-lane state highway to Ace Hardware to buy three lock washers.</b></label>
@@ -965,15 +987,15 @@
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="trans_ssh" name="vehicle_transport" value="trans_ssh" />
+                <input type="radio" id="trans_ssh" name="vehicle_transport" value="ssh_hermit" />
               </td>
               <td valign="top">
-                <label for="trans_ssh"><b>Corporate leased BMW 330i with a pending Q4 mileage overage penalty and an empty Starbucks cold brew cup in the cup holder.</b></label>
+                <label for="trans_ssh"><b>I don't leave the house. Physical transit is an inefficient abstraction.</b></label>
               </td>
             </tr>
             <tr>
               <td valign="top">
-                <input type="radio" id="trans_minivan" name="vehicle_transport" value="trans_minivan" />
+                <input type="radio" id="trans_minivan" name="vehicle_transport" value="hank_hill" />
               </td>
               <td valign="top">
                 <label for="trans_minivan"><b>Riding shotgun in my bestie's Honda Civic while smoking opps.</b></label>
@@ -1012,13 +1034,13 @@
       <fieldset>
         <legend><b>PIPELINE DISPATCH &amp; BID SUBMISSION</b></legend>
         <p>
-          Clicking submit transmits your job site parameters via HTTP POST to <code>/cgi-bin/man-test.cgi</code>.
+          Clicking submit transmits your parameters via HTTP POST to <code>/cgi-bin/man-test.cgi</code>.
           Results will be compiled and returned by the server.
         </p>
         <p align="center">
           <input
             type="submit"
-            value="=== SUBMIT MAN TEST (1) BID TO /cgi-bin/man-test.cgi ==="
+            value="=== SUBMIT BID TO /cgi-bin/man-test.cgi ==="
             style="font-size: 1.1em; padding: 6px 14px; font-weight: bold;"
           />
           &nbsp;&nbsp;&nbsp;&nbsp;
