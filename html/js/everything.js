@@ -120,7 +120,7 @@ function xfsub() {
 }
 function xf_fill_randomly(sval){
   var xf = document.getElementById("xf");
-  if (xf){
+  if (xf instanceof HTMLFormElement){
     const names = new Set();
     for (const i in xf.elements){
       if (xf[i]?.name){
@@ -128,7 +128,8 @@ function xf_fill_randomly(sval){
       }
     }
     for (const i of names){
-      xf[i].value = sval??rui(4);
+      const k = xf.elements.namedItem(i)?.length||4;
+      xf[i].value = sval??rui(k);
     }
   }
 }
