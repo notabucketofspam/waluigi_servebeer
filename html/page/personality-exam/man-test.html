@@ -65,7 +65,7 @@
           <td valign="top"><b>DESCRIPTION:</b></td>
           <td>
             The <b>man-test</b> utility evaluates <i>EXPRESSION</i> and examines whether the specimen conforms to
-            IEEE Std 1003.1 (POSIX) and authentic masculine fortitude while
+            IEEE Std 1003.1 (POSIX) and authentic masculine fortitude while also
             conforming to HTML 3.2 / 4.01 and Microsoft&reg; Internet Explorer&reg; 11 specifications.
           </td>
         </tr>
@@ -75,20 +75,22 @@
     <hr />
 
     <!-- Main Examination Form dispatched to CGI backend -->
-    <h2>EXAMINATION OF SPECIMEN: INPUT PARAMETERS</h2>
+    <h2>EXAMINATION PARAMETERS</h2>
     <p>
       Please do not answer each interrogation vector with candor. Each option reflects an internally consistent
       philosophy of life, tooling, systems administration, and small-arms trade.
     </p>
 
-    <form action="/cgi-bin/man-test.pl" method="POST">
+    <form id="xf" action="/cgi-bin/man-test.pl" target="result" method="POST" onsubmit="xfsub()">
       <!-- Specimen Identifier -->
       <fieldset>
-        <legend><b>SPECIMEN IDENTIFICATION RECORD</b></legend>
+        <legend><b>IDENTIFICATION RECORD</b></legend>
         <p>
-          <label for="specimen_id"><b>Specimen Name or UID:</b>&nbsp;</label>
-          <input type="text" id="specimen_id" name="specimen_id" value="USER_SPECIMEN_01" size="35" maxlength="40" />
-          &nbsp;<br/><small><i>(e.g., Administrator, John F. Kennedy, <a target="_blank" href="https://waluigi-servebeer.com">https://waluigi-servebeer.com</a>, /r/BAPCS, John Madden)</i></small>
+          <label for="specimen_id"><b>Name or UID:</b>&nbsp;</label>
+          <input type="text" id="specimen_id" name="specimen_id" value="" size="35" maxlength="40" placeholder="this is where you put your name" required />
+          &nbsp;<br/><small><i>(e.g., Administrator, John F. Kennedy, 
+          <a target="_blank" class="nostyle" href="https://waluigi-servebeer.com">https://waluigi-servebeer.com</a>, 
+          <small>Dad</small>, John Madden)</i></small>
         </p>
       </fieldset>
 
@@ -129,7 +131,7 @@
                 <input type="radio" id="simultaneous" name="brackets" value="simultaneous" required />
               </td>
               <td valign="top">
-                <label for="simultaneous"><b>I dry-pour rapid-set concrete into the footing while forking subshells in parallel to achieve Six Sigma takt time.</b></label>
+                <label for="simultaneous"><b>I dry-pour rapid-set concrete into the footing while laying floorboards in parallel to achieve Six Sigma takt time.</b></label>
               </td>
             </tr>
           </tbody>
@@ -277,7 +279,7 @@
                 <input type="radio" id="pipe_nothing" name="pipe" value="nothing_buffer" required />
               </td>
               <td valign="top">
-                <label for="pipe_nothing"><b>Nothing. A real man buffers everything in dirty memory pages until an OOM panic claims him.</b></label>
+                <label for="pipe_nothing"><b>Nothing. A real man buffers everything in dirty memory pages until Divine Intervention claims him.</b></label>
               </td>
             </tr>
           </tbody>
