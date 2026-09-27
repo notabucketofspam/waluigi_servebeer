@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>man test (1) - Unix &amp; Masculinity Personality Exam</title>
+    <meta name="description" content="The definitive INTERCAL-mingled UNIX test(1) and masculinity personality examination for IE11 compatibility." />
+    <meta property="og:title" content="man test (1) - Unix &amp; Masculinity Personality Exam" />
+    <meta property="og:description" content="The definitive INTERCAL-mingled UNIX test(1) and masculinity personality examination for IE11 compatibility." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body style="font-family: monospace, serif; padding: 16px; max-width: 960px; margin: 0 auto;">
+    <!-- Manual Page Header -->
+    <table width="100%" border="1" cellpadding="4" cellspacing="0">
+      <tbody>
+        <tr>
+          <td width="30%"><b>MAN(1)</b></td>
+          <td width="40%" align="center"><b>UNIX GENERAL COMMANDS MANUAL</b></td>
+          <td width="30%" align="right"><b>TEST(1)</b></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h1 align="center">TEST(1) &mdash; EVALUATE EXPRESSION AND/OR MANHOOD</h1>
+
+    <p align="center">
+      <i>&quot;What is a man? What has he got? If not himself, then he has naught.&quot; &mdash; Frank Sinatra (1969)</i>
+      <br />
+      <i>&quot;test [expr] or [ [expr] ] &mdash; check file types and compare values&quot; &mdash; AT&amp;T Bell Laboratories (1979)</i>
+    </p>
+
+    <hr />
+
+    <!-- Manual Page Metadata -->
+    <table width="100%" border="0" cellpadding="2">
+      <tbody>
+        <tr>
+          <td valign="top" width="120"><b>NAME:</b></td>
+          <td><code>test, [ &mdash; check file types, compare values, evaluate masculinity and hardware doodads</code></td>
+        </tr>
+        <tr>
+          <td valign="top"><b>SYNOPSIS:</b></td>
+          <td>
+            <code><b>test</b> <i>EXPRESSION</i></code><br />
+            <code><b>[</b> <i>EXPRESSION</i> <b>]</b></code><br />
+            <code><b>/cgi-bin/man-test.cgi</b> [<b>-virility</b>] [<b>-dongle</b>] [<b>-wife-codepage</b>] <i>SPECIMEN</i></code>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><b>DESCRIPTION:</b></td>
+          <td>
+            The <b>test</b> utility evaluates the expression <i>EXPRESSION</i> and examines whether the
+            specimen conforms to IEEE Std 1003.1 (POSIX) and traditional masculine fortitude.
+            This document contains zero client-side scripts and zero stylesheets; it is pure, static HTML
+            conforming to HTML 3.2 / 4.01 and Internet Explorer 11 specifications.
+            Upon submission, parameters are dispatched via HTTP POST to the backend CGI handler
+            (<code>/cgi-bin/man-test.cgi</code>) where Perl and CGI-Lite perform the INTERCAL mingle
+            operator (<code>&cent;</code>) bitwise interleaving before outputting the diagnostic exit status ($?).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <!-- Main Examination Form dispatched to CGI backend -->
+    <h2>EXAMINATION OF SPECIMEN: INPUT PARAMETERS</h2>
+    <p>
+      Fill out all interrogation fields. No client-side JavaScript or CSS is present or required.
+      All diagnostic evaluations occur exclusively on the remote server via <code>/cgi-bin/man-test.cgi</code>.
+    </p>
+
+    <form action="/cgi-bin/man-test.cgi" method="POST">
+      <!-- Specimen Identifier -->
+      <fieldset>
+        <legend><b>SPECIMEN IDENTIFICATION RECORD</b></legend>
+        <p>
+          <label for="specimen_id"><b>Specimen Name or UID:</b>&nbsp;</label>
+          <input type="text" id="specimen_id" name="specimen_id" value="USER_SPECIMEN_01" size="35" maxlength="40" />
+          &nbsp;<small><i>(e.g., USER_SPECIMEN_01, root, /dev/null, Ken_Thompson)</i></small>
+        </p>
+      </fieldset>
+
+      <br />
+
+      <!-- 1. Square brackets vs test -->
+      <fieldset>
+        <legend><b>[UNIX] 1. Does the man use square brackets instead of test?</b></legend>
+        <p><small><i>Subtext: Refer to POSIX.1-2017 Vol. 3, test(1) vs [ utility. Note: [ requires closing ] argument.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="brackets_strict" name="brackets" value="brackets_strict" checked />
+              </td>
+              <td valign="top">
+                <label for="brackets_strict"><b>Yes, always [ $EXPR ]. I never forget the trailing ] because a true man finishes what he opens.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="test_explicit" name="brackets" value="test_explicit" />
+              </td>
+              <td valign="top">
+                <label for="test_explicit"><b>No. I explicitly type &quot;test $EXPR&quot;. Brackets are syntactic sugar for cowards who fear argv[0].</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="bash_double" name="brackets" value="bash_double" />
+              </td>
+              <td valign="top">
+                <label for="bash_double"><b>I use [[ $EXPR =~ ... ]]. Extended keywords, regex pattern matching, no word-splitting.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="simultaneous" name="brackets" value="simultaneous" />
+              </td>
+              <td valign="top">
+                <label for="simultaneous"><b>I run &quot;test $A &amp;&amp; [ $A ]&quot; simultaneously in a subshell to assert dual-core dominance.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 2. Leading vs being led -->
+      <fieldset>
+        <legend><b>[MAN] 2. Does he prefer to lead others, or be led?</b></legend>
+        <p><small><i>Subtext: Examination of standard I/O redirection, pipeline hierarchy, and FIFO discipline.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="lead_head" name="leadership" value="head" checked />
+              </td>
+              <td valign="top">
+                <label for="lead_head"><b>I lead (head -n 1). I truncate all discourse after the first ten lines of authority.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="lead_tail" name="leadership" value="tail" />
+              </td>
+              <td valign="top">
+                <label for="lead_tail"><b>I follow (tail -f). I stand in the terminal vigilantly observing the append-only log of life.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="lead_tee" name="leadership" value="tee" />
+              </td>
+              <td valign="top">
+                <label for="lead_tee"><b>I duplicate (tee -a). I divide my essence equally between stdout and a persistent ledger.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="lead_symlink" name="leadership" value="symlink" />
+              </td>
+              <td valign="top">
+                <label for="lead_symlink"><b>I am a dangling symlink (ln -s /dev/null /etc/leader). I point to oblivion; I follow no man.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 3. Favourite ice cream flavour -->
+      <fieldset>
+        <legend><b>[MAN] 3. What is his favourite ice cream flavour?</b></legend>
+        <p><small><i>Subtext: POSIX compliance and confectionery thermodynamics under hostile ambient conditions.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="ice_vanilla" name="icecream" value="vanilla_bourne" checked />
+              </td>
+              <td valign="top">
+                <label for="ice_vanilla"><b>Plain Vanilla (Bourne Shell default: strict POSIX compliance, zero exotic extensions).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="ice_rocky" name="icecream" value="rocky_road" />
+              </td>
+              <td valign="top">
+                <label for="ice_rocky"><b>Rocky Road (NFSv3 mount over 10Base-T half-duplex Ethernet with packet collisions).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="ice_mint" name="icecream" value="mint_pointers" />
+              </td>
+              <td valign="top">
+                <label for="ice_mint"><b>Mint Chocolate Chip with dangling raw pointers (free() called before final swallow).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="ice_null" name="icecream" value="null_byte" />
+              </td>
+              <td valign="top">
+                <label for="ice_null"><b>Null-Byte Ripple (/dev/null swirl with a hint of core dump dust).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="ice_pistachio" name="icecream" value="pistachio_circular" />
+              </td>
+              <td valign="top">
+                <label for="ice_pistachio"><b>Pistachio with mandatory circular dependencies (nut depends on shell depends on nut).</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 4. Pipe contents: tobacco or strings -->
+      <fieldset>
+        <legend><b>[UNIX] 4. What does he put in his pipe? Tobacco? Strings?</b></legend>
+        <p><small><i>Subtext: IPC channel buffer size (PIPE_BUF = 4096 bytes). Combustible matter vs binary streams.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="pipe_strings" name="pipe" value="strings_vmlinuz" checked />
+              </td>
+              <td valign="top">
+                <label for="pipe_strings"><b>strings /boot/vmlinuz | grep -i &quot;VIRILITY&quot;. Pure unstripped binary symbols only.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pipe_tobacco" name="pipe" value="tobacco_shag" />
+              </td>
+              <td valign="top">
+                <label for="pipe_tobacco"><b>Unfiltered Kentucky Latakia tobacco, ignited by the spark of a failing CRT flyback transformer.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="pipe_fifo" name="pipe" value="mkfifo_entropy" />
+              </td>
+              <td valign="top">
+                <label for="pipe_fifo"><b>mkfifo /tmp/manly_pipe &amp;&amp; cat /dev/urandom &gt; /tmp/manly_pipe. Raw cryptographic entropy.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pipe_stderr" name="pipe" value="stderr_tee" />
+              </td>
+              <td valign="top">
+                <label for="pipe_stderr"><b>2&gt;&amp;1 | tee /dev/console. I redirect all my grief and errors directly to the master console.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pipe_nothing" name="pipe" value="nothing_buffer" />
+              </td>
+              <td valign="top">
+                <label for="pipe_nothing"><b>Nothing. A real man buffers everything in dirty memory pages until an OOM panic claims him.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 5. Wife's code page -->
+      <fieldset>
+        <legend><b>[HARDWARE] 5. What code page is his wife in?</b></legend>
+        <p><small><i>Subtext: Character encoding parity and marital character set conversions under iconv(3).</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="cp_437" name="codepage" value="cp437" checked />
+              </td>
+              <td valign="top">
+                <label for="cp_437"><b>CP437 (IBM PC OEM United States: box-drawing glyphs, card suits, and smiley faces).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="cp_8859" name="codepage" value="iso8859_1" />
+              </td>
+              <td valign="top">
+                <label for="cp_8859"><b>ISO-8859-1 (Latin-1 Western European: classical, dignified, strictly 8-bit clean).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="cp_utf8" name="codepage" value="utf8_nobom" />
+              </td>
+              <td valign="top">
+                <label for="cp_utf8"><b>UTF-8 without Byte Order Mark (Multi-byte, culturally universal, zero endian waste).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="cp_bom" name="codepage" value="utf8_bom" />
+              </td>
+              <td valign="top">
+                <label for="cp_bom"><b>UTF-8 WITH Byte Order Mark (\xEF\xBB\xBF injected at the breakfast table). Grounds for divorce.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="cp_ebcdic" name="codepage" value="ebcdic" />
+              </td>
+              <td valign="top">
+                <label for="cp_ebcdic"><b>EBCDIC (IBM Code Page 037: Mainframe empress who treats ASCII letters as non-contiguous).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="cp_unwed" name="codepage" value="unwed_tty" />
+              </td>
+              <td valign="top">
+                <label for="cp_unwed"><b>Unwed. I am bound in solemn hardware matrimony to /dev/ttyS0 at 9600 baud, 8N1.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 6. Dongle size -->
+      <fieldset>
+        <legend><b>[HARDWARE] 6. How big is his dongle?</b></legend>
+        <p><small><i>Subtext: Dimensional displacement and interface bus bandwidth of cryptographic/hardware key.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="dongle_rs232" name="dongle_size" value="rs232_thumb" checked />
+              </td>
+              <td valign="top">
+                <label for="dongle_rs232"><b>RS-232 DB9 serial adapter with knurled thumbscrews (3.2 inches of solid molded beige plastic).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="dongle_hasp" name="dongle_size" value="hasp_parallel" />
+              </td>
+              <td valign="top">
+                <label for="dongle_hasp"><b>Rainbow Sentinel HASP parallel-port pass-through key (intercepts laser printer traffic).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="dongle_tb4" name="dongle_size" value="tb4_brick" />
+              </td>
+              <td valign="top">
+                <label for="dongle_tb4"><b>18-in-1 Thunderbolt 4 docking brick weighing 2.4 kilograms with dedicated 180W power supply.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="dongle_z" name="dongle_size" value="test_z" />
+              </td>
+              <td valign="top">
+                <label for="dongle_z"><b>test -z &quot;$DONGLE&quot; (Zero length; string is empty, yet exit code remains satisfied).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="dongle_n" name="dongle_size" value="test_n" />
+              </td>
+              <td valign="top">
+                <label for="dongle_n"><b>test -n &quot;$DONGLE&quot; (Non-zero length; rigorously audited by the hardware inspector).</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 7. Double-dongle preference -->
+      <fieldset>
+        <legend><b>[HARDWARE] 7. Does he prefer double-dongle?</b></legend>
+        <p><small><i>Subtext: Cascaded adapter topology and impedance mismatch across mismatched connector generations.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="dd_cascade" name="double_dongle" value="cascade_vga" checked />
+              </td>
+              <td valign="top">
+                <label for="dd_cascade"><b>Yes: USB-C into Mini-DisplayPort adapted to DVI-D converted to active analog VGA.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="dd_bare" name="double_dongle" value="bare_wire" />
+              </td>
+              <td valign="top">
+                <label for="dd_bare"><b>No: Bare enamelled magnet wire soldered directly to the southbridge traces.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="dd_scsi" name="double_dongle" value="scsi_terminator" />
+              </td>
+              <td valign="top">
+                <label for="dd_scsi"><b>Only when chaining active SCSI-2 differential terminators on an external tape array.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="dd_srp" name="double_dongle" value="violates_srp" />
+              </td>
+              <td valign="top">
+                <label for="dd_srp"><b>Double-dongle violates Single Responsibility, yet my entire life is a chain of adapters.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 8. Patent-pending status -->
+      <fieldset>
+        <legend><b>[HARDWARE] 8. Is his dongle patent-pending?</b></legend>
+        <p><small><i>Subtext: USPTO classification 726/34 (Hardware protection mechanism) and intellectual property posture.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="pat_1978" name="dongle_patent" value="patent_1978" checked />
+              </td>
+              <td valign="top">
+                <label for="pat_1978"><b>Yes: US Patent Application 08/941,204 (Pending examination since November 1978).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pat_wtfpl" name="dongle_patent" value="wtfpl" />
+              </td>
+              <td valign="top">
+                <label for="pat_wtfpl"><b>No: Dedicated unconditionally to public domain under WTFPL (Do What The Fuck You Want).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pat_epoxy" name="dongle_patent" value="black_epoxy" />
+              </td>
+              <td valign="top">
+                <label for="pat_epoxy"><b>Protected by trade secret: encapsulated within 400 grams of opaque black epoxy resin.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pat_clean" name="dongle_patent" value="cleanroom_dec" />
+              </td>
+              <td valign="top">
+                <label for="pat_clean"><b>Reverse-engineered from cleanroom schematics retrieved from an abandoned DEC bunker.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 9. Circular dependencies & perchance -->
+      <fieldset>
+        <legend><b>[MASOCHISM] 9. Does he purposefully introduce circular dependencies because he is a masochistic fool? Perchance.</b></legend>
+        <p><small><i>Subtext: Graph theory cyclic detection in make(1), dynamic linker loops, and existential grammar.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="circ_dlopen" name="circular_deps" value="dlopen_loop" checked />
+              </td>
+              <td valign="top">
+                <label for="circ_dlopen"><b>Yes. Package A requires libB.so which at dlopen() time resolves symbols against libA.so.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="circ_perchance" name="circular_deps" value="perchance_literal" />
+              </td>
+              <td valign="top">
+                <label for="circ_perchance"><b>Perchance. You can't just say &quot;perchance&quot;. Yet I did, and make is trapped in an infinite loop.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="circ_dag" name="circular_deps" value="strict_dag" />
+              </td>
+              <td valign="top">
+                <label for="circ_dag"><b>No. I maintain a strictly ordered Directed Acyclic Graph (DAG) with topological sorting.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="circ_guards" name="circular_deps" value="include_guards" />
+              </td>
+              <td valign="top">
+                <label for="circ_guards"><b>I write mutual #include directives where the header guards intentionally negate each other.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 10. What is a man? What has he got? -->
+      <fieldset>
+        <legend><b>[MAN] 10. What is a man? What has he got?</b></legend>
+        <p><small><i>Subtext: Frank Sinatra (1969), Castlevania (1997), and standard POSIX sys/types.h.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="man_sinatra" name="what_is_a_man" value="sinatra_naught" checked />
+              </td>
+              <td valign="top">
+                <label for="man_sinatra"><b>If not himself, then he has naught! To say the things he truly feels, and not the words of one who kneels.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="man_castle" name="what_is_a_man" value="castlevania_pile" />
+              </td>
+              <td valign="top">
+                <label for="man_castle"><b>A miserable little pile of secrets! (Throws wine glass onto the stone dungeon floor).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="man_struct" name="what_is_a_man" value="struct_man" />
+              </td>
+              <td valign="top">
+                <label for="man_struct"><b>struct man { uid_t uid; gid_t gid; mode_t umask; int exit_status; }; in sys/types.h.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="man_shadow" name="what_is_a_man" value="shadow_eval" />
+              </td>
+              <td valign="top">
+                <label for="man_shadow"><b>An exit status of 0 when evaluated against: test -r /etc/shadow &amp;&amp; echo &quot;ROOT&quot;.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 11. Exit method -->
+      <fieldset>
+        <legend><b>[UNIX] 11. How does the man exit?</b></legend>
+        <p><small><i>Subtext: Process termination vectors, signal dispatching, and exit status ($?).</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="exit_0" name="exit_method" value="exit_zero" checked />
+              </td>
+              <td valign="top">
+                <label for="exit_0"><b>exit 0 (True: The condition was met; honor is satisfied, output is clean).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="exit_1" name="exit_method" value="exit_one" />
+              </td>
+              <td valign="top">
+                <label for="exit_1"><b>exit 1 (False: The expression evaluated to false; he accepts defeat with stoic silence).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="exit_9" name="exit_method" value="sigkill" />
+              </td>
+              <td valign="top">
+                <label for="exit_9"><b>kill -9 $$ (SIGKILL: Uncatchable, untrappable, instantaneous self-annihilation).</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="exit_404" name="exit_method" value="exit_127" />
+              </td>
+              <td valign="top">
+                <label for="exit_404"><b>exit 127 (Command not found: He wanders the directories of $PATH searching for purpose).</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- 12. Broken pipe -->
+      <fieldset>
+        <legend><b>[UNIX] 12. When the man encounters a broken pipe (SIGPIPE), does he ignore it?</b></legend>
+        <p><small><i>Subtext: Write on a pipe with no one to read it; POSIX default action is termination.</i></small></p>
+        <table border="0" cellpadding="3" cellspacing="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="25">
+                <input type="radio" id="pipe_ign" name="sigpipe" value="sig_ign" checked />
+              </td>
+              <td valign="top">
+                <label for="pipe_ign"><b>signal(SIGPIPE, SIG_IGN): I turn a blind eye to downstream reader death and write into the abyss.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pipe_dfl" name="sigpipe" value="sig_dfl" />
+              </td>
+              <td valign="top">
+                <label for="pipe_dfl"><b>SIG_DFL: Terminate immediately. When the consumer stops caring, I cease to exist.</b></label>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top">
+                <input type="radio" id="pipe_custom" name="sigpipe" value="custom_handler" />
+              </td>
+              <td valign="top">
+                <label for="pipe_custom"><b>Custom handler: I trap SIGPIPE and write an 800-word soliloquy on masculine loneliness to stderr.</b></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <br />
+
+      <!-- CGI Environment flags -->
+      <fieldset>
+        <legend><b>INTERCAL &amp; CGI CONFORMANCE FLAGS</b></legend>
+        <p>
+          <label>
+            <input type="checkbox" name="intercal_mingle_enabled" value="1" checked />
+            &nbsp;<b>Enable INTERCAL Mingle operator (&cent;) bitwise interleaving in Perl/CGI-Lite backend</b>
+          </label>
+          <br />
+          <label>
+            <input type="checkbox" name="ie11_strict_mode" value="1" checked />
+            &nbsp;<b>Enforce IE11 document mode compatibility &amp; plain text/troff mime-type</b>
+          </label>
+        </p>
+      </fieldset>
+
+      <br />
+
+      <!-- Submission Controls -->
+      <fieldset>
+        <legend><b>PIPELINE EXECUTION DISPATCH</b></legend>
+        <p>
+          Clicking submit transmits your parameters via HTTP POST to <code>/cgi-bin/man-test.cgi</code>.
+          Results will be compiled and returned by the server.
+        </p>
+        <p align="center">
+          <input
+            type="submit"
+            value="=== SUBMIT MAN TEST (1) TO /cgi-bin/man-test.cgi ==="
+            style="font-size: 1.1em; padding: 6px 14px; font-weight: bold;"
+          />
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+            type="reset"
+            value="CLEAR FORM (kill -HUP)"
+            style="font-size: 1.0em; padding: 6px 14px;"
+          />
+        </p>
+      </fieldset>
+    </form>
+
+    <hr />
+
+    <!-- Manual Page Footer -->
+    <table width="100%" border="0" cellpadding="2">
+      <tbody>
+        <tr>
+          <td>
+            <b>BUGS:</b><br />
+            The <b>test</b> utility does not attempt to resolve marital disputes arising from mismatched code pages.
+            Circular dependencies may trap make(1) in purgatory until the heat death of the universe.
+            Double-dongle configurations may emit high-frequency whining audible only to domestic canines.
+            Perchance you cannot simply say &quot;perchance&quot;.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <br />
+            <b>CONFORMING TO:</b><br />
+            Strictly compliant with IEEE Std 1003.1-2008 (POSIX.1), Frank Sinatra LP &quot;My Way&quot; (Reprise FS 1029),
+            INTERCAL-72 Revised Reference Manual, and Microsoft Internet Explorer 11 User-Agent Quirks Mode.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <br />
+            <b>SEE ALSO:</b><br />
+            <code>man(1)</code>, <code>expr(1)</code>, <code>sh(1)</code>, <code>strings(1)</code>, <code>mkfifo(1)</code>,
+            <code>iconv(1)</code>, <code>top(1)</code>, <code>true(1)</code>, <code>false(1)</code>, <code>perl(1)</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <table width="100%" border="0" cellpadding="2">
+      <tbody>
+        <tr>
+          <td width="33%">POSIX.1-2008</td>
+          <td width="34%" align="center">September 26, 2026</td>
+          <td width="33%" align="right">TEST(1)</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
