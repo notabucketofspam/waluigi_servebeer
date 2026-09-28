@@ -50,7 +50,7 @@ our %xname = (
     manQuotient => '96%',
     testQuotient => '94%',
     sinatraCompliance => '100% (You got banned from a Discord server once for spamming the lyrics to "My Way" in <code>#general</code>)',
-    notes => 'Hydraulic relief valve operating at nominal pressure. Hard knees only.',
+    notes => 'Hydraulic relief valve operating at nominal pressure.<br/>Hard knees only.',
   },
   x1 => {
     img => "exam/man-test/indoor-cat.jpg",
