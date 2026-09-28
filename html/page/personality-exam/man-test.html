@@ -14,14 +14,20 @@
     -->
     <style>
 			div#holder-of-sins {
-				font-family: monospace, serif;
+				--font-family: monospace, serif;
         padding: 16px;
         max-width: 960px;
         margin: 0 auto;
 			}
 			div#holder-of-sins p{
-      margin:0;
+        margin:0;
 			}
+      div#holder-of-sins label b{
+        font-weight:unset;
+      }
+      div#holder-of-sins h2{
+        margin-bottom:0;
+      }
     </style>
   </head>
   <body>
@@ -81,6 +87,7 @@
       Please do not answer each interrogation vector with candor. Each option reflects an internally consistent
       philosophy of life, tooling, systems administration, and small-arms trade.
     </p>
+    <br/>
 
     <form id="xf" action="/cgi-bin/man-test.pl" target="result" method="POST" onsubmit="xfsub()">
       <!-- Specimen Identifier -->
@@ -99,7 +106,7 @@
 
       <!-- 1. Square brackets vs test -->
       <fieldset>
-        <legend><b>[SYNTAX &amp; DISCIPLINES] 1. Do you use square brackets instead of test?</b></legend>
+        <legend><b>[SYNTAX &amp; DISCIPLINES]</b> 1. Do you use square brackets instead of test?</legend>
         <p><small><i>Subtext: Refer to POSIX.1-2017 Vol. 3, test(1) vs [ utility. Note: [ requires closing ] argument.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -143,7 +150,7 @@
 
       <!-- 2. Leading vs being led -->
       <fieldset>
-        <legend><b>[MAN &amp; MANAGEMENT] 2. Does This Man prefer to lead others, or be led?</b></legend>
+        <legend><b>[MAN &amp; MANAGEMENT]</b> 2. Does This Man prefer to lead others, or be led?</legend>
         <p><small><i>Subtext: Pipeline, right-of-way, and quarterly corporate oversight.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -187,7 +194,7 @@
 
       <!-- 3. Favourite ice cream flavour -->
       <fieldset>
-        <legend><b>[CONFECTIONERY &amp; FLAVOUR] 3. What is this guy's favourite ice cream flavour?</b></legend>
+        <legend><b>[CONFECTIONERY &amp; FLAVOUR]</b> 3. What is this guy's favourite ice cream flavour?</legend>
         <p><small><i>Subtext: Thermodynamics of dairy under direct 95&deg;F direct asphalt paving conditions.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -239,7 +246,7 @@
 
       <!-- 4. Pipe contents: tobacco or strings -->
       <fieldset>
-        <legend><b>[PLUMBING &amp; TOBACCO] 4. What are you putting in your pipe? Tobacco? Twine?</b></legend>
+        <legend><b>[PLUMBING &amp; TOBACCO]</b> 4. What are you putting in your pipe? Tobacco? Twine?</legend>
         <p><small><i>Subtext: Schedule 40 PVC flow rates vs carcinogenic combustion particulates.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -291,7 +298,7 @@
 
       <!-- 5. Wife's code page -->
       <fieldset>
-        <legend><b>[DOMESTIC ENCODINGS] 5. What code page is your wife?</b></legend>
+        <legend><b>[DOMESTIC ENCODINGS]</b> 5. What code page is your wife?</legend>
         <p><small><i>Subtext: Marital compatibility under iconv(3) and International Residential Code (IRC) Section R301.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -351,7 +358,7 @@
 
       <!-- 6. Dongle size -->
       <fieldset>
-        <legend><b>[PERIPHERAL HARDWARE] 6. How big is your dongle, my dude?</b></legend>
+        <legend><b>[PERIPHERAL HARDWARE]</b> 6. How big is your dongle, my dude?</legend>
         <p><small><i>Subtext: Measured in foot-pounds of torque, volumetric displacement, and bus interface width.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -412,7 +419,7 @@
 
       <!-- 7. Double-dongle preference -->
       <fieldset>
-        <legend><b>[ADAPTER TOPOLOGY] 7. Do ya prefer double dongle?</b></legend>
+        <legend><b>[ADAPTER TOPOLOGY]</b> 7. Do ya prefer double dongle?</legend>
         <p><small><i>Subtext: Cascaded drive socket reductions and electrical step-down hazards under wet conditions.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -464,7 +471,7 @@
 
       <!-- 8. Patent-pending status -->
       <fieldset>
-        <legend><b>[INTELLECTUAL PROPERTY] 8. Is your dongle patent-pending?</b></legend>
+        <legend><b>[INTELLECTUAL PROPERTY]</b> 8. Is your dongle patent-pending?</legend>
         <p><small><i>Subtext: USPTO classification 730/069 (Hardware protection mechanism and proprietary mechanical fastenings).</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -524,7 +531,7 @@
 
       <!-- 9. Circular dependencies & perchance -->
       <fieldset>
-        <legend><b>[SUBCONTRACTING &amp; MASOCHISM] 9. Do you purposefully introduce circular dependencies because you are a masochistic fool?</b></legend>
+        <legend><b>[SUBCONTRACTING &amp; MASOCHISM]</b> 9. Do you purposefully introduce circular dependencies because you are a masochistic fool?</legend>
         <p><small><i>Subtext: General Contractor scheduling logjams, graph theory detection, and existential grammar.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -568,7 +575,7 @@
 
       <!-- 10. What is a man? What has he got? -->
       <fieldset>
-        <legend><b>[MAN] 10. What is a man?</b></legend>
+        <legend><b>[MAN]</b> 10. What is a man?</legend>
         <p><small><i>Subtext: Frank Sinatra (1969), Castlevania (1997), Section 179 vehicle tax deductions, and... humanoid aliens?</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -620,7 +627,7 @@
 
       <!-- 11. Exit method -->
       <fieldset>
-        <legend><b>[TERMINATION &amp; SEVERANCE] 11. How does a <em>real</em> man exit?</b></legend>
+        <legend><b>[TERMINATION &amp; SEVERANCE]</b> 11. How does a <em>real</em> man exit?</legend>
         <p><small><i>Subtext: Project close-out, contractual release of linens, and terminal exit signals.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -672,7 +679,7 @@
 
       <!-- 12. Broken pipe -->
       <fieldset>
-        <legend><b>[PIPELINE FAILURE] 12. When you encounter a broken pipe, what do you do?</b></legend>
+        <legend><b>[PIPELINE FAILURE]</b> 12. When you encounter a broken pipe, what do you do?</legend>
         <p><small><i>Subtext: 2-inch copper main rupture under slab vs standard POSIX default action.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -716,7 +723,7 @@
 
       <!-- 13. Knuth's Man or Boy Test -->
       <fieldset>
-        <legend><b>[ALGORITHMIC &amp; CARPENTRY] 13. David Lynch passes you the blunt. What happens next?</b></legend>
+        <legend><b>[ALGORITHMIC &amp; CARPENTRY]</b> 13. David Lynch passes you the blunt. What happens next?</legend>
         <p><small><i>Subtext: Donald Knuth (1964) compiler benchmark correlated with 2x10 Douglas Fir floor joist deflection.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -761,7 +768,7 @@
 
       <!-- 14. Testosterone / Operating Pressure -->
       <fieldset>
-        <legend><b>[HORMONES &amp; HYDRAULICS] 14. What's your max Load PSI?</b></legend>
+        <legend><b>[HORMONES &amp; HYDRAULICS]</b> 14. What's your max Load PSI?</legend>
         <p><small><i>Subtext: Heavy equipment hydraulic relief pressure correlated with endocrine blood serum panels.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -813,7 +820,7 @@
 
       <!-- 15. Romantic Vector -->
       <fieldset>
-        <legend><b>[COURTSHIP &amp; SYNERGY] 15. Romantic Vector &amp; Courtship Protocol</b></legend>
+        <legend><b>[COURTSHIP &amp; SYNERGY]</b> 15. Romantic Vector &amp; Courtship Protocol</legend>
         <p><small><i>Subtext: Romance protocols under commercial lease covenants and domestic alignment workshops.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -865,7 +872,7 @@
 
       <!-- 16. Gender Architecture -->
       <fieldset>
-        <legend><b>[DEMOGRAPHICS &amp; AUDIT] 16. Gender Architecture</b></legend>
+        <legend><b>[DEMOGRAPHICS &amp; AUDIT]</b> 16. Gender Architecture</legend>
         <p><small><i>Subtext: Penis inspection vs Job-site foreskin compliance check under OSHA Title 29.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -917,7 +924,7 @@
 
       <!-- 17. Windows Contamination -->
       <fieldset>
-        <legend><b>[QUALITY CONTROL] 17. Your coworker uses Microsoft&reg; Windows&reg;. What's his problem?</b></legend>
+        <legend><b>[QUALITY CONTROL]</b> 17. Your coworker uses Microsoft&reg; Windows&reg;. What's his problem?</legend>
         <p><small><i>Subtext: Inspection for suburban homeowner tendencies, lawncare obsessions, and 0x0D byte artifacts.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -969,7 +976,7 @@
 
       <!-- 18. Emotional Exception Handling and Grief Trapping -->
       <fieldset>
-        <legend><b>[MENTAL HEALTH &amp; LUBRICATION] 18. Emotional Kart Handling and Grief Tapping</b></legend>
+        <legend><b>[MENTAL HEALTH &amp; LUBRICATION]</b> 18. Emotional Kart Handling and Grief Tapping</legend>
         <p><small><i>Subtext: Penetrating lubricant application vs unhandled psychogenic trauma.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -1013,7 +1020,7 @@
 
       <!-- 19. Specimen's Primary Transport Vector -->
       <fieldset>
-        <legend><b>[KINEMATICS &amp; FLEET] 19. Tell me about your Primary Transport Vector</b></legend>
+        <legend><b>[KINEMATICS &amp; FLEET]</b> 19. Tell me about your Primary Transport Vector</legend>
         <p><small><i>Subtext: Gross Vehicle Weight Rating (GVWR) vs remote network pathways.</i></small></p>
         <table border="0" cellpadding="3" cellspacing="0">
           <tbody>
@@ -1057,7 +1064,7 @@
 
       <!-- CGI Environment flags -->
       <fieldset>
-        <legend><b>[CHECKS &amp; BALANCES] 20. INTERCAL, OSHA, AND WWW CONFORMANCE FLAGS</b></legend>
+        <legend><b>[CHECKS &amp; BALANCES]</b> 20. INTERCAL, OSHA, AND WWW CONFORMANCE FLAGS</legend>
         <p>
           <label>
             <input type="checkbox" name="intercal_mingle_enabled" value="1" required />
@@ -1085,6 +1092,7 @@
           Clicking submit transmits your parameters to the server.<br/>
           Results will be compiled and returned within fourteen (14) business days.
         </p>
+        <br>
         <p align="center">
           <input
             type="submit"
@@ -1102,7 +1110,7 @@
       </fieldset>
     </form>
 
-    <hr />
+    <br />
 
     <!-- Manual Page Footer -->
     <table width="100%" border="0" cellpadding="2">
