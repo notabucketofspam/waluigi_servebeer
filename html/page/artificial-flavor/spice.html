@@ -42,13 +42,13 @@
   height:1.6in;
   width:3in;
 }
-#sponsor{
+.sponsor{
   text-align:center;
   margin:0;
   font-size:300%;
   font-family:sans-serif;
 }
-#banquet{
+.banquet{
   max-width:5in;
   border:3px #309 ridge;
   min-width:4in;
@@ -63,8 +63,8 @@
 <div class="sef lard">
 
   <div class="fr">
-    <h2 id="sponsor">Today's Sponsor</h2>
-    <img id="banquet" style="" src="/api/cdi/banquet" alt="this was supposed to be banquet"/>
+    <h2 class="sponsor">Today's Sponsor</h2>
+    <img class="banquet" style="" src="/api/cdi/banquet" alt="this was supposed to be banquet"/>
   </div>
   
   <div id="spicestuff" class="fl">
@@ -78,6 +78,13 @@
   <br style="clear:both"/>
   <!-- <hr/> -->
   
+    <div class="fr">
+    <h2 class="sponsor">And another one</h2>
+    <img class="banquet" style="" src="/api/cdi/banquet_neo" alt="this was also supposed to be banquet"/>
+  </div>
+
+  <br style="clear:both"/>
+
   <div id="the_notice" style="display:none">
     <b>Notice:</b>
     <div>
@@ -90,6 +97,7 @@
 
 <script src="/js/everything.js"></script>
 <script>
+//@ts-nocheck
 function apache(road, callman){
   fetch(road)
   .then(r=>r.text())
