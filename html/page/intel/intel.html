@@ -2,6 +2,7 @@
 
 <html>
 <head>
+<meta charset="utf-8" />
   <title>Intel CPU - waluigi-servebeer.com</title>
   <link rel="stylesheet" type="text/css" href="/css/great-scott.css" />
   <meta name="viewport" content="width=device-width, user-scalable=yes" />
@@ -242,8 +243,8 @@ dd::before {
     var howManyVFs = document.getElementById("howManyVFs");
     if(howManyVFs){
       if (window.EnglishLang) {
-        let someNumber = 7+rui(7);
-        howManyVFs.innerText = `${someNumber} (${window.EnglishLang.num(someNumber)})`;
+        var someNumber = 7+rui(7);
+        howManyVFs.innerText = ""+someNumber+" ("+window.EnglishLang.num(someNumber)+")";
       }      
     } else {
       clearInterval(howManyVFsTimer);
