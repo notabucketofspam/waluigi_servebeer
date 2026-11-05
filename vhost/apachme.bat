@@ -1,9 +1,12 @@
 @ECHO off
 
+ECHO delete the "EXIT 0" line to actually run the code
+PAUSE
+EXIT 0
+
 SET "whereyouat=%~dp0.."
 
-pause
-exit 0
+TYPE "apachme.conf">>"C:\Apache24\conf\httpd.conf"
 
 RENAME "C:\Apache24\htdocs" "htdocs_old"
 mklink /d "C:\Apache24\htdocs" "%whereyouat%\html"
