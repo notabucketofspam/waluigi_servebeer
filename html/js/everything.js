@@ -89,8 +89,12 @@ function rui (k) {
 /**@param {string} msg*/
 function alert_II(msg){
   var dog = document.createElement('dialog');
-  dog.innerHTML = msg;
-  dog.insertAdjacentHTML('beforeend', `<button class="alert_II" onclick="this.parentElement.close()">ok</button>`);
+  var okb = document.createElement("button");
+  okb.classList.add('alert_II');
+  okb.addEventListener('click',function(ev){ev?.target?.parentElement?.close();},{once:true});
+  dog.innerHTML = "";
+  dog.insertAdjacentHTML('beforeend', msg);
+  dog.appendChild(okb);
   dog.classList.add("alert_II");
   dog.addEventListener('close',function(){dog.remove();},{once:true});
   window.document.body.appendChild(dog);
